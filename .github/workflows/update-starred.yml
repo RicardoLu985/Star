@@ -44,9 +44,10 @@ jobs:
           git add starred.md docs/index.html
           if ! git diff --cached --quiet; then
             git commit -m "Auto update starred.md and docs/index.html"
-            git push
+            git push https://x-access-token:${GH_PAT}@github.com/RicardoLu985/Star.git HEAD:main
           else
             echo "No changes to commit"
           fi
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
+
