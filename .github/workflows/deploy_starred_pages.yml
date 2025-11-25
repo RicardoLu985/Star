@@ -6,9 +6,9 @@ on:
     - cron: '0 2 * * *'         # 每天 UTC 2 点更新
 
 permissions:
-  contents: read                # 读取仓库文件
-  pages: write                  # 上传 Pages
-  id-token: write               # OIDC（可选）
+  contents: read                # 读取仓库内容
+  pages: write                  # 上传 GitHub Pages
+  id-token: write               # OIDC 可选
 
 concurrency:
   group: "starred-pages"
@@ -34,8 +34,8 @@ jobs:
 
       - name: Generate starred Markdown and HTML
         env:
-          STAR_USERNAME: "RicardoLu985"          # 你的 GitHub 用户名
-          STAR_TOKEN: ${{ secrets.STAR_TOKEN }}  # GitHub Secret
+          STAR_USERNAME: "Ricardo"          # 你的 GitHub 用户名
+          STAR_TOKEN: ${{ secrets.STAR_TOKEN }}  # 在仓库 Secrets 里设置
         run: |
           echo "[INFO] Running update_starred_semantic.py..."
           python update_starred_semantic.py
