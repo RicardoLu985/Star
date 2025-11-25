@@ -1,0 +1,15 @@
+{
+  "author": "Ricardo",
+  "per_page": 100,
+  "blacklist": [],
+
+  "template_file": "star_template.md",
+  "output_markdown": "starred.md",
+  "output_readme": "README.md",
+  "generate_pages": true,
+  "pages_output": "docs/index.html",
+  "generate_readme": true,
+
+  "auto_archive_if_inactive": true,
+  "archive_threshold_days": 360
+}
