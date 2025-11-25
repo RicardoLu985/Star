@@ -101,62 +101,47 @@ def format_date(date_string):
         return date_string
 
 def generate_markdown(repos, output_file='starred.md'):
-    """生成美化的 Markdown 文件"""
+    """生成美化的 Markdown 文件（保留原有风格）"""
     # 按语言分类
     categorized_repos = categorize_by_language(repos)
 
     with open(output_file, 'w', encoding='utf-8') as f:
-        # 头部信息
-        f.write('# 🌟 我的 GitHub 星标项目\n\n')
-        f.write(f'> 📅 更新时间: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
-        f.write(f'> 🔢 总项目数: {len(repos)}\n')
-        f.write(f'> 🗂️  语言分类: {len(categorized_repos)}\n\n')
+        # 顶部锚点 & 标题
+        f.write('<a id="top"></a>\n\n')
+        f.write('# 我的 GitHub 星标项目整理 ✨\n\n')
 
-        # 项目统计信息
-        f.write('## 📊 项目统计\n\n')
-        f.write('| 编程语言 | 项目数量 |\n')
-        f.write('|----------|----------|\n')
-        for lang, lang_repos in categorized_repos.items():
-            f.write(f'| {lang} | {len(lang_repos)} |\n')
-        f.write('\n')
+        # 文档说明
+        f.write('> **说明**：本文件由 GitHub Actions 自动生成，按语言分类，表格中显示星标数、描述、更新时间。\n')
+        f.write(f'> **更新时间**：{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
+        f.write(f'> **总项目数**：{len(repos)}\n\n')
 
-        # 按语言分类的项目列表
-        f.write('## 📋 项目列表\n\n')
+        # 目录折叠
+        f.write('<details>\n<summary>📂 目录（点击展开/收起）</summary>\n\n')
+        for language in categorized_repos:
+            f.write(f'- [{language}](#{language})\n')
+        f.write('\n</details>\n\n')
 
+        # 分类表格
         for language, lang_repos in categorized_repos.items():
-            # 语言标题
-            f.write(f'### {language}\n\n')
+            f.write(f'## {language}\n\n')
+            f.write('| 项目名 | 描述 | 星标数 | 最后更新 |\n')
+            f.write('|--------|------|--------|----------|\n')
 
-            # 项目列表
-            for repo in lang_repos:
-                # 基本信息
-                name = repo['full_name']
-                url = repo['html_url']
-
-                # --- 这里是修复的核心代码 ---
-                # 安全地处理可能为 None 的 description
+            for repo in sorted(lang_repos, key=lambda r: r.get('stargazers_count', 0), reverse=True):
+                name = f'[{repo["full_name"]}]({repo["html_url"]})'
                 description = repo.get('description')
-                # 如果 description 不是 None，就调用 strip()，否则设为空字符串
-                description = description.strip() if description is not None else ''
-                # 如果处理后的 description 是空字符串，就用 '无描述' 代替
+                description = description.strip() if description else ''
+                description = description[:100] + '...' if len(description) > 100 else description
                 description = description or '无描述'
-                # --- 修复结束 ---
-
-                # 统计信息
                 stars = repo.get('stargazers_count', 0)
-                forks = repo.get('forks_count', 0)
-                last_updated = format_date(repo.get('updated_at'))
+                updated = format_date(repo.get('updated_at'))
 
-                # 构建项目条目
-                f.write(f'#### [{name}]({url})\n')
-                f.write(f'> {description}\n\n')
-                f.write(f'📊 星标: {stars} · 分支: {forks} · 更新: {last_updated}\n\n')
+                f.write(f'| {name} | {description} | {stars} | {updated} |\n')
 
-        # 页脚
-        f.write('---\n\n')
-        f.write(f'⚠️  此页面由 GitHub Actions 自动生成，最后更新于 {datetime.now().strftime("%Y-%m-%d")}\n')
+            f.write('\n')
 
-    logging.info(f"Markdown 文件已生成: {output_file}")
+        # 页脚回到顶部
+        f.write('[回到顶部](#top)\n')
 
 def generate_html(repos, output_file='docs/index.html'):
     """生成美化的 HTML 页面"""
