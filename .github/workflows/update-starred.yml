@@ -24,7 +24,7 @@ jobs:
 
       - name: Run script
         env:
-          STAR_USERNAME: ${{ secrets.STAR_USERNAME }}
+          STAR_USERNAME: "RicardoLu985"
           STAR_TOKEN: ${{ secrets.STAR_TOKEN }}
           # GITHUB_PROXY: ${{ secrets.GITHUB_PROXY }}  # 如果需要代理
         run: python update_starred_semantic.py
