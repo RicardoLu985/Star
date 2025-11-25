@@ -3,7 +3,7 @@
 # 我的 GitHub 星标项目整理 ✨
 
 > **说明**：本文件由 GitHub Actions 自动生成，按语言分类，表格中显示星标数、描述、更新时间。
-> **更新时间**：2025-11-25 17:06:25
+> **更新时间**：2025-11-25 17:11:56
 > **总项目数**：83
 
 <details>
@@ -80,7 +80,7 @@
 
 | 项目名 | 描述 | 星标数 | 最后更新 |
 |--------|------|--------|----------|
-| [sindresorhus/awesome](https://github.com/sindresorhus/awesome) | 😎 Awesome lists about all kinds of interesting topics | 417545 | 2025-11-25 |
+| [sindresorhus/awesome](https://github.com/sindresorhus/awesome) | 😎 Awesome lists about all kinds of interesting topics | 417546 | 2025-11-25 |
 | [CyC2018/CS-Notes](https://github.com/CyC2018/CS-Notes) | :books: 技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计 | 182933 | 2025-11-25 |
 | [maxiaobang7/ossnav](https://github.com/maxiaobang7/ossnav) | 开源精选：探索免费优质的开源软件工具，尽享数字自由 | 1813 | 2025-11-25 |
 | [liminbai/Awesome-GameEmulator](https://github.com/liminbai/Awesome-GameEmulator) | Game emulator information | 772 | 2025-11-25 |
@@ -93,7 +93,7 @@
 
 | 项目名 | 描述 | 星标数 | 最后更新 |
 |--------|------|--------|----------|
-| [microsoft/PowerToys](https://github.com/microsoft/PowerToys) | Microsoft PowerToys is a collection of utilities that help you customize Windows and streamline ever... | 125985 | 2025-11-25 |
+| [microsoft/PowerToys](https://github.com/microsoft/PowerToys) | Microsoft PowerToys is a collection of utilities that help you customize Windows and streamline ever... | 125986 | 2025-11-25 |
 | [babalae/better-genshin-impact](https://github.com/babalae/better-genshin-impact) | 📦BetterGI · 更好的原神 - 自动拾取 | 自动剧情 | 全自动钓鱼(AI) | 全自动七圣召唤 | 自动伐木 | 自动刷本 | 自动采集/挖矿/锄地 | 一条龙 | 全连音游 - UI A... | 11514 | 2025-11-25 |
 | [RayWangQvQ/BiliBiliToolPro](https://github.com/RayWangQvQ/BiliBiliToolPro) | B 站（bilibili）自动任务工具，支持docker、青龙、k8s等多种部署方式。敏感肌也能用。 | 8113 | 2025-11-25 |
 | [yaobiao131/downkyicore](https://github.com/yaobiao131/downkyicore) | 哔哩下载姬(跨平台版)downkyi，哔哩哔哩网站视频下载工具，支持批量下载，支持8K、HDR、杜比视界，提供工具箱（音视频提取、去水印等）。 | 5603 | 2025-11-25 |
