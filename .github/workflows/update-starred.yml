@@ -1,4 +1,4 @@
-name: Update Starred Projects & Deploy Pages
+name: Update Starred Projects
 
 on:
   push:
@@ -6,12 +6,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write  # workflow push 到仓库
-  pages: write
-  id-token: write
+  contents: write  # 允许 workflow push 文件到仓库
 
 jobs:
-  update-and-deploy:
+  update-starred:
     runs-on: ubuntu-latest
     steps:
       # 1️⃣ 检出仓库
@@ -36,14 +34,14 @@ jobs:
       - name: Generate starred files
         env:
           STAR_USERNAME: "RicardoLu985"          # 你的 GitHub 用户名
-          STAR_TOKEN: ${{ secrets.STAR_TOKEN }} # 你的 PAT，用于访问 star API
+          STAR_TOKEN: ${{ secrets.STAR_TOKEN }} # 用于访问 GitHub API 获取 star
         run: |
           python update_starred_semantic.py
 
       # 5️⃣ 提交生成的文件到 main
       - name: Commit generated files
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_PAT: ${{ secrets.GH_PAT }} # 用于 workflow push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -54,13 +52,3 @@ jobs:
           else
             echo "No changes to commit"
           fi
-
-      # 6️⃣ 上传 docs/ 到 GitHub Pages
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
