@@ -132,7 +132,15 @@ def generate_markdown(repos, output_file='starred.md'):
                 # 基本信息
                 name = repo['full_name']
                 url = repo['html_url']
-                description = repo.get('description', '').strip() or '无描述'
+
+                # --- 这里是修复的核心代码 ---
+                # 安全地处理可能为 None 的 description
+                description = repo.get('description')
+                # 如果 description 不是 None，就调用 strip()，否则设为空字符串
+                description = description.strip() if description is not None else ''
+                # 如果处理后的 description 是空字符串，就用 '无描述' 代替
+                description = description or '无描述'
+                # --- 修复结束 ---
 
                 # 统计信息
                 stars = repo.get('stargazers_count', 0)
@@ -146,7 +154,7 @@ def generate_markdown(repos, output_file='starred.md'):
 
         # 页脚
         f.write('---\n\n')
-        f.write('⚠️  此页面由 GitHub Actions 自动生成，最后更新于 ' + datetime.now().strftime("%Y-%m-%d") + '\n')
+        f.write(f'⚠️  此页面由 GitHub Actions 自动生成，最后更新于 {datetime.now().strftime("%Y-%m-%d")}\n')
 
     logging.info(f"Markdown 文件已生成: {output_file}")
 
@@ -392,7 +400,7 @@ def generate_html(repos, output_file='docs/index.html'):
                     </div>
                 </div>
                 <div class="repo-description">
-                    {repo.get('description', '无描述').strip()}
+                    {repo.get('description').strip() if repo.get('description') is not None else '无描述'}
                 </div>
                 <div class="repo-meta">
                     <div>📅 更新: {format_date(repo.get('updated_at'))}</div>
