@@ -3,7 +3,7 @@
 # 我的 GitHub 星标项目整理 ✨
 
 > **说明**：本文件由 GitHub Actions 自动生成，按语言分类，表格中显示星标数、描述、更新时间。
-> **更新时间**：2025-11-25 17:11:56
+> **更新时间**：2025-11-25 17:13:21
 > **总项目数**：83
 
 <details>
@@ -148,7 +148,7 @@
 |--------|------|--------|----------|
 | [ClickHouse/ClickHouse](https://github.com/ClickHouse/ClickHouse) | ClickHouse® is a real-time analytics database management system | 44274 | 2025-11-25 |
 | [xbmc/xbmc](https://github.com/xbmc/xbmc) | Kodi is an award-winning free and open source home theater/media center software and entertainment h... | 20089 | 2025-11-25 |
-| [cxasm/notepad--](https://github.com/cxasm/notepad--) | 一个支持windows/linux/mac的文本编辑器，目标是做中国人自己的编辑器，来自中国。 | 8448 | 2025-11-25 |
+| [cxasm/notepad--](https://github.com/cxasm/notepad--) | 一个支持windows/linux/mac的文本编辑器，目标是做中国人自己的编辑器，来自中国。 | 8449 | 2025-11-25 |
 | [es3n1n/defendnot](https://github.com/es3n1n/defendnot) | An even funnier way to disable windows defender. (through WSC api) | 3017 | 2025-11-25 |
 | [coolight7/musicxx](https://github.com/coolight7/musicxx) | 拟声 音视频播放器 | 1839 | 2025-11-24 |
 
