@@ -27,15 +27,15 @@ jobs:
 
       - name: Run updater script
         env:
-          STAR_USERNAME: "Ricardo"
-          STAR_TOKEN: ${{ secrets.STAR_TOKEN }}
+          STAR_USERNAME: "RicardoLu985"            # 你的 GitHub 用户名
+          STAR_TOKEN: ${{ secrets.STAR_TOKEN }}    # 必须在仓库 Secrets 里设置
         run: |
           echo "[INFO] Starting update_starred_semantic.py..."
           python update_starred_semantic.py
 
       - name: Commit & push changes using PAT
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_PAT: ${{ secrets.GH_PAT }}           # 必须在仓库 Secrets 里设置
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

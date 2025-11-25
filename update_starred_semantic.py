@@ -50,7 +50,7 @@ def generate_placeholder_html(output_file='docs/index.html'):
 <title>GitHub Starred</title>
 <meta charset="UTF-8">
 <style>
-body { font-family: Arial, sans-serif; }
+body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
 h1 { color: #333; }
 </style>
 </head>
