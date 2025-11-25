@@ -3,8 +3,8 @@
 # 我的 GitHub 星标项目整理 ✨
 
 > **说明**：本文件由 GitHub Actions 自动生成，按语言分类，表格中显示星标数、描述、更新时间。
-> **更新时间**：2025-11-25 17:13:21
-> **总项目数**：83
+> **更新时间**：2025-11-25 17:16:20
+> **总项目数**：84
 
 <details>
 <summary>📂 目录（点击展开/收起）</summary>
@@ -53,6 +53,7 @@
 | [microsoft/markitdown](https://github.com/microsoft/markitdown) | Python tool for converting files and office documents to Markdown. | 83286 | 2025-11-25 |
 | [zhayujie/chatgpt-on-wechat](https://github.com/zhayujie/chatgpt-on-wechat) | 基于大模型搭建的聊天机器人，同时支持 微信公众号、企业微信应用、飞书、钉钉 等接入，可选择ChatGPT/Claude/DeepSeek/文心一言/讯飞星火/通义千问/ Gemini/GLM-4/Ki... | 39813 | 2025-11-25 |
 | [microsoft/qlib](https://github.com/microsoft/qlib) | Qlib is an AI-oriented Quant investment platform that aims to use AI tech to empower Quant Research,... | 34038 | 2025-11-25 |
+| [sansan0/TrendRadar](https://github.com/sansan0/TrendRadar) | 🎯 告别信息过载，AI 助你看懂新闻资讯热点，简单的舆情监控分析 - 多平台热点聚合+基于 MCP 的AI分析工具。监控35个平台（抖音、知乎、B站、华尔街见闻、财联社等），智能筛选+自动推送+AI对... | 28315 | 2025-11-25 |
 | [rwv/chinese-dos-games](https://github.com/rwv/chinese-dos-games) | 🎮 Chinese DOS games collections. | 9911 | 2025-11-25 |
 | [jiji262/douyin-downloader](https://github.com/jiji262/douyin-downloader) | 抖音批量下载工具，去水印，支持视频、图集、合集、音乐(原声)。免费！免费！免费！ | 5878 | 2025-11-25 |
 | [JefferyHcool/BiliNote](https://github.com/JefferyHcool/BiliNote) | AI 视频笔记生成工具 让 AI 为你的视频做笔记 | 4223 | 2025-11-25 |
@@ -116,7 +117,7 @@
 | 项目名 | 描述 | 星标数 | 最后更新 |
 |--------|------|--------|----------|
 | [algerkong/AlgerMusicPlayer](https://github.com/algerkong/AlgerMusicPlayer) | 一个第三方音乐播放器、本地服务、桌面歌词、音乐下载、远程控制 | 12943 | 2025-11-25 |
-| [jiangrui1994/CloudSaver](https://github.com/jiangrui1994/CloudSaver) | 一个基于 Vue 3 + Express 的网盘资源搜索与转存工具。 | 7948 | 2025-11-25 |
+| [jiangrui1994/CloudSaver](https://github.com/jiangrui1994/CloudSaver) | 一个基于 Vue 3 + Express 的网盘资源搜索与转存工具。 | 7949 | 2025-11-25 |
 | [zyronon/TypeWords](https://github.com/zyronon/TypeWords) | 练习英语，一次敲击，一点进步；Practice English, one strike, one step forward | 5713 | 2025-11-25 |
 | [MoeKoeMusic/MoeKoeMusic](https://github.com/MoeKoeMusic/MoeKoeMusic) | 一款开源简洁高颜值的酷狗第三方客户端 An open-source, concise, and aesthetically pleasing third-party client for KuGou ... | 4234 | 2025-11-25 |
 | [liu-ziting/what-to-eat](https://github.com/liu-ziting/what-to-eat) | 一饭封神：一个基于 AI 的智能菜谱生成平台，支持中华八大菜系 + 国际料理，提供营养分析、酒水推荐、菜谱效果图生成等全方位烹饪指导。 | 2584 | 2025-11-25 |
@@ -126,7 +127,7 @@
 
 | 项目名 | 描述 | 星标数 | 最后更新 |
 |--------|------|--------|----------|
-| [dbeaver/dbeaver](https://github.com/dbeaver/dbeaver) | Free universal database tool and SQL client | 47261 | 2025-11-25 |
+| [dbeaver/dbeaver](https://github.com/dbeaver/dbeaver) | Free universal database tool and SQL client | 47262 | 2025-11-25 |
 | [freeok/so-novel](https://github.com/freeok/so-novel) | 小说下载｜网文下载 | 网络小说 | 5623 | 2025-11-25 |
 | [loks666/get_jobs](https://github.com/loks666/get_jobs) | 💼【AI找工作助手】全平台自动投简历脚本：(boss、前程无忧、猎聘、智联招聘) | 5286 | 2025-11-25 |
 | [Tosencen/XMBOX](https://github.com/Tosencen/XMBOX) | 一个看片儿的空盒子软件，需自行配置源 | 640 | 2025-11-25 |
