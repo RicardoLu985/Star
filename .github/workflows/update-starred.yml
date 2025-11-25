@@ -1,53 +1,66 @@
-name: Update Starred Projects
+name: Update Starred Projects & Deploy Pages
 
 on:
-  schedule:
-    - cron: '0 0 * * *'  # 每天凌晨更新
-  workflow_dispatch:  # 允许手动触发
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: write  # workflow push 到仓库
+  pages: write
+  id-token: write
 
 jobs:
-  update:
+  update-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      # 1️⃣ 检出仓库
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          python-version: '3.11'
+          fetch-depth: 0
 
+      # 2️⃣ 设置 Python
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      # 3️⃣ 安装依赖
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Run script
+      # 4️⃣ 运行 Python 脚本生成 Markdown 和 HTML
+      - name: Generate starred files
         env:
-          STAR_USERNAME: "RicardoLu985"
-          STAR_TOKEN: ${{ secrets.STAR_TOKEN }}
-          # GITHUB_PROXY: ${{ secrets.GITHUB_PROXY }}  # 如果需要代理
-        run: python update_starred_semantic.py
-
-      - name: Commit changes
+          STAR_USERNAME: "RicardoLu985"          # 你的 GitHub 用户名
+          STAR_TOKEN: ${{ secrets.STAR_TOKEN }} # 你的 PAT，用于访问 star API
         run: |
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'actions@github.com'
-          git add starred.md docs/index.html
-          git commit -m "Update starred projects $(date +'%Y-%m-%d')" || echo "No changes to commit"
-          git push || echo "No changes to push"
+          python update_starred_semantic.py
 
+      # 5️⃣ 提交生成的文件到 main
       - name: Commit generated files
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add starred.md docs/index.html
           if ! git diff --cached --quiet; then
-            git commit -m "Auto update starred.md and docs/index.html"
+            git commit -m "Auto update starred.md and docs/index.html $(date +'%Y-%m-%d')"
             git push https://x-access-token:${GH_PAT}@github.com/RicardoLu985/Star.git HEAD:main
           else
             echo "No changes to commit"
           fi
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
 
+      # 6️⃣ 上传 docs/ 到 GitHub Pages
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
