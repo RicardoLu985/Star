@@ -2,16 +2,17 @@ name: Update Starred (Semantic)
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # 每天 UTC 2 点运行
-  workflow_dispatch: {}   # 支持手动触发
+    - cron: '0 2 * * *'
+  workflow_dispatch: {}
 
 jobs:
   update:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -21,29 +22,24 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests scikit-learn numpy
-          # 可选：启用本地 sentence-transformers
-          if [ "${{ secrets.USE_SENT_TRANSFORMER }}" = "true" ]; then
-            pip install sentence-transformers
-          fi
+          pip install requests
 
       - name: Run updater script
         env:
+          STAR_USERNAME: "你的用户名"
           STAR_TOKEN: ${{ secrets.STAR_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           python update_starred_semantic.py
 
       - name: Commit & push changes using PAT
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}   # 你的 Personal Access Token
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           if ! git diff --cached --quiet; then
-            git commit -m "Auto update: starred (semantic clustering)"
-            # 使用 HTTPS + PAT 推送到 main 分支
+            git commit -m "Auto update: starred"
             git push https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}.git HEAD:main
           else
             echo "No changes to commit"
