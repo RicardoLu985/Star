@@ -1,6 +1,7 @@
 import os
 import requests
 from datetime import datetime
+import traceback
 
 def get_starred_repos(username, token):
     headers = {'Authorization': f'token {token}', 'Accept': 'application/vnd.github.v3+json'}
@@ -39,14 +40,46 @@ def generate_markdown(repos, output_file='starred.md'):
         print(f"[ERROR] Failed to generate markdown: {e}")
         raise
 
-if __name__ == "__main__":
+def generate_placeholder_html(output_file='docs/index.html'):
+    os.makedirs('docs', exist_ok=True)
     try:
-        username = os.getenv("STAR_USERNAME") or "你的用户名"
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write("""<!DOCTYPE html>
+<html>
+<head>
+<title>GitHub Starred</title>
+<meta charset="UTF-8">
+<style>
+body { font-family: Arial, sans-serif; }
+h1 { color: #333; }
+</style>
+</head>
+<body>
+<h1>GitHub Starred Projects</h1>
+<p>此页面由 workflow 自动生成。</p>
+</body>
+</html>""")
+        print(f"[INFO] Placeholder HTML 生成完成: {output_file}")
+    except Exception as e:
+        print(f"[ERROR] Failed to generate HTML: {e}")
+        raise
+
+if __name__ == "__main__":
+    print("[DEBUG] STAR_USERNAME:", os.getenv("STAR_USERNAME"))
+    print("[DEBUG] STAR_TOKEN is set:", "Yes" if os.getenv("STAR_TOKEN") else "No")
+
+    try:
+        username = os.getenv("STAR_USERNAME")
         token = os.getenv("STAR_TOKEN")
+        if not username:
+            raise ValueError("STAR_USERNAME is not set")
         if not token:
-            raise ValueError("Environment variable STAR_TOKEN not set")
+            raise ValueError("STAR_TOKEN is not set")
+
         repos = get_starred_repos(username, token)
         generate_markdown(repos)
+        generate_placeholder_html()
     except Exception as e:
-        print(f"[FATAL] Script failed: {e}")
+        print("[FATAL] Script failed with exception:")
+        traceback.print_exc()
         exit(1)

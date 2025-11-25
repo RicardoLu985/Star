@@ -2,12 +2,13 @@ name: Update Starred (Semantic)
 
 on:
   schedule:
-    - cron: '0 2 * * *'
-  workflow_dispatch: {}
+    - cron: '0 2 * * *'  # 每天 UTC 2 点
+  workflow_dispatch: {}   # 支持手动触发
 
 jobs:
   update:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -26,9 +27,10 @@ jobs:
 
       - name: Run updater script
         env:
-          STAR_USERNAME: "你的用户名"
+          STAR_USERNAME: "Ricardo"
           STAR_TOKEN: ${{ secrets.STAR_TOKEN }}
         run: |
+          echo "[INFO] Starting update_starred_semantic.py..."
           python update_starred_semantic.py
 
       - name: Commit & push changes using PAT
@@ -39,7 +41,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           if ! git diff --cached --quiet; then
-            git commit -m "Auto update: starred"
+            git commit -m "Auto update: starred (semantic clustering)"
             git push https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}.git HEAD:main
           else
             echo "No changes to commit"
