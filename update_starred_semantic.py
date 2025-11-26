@@ -1,28 +1,33 @@
 # update_starred_semantic.py
+
 import os
 import requests
 from datetime import datetime
 import logging
 from collections import defaultdict
 
+# =============================
 # 配置日志
+# =============================
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# 确保 docs 目录存在
 os.makedirs('docs', exist_ok=True)
 
-# 从环境变量获取配置
+# =============================
+# 环境变量
+# =============================
 STAR_USERNAME = os.getenv("STAR_USERNAME")
 STAR_TOKEN = os.getenv("STAR_TOKEN")
-GITHUB_PROXY = os.getenv("GITHUB_PROXY")  # 可选代理配置
+GITHUB_PROXY = os.getenv("GITHUB_PROXY")  # 可选
 
-# 检查必要的环境变量
 if not STAR_USERNAME:
     raise ValueError("STAR_USERNAME 环境变量未设置")
 if not STAR_TOKEN:
     raise ValueError("STAR_TOKEN 环境变量未设置")
 
-# 配置请求会话
+# =============================
+# API 会话配置
+# =============================
 session = requests.Session()
 session.headers.update({
     'Authorization': f'token {STAR_TOKEN}',
@@ -30,405 +35,250 @@ session.headers.update({
     'User-Agent': 'GitHub Starred Projects Exporter'
 })
 
-# 如果设置了代理，配置代理
 if GITHUB_PROXY:
-    session.proxies.update({
-        'http': GITHUB_PROXY,
-        'https': GITHUB_PROXY
-    })
+    session.proxies.update({'http': GITHUB_PROXY, 'https': GITHUB_PROXY})
     logging.info(f"使用代理: {GITHUB_PROXY}")
 
+# =============================
+# 功能分类关键词（方案 A）
+# =============================
+CATEGORY_KEYWORDS = {
+    "前端相关": [
+        "frontend", "front-end", "react", "vue", "svelte", "vite",
+        "webpack", "javascript", "typescript", "css", "html"
+    ],
+    "后端服务": [
+        "backend", "api", "server", "spring", "django", "flask",
+        "express", "fastapi", "node", "service"
+    ],
+    "AI / 机器学习": [
+        "ai", "ml", "machine learning", "model", "deep learning",
+        "neural", "transformer", "llm", "nlp", "cv"
+    ],
+    "数据处理 / 数据库": [
+        "data", "dataset", "csv", "sql", "database", "mysql",
+        "postgres", "etl", "analytics", "big data"
+    ],
+    "运维 / DevOps / CI-CD": [
+        "docker", "kubernetes", "k8s", "devops", "ci", "cd",
+        "github actions", "pipeline", "deployment"
+    ],
+    "工具 / 工具库 / CLI": [
+        "cli", "tool", "library", "utils", "debug", "helper",
+        "extension", "plugin"
+    ],
+    "脚本 / 自动化": [
+        "script", "automation", "bot", "crawler", "scraper"
+    ],
+    "系统 / 底层": [
+        "os", "kernel", "system", "driver", "shell", "rust", "c++"
+    ],
+    "学习 / 教程 / 笔记": [
+        "awesome", "tutorial", "notes", "learning", "guide"
+    ],
+    "未分类": []
+}
+
+# =============================
+# API：获取 starred repos
+# =============================
 def get_starred_repos(username):
-    """获取用户的所有星标仓库，支持分页"""
     url = f'https://api.github.com/users/{username}/starred'
     repos = []
     page = 1
 
     while url:
-        try:
-            logging.info(f"正在获取第 {page} 页星标项目...")
-            response = session.get(url, timeout=10)
+        logging.info(f"获取第 {page} 页星标项目…")
+        resp = session.get(url, timeout=10)
 
-            # 检查响应状态码
-            if response.status_code == 401:
-                raise Exception("认证失败，请检查你的 GitHub Token 是否有效")
-            if response.status_code == 403:
-                raise Exception("API 速率限制 exceeded，请稍后再试或使用代理")
-            if response.status_code != 200:
-                raise Exception(f"API 请求失败: {response.status_code} - {response.text}")
+        if resp.status_code == 401:
+            raise Exception("认证失败，请检查 STAR_TOKEN")
+        if resp.status_code == 403:
+            raise Exception("API 速率限制，请稍后再试")
+        if resp.status_code != 200:
+            raise Exception(f"请求失败：{resp.status_code} - {resp.text}")
 
-            # 添加当前页的仓库
-            page_repos = response.json()
-            if not page_repos:
-                break
+        page_repos = resp.json()
+        if not page_repos:
+            break
 
-            repos.extend(page_repos)
-            logging.info(f"已获取 {len(repos)} 个星标项目")
-
-            # 获取下一页的 URL
-            url = response.links.get('next', {}).get('url')
-            page += 1
-
-        except requests.exceptions.RequestException as e:
-            logging.error(f"请求出错: {e}")
-            raise
-        except Exception as e:
-            logging.error(f"获取星标项目失败: {e}")
-            raise
+        repos.extend(page_repos)
+        url = resp.links.get('next', {}).get('url')
+        page += 1
 
     return repos
 
-def categorize_by_language(repos):
-    """按编程语言对仓库进行分类"""
+# =============================
+# 功能分类（关键词匹配）
+# =============================
+def categorize_by_topic(repos):
     categorized = defaultdict(list)
 
     for repo in repos:
-        language = repo.get('language') or 'Unknown'
-        categorized[language].append(repo)
+        text = (repo.get("name", "") + " " + (repo.get("description") or "")).lower()
 
-    # 按仓库数量降序排序
-    sorted_categories = sorted(categorized.items(), key=lambda x: len(x[1]), reverse=True)
-    return dict(sorted_categories)
+        matched = False
+        for category, keywords in CATEGORY_KEYWORDS.items():
+            if any(keyword in text for keyword in keywords):
+                categorized[category].append(repo)
+                matched = True
+                break
 
+        if not matched:
+            categorized["未分类"].append(repo)
+
+    # 按项目数量排序
+    return dict(sorted(categorized.items(), key=lambda x: len(x[1]), reverse=True))
+
+# =============================
+# 日期格式化
+# =============================
 def format_date(date_string):
-    """格式化日期显示"""
     if not date_string:
         return "N/A"
     try:
-        date_obj = datetime.fromisoformat(date_string.replace('Z', '+00:00'))
-        return date_obj.strftime("%Y-%m-%d")
+        return datetime.fromisoformat(date_string.replace('Z', '+00:00')).strftime("%Y-%m-%d")
     except:
         return date_string
 
-def generate_markdown(repos, output_file='starred.md'):
-    """生成美化的 Markdown 文件（保留原有风格）"""
-    # 按语言分类
-    categorized_repos = categorize_by_language(repos)
+# =============================
+# Markdown 输出
+# =============================
+def generate_markdown(repos, output_file="starred.md"):
+    categorized = categorize_by_topic(repos)
 
-    with open(output_file, 'w', encoding='utf-8') as f:
-        # 顶部锚点 & 标题
-        f.write('<a id="top"></a>\n\n')
-        f.write('# 我的 GitHub 星标项目整理 ✨\n\n')
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write("# 🌟 我的 GitHub Star 项目（按功能分类）\n\n")
+        f.write(f"> 📅 更新时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write(f"> ⭐ 总项目数：{len(repos)}\n")
+        f.write(f"> 🗂 功能分类数：{len(categorized)}\n\n")
 
-        # 文档说明
-        f.write('> **说明**：本文件由 GitHub Actions 自动生成，按语言分类，表格中显示星标数、描述、更新时间。\n')
-        f.write(f'> **更新时间**：{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
-        f.write(f'> **总项目数**：{len(repos)}\n\n')
+        # 分类统计
+        f.write("## 📊 功能分类统计\n\n")
+        f.write("| 分类 | 项目数 |\n|------|--------|\n")
+        for cat, items in categorized.items():
+            f.write(f"| {cat} | {len(items)} |\n")
+        f.write("\n---\n\n")
 
-        # 目录折叠
-        f.write('<details>\n<summary>📂 目录（点击展开/收起）</summary>\n\n')
-        for language in categorized_repos:
-            f.write(f'- [{language}](#{language})\n')
-        f.write('\n</details>\n\n')
+        # 按分类列出项目
+        for category, items in categorized.items():
+            f.write(f"## {category}（{len(items)}）\n\n")
+            for repo in items:
+                desc = repo.get("description") or "无描述"
+                f.write(f"### [{repo['full_name']}]({repo['html_url']})\n")
+                f.write(f"> {desc}\n\n")
+                f.write(f"- ⭐ Stars：{repo.get('stargazers_count', 0)}\n")
+                f.write(f"- 🍴 Forks：{repo.get('forks_count', 0)}\n")
+                f.write(f"- 📅 更新时间：{format_date(repo.get('updated_at'))}\n\n")
+            f.write("\n---\n\n")
 
-        # 分类表格
-        for language, lang_repos in categorized_repos.items():
-            f.write(f'## {language}\n\n')
-            f.write('| 项目名 | 描述 | 星标数 | 最后更新 |\n')
-            f.write('|--------|------|--------|----------|\n')
+    logging.info(f"Markdown 已生成：{output_file}")
 
-            for repo in sorted(lang_repos, key=lambda r: r.get('stargazers_count', 0), reverse=True):
-                name = f'[{repo["full_name"]}]({repo["html_url"]})'
-                description = repo.get('description')
-                description = description.strip() if description else ''
-                description = description[:100] + '...' if len(description) > 100 else description
-                description = description or '无描述'
-                stars = repo.get('stargazers_count', 0)
-                updated = format_date(repo.get('updated_at'))
+# =============================
+# HTML 输出
+# =============================
+def generate_html(repos, output_file="docs/index.html"):
+    categorized = categorize_by_topic(repos)
 
-                f.write(f'| {name} | {description} | {stars} | {updated} |\n')
+    html = []
 
-            f.write('\n')
-
-        # 页脚回到顶部
-        f.write('[回到顶部](#top)\n')
-
-def generate_html(repos, output_file='docs/index.html'):
-    """生成美化的 HTML 页面"""
-    # 按语言分类
-    categorized_repos = categorize_by_language(repos)
-
-    with open(output_file, 'w', encoding='utf-8') as f:
-        f.write("""
+    # 头部
+    html.append(f"""
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub 星标项目</title>
-    <style>
-        :root {
-            --primary-color: #24292e;
-            --secondary-color: #f3f4f6;
-            --accent-color: #0366d6;
-            --text-color: #333;
-            --light-text: #666;
-            --border-color: #e1e4e8;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-        
-        body {
-            background-color: #fafbfc;
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        h1 {
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .header-meta {
-            color: var(--light-text);
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-        
-        .header-meta span {
-            margin: 0 10px;
-        }
-        
-        .stats-section {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .stat-card {
-            background-color: var(--secondary-color);
-            padding: 15px;
-            border-radius: 6px;
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            color: var(--light-text);
-            font-size: 0.9rem;
-        }
-        
-        .language-section {
-            margin-bottom: 40px;
-        }
-        
-        .language-header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px 8px 0 0;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-        
-        .repo-list {
-            background-color: white;
-            border-radius: 0 0 8px 8px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .repo-card {
-            padding: 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .repo-card:last-child {
-            border-bottom: none;
-        }
-        
-        .repo-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        
-        .repo-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-        
-        .repo-name a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-        
-        .repo-name a:hover {
-            text-decoration: underline;
-        }
-        
-        .repo-stats {
-            font-size: 0.8rem;
-            color: var(--light-text);
-        }
-        
-        .repo-stats span {
-            margin-left: 10px;
-        }
-        
-        .repo-description {
-            color: var(--light-text);
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-        }
-        
-        .repo-meta {
-            display: flex;
-            font-size: 0.8rem;
-            color: var(--light-text);
-        }
-        
-        .repo-meta div {
-            margin-right: 15px;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            color: var(--light-text);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        @media (max-width: 768px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .repo-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .repo-stats {
-                margin-top: 5px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<title>GitHub Star 项目</title>
+<style>
+body {{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+    background: #fafafa;
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+}}
+.card {{
+    background: white;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}}
+h1 {{
+    text-align: center;
+}}
+.category-title {{
+    font-size: 22px;
+    margin-top: 40px;
+    border-bottom: 3px solid #eee;
+    padding-bottom: 5px;
+}}
+.repo-title a {{
+    color: #0366d6;
+    font-weight: bold;
+    text-decoration: none;
+}}
+.repo-title a:hover {{
+    text-decoration: underline;
+}}
+.meta {{
+    color: #666;
+    font-size: 14px;
+}}
+.desc {{
+    margin: 8px 0;
+    color: #444;
+}}
+</style>
 </head>
 <body>
-    <header>
-        <h1>🌟 GitHub 星标项目</h1>
-        <div class="header-meta">
-            <span>📅 更新时间: """ + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + """</span>
-            <span>🔢 总项目数: """ + str(len(repos)) + """</span>
-            <span>🗂️  语言分类: """ + str(len(categorized_repos)) + """</span>
-        </div>
-    </header>
-    
-    <section class="stats-section">
-        <h2>📊 项目统计</h2>
-        <div class="stats-grid">
-            """ + "".join([f"""
-            <div class="stat-card">
-                <div class="stat-value">{len(repos)}</div>
-                <div class="stat-label">总项目数</div>
-            </div>
-            """ for _ in range(1)]) + """
-            """ + "".join([f"""
-            <div class="stat-card">
-                <div class="stat-value">{len(lang_repos)}</div>
-                <div class="stat-label">{language}</div>
-            </div>
-            """ for language, lang_repos in list(categorized_repos.items())[:3]]) + """
-        </div>
-    </section>
-    
-    """ + "".join([f"""
-    <section class="language-section">
-        <div class="language-header">{language} ({len(lang_repos)} 个项目)</div>
-        <div class="repo-list">
-            {''.join([f'''
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="{repo['html_url']}" target="_blank">{repo['full_name']}</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ {repo.get('stargazers_count', 0)}</span>
-                        <span>🍴 {repo.get('forks_count', 0)}</span>
-                    </div>
+
+<h1>🌟 GitHub Stars（按功能分类）</h1>
+<p class="meta">📅 更新时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} · ⭐ 共 {len(repos)} 个项目</p>
+    """)
+
+    # 按功能分类展示
+    for category, items in categorized.items():
+        html.append(f'<div class="category-title">{category}（{len(items)}）</div>')
+
+        for repo in items:
+            desc = repo.get("description") or "无描述"
+            html.append(f"""
+            <div class="card">
+                <div class="repo-title">
+                    <a href="{repo['html_url']}" target="_blank">{repo['full_name']}</a>
                 </div>
-                <div class="repo-description">
-                    {repo.get('description').strip() if repo.get('description') is not None else '无描述'}
-                </div>
-                <div class="repo-meta">
-                    <div>📅 更新: {format_date(repo.get('updated_at'))}</div>
-                    <div>👤 作者: {repo['owner']['login']}</div>
+                <div class="desc">{desc}</div>
+                <div class="meta">
+                    ⭐ {repo.get('stargazers_count', 0)} 
+                    🍴 {repo.get('forks_count', 0)} 
+                    📅 {format_date(repo.get('updated_at'))}
                 </div>
             </div>
-            ''' for repo in lang_repos])}
-        </div>
-    </section>
-    """ for language, lang_repos in categorized_repos.items()]) + """
-    
-    <footer>
-        ⚠️  此页面由 GitHub Actions 自动生成，最后更新于 """ + datetime.now().strftime("%Y-%m-%d") + """
-    </footer>
+            """)
+
+    # 页脚
+    html.append("""
 </body>
 </html>
-        """)
+""")
 
-    logging.info(f"HTML 文件已生成: {output_file}")
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write("\n".join(html))
 
+    logging.info(f"HTML 已生成：{output_file}")
+
+# =============================
+# 主函数
+# =============================
 def main():
-    """主函数"""
-    try:
-        logging.info("开始获取 GitHub 星标项目...")
+    logging.info("开始获取 GitHub 星标项目…")
+    repos = get_starred_repos(STAR_USERNAME)
 
-        # 获取星标项目
-        repos = get_starred_repos(STAR_USERNAME)
-
-        if not repos:
-            logging.warning("未找到任何星标项目")
-            return
-
-        logging.info(f"成功获取 {len(repos)} 个星标项目")
-
-        # 生成文件
-        generate_markdown(repos)
-        generate_html(repos)
-
-        logging.info("所有文件生成完成！")
-
-    except Exception as e:
-        logging.error(f"程序执行失败: {e}")
-        raise
+    logging.info(f"共获取 {len(repos)} 个项目")
+    generate_markdown(repos)
+    generate_html(repos)
+    logging.info("所有文件已生成")
 
 if __name__ == "__main__":
     main()
