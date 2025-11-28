@@ -2,1952 +2,1157 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub 星标项目</title>
-    <style>
-        :root {
-            --primary-color: #24292e;
-            --secondary-color: #f3f4f6;
-            --accent-color: #0366d6;
-            --text-color: #333;
-            --light-text: #666;
-            --border-color: #e1e4e8;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-        
-        body {
-            background-color: #fafbfc;
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        h1 {
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .header-meta {
-            color: var(--light-text);
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-        
-        .header-meta span {
-            margin: 0 10px;
-        }
-        
-        .stats-section {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .stat-card {
-            background-color: var(--secondary-color);
-            padding: 15px;
-            border-radius: 6px;
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            color: var(--light-text);
-            font-size: 0.9rem;
-        }
-        
-        .language-section {
-            margin-bottom: 40px;
-        }
-        
-        .language-header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px 8px 0 0;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-        
-        .repo-list {
-            background-color: white;
-            border-radius: 0 0 8px 8px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .repo-card {
-            padding: 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .repo-card:last-child {
-            border-bottom: none;
-        }
-        
-        .repo-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        
-        .repo-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-        
-        .repo-name a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-        
-        .repo-name a:hover {
-            text-decoration: underline;
-        }
-        
-        .repo-stats {
-            font-size: 0.8rem;
-            color: var(--light-text);
-        }
-        
-        .repo-stats span {
-            margin-left: 10px;
-        }
-        
-        .repo-description {
-            color: var(--light-text);
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-        }
-        
-        .repo-meta {
-            display: flex;
-            font-size: 0.8rem;
-            color: var(--light-text);
-        }
-        
-        .repo-meta div {
-            margin-right: 15px;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            color: var(--light-text);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        @media (max-width: 768px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .repo-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .repo-stats {
-                margin-top: 5px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<title>GitHub Star 项目</title>
+<style>
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+    background: #fafafa;
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+.card {
+    background: white;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+h1 {
+    text-align: center;
+}
+.category-title {
+    font-size: 22px;
+    margin-top: 40px;
+    border-bottom: 3px solid #eee;
+    padding-bottom: 5px;
+}
+.repo-title a {
+    color: #0366d6;
+    font-weight: bold;
+    text-decoration: none;
+}
+.repo-title a:hover {
+    text-decoration: underline;
+}
+.meta {
+    color: #666;
+    font-size: 14px;
+}
+.desc {
+    margin: 8px 0;
+    color: #444;
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>🌟 GitHub 星标项目</h1>
-        <div class="header-meta">
-            <span>📅 更新时间: 2025-11-25 17:16:20</span>
-            <span>🔢 总项目数: 84</span>
-            <span>🗂️  语言分类: 17</span>
-        </div>
-    </header>
+
+<h1>🌟 GitHub Stars（按功能分类）</h1>
+<p class="meta">📅 更新时间：2025-11-26 14:30:54 · ⭐ 共 84 个项目</p>
     
-    <section class="stats-section">
-        <h2>📊 项目统计</h2>
-        <div class="stats-grid">
-            
-            <div class="stat-card">
-                <div class="stat-value">84</div>
-                <div class="stat-label">总项目数</div>
-            </div>
-            
-            
-            <div class="stat-card">
-                <div class="stat-value">12</div>
-                <div class="stat-label">TypeScript</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-value">11</div>
-                <div class="stat-label">Python</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-value">10</div>
-                <div class="stat-label">JavaScript</div>
-            </div>
-            
-        </div>
-    </section>
-    
-    
-    <section class="language-section">
-        <div class="language-header">TypeScript (12 个项目)</div>
-        <div class="repo-list">
-            
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/xincmm/sageread" target="_blank">xincmm/sageread</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 481</span>
-                        <span>🍴 49</span>
-                    </div>
+<div class="category-title">未分类（41）</div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/jiji262/douyin-downloader" target="_blank">jiji262/douyin-downloader</a>
                 </div>
-                <div class="repo-description">
-                    一款 AI 辅助阅读器，三栏设计实现笔记、阅读、对话同屏交互，让深度阅读更高效
+                <div class="desc">抖音批量下载工具，去水印，支持视频、图集、合集、音乐(原声)。免费！免费！免费！</div>
+                <div class="meta">
+                    ⭐ 5890 
+                    🍴 891 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: xincmm</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/chenfan0/fideo-live-record" target="_blank">chenfan0/fideo-live-record</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 1721</span>
-                        <span>🍴 133</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    A convenient live broadcast recording software! Supports Tiktok, Youtube, Twitch, Bilibili, Bigo!(一款方便的直播录制软件! 支持tiktok, youtube, twitch, 抖音，虎牙，斗鱼，快手，微博，网易cc，bilibili，花椒, 淘宝, 京东)
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/pbatard/rufus" target="_blank">pbatard/rufus</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-24</div>
-                    <div>👤 作者: chenfan0</div>
+                <div class="desc">The Reliable USB Formatting Utility</div>
+                <div class="meta">
+                    ⭐ 33773 
+                    🍴 2893 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/mundane799699/bilibili-history-wxt" target="_blank">mundane799699/bilibili-history-wxt</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 56</span>
-                        <span>🍴 4</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/jayjd/HuYaTv" target="_blank">jayjd/HuYaTv</a>
                 </div>
-                <div class="repo-description">
-                    无描述
+                <div class="desc">聚合直播（FUSE）,支持虎牙/抖音/快手/哔哩哔哩/斗鱼/YY/网易CC/电视直播，支持手机/平板/电视/车机</div>
+                <div class="meta">
+                    ⭐ 479 
+                    🍴 9 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-23</div>
-                    <div>👤 作者: mundane799699</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/qiweiii/bili-feed-history" target="_blank">qiweiii/bili-feed-history</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 31</span>
-                        <span>🍴 3</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/freeok/so-novel" target="_blank">freeok/so-novel</a>
                 </div>
-                <div class="repo-description">
-                    查看不小心错过的bilibili首页“换一换”推荐视频
+                <div class="desc">小说下载｜网文下载 | 网络小说</div>
+                <div class="meta">
+                    ⭐ 5630 
+                    🍴 445 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-23</div>
-                    <div>👤 作者: qiweiii</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/waifu-project/movie" target="_blank">waifu-project/movie</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 1711</span>
-                        <span>🍴 177</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    小猫影视是一款全平台的影视播放器, 支持 VOD/JS 扩展源
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/ZyperWave/ZyperWinOptimize" target="_blank">ZyperWave/ZyperWinOptimize</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: waifu-project</div>
+                <div class="desc">ZyperWin++是一个轻便的Windows优化工具，适用于Win7-Win11最新版的优化，包括性能优化、服务项优化、垃圾清理等操作，还支持系统激活和Office快速安装。</div>
+                <div class="meta">
+                    ⭐ 5223 
+                    🍴 284 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/caorushizi/mediago" target="_blank">caorushizi/mediago</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 8077</span>
-                        <span>🍴 725</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/PrelinaMontelli/Edge-Monitor" target="_blank">PrelinaMontelli/Edge-Monitor</a>
                 </div>
-                <div class="repo-description">
-                    跨平台视频提取工具：支持流媒体下载、视频下载、m3u8 下载及 B站视频下载，提供 Windows 和 Mac 桌面客户端。Cross-platform video extraction tool: Supports streaming download, video download, m3u8 download, and Bilibili video download, with desktop clients for Windows and Mac.
+                <div class="desc">一个监控并弄死异常Edge的程序</div>
+                <div class="meta">
+                    ⭐ 784 
+                    🍴 20 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: caorushizi</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/scriptscat/scriptcat" target="_blank">scriptscat/scriptcat</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 3831</span>
-                        <span>🍴 297</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    ScriptCat, a browser extension that can execute userscript; 脚本猫，一个可以执行用户脚本的浏览器扩展
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/Tosencen/XMBOX" target="_blank">Tosencen/XMBOX</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: scriptscat</div>
+                <div class="desc">一个看片儿的空盒子软件，需自行配置源</div>
+                <div class="meta">
+                    ⭐ 645 
+                    🍴 51 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/lyswhut/lx-music-desktop" target="_blank">lyswhut/lx-music-desktop</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 47289</span>
-                        <span>🍴 6515</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/venera-app/venera" target="_blank">venera-app/venera</a>
                 </div>
-                <div class="repo-description">
-                    一个基于 electron 的音乐软件
+                <div class="desc">A comic app</div>
+                <div class="meta">
+                    ⭐ 5354 
+                    🍴 173 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: lyswhut</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/windingwind/zotero-better-notes" target="_blank">windingwind/zotero-better-notes</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 7048</span>
-                        <span>🍴 226</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    Everything about note management. All in Zotero.
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/chenfan0/fideo-live-record" target="_blank">chenfan0/fideo-live-record</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: windingwind</div>
+                <div class="desc">A convenient live broadcast recording software! Supports Tiktok, Youtube, Twitch, Bilibili, Bigo!(一款方便的直播录制软件! 支持tiktok, youtube, twitch, 抖音，虎牙，斗鱼，快手，微博，网易cc，bilibili，花椒, 淘宝, 京东) </div>
+                <div class="meta">
+                    ⭐ 1722 
+                    🍴 133 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/EcoPasteHub/EcoPaste" target="_blank">EcoPasteHub/EcoPaste</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 6432</span>
-                        <span>🍴 299</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/VonChange/utao" target="_blank">VonChange/utao</a>
                 </div>
-                <div class="repo-description">
-                    🎉跨平台的剪贴板管理工具 | Cross-platform clipboard management tool
+                <div class="desc">油桃TV 电视浏览器 可看各大卫视CCTV直播 无需电视VIP 适配爱奇艺等主流视频平台</div>
+                <div class="meta">
+                    ⭐ 2726 
+                    🍴 186 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: EcoPasteHub</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/HerbertHe/iptv-sources" target="_blank">HerbertHe/iptv-sources</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 8410</span>
-                        <span>🍴 1159</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/laqoome/LaQoo" target="_blank">laqoome/LaQoo</a>
                 </div>
-                <div class="repo-description">
-                    Autoupdate iptv sources
+                <div class="desc">【LaQoo】一个简洁的播放动漫的App，支持下载，弹幕等功能</div>
+                <div class="meta">
+                    ⭐ 455 
+                    🍴 13 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: HerbertHe</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/the1812/Bilibili-Evolved" target="_blank">the1812/Bilibili-Evolved</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 27587</span>
-                        <span>🍴 1696</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    强大的哔哩哔哩增强脚本
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/mundane799699/bilibili-history-wxt" target="_blank">mundane799699/bilibili-history-wxt</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: the1812</div>
+                <div class="desc">无描述</div>
+                <div class="meta">
+                    ⭐ 56 
+                    🍴 4 
+                    📅 2025-11-23
                 </div>
             </div>
             
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">Python (11 个项目)</div>
-        <div class="repo-list">
-            
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/sansan0/TrendRadar" target="_blank">sansan0/TrendRadar</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 28315</span>
-                        <span>🍴 15405</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    🎯 告别信息过载，AI 助你看懂新闻资讯热点，简单的舆情监控分析 - 多平台热点聚合+基于 MCP 的AI分析工具。监控35个平台（抖音、知乎、B站、华尔街见闻、财联社等），智能筛选+自动推送+AI对话分析（用自然语言深度挖掘新闻：趋势追踪、情感分析、相似检索等13种工具）。支持企业微信/个人微信/飞书/钉钉/Telegram/邮件/ntfy/bark/slack 推送，30秒网页部署，1分钟手机通知，无需编程。支持Docker部署⭐ 让算法为你服务，用AI理解热点
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/qiweiii/bili-feed-history" target="_blank">qiweiii/bili-feed-history</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: sansan0</div>
+                <div class="desc">查看不小心错过的bilibili首页“换一换”推荐视频</div>
+                <div class="meta">
+                    ⭐ 31 
+                    🍴 3 
+                    📅 2025-11-23
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/jiji262/douyin-downloader" target="_blank">jiji262/douyin-downloader</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 5878</span>
-                        <span>🍴 890</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/Return-Log/Drive-Icon-Manager" target="_blank">Return-Log/Drive-Icon-Manager</a>
                 </div>
-                <div class="repo-description">
-                    抖音批量下载工具，去水印，支持视频、图集、合集、音乐(原声)。免费！免费！免费！
+                <div class="desc">可以轻松删除‘此电脑’及‘资源管理器侧边栏’中讨厌的网盘图标</div>
+                <div class="meta">
+                    ⭐ 964 
+                    🍴 32 
+                    📅 2025-11-25
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: jiji262</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/dr34m-cn/taosync" target="_blank">dr34m-cn/taosync</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 1144</span>
-                        <span>🍴 86</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    TaoSync是一个适用于OpenList v3+的自动化同步工具/Sync for OpenList/AList
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/viarotel-org/escrcpy" target="_blank">viarotel-org/escrcpy</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-24</div>
-                    <div>👤 作者: dr34m-cn</div>
+                <div class="desc">📱 Display and control your Android device graphically with scrcpy.</div>
+                <div class="meta">
+                    ⭐ 6607 
+                    🍴 490 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/Return-Log/Drive-Icon-Manager" target="_blank">Return-Log/Drive-Icon-Manager</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 963</span>
-                        <span>🍴 32</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/coolight7/musicxx" target="_blank">coolight7/musicxx</a>
                 </div>
-                <div class="repo-description">
-                    可以轻松删除‘此电脑’及‘资源管理器侧边栏’中讨厌的网盘图标
+                <div class="desc">拟声 音视频播放器</div>
+                <div class="meta">
+                    ⭐ 1839 
+                    🍴 39 
+                    📅 2025-11-24
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: Return-Log</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/JefferyHcool/BiliNote" target="_blank">JefferyHcool/BiliNote</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 4223</span>
-                        <span>🍴 498</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/JunkFood02/Seal" target="_blank">JunkFood02/Seal</a>
                 </div>
-                <div class="repo-description">
-                    AI 视频笔记生成工具 让 AI 为你的视频做笔记
+                <div class="desc">🦭 Video/Audio Downloader for Android, based on yt-dlp</div>
+                <div class="meta">
+                    ⭐ 23053 
+                    🍴 967 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: JefferyHcool</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/microsoft/markitdown" target="_blank">microsoft/markitdown</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 83286</span>
-                        <span>🍴 4746</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    Python tool for converting files and office documents to Markdown.
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/Gar-b-age/CookLikeHOC" target="_blank">Gar-b-age/CookLikeHOC</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: microsoft</div>
+                <div class="desc">🥢像老乡鸡🐔那样做饭。主要部分于2024年完工，非老乡鸡官方仓库。文字来自《老乡鸡菜品溯源报告》，并做归纳、编辑与整理。CookLikeHOC.</div>
+                <div class="meta">
+                    ⭐ 22294 
+                    🍴 2249 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/zhayujie/chatgpt-on-wechat" target="_blank">zhayujie/chatgpt-on-wechat</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 39813</span>
-                        <span>🍴 9510</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/youhunwl/TVAPP" target="_blank">youhunwl/TVAPP</a>
                 </div>
-                <div class="repo-description">
-                    基于大模型搭建的聊天机器人，同时支持 微信公众号、企业微信应用、飞书、钉钉 等接入，可选择ChatGPT/Claude/DeepSeek/文心一言/讯飞星火/通义千问/ Gemini/GLM-4/Kimi/LinkAI，能处理文本、语音和图片，访问操作系统和互联网，支持基于自有知识库进行定制企业智能客服。
+                <div class="desc"> 收集全网 Android TV电视盒子应用，涵盖影视、直播、K歌、工具、游戏等类型，整理优质APK资源，支持便捷下载与自动更新。提供安全验证、分类索引与兼容性标注，助力用户打造家庭影音娱乐中心！              ✅ TVBox/影视仓等影音壳接口配置源。</div>
+                <div class="meta">
+                    ⭐ 4704 
+                    🍴 637 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: zhayujie</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/rwv/chinese-dos-games" target="_blank">rwv/chinese-dos-games</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 9911</span>
-                        <span>🍴 1207</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    🎮 Chinese DOS games collections.
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/lanyeeee/bilibili-video-downloader" target="_blank">lanyeeee/bilibili-video-downloader</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: rwv</div>
+                <div class="desc">哔哩哔哩 bilibili B站 视频 下载器，图形界面 + nfo刮削 + 广告标记 + 字幕下载 + 弹幕下载，轻松将视频加入emby等媒体库</div>
+                <div class="meta">
+                    ⭐ 670 
+                    🍴 28 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/simonsmh/telegram-bili-feed-helper" target="_blank">simonsmh/telegram-bili-feed-helper</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 241</span>
-                        <span>🍴 23</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/waifu-project/movie" target="_blank">waifu-project/movie</a>
                 </div>
-                <div class="repo-description">
-                    Telegram bot for Bilibili links
+                <div class="desc">小猫影视是一款全平台的影视播放器, 支持 VOD/JS 扩展源</div>
+                <div class="meta">
+                    ⭐ 1716 
+                    🍴 176 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: simonsmh</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/BlueSkyXN/Bili-to-Youtube" target="_blank">BlueSkyXN/Bili-to-Youtube</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 105</span>
-                        <span>🍴 10</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    B2Y，简化从哔哩哔哩视频下载到上传到Youtube的快速操作
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/putyy/res-downloader" target="_blank">putyy/res-downloader</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: BlueSkyXN</div>
+                <div class="desc">视频号、小程序、抖音、快手、小红书、直播流、m3u8、酷狗、QQ音乐等常见网络资源下载!</div>
+                <div class="meta">
+                    ⭐ 12174 
+                    🍴 1489 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/microsoft/qlib" target="_blank">microsoft/qlib</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 34038</span>
-                        <span>🍴 5277</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/algerkong/AlgerMusicPlayer" target="_blank">algerkong/AlgerMusicPlayer</a>
                 </div>
-                <div class="repo-description">
-                    Qlib is an AI-oriented Quant investment platform that aims to use AI tech to empower Quant Research, from exploring ideas to implementing productions. Qlib supports diverse ML modeling paradigms, including supervised learning, market dynamics modeling, and RL, and is now equipped with https://github.com/microsoft/RD-Agent to automate R&D process.
+                <div class="desc">一个第三方音乐播放器、本地服务、桌面歌词、音乐下载、远程控制</div>
+                <div class="meta">
+                    ⭐ 12962 
+                    🍴 1071 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: microsoft</div>
-                </div>
             </div>
             
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">JavaScript (10 个项目)</div>
-        <div class="repo-list">
-            
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/VonChange/utao" target="_blank">VonChange/utao</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 2722</span>
-                        <span>🍴 186</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    油桃TV 电视浏览器 可看各大卫视CCTV直播 无需电视VIP 适配爱奇艺等主流视频平台
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/Predidit/Kazumi" target="_blank">Predidit/Kazumi</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: VonChange</div>
+                <div class="desc">基于自定义规则的番剧采集APP，支持流媒体在线观看，支持弹幕，支持实时超分辨率。</div>
+                <div class="meta">
+                    ⭐ 18008 
+                    🍴 517 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/viarotel-org/escrcpy" target="_blank">viarotel-org/escrcpy</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 6593</span>
-                        <span>🍴 490</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/Sle2p/AniCh" target="_blank">Sle2p/AniCh</a>
                 </div>
-                <div class="repo-description">
-                    📱 Display and control your Android device graphically with scrcpy.
+                <div class="desc">一个支持超分辨率的在线动漫弹幕APP。多平台，多番剧源，多弹幕，高清无广告。追番看番必备软件。</div>
+                <div class="meta">
+                    ⭐ 2961 
+                    🍴 86 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: viarotel-org</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/xifangczy/cat-catch" target="_blank">xifangczy/cat-catch</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 16785</span>
-                        <span>🍴 1434</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    猫抓 浏览器资源嗅探扩展 / cat-catch Browser Resource Sniffing Extension
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/RemotePinee/AudioVisual" target="_blank">RemotePinee/AudioVisual</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: xifangczy</div>
+                <div class="desc">解锁所有国内媒体流的钥匙</div>
+                <div class="meta">
+                    ⭐ 1087 
+                    🍴 101 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/Cinvin/myuserscripts" target="_blank">Cinvin/myuserscripts</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 895</span>
-                        <span>🍴 60</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/lyswhut/lx-music-desktop" target="_blank">lyswhut/lx-music-desktop</a>
                 </div>
-                <div class="repo-description">
-                    网易云音乐油猴脚本:歌曲下载、转存云盘、云盘歌曲快传、云盘匹配纠正...
+                <div class="desc">一个基于 electron 的音乐软件</div>
+                <div class="meta">
+                    ⭐ 47305 
+                    🍴 6516 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: Cinvin</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/qingmeng1/bilijump-ai" target="_blank">qingmeng1/bilijump-ai</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 351</span>
-                        <span>🍴 12</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    一个使用 AI 自动跳过 Bilibili 视频植入广告的扩展程序。
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/wgzhao/dbeaver-agent" target="_blank">wgzhao/dbeaver-agent</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-23</div>
-                    <div>👤 作者: qingmeng1</div>
+                <div class="desc">DBeaver agent</div>
+                <div class="meta">
+                    ⭐ 536 
+                    🍴 165 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/Gar-b-age/CookLikeHOC" target="_blank">Gar-b-age/CookLikeHOC</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 22279</span>
-                        <span>🍴 2244</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/GopeedLab/gopeed" target="_blank">GopeedLab/gopeed</a>
                 </div>
-                <div class="repo-description">
-                    🥢像老乡鸡🐔那样做饭。主要部分于2024年完工，非老乡鸡官方仓库。文字来自《老乡鸡菜品溯源报告》，并做归纳、编辑与整理。CookLikeHOC.
+                <div class="desc">A modern download manager that supports all platforms.  Built with Golang and Flutter.</div>
+                <div class="meta">
+                    ⭐ 21887 
+                    🍴 1509 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: Gar-b-age</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/youhunwl/TVAPP" target="_blank">youhunwl/TVAPP</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 4677</span>
-                        <span>🍴 633</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/caolib/typora-onelight-theme" target="_blank">caolib/typora-onelight-theme</a>
                 </div>
-                <div class="repo-description">
-                    收集全网 Android TV电视盒子应用，涵盖影视、直播、K歌、工具、游戏等类型，整理优质APK资源，支持便捷下载与自动更新。提供安全验证、分类索引与兼容性标注，助力用户打造家庭影音娱乐中心！              ✅ TVBox/影视仓等影音壳接口配置源。
+                <div class="desc">OneLight Theme For Typora</div>
+                <div class="meta">
+                    ⭐ 219 
+                    🍴 11 
+                    📅 2025-11-23
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: youhunwl</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/RemotePinee/AudioVisual" target="_blank">RemotePinee/AudioVisual</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 1065</span>
-                        <span>🍴 98</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    解锁所有国内媒体流的钥匙
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/zyronon/TypeWords" target="_blank">zyronon/TypeWords</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: RemotePinee</div>
+                <div class="desc">练习英语，一次敲击，一点进步；Practice English, one strike, one step forward</div>
+                <div class="meta">
+                    ⭐ 5737 
+                    🍴 688 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/XIU2/UserScript" target="_blank">XIU2/UserScript</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 9121</span>
-                        <span>🍴 667</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/adlered/CSDNGreener" target="_blank">adlered/CSDNGreener</a>
                 </div>
-                <div class="repo-description">
-                    🐵 自用的一些乱七八糟 油猴脚本~
+                <div class="desc">《专 业 团 队》🕺🏿 🕺🏿 🕺🏿 🕺🏿 ⚰️🕺🏿 🕺🏿 🕺🏿 🕺🏿 | 专治 CSDN 广告与各种灵魂打击 | 🐵 油猴脚本 | TamperMonkey | Chrome | FireFox | CSDN 页面浮窗广告完全过滤净化 | 国服最强 CSDN 绿化脚本</div>
+                <div class="meta">
+                    ⭐ 4018 
+                    🍴 159 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: XIU2</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/adlered/CSDNGreener" target="_blank">adlered/CSDNGreener</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 4016</span>
-                        <span>🍴 159</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    《专 业 团 队》🕺🏿 🕺🏿 🕺🏿 🕺🏿 ⚰️🕺🏿 🕺🏿 🕺🏿 🕺🏿 | 专治 CSDN 广告与各种灵魂打击 | 🐵 油猴脚本 | TamperMonkey | Chrome | FireFox | CSDN 页面浮窗广告完全过滤净化 | 国服最强 CSDN 绿化脚本
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/yaobiao131/downkyicore" target="_blank">yaobiao131/downkyicore</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: adlered</div>
+                <div class="desc">哔哩下载姬(跨平台版)downkyi，哔哩哔哩网站视频下载工具，支持批量下载，支持8K、HDR、杜比视界，提供工具箱（音视频提取、去水印等）。</div>
+                <div class="meta">
+                    ⭐ 5611 
+                    🍴 407 
+                    📅 2025-11-26
                 </div>
             </div>
             
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">Unknown (8 个项目)</div>
-        <div class="repo-list">
-            
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/jayjd/HuYaTv" target="_blank">jayjd/HuYaTv</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 477</span>
-                        <span>🍴 9</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    聚合直播（FUSE）,支持虎牙/抖音/快手/哔哩哔哩/斗鱼/YY/网易CC/电视直播，支持手机/平板/电视/车机
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/BlueSkyXN/Bili-to-Youtube" target="_blank">BlueSkyXN/Bili-to-Youtube</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: jayjd</div>
+                <div class="desc">B2Y，简化从哔哩哔哩视频下载到上传到Youtube的快速操作</div>
+                <div class="meta">
+                    ⭐ 105 
+                    🍴 10 
+                    📅 2025-11-25
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/liminbai/Awesome-GameEmulator" target="_blank">liminbai/Awesome-GameEmulator</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 772</span>
-                        <span>🍴 53</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/HerbertHe/iptv-sources" target="_blank">HerbertHe/iptv-sources</a>
                 </div>
-                <div class="repo-description">
-                    Game emulator information
+                <div class="desc">Autoupdate iptv sources</div>
+                <div class="meta">
+                    ⭐ 8412 
+                    🍴 1159 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: liminbai</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/maxiaobang7/ossnav" target="_blank">maxiaobang7/ossnav</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 1813</span>
-                        <span>🍴 67</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/gedoor/legado" target="_blank">gedoor/legado</a>
                 </div>
-                <div class="repo-description">
-                    开源精选：探索免费优质的开源软件工具，尽享数字自由
+                <div class="desc">Legado 3.0 Book Reader with powerful controls & full functions❤️阅读3.0, 阅读是一款可以自定义来源阅读网络内容的工具，为广大网络文学爱好者提供一种方便、快捷舒适的试读体验。</div>
+                <div class="meta">
+                    ⭐ 41921 
+                    🍴 4729 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: maxiaobang7</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/moshowgame/dbeaver-driver-all" target="_blank">moshowgame/dbeaver-driver-all</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 456</span>
-                        <span>🍴 103</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    dbeaver所有jdbc驱动都在这，dbeaver all jdbc drivers ,come and download with me , one package come with all jdbc drivers.
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/yuanwangokk-1/Hiker-App" target="_blank">yuanwangokk-1/Hiker-App</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-20</div>
-                    <div>👤 作者: moshowgame</div>
+                <div class="desc">无描述</div>
+                <div class="meta">
+                    ⭐ 86 
+                    🍴 17 
+                    📅 2025-11-16
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/sindresorhus/awesome" target="_blank">sindresorhus/awesome</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 417546</span>
-                        <span>🍴 32379</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/the1812/Bilibili-Evolved" target="_blank">the1812/Bilibili-Evolved</a>
                 </div>
-                <div class="repo-description">
-                    😎 Awesome lists about all kinds of interesting topics
+                <div class="desc">强大的哔哩哔哩增强脚本</div>
+                <div class="meta">
+                    ⭐ 27594 
+                    🍴 1696 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: sindresorhus</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/yuanwangokk-1/Hiker-App" target="_blank">yuanwangokk-1/Hiker-App</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 86</span>
-                        <span>🍴 17</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    无描述
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/cxasm/notepad--" target="_blank">cxasm/notepad--</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-16</div>
-                    <div>👤 作者: yuanwangokk-1</div>
+                <div class="desc">一个支持windows/linux/mac的文本编辑器，目标是做中国人自己的编辑器，来自中国。</div>
+                <div class="meta">
+                    ⭐ 8457 
+                    🍴 331 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/CyC2018/CS-Notes" target="_blank">CyC2018/CS-Notes</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 182933</span>
-                        <span>🍴 51254</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/Keldos-Li/typora-latex-theme-fonts" target="_blank">Keldos-Li/typora-latex-theme-fonts</a>
                 </div>
-                <div class="repo-description">
-                    :books: 技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计
+                <div class="desc">无描述</div>
+                <div class="meta">
+                    ⭐ 159 
+                    🍴 19 
+                    📅 2025-11-06
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: CyC2018</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/Keldos-Li/typora-latex-theme-fonts" target="_blank">Keldos-Li/typora-latex-theme-fonts</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 159</span>
-                        <span>🍴 19</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    无描述
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/Keldos-Li/typora-latex-theme" target="_blank">Keldos-Li/typora-latex-theme</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-06</div>
-                    <div>👤 作者: Keldos-Li</div>
+                <div class="desc">将Typora伪装成LaTeX的中文样式主题，本科生轻量级课程论文撰写的好帮手。This is a theme disguising Typora into Chinese LaTeX style.</div>
+                <div class="meta">
+                    ⭐ 5520 
+                    🍴 325 
+                    📅 2025-11-26
                 </div>
             </div>
             
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">C# (6 个项目)</div>
-        <div class="repo-list">
-            
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/ZyperWave/ZyperWinOptimize" target="_blank">ZyperWave/ZyperWinOptimize</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 5209</span>
-                        <span>🍴 284</span>
-                    </div>
+<div class="category-title">AI / 机器学习（13）</div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/sansan0/TrendRadar" target="_blank">sansan0/TrendRadar</a>
                 </div>
-                <div class="repo-description">
-                    ZyperWin++是一个轻便的Windows优化工具，适用于Win7-Win11最新版的优化，包括性能优化、服务项优化、垃圾清理等操作，还支持系统激活和Office快速安装。
+                <div class="desc">🎯 告别信息过载，AI 助你看懂新闻资讯热点，简单的舆情监控分析 - 多平台热点聚合+基于 MCP 的AI分析工具。监控35个平台（抖音、知乎、B站、华尔街见闻、财联社等），智能筛选+自动推送+AI对话分析（用自然语言深度挖掘新闻：趋势追踪、情感分析、相似检索等13种工具）。支持企业微信/个人微信/飞书/钉钉/Telegram/邮件/ntfy/bark/slack 推送，30秒网页部署，1分钟手机通知，无需编程。支持Docker部署⭐ 让算法为你服务，用AI理解热点</div>
+                <div class="meta">
+                    ⭐ 29554 
+                    🍴 16123 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: ZyperWave</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/PrelinaMontelli/Edge-Monitor" target="_blank">PrelinaMontelli/Edge-Monitor</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 782</span>
-                        <span>🍴 20</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    一个监控并弄死异常Edge的程序
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/loks666/get_jobs" target="_blank">loks666/get_jobs</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-24</div>
-                    <div>👤 作者: PrelinaMontelli</div>
+                <div class="desc">💼【AI找工作助手】全平台自动投简历脚本：(boss、前程无忧、猎聘、智联招聘)</div>
+                <div class="meta">
+                    ⭐ 5301 
+                    🍴 678 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/microsoft/PowerToys" target="_blank">microsoft/PowerToys</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 125986</span>
-                        <span>🍴 7495</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/xincmm/sageread" target="_blank">xincmm/sageread</a>
                 </div>
-                <div class="repo-description">
-                    Microsoft PowerToys is a collection of utilities that help you customize Windows and streamline everyday tasks
+                <div class="desc">一款 AI 辅助阅读器，三栏设计实现笔记、阅读、对话同屏交互，让深度阅读更高效</div>
+                <div class="meta">
+                    ⭐ 486 
+                    🍴 50 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: microsoft</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/yaobiao131/downkyicore" target="_blank">yaobiao131/downkyicore</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 5603</span>
-                        <span>🍴 406</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    哔哩下载姬(跨平台版)downkyi，哔哩哔哩网站视频下载工具，支持批量下载，支持8K、HDR、杜比视界，提供工具箱（音视频提取、去水印等）。
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/microsoft/PowerToys" target="_blank">microsoft/PowerToys</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: yaobiao131</div>
+                <div class="desc">Microsoft PowerToys is a collection of utilities that help you customize Windows and streamline everyday tasks</div>
+                <div class="meta">
+                    ⭐ 126019 
+                    🍴 7499 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/babalae/better-genshin-impact" target="_blank">babalae/better-genshin-impact</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 11514</span>
-                        <span>🍴 792</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/qingmeng1/bilijump-ai" target="_blank">qingmeng1/bilijump-ai</a>
                 </div>
-                <div class="repo-description">
-                    📦BetterGI · 更好的原神 - 自动拾取 | 自动剧情 | 全自动钓鱼(AI) | 全自动七圣召唤 | 自动伐木 | 自动刷本 | 自动采集/挖矿/锄地 | 一条龙 | 全连音游 - UI Automation Testing Tools For Genshin Impact
+                <div class="desc">一个使用 AI 自动跳过 Bilibili 视频植入广告的扩展程序。</div>
+                <div class="meta">
+                    ⭐ 351 
+                    🍴 12 
+                    📅 2025-11-23
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: babalae</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/RayWangQvQ/BiliBiliToolPro" target="_blank">RayWangQvQ/BiliBiliToolPro</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 8113</span>
-                        <span>🍴 1901</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    B 站（bilibili）自动任务工具，支持docker、青龙、k8s等多种部署方式。敏感肌也能用。
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/liu-ziting/what-to-eat" target="_blank">liu-ziting/what-to-eat</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: RayWangQvQ</div>
+                <div class="desc">一饭封神：一个基于 AI 的智能菜谱生成平台，支持中华八大菜系 + 国际料理，提供营养分析、酒水推荐、菜谱效果图生成等全方位烹饪指导。</div>
+                <div class="meta">
+                    ⭐ 2594 
+                    🍴 397 
+                    📅 2025-11-26
                 </div>
             </div>
             
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">Dart (6 个项目)</div>
-        <div class="repo-list">
-            
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/venera-app/venera" target="_blank">venera-app/venera</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 5335</span>
-                        <span>🍴 174</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/JefferyHcool/BiliNote" target="_blank">JefferyHcool/BiliNote</a>
                 </div>
-                <div class="repo-description">
-                    A comic app
+                <div class="desc">AI 视频笔记生成工具 让 AI 为你的视频做笔记</div>
+                <div class="meta">
+                    ⭐ 4230 
+                    🍴 499 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: venera-app</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/OpenListApp/OpenListApp" target="_blank">OpenListApp/OpenListApp</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 373</span>
-                        <span>🍴 26</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    Alist、OpenList GUI  App for Android、 iOS、Windows、macOS、Linux with Alist、OpenList local server
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/zhayujie/chatgpt-on-wechat" target="_blank">zhayujie/chatgpt-on-wechat</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: OpenListApp</div>
+                <div class="desc">基于大模型搭建的聊天机器人，同时支持 微信公众号、企业微信应用、飞书、钉钉 等接入，可选择ChatGPT/Claude/DeepSeek/文心一言/讯飞星火/通义千问/ Gemini/GLM-4/Kimi/LinkAI，能处理文本、语音和图片，访问操作系统和互联网，支持基于自有知识库进行定制企业智能客服。</div>
+                <div class="meta">
+                    ⭐ 39827 
+                    🍴 9512 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/MCDFsteve/NipaPlay-Reload" target="_blank">MCDFsteve/NipaPlay-Reload</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 973</span>
-                        <span>🍴 41</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/xbmc/xbmc" target="_blank">xbmc/xbmc</a>
                 </div>
-                <div class="repo-description">
-                    NipaPlay-Reload 是一个现代化的跨平台本地视频播放器，支持 Windows、macOS、Linux、Android 和 iOS。集成了弹幕显示、多格式字幕支持、多音频轨道切换，新番查看等功能，支持挂载Emby/Jellyfin媒体库。采用 Flutter 开发，提供统一的用户体验。
+                <div class="desc">Kodi is an award-winning free and open source home theater/media center software and entertainment hub for digital media. With its beautiful interface and powerful skinning engine, it's available for Android, BSD, Linux, macOS, iOS, tvOS and Windows.</div>
+                <div class="meta">
+                    ⭐ 20097 
+                    🍴 6462 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: MCDFsteve</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/Predidit/Kazumi" target="_blank">Predidit/Kazumi</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 17994</span>
-                        <span>🍴 518</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    基于自定义规则的番剧采集APP，支持流媒体在线观看，支持弹幕，支持实时超分辨率。
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/babalae/better-genshin-impact" target="_blank">babalae/better-genshin-impact</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: Predidit</div>
+                <div class="desc">📦BetterGI · 更好的原神 - 自动拾取 | 自动剧情 | 全自动钓鱼(AI) | 全自动七圣召唤 | 自动伐木 | 自动刷本 | 自动采集/挖矿/锄地 | 一条龙 | 全连音游 - UI Automation Testing Tools For Genshin Impact</div>
+                <div class="meta">
+                    ⭐ 11517 
+                    🍴 793 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/Sle2p/AniCh" target="_blank">Sle2p/AniCh</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 2960</span>
-                        <span>🍴 86</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/microsoft/qlib" target="_blank">microsoft/qlib</a>
                 </div>
-                <div class="repo-description">
-                    一个支持超分辨率的在线动漫弹幕APP。多平台，多番剧源，多弹幕，高清无广告。追番看番必备软件。
+                <div class="desc">Qlib is an AI-oriented Quant investment platform that aims to use AI tech to empower Quant Research, from exploring ideas to implementing productions. Qlib supports diverse ML modeling paradigms, including supervised learning, market dynamics modeling, and RL, and is now equipped with https://github.com/microsoft/RD-Agent to automate R&D process.</div>
+                <div class="meta">
+                    ⭐ 34061 
+                    🍴 5283 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: Sle2p</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/GopeedLab/gopeed" target="_blank">GopeedLab/gopeed</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 21880</span>
-                        <span>🍴 1509</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    A modern download manager that supports all platforms.  Built with Golang and Flutter.
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/datawhalechina/self-llm" target="_blank">datawhalechina/self-llm</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: GopeedLab</div>
+                <div class="desc">《开源大模型食用指南》针对中国宝宝量身打造的基于Linux环境快速微调（全参数/Lora）、部署国内外开源大模型（LLM）/多模态大模型（MLLM）教程</div>
+                <div class="meta">
+                    ⭐ 26188 
+                    🍴 2636 
+                    📅 2025-11-26
                 </div>
             </div>
             
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">Vue (6 个项目)</div>
-        <div class="repo-list">
-            
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/MoeKoeMusic/MoeKoeMusic" target="_blank">MoeKoeMusic/MoeKoeMusic</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 4234</span>
-                        <span>🍴 266</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/UFund-Me/Qbot" target="_blank">UFund-Me/Qbot</a>
                 </div>
-                <div class="repo-description">
-                    一款开源简洁高颜值的酷狗第三方客户端 An open-source, concise, and aesthetically pleasing third-party client for KuGou that supports  Windows / macOS / Linux / Web :electron:
+                <div class="desc">[🔥updating ...] AI 自动量化交易机器人(完全本地部署) AI-powered Quantitative Investment Research Platform. 📃 online docs: https://ufund-me.github.io/Qbot   ✨ :news: qbot-mini: https://github.com/Charmve/iQuant</div>
+                <div class="meta">
+                    ⭐ 15190 
+                    🍴 2158 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: MoeKoeMusic</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/liu-ziting/what-to-eat" target="_blank">liu-ziting/what-to-eat</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 2584</span>
-                        <span>🍴 396</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    一饭封神：一个基于 AI 的智能菜谱生成平台，支持中华八大菜系 + 国际料理，提供营养分析、酒水推荐、菜谱效果图生成等全方位烹饪指导。
+<div class="category-title">系统 / 底层（8）</div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/dr34m-cn/taosync" target="_blank">dr34m-cn/taosync</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: liu-ziting</div>
+                <div class="desc">TaoSync是一个适用于OpenList v3+的自动化同步工具/Sync for OpenList/AList</div>
+                <div class="meta">
+                    ⭐ 1144 
+                    🍴 86 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/timeshiftsauce/CeruMusic" target="_blank">timeshiftsauce/CeruMusic</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 485</span>
-                        <span>🍴 23</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/OpenListTeam/OpenList" target="_blank">OpenListTeam/OpenList</a>
                 </div>
-                <div class="repo-description">
-                    Ceru Music 是基于 Electron 和 Vue 开发的跨平台桌面音乐播放器工具，借鉴洛雪音乐插件思想，提供插件运行框架与播放功能，不直接存储、提供任何音乐源文件。用户需通过自行选择、安装合规插件获取音乐相关数据，项目旨在为开发者提供桌面应用技术实践与学习案例，为用户提供合规的音乐播放工具框架。
+                <div class="desc">A new AList Fork to Anti Trust Crisis</div>
+                <div class="meta">
+                    ⭐ 18124 
+                    🍴 1475 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: timeshiftsauce</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/algerkong/AlgerMusicPlayer" target="_blank">algerkong/AlgerMusicPlayer</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 12943</span>
-                        <span>🍴 1065</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    一个第三方音乐播放器、本地服务、桌面歌词、音乐下载、远程控制
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/tranht17/WinTune" target="_blank">tranht17/WinTune</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: algerkong</div>
+                <div class="desc">Tweak & optimize your Windows system</div>
+                <div class="meta">
+                    ⭐ 578 
+                    🍴 26 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/zyronon/TypeWords" target="_blank">zyronon/TypeWords</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 5713</span>
-                        <span>🍴 679</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/maxiaobang7/ossnav" target="_blank">maxiaobang7/ossnav</a>
                 </div>
-                <div class="repo-description">
-                    练习英语，一次敲击，一点进步；Practice English, one strike, one step forward
+                <div class="desc">开源精选：探索免费优质的开源软件工具，尽享数字自由</div>
+                <div class="meta">
+                    ⭐ 1818 
+                    🍴 67 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: zyronon</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/jiangrui1994/CloudSaver" target="_blank">jiangrui1994/CloudSaver</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 7949</span>
-                        <span>🍴 669</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    一个基于 Vue 3 + Express 的网盘资源搜索与转存工具。
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/MCDFsteve/NipaPlay-Reload" target="_blank">MCDFsteve/NipaPlay-Reload</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: jiangrui1994</div>
+                <div class="desc">NipaPlay-Reload 是一个现代化的跨平台本地视频播放器，支持 Windows、macOS、Linux、Android 和 iOS。集成了弹幕显示、多格式字幕支持、多音频轨道切换，新番查看等功能，支持挂载Emby/Jellyfin媒体库。采用 Flutter 开发，提供统一的用户体验。</div>
+                <div class="meta">
+                    ⭐ 978 
+                    🍴 41 
+                    📅 2025-11-26
                 </div>
             </div>
             
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">Java (5 个项目)</div>
-        <div class="repo-list">
-            
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/loks666/get_jobs" target="_blank">loks666/get_jobs</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 5286</span>
-                        <span>🍴 676</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/open-ani/animeko" target="_blank">open-ani/animeko</a>
                 </div>
-                <div class="repo-description">
-                    💼【AI找工作助手】全平台自动投简历脚本：(boss、前程无忧、猎聘、智联招聘)
+                <div class="desc">集找番、追番、看番的一站式弹幕追番平台，云收藏同步 (Bangumi)，离线缓存，BitTorrent，弹幕云过滤。100% Kotlin/Compose Multiplatform</div>
+                <div class="meta">
+                    ⭐ 13253 
+                    🍴 327 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: loks666</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/freeok/so-novel" target="_blank">freeok/so-novel</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 5623</span>
-                        <span>🍴 445</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    小说下载｜网文下载 | 网络小说
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/moshowgame/dbeaver-driver-all" target="_blank">moshowgame/dbeaver-driver-all</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: freeok</div>
+                <div class="desc">dbeaver所有jdbc驱动都在这，dbeaver all jdbc drivers ,come and download with me , one package come with all jdbc drivers.</div>
+                <div class="meta">
+                    ⭐ 456 
+                    🍴 103 
+                    📅 2025-11-20
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/Tosencen/XMBOX" target="_blank">Tosencen/XMBOX</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 640</span>
-                        <span>🍴 51</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/rwv/chinese-dos-games" target="_blank">rwv/chinese-dos-games</a>
                 </div>
-                <div class="repo-description">
-                    一个看片儿的空盒子软件，需自行配置源
+                <div class="desc">🎮 Chinese DOS games collections.</div>
+                <div class="meta">
+                    ⭐ 9913 
+                    🍴 1207 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: Tosencen</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/wgzhao/dbeaver-agent" target="_blank">wgzhao/dbeaver-agent</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 534</span>
-                        <span>🍴 164</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    DBeaver agent
+<div class="category-title">工具 / 工具库 / CLI（7）</div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/xifangczy/cat-catch" target="_blank">xifangczy/cat-catch</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: wgzhao</div>
+                <div class="desc">猫抓 浏览器资源嗅探扩展 / cat-catch Browser Resource Sniffing Extension</div>
+                <div class="meta">
+                    ⭐ 16806 
+                    🍴 1439 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/dbeaver/dbeaver" target="_blank">dbeaver/dbeaver</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 47262</span>
-                        <span>🍴 3950</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/btjawa/BiliTools" target="_blank">btjawa/BiliTools</a>
                 </div>
-                <div class="repo-description">
-                    Free universal database tool and SQL client
+                <div class="desc">A cross-platform bilibili toolbox. 跨平台哔哩哔哩工具箱，支持下载视频、番剧等等各类资源</div>
+                <div class="meta">
+                    ⭐ 4142 
+                    🍴 277 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: dbeaver</div>
-                </div>
             </div>
-            
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">Kotlin (5 个项目)</div>
-        <div class="repo-list">
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/laqoome/LaQoo" target="_blank">laqoome/LaQoo</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 454</span>
-                        <span>🍴 13</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/caorushizi/mediago" target="_blank">caorushizi/mediago</a>
                 </div>
-                <div class="repo-description">
-                    【LaQoo】一个简洁的播放动漫的App，支持下载，弹幕等功能
+                <div class="desc">跨平台视频提取工具：支持流媒体下载、视频下载、m3u8 下载及 B站视频下载，提供 Windows 和 Mac 桌面客户端。Cross-platform video extraction tool: Supports streaming download, video download, m3u8 download, and Bilibili video download, with desktop clients for Windows and Mac.</div>
+                <div class="meta">
+                    ⭐ 8083 
+                    🍴 726 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-24</div>
-                    <div>👤 作者: laqoome</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/JunkFood02/Seal" target="_blank">JunkFood02/Seal</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 23043</span>
-                        <span>🍴 965</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/microsoft/markitdown" target="_blank">microsoft/markitdown</a>
                 </div>
-                <div class="repo-description">
-                    🦭 Video/Audio Downloader for Android, based on yt-dlp
+                <div class="desc">Python tool for converting files and office documents to Markdown.</div>
+                <div class="meta">
+                    ⭐ 83311 
+                    🍴 4749 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: JunkFood02</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/open-ani/animeko" target="_blank">open-ani/animeko</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 13230</span>
-                        <span>🍴 326</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    集找番、追番、看番的一站式弹幕追番平台，云收藏同步 (Bangumi)，离线缓存，BitTorrent，弹幕云过滤。100% Kotlin/Compose Multiplatform
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/scriptscat/scriptcat" target="_blank">scriptscat/scriptcat</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: open-ani</div>
+                <div class="desc">ScriptCat, a browser extension that can execute userscript; 脚本猫，一个可以执行用户脚本的浏览器扩展</div>
+                <div class="meta">
+                    ⭐ 3835 
+                    🍴 298 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/hectorqin/reader" target="_blank">hectorqin/reader</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 10496</span>
-                        <span>🍴 5446</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/simonsmh/telegram-bili-feed-helper" target="_blank">simonsmh/telegram-bili-feed-helper</a>
                 </div>
-                <div class="repo-description">
-                    阅读3服务器版，桌面端，iOS可用。后端 Kotlin + Spring Boot + Vert.x + Coroutine ；前端 Vue.js + Element。麻烦点点star，关注一下公众号【假装大佬】❗️
+                <div class="desc">Telegram bot for Bilibili links</div>
+                <div class="meta">
+                    ⭐ 242 
+                    🍴 23 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: hectorqin</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/gedoor/legado" target="_blank">gedoor/legado</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 41906</span>
-                        <span>🍴 4730</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    Legado 3.0 Book Reader with powerful controls & full functions❤️阅读3.0, 阅读是一款可以自定义来源阅读网络内容的工具，为广大网络文学爱好者提供一种方便、快捷舒适的试读体验。
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/EcoPasteHub/EcoPaste" target="_blank">EcoPasteHub/EcoPaste</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: gedoor</div>
+                <div class="desc">🎉跨平台的剪贴板管理工具 | Cross-platform clipboard management tool</div>
+                <div class="meta">
+                    ⭐ 6436 
+                    🍴 299 
+                    📅 2025-11-26
                 </div>
             </div>
             
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">C++ (5 个项目)</div>
-        <div class="repo-list">
-            
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/es3n1n/defendnot" target="_blank">es3n1n/defendnot</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 3017</span>
-                        <span>🍴 270</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    An even funnier way to disable windows defender. (through WSC api)
+<div class="category-title">学习 / 教程 / 笔记（4）</div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/liminbai/Awesome-GameEmulator" target="_blank">liminbai/Awesome-GameEmulator</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: es3n1n</div>
+                <div class="desc">Game emulator information</div>
+                <div class="meta">
+                    ⭐ 771 
+                    🍴 53 
+                    📅 2025-11-25
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/coolight7/musicxx" target="_blank">coolight7/musicxx</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 1839</span>
-                        <span>🍴 39</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/windingwind/zotero-better-notes" target="_blank">windingwind/zotero-better-notes</a>
                 </div>
-                <div class="repo-description">
-                    拟声 音视频播放器
+                <div class="desc">Everything about note management. All in Zotero.</div>
+                <div class="meta">
+                    ⭐ 7052 
+                    🍴 226 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-24</div>
-                    <div>👤 作者: coolight7</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/ClickHouse/ClickHouse" target="_blank">ClickHouse/ClickHouse</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 44274</span>
-                        <span>🍴 7854</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/sindresorhus/awesome" target="_blank">sindresorhus/awesome</a>
                 </div>
-                <div class="repo-description">
-                    ClickHouse® is a real-time analytics database management system
+                <div class="desc">😎 Awesome lists about all kinds of interesting topics</div>
+                <div class="meta">
+                    ⭐ 417895 
+                    🍴 32390 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: ClickHouse</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/xbmc/xbmc" target="_blank">xbmc/xbmc</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 20089</span>
-                        <span>🍴 6461</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    Kodi is an award-winning free and open source home theater/media center software and entertainment hub for digital media. With its beautiful interface and powerful skinning engine, it's available for Android, BSD, Linux, macOS, iOS, tvOS and Windows.
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/CyC2018/CS-Notes" target="_blank">CyC2018/CS-Notes</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: xbmc</div>
+                <div class="desc">:books: 技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计</div>
+                <div class="meta">
+                    ⭐ 182937 
+                    🍴 51253 
+                    📅 2025-11-26
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/cxasm/notepad--" target="_blank">cxasm/notepad--</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 8449</span>
-                        <span>🍴 331</span>
-                    </div>
+<div class="category-title">前端相关（3）</div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/timeshiftsauce/CeruMusic" target="_blank">timeshiftsauce/CeruMusic</a>
                 </div>
-                <div class="repo-description">
-                    一个支持windows/linux/mac的文本编辑器，目标是做中国人自己的编辑器，来自中国。
+                <div class="desc">Ceru Music 是基于 Electron 和 Vue 开发的跨平台桌面音乐播放器工具，借鉴洛雪音乐插件思想，提供插件运行框架与播放功能，不直接存储、提供任何音乐源文件。用户需通过自行选择、安装合规插件获取音乐相关数据，项目旨在为开发者提供桌面应用技术实践与学习案例，为用户提供合规的音乐播放工具框架。</div>
+                <div class="meta">
+                    ⭐ 491 
+                    🍴 23 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: cxasm</div>
-                </div>
             </div>
-            
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">Go (2 个项目)</div>
-        <div class="repo-list">
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/OpenListTeam/OpenList" target="_blank">OpenListTeam/OpenList</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 18082</span>
-                        <span>🍴 1469</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/hectorqin/reader" target="_blank">hectorqin/reader</a>
                 </div>
-                <div class="repo-description">
-                    A new AList Fork to Anti Trust Crisis
+                <div class="desc">阅读3服务器版，桌面端，iOS可用。后端 Kotlin + Spring Boot + Vert.x + Coroutine ；前端 Vue.js + Element。麻烦点点star，关注一下公众号【假装大佬】❗️  </div>
+                <div class="meta">
+                    ⭐ 10500 
+                    🍴 5447 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: OpenListTeam</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/putyy/res-downloader" target="_blank">putyy/res-downloader</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 12147</span>
-                        <span>🍴 1486</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    视频号、小程序、抖音、快手、小红书、直播流、m3u8、酷狗、QQ音乐等常见网络资源下载!
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/jiangrui1994/CloudSaver" target="_blank">jiangrui1994/CloudSaver</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: putyy</div>
+                <div class="desc">一个基于 Vue 3 + Express 的网盘资源搜索与转存工具。</div>
+                <div class="meta">
+                    ⭐ 7953 
+                    🍴 668 
+                    📅 2025-11-26
                 </div>
             </div>
             
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">Rust (2 个项目)</div>
-        <div class="repo-list">
-            
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/lanyeeee/bilibili-video-downloader" target="_blank">lanyeeee/bilibili-video-downloader</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 666</span>
-                        <span>🍴 28</span>
-                    </div>
+<div class="category-title">后端服务（2）</div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/OpenListApp/OpenListApp" target="_blank">OpenListApp/OpenListApp</a>
                 </div>
-                <div class="repo-description">
-                    哔哩哔哩 bilibili B站 视频 下载器，图形界面 + nfo刮削 + 广告标记 + 字幕下载 + 弹幕下载，轻松将视频加入emby等媒体库
+                <div class="desc">Alist、OpenList GUI  App for Android、 iOS、Windows、macOS、Linux with Alist、OpenList local server</div>
+                <div class="meta">
+                    ⭐ 374 
+                    🍴 26 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: lanyeeee</div>
-                </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/btjawa/BiliTools" target="_blank">btjawa/BiliTools</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 4137</span>
-                        <span>🍴 277</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    A cross-platform bilibili toolbox. 跨平台哔哩哔哩工具箱，支持下载视频、番剧等等各类资源
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/es3n1n/defendnot" target="_blank">es3n1n/defendnot</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: btjawa</div>
+                <div class="desc">An even funnier way to disable windows defender. (through WSC api)</div>
+                <div class="meta">
+                    ⭐ 3020 
+                    🍴 270 
+                    📅 2025-11-26
                 </div>
             </div>
             
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">Jupyter Notebook (2 个项目)</div>
-        <div class="repo-list">
-            
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/datawhalechina/self-llm" target="_blank">datawhalechina/self-llm</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 26172</span>
-                        <span>🍴 2634</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    《开源大模型食用指南》针对中国宝宝量身打造的基于Linux环境快速微调（全参数/Lora）、部署国内外开源大模型（LLM）/多模态大模型（MLLM）教程
+<div class="category-title">脚本 / 自动化（2）</div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/Cinvin/myuserscripts" target="_blank">Cinvin/myuserscripts</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: datawhalechina</div>
+                <div class="desc">网易云音乐油猴脚本:歌曲下载、转存云盘、云盘歌曲快传、云盘匹配纠正...</div>
+                <div class="meta">
+                    ⭐ 895 
+                    🍴 60 
+                    📅 2025-11-25
                 </div>
             </div>
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/UFund-Me/Qbot" target="_blank">UFund-Me/Qbot</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 15182</span>
-                        <span>🍴 2156</span>
-                    </div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/XIU2/UserScript" target="_blank">XIU2/UserScript</a>
                 </div>
-                <div class="repo-description">
-                    [🔥updating ...] AI 自动量化交易机器人(完全本地部署) AI-powered Quantitative Investment Research Platform. 📃 online docs: https://ufund-me.github.io/Qbot   ✨ :news: qbot-mini: https://github.com/Charmve/iQuant
+                <div class="desc">🐵 自用的一些乱七八糟 油猴脚本~ </div>
+                <div class="meta">
+                    ⭐ 9124 
+                    🍴 668 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: UFund-Me</div>
-                </div>
             </div>
-            
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">C (1 个项目)</div>
-        <div class="repo-list">
             
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/pbatard/rufus" target="_blank">pbatard/rufus</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 33755</span>
-                        <span>🍴 2890</span>
-                    </div>
+<div class="category-title">运维 / DevOps / CI-CD（2）</div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/MoeKoeMusic/MoeKoeMusic" target="_blank">MoeKoeMusic/MoeKoeMusic</a>
                 </div>
-                <div class="repo-description">
-                    The Reliable USB Formatting Utility
+                <div class="desc">一款开源简洁高颜值的酷狗第三方客户端 An open-source, concise, and aesthetically pleasing third-party client for KuGou that supports  Windows / macOS / Linux / Web :electron:</div>
+                <div class="meta">
+                    ⭐ 4241 
+                    🍴 267 
+                    📅 2025-11-26
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: pbatard</div>
-                </div>
             </div>
             
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">AutoHotkey (1 个项目)</div>
-        <div class="repo-list">
-            
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/tranht17/WinTune" target="_blank">tranht17/WinTune</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 578</span>
-                        <span>🍴 26</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    Tweak & optimize your Windows system
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/RayWangQvQ/BiliBiliToolPro" target="_blank">RayWangQvQ/BiliBiliToolPro</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: tranht17</div>
+                <div class="desc">B 站（bilibili）自动任务工具，支持docker、青龙、k8s等多种部署方式。敏感肌也能用。</div>
+                <div class="meta">
+                    ⭐ 8115 
+                    🍴 1903 
+                    📅 2025-11-26
                 </div>
             </div>
             
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">CSS (1 个项目)</div>
-        <div class="repo-list">
-            
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/caolib/typora-onelight-theme" target="_blank">caolib/typora-onelight-theme</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 219</span>
-                        <span>🍴 11</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    OneLight Theme For Typora
+<div class="category-title">数据处理 / 数据库（2）</div>
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/ClickHouse/ClickHouse" target="_blank">ClickHouse/ClickHouse</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-23</div>
-                    <div>👤 作者: caolib</div>
+                <div class="desc">ClickHouse® is a real-time analytics database management system</div>
+                <div class="meta">
+                    ⭐ 44290 
+                    🍴 7856 
+                    📅 2025-11-26
                 </div>
             </div>
             
-        </div>
-    </section>
-    
-    <section class="language-section">
-        <div class="language-header">SCSS (1 个项目)</div>
-        <div class="repo-list">
-            
-            <div class="repo-card">
-                <div class="repo-header">
-                    <div class="repo-name">
-                        <a href="https://github.com/Keldos-Li/typora-latex-theme" target="_blank">Keldos-Li/typora-latex-theme</a>
-                    </div>
-                    <div class="repo-stats">
-                        <span>⭐ 5518</span>
-                        <span>🍴 325</span>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    将Typora伪装成LaTeX的中文样式主题，本科生轻量级课程论文撰写的好帮手。This is a theme disguising Typora into Chinese LaTeX style.
+
+            <div class="card">
+                <div class="repo-title">
+                    <a href="https://github.com/dbeaver/dbeaver" target="_blank">dbeaver/dbeaver</a>
                 </div>
-                <div class="repo-meta">
-                    <div>📅 更新: 2025-11-25</div>
-                    <div>👤 作者: Keldos-Li</div>
+                <div class="desc">Free universal database tool and SQL client</div>
+                <div class="meta">
+                    ⭐ 47288 
+                    🍴 3950 
+                    📅 2025-11-26
                 </div>
             </div>
             
-        </div>
-    </section>
-    
-    
-    <footer>
-        ⚠️  此页面由 GitHub Actions 自动生成，最后更新于 2025-11-25
-    </footer>
+
 </body>
 </html>
-        
