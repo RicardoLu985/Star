@@ -1,46 +1,53 @@
+# update_starred_semantic.py
+# 部分 1/3 — 导入、配置、API、overrides、分类（精确 repo 覆盖优先）
 import os
 import sys
+import json
 import requests
 import logging
-import json
 from datetime import datetime
 from collections import defaultdict
 
-# 日志
+# 日志配置
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-# -----------------------------------------------------
-# 🧩 【手动配置区】（可为空，脚本自动 fallback）
-# -----------------------------------------------------
-MANUAL_USERNAME = "RicardoLu985"   # 例如 "RicardoLu985"
-MANUAL_TOKEN = ""       # 例如 "ghp_xxx..."
+# --------------------------
+# 手动配置区（可选）
+# --------------------------
+# 本地测试时可以直接填写。这两个值优先级最低（会被交互输入覆盖）。
+MANUAL_USERNAME = ""   # 例如 "RicardoLu985"
+MANUAL_TOKEN = ""      # 例如 "ghp_xxx..."
 
-# -----------------------------------------------------
-# 🎛 Token / Username 获取（手动 → 输入 → 环境变量）
-# -----------------------------------------------------
+# --------------------------
+# 获取配置（MANUAL -> 交互 -> 环境变量）
+# --------------------------
 def get_config_interactive():
-    username = MANUAL_USERNAME.strip()
-    token = MANUAL_TOKEN.strip()
+    username = MANUAL_USERNAME.strip() if isinstance(MANUAL_USERNAME, str) else ""
+    token = MANUAL_TOKEN.strip() if isinstance(MANUAL_TOKEN, str) else ""
 
-    # 若没有手动定义，则尝试交互输入
-    if not username and sys.stdin.isatty():
-        username = input("请输入 GitHub 用户名（回车跳过）：").strip() or ""
-    if not token and sys.stdin.isatty():
-        token = input("请输入 GitHub Token（回车跳过）：").strip() or ""
+    # 交互输入（仅在 tty 环境下）
+    try:
+        if not username and sys.stdin.isatty():
+            username = input("请输入 GitHub 用户名（回车跳过）：").strip() or ""
+        if not token and sys.stdin.isatty():
+            token = input("请输入 GitHub Token (PAT)（回车跳过）：").strip() or ""
+    except Exception:
+        # 在某些非交互环境 input 可能失败，忽略
+        pass
 
-    # 最终 fallback 到环境变量（用于 GitHub Actions）
+    # fallback 到环境变量（用于 Actions）
     username = username or os.getenv("STAR_USERNAME")
     token = token or os.getenv("STAR_TOKEN")
 
     if not username or not token:
-        raise ValueError("缺少 GitHub 用户名或 Token，请填写 MANUAL_，或输入，或设置环境变量。")
-
+        raise ValueError(
+            "缺少 GitHub 用户名或 Token。请在脚本 MANUAL_* 填写，或交互输入（终端），或设置环境变量 STAR_USERNAME/STAR_TOKEN。"
+        )
     return username, token
 
-
-# -----------------------------------------------------
-# GitHub API 会话
-# -----------------------------------------------------
+# --------------------------
+# 构建会话
+# --------------------------
 def build_session(token):
     s = requests.Session()
     s.headers.update({
@@ -50,143 +57,167 @@ def build_session(token):
     })
     return s
 
-
-# -----------------------------------------------------
-# 获取 starred 仓库列表（分页）
-# -----------------------------------------------------
+# --------------------------
+# 获取 starred repos（分页）
+# --------------------------
 def get_starred_repos(session, username):
     url = f"https://api.github.com/users/{username}/starred"
     repos = []
     page = 1
-
     while url:
-        logging.info(f"获取星标仓库第 {page} 页...")
-        resp = session.get(url, timeout=10)
-
+        logging.info(f"Fetching starred page {page} ...")
+        resp = session.get(url, timeout=15)
         if resp.status_code == 401:
-            raise Exception("401 Unauthorized，Token 可能无效")
+            raise Exception("401 Unauthorized: Token 可能无效")
         if resp.status_code == 403:
-            raise Exception("403 Forbidden，可能遇到 API 速率限制")
+            # 403 可能是 rate limit 或访问受限
+            raise Exception(f"403 Forbidden: 访问被拒绝或速率限制。响应：{resp.text}")
         if resp.status_code != 200:
-            raise Exception(f"GitHub API 错误 {resp.status_code}：{resp.text}")
+            raise Exception(f"GitHub API 请求失败：{resp.status_code} - {resp.text}")
 
         data = resp.json()
         if not data:
             break
-
         repos.extend(data)
         url = resp.links.get("next", {}).get("url")
         page += 1
 
-    logging.info(f"共获取到 {len(repos)} 个星标项目")
+    logging.info(f"Total starred repos fetched: {len(repos)}")
     return repos
-# -----------------------------------------------------
-# 🧩 获取仓库最新 Release（美化显示用）
-# -----------------------------------------------------
+
+# --------------------------
+# 获取最新 release（若无返回 None）
+# --------------------------
+def format_date(date_str):
+    if not date_str:
+        return "N/A"
+    try:
+        return datetime.fromisoformat(date_str.replace("Z", "+00:00")).strftime("%Y-%m-%d")
+    except Exception:
+        return date_str.split("T")[0] if "T" in date_str else date_str
+
 def get_latest_release(session, full_name):
+    """
+    full_name: "owner/repo"
+    返回 dict: { "tag":..., "url":..., "published":... } 或 None
+    """
+    if not full_name:
+        return None
     url = f"https://api.github.com/repos/{full_name}/releases/latest"
     try:
         resp = session.get(url, timeout=10)
-
         if resp.status_code == 404:
-            return None  # 无 Release
-
-        if resp.status_code != 200:
-            logging.warning(f"[Release] 获取失败 {full_name} - {resp.status_code}")
             return None
-
-        data = resp.json()
+        if resp.status_code != 200:
+            logging.warning(f"[Release] 获取失败 {full_name} - HTTP {resp.status_code}")
+            return None
+        d = resp.json()
         return {
-            "tag": data.get("tag_name"),
-            "url": data.get("html_url"),
-            "published": format_date(data.get("published_at"))
+            "tag": d.get("tag_name"),
+            "url": d.get("html_url"),
+            "published": format_date(d.get("published_at"))
         }
     except Exception as e:
-        logging.warning(f"[Release] 获取出错 {full_name} - {e}")
+        logging.warning(f"[Release] Exception for {full_name}: {e}")
         return None
 
+# --------------------------
+# overrides.json 支持（方法一：精确 repo 指定）
+# 文件格式示例：
+# {
+#   "repos": {
+#       "facebook/react": { "category": "Web 开发", "subcategory": "前端" },
+#       "openai/gpt-4": { "category": "AI", "subcategory": "大模型" }
+#   }
+# }
+# --------------------------
+def load_overrides(path="overrides.json"):
+    if not os.path.exists(path):
+        return {"repos": {}}
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            data = json.load(fh)
+            repos = data.get("repos", {}) if isinstance(data, dict) else {}
+            return {"repos": repos}
+    except Exception as e:
+        logging.warning(f"加载 overrides.json 失败: {e}")
+        return {"repos": {}}
 
-# -----------------------------------------------------
-# ❗️ 分类规则（可扩展）
-# -----------------------------------------------------
+# --------------------------
+# 分类规则（预设 CATEGORY_MAP）
+# （你可以根据需要在这里扩展关键词）
+# --------------------------
 CATEGORY_MAP = {
     "AI": {
-        "机器学习": ["pytorch", "tensorflow", "ml", "neural", "deep learning"],
-        "自然语言处理": ["nlp", "transformer", "bert", "gpt", "huggingface", "llm"]
+        "机器学习": ["pytorch", "tensorflow", "ml", "deep learning", "neural"],
+        "自然语言处理": ["nlp", "transformer", "gpt", "llm", "huggingface"]
     },
     "Web 开发": {
-        "前端": ["react", "vue", "vite", "svelte", "webpack", "frontend"],
+        "前端": ["react", "vue", "vite", "svelte", "javascript", "typescript"],
         "后端": ["api", "backend", "fastapi", "django", "flask", "node", "express"]
     },
     "DevOps & 工具": {
-        "CI/CD": ["github actions", "ci", "cd", "pipeline", "docker", "kubernetes"],
-        "效率工具": ["cli", "utils", "helper", "plugin", "extension"]
+        "CI/CD": ["docker", "kubernetes", "k8s", "ci", "cd", "pipeline"],
+        "效率工具": ["cli", "tool", "plugin", "utils"]
     },
     "脚本 / 自动化": {
-        "脚本 / 自动化": ["script", "automation", "crawler", "scraper", "bot"]
+        "脚本 / 自动化": ["script", "automation", "bot", "crawler", "scraper"]
     },
     "学习资料": {
-        "学习资料": ["awesome", "tutorial", "guide", "learning"]
+        "学习资料": ["awesome", "tutorial", "guide", "learning", "notes"]
     },
     "其他": {
         "其他": []
     }
 }
 
-# 转小写
+# normalize keywords to lowercase
 for g, subs in CATEGORY_MAP.items():
     for s, kws in subs.items():
         subs[s] = [k.lower() for k in kws]
 
+# --------------------------
+# 混合分类（先检查 overrides.repos 精确匹配；否则 topics/keywords 匹配；否则归入其他）
+# 返回结构：{ group: { sub: [repo, ...], ... }, ... } （普通 dict，已按组排序）
+# --------------------------
+def categorize_repos_mixed(repos, overrides_path="overrides.json"):
+    overrides = load_overrides(overrides_path)
+    repo_overrides = overrides.get("repos", {}) or {}
 
-# -----------------------------------------------------
-# 🧠 混合分类（topics → keywords → fallback）
-# -----------------------------------------------------
-def categorize_repos_mixed(repos):
     categorized = defaultdict(lambda: defaultdict(list))
 
-    # 加载人工分类 overrides.json（如果存在）
-    overrides = {}
-    if os.path.exists("overrides.json"):
-        try:
-            with open("overrides.json", "r", encoding="utf-8") as f:
-                overrides = json.load(f)
-            logging.info(f"加载了 {len(overrides)} 条人工分类 overrides")
-        except Exception as e:
-            logging.warning(f"加载 overrides.json 失败: {e}")
-
     for repo in repos:
-        full_name = repo.get("full_name", "")
-        # 检查人工 overrides
-        if full_name in overrides:
-            ov = overrides[full_name]
-            category = ov.get("category", "其他")
-            subcategory = ov.get("subcategory", "其他")
-            categorized[category][subcategory].append(repo)
-            continue
-
+        full_name = (repo.get("full_name") or "").strip()
         name = (repo.get("name") or "").lower()
-        full = full_name.lower()
         desc = (repo.get("description") or "").lower()
-        topics = [t.lower() for t in repo.get("topics", []) if isinstance(t, str)]
-        text = " ".join([name, full, desc] + topics)
+        topics = [t.lower() for t in repo.get("topics", [])] if isinstance(repo.get("topics"), list) else []
+        text = " ".join([full_name.lower(), name, desc] + topics)
+
+        # 1) 精确 repo override（最高优先）
+        if full_name in repo_overrides:
+            ov = repo_overrides[full_name] or {}
+            cat = ov.get("category", "其他")
+            sub = ov.get("subcategory", "其他")
+            categorized[cat][sub].append(repo)
+            continue
 
         matched = False
 
-        # 1）先用 topics 匹配
-        for g, subs in CATEGORY_MAP.items():
-            for s, kws in subs.items():
-                if any(k in topics for k in kws):
-                    categorized[g][s].append(repo)
-                    matched = True
+        # 2) topics 匹配（如果 topics 存在）
+        if topics:
+            tstr = " ".join(topics)
+            for g, subs in CATEGORY_MAP.items():
+                for s, kws in subs.items():
+                    if any(k in tstr for k in kws):
+                        categorized[g][s].append(repo)
+                        matched = True
+                        break
+                if matched:
                     break
             if matched:
-                break
+                continue
 
-        if matched:
-            continue
-
-        # 2）再用描述/名称模糊匹配
+        # 3) name/description/owner 模糊匹配关键词
         for g, subs in CATEGORY_MAP.items():
             for s, kws in subs.items():
                 if any(k in text for k in kws):
@@ -196,192 +227,356 @@ def categorize_repos_mixed(repos):
             if matched:
                 break
 
-        # 3）兜底放到“其他”
+        # 4) 兜底
         if not matched:
             categorized["其他"]["其他"].append(repo)
 
-    # 排序：按分类数量降序，但“其他”放到最后
-    other = categorized.pop("其他", None)
-    sorted_cats = sorted(
-        categorized.items(),
+    # sort groups by number of repos desc, and subs by size desc
+    sorted_groups = dict(sorted(
+        ((g, dict(sorted(subs.items(), key=lambda x: len(x[1]), reverse=True))) for g, subs in categorized.items()),
         key=lambda x: sum(len(lst) for lst in x[1].values()),
         reverse=True
-    )
-    if other:
-        sorted_cats.append(("其他", other))
+    ))
+    return sorted_groups
 
-    result = {}
-    for g, subs in sorted_cats:
-        sorted_subs = dict(sorted(subs.items(), key=lambda x: len(x[1]), reverse=True))
-        result[g] = sorted_subs
+# End of part 1/3
+# ===========================
+# Part 2/3 — Markdown 输出（M3 风格：统计表 + 卡片）
+# ===========================
 
-    return result
-# -----------------------------
-# 🔧 日期格式
-# -----------------------------
-def format_date(s):
+def safe_text(s, maxlen=None):
+    """清理并返回安全的纯文本（用于 md/表格列），去掉换行、管道符等"""
     if not s:
-        return "N/A"
-    try:
-        return datetime.fromisoformat(s.replace("Z", "+00:00")).strftime("%Y-%m-%d")
-    except:
-        return s.split("T")[0]
+        return ""
+    text = str(s).replace("\r", " ").replace("\n", " ").replace("|", " ")
+    text = text.strip()
+    if maxlen and len(text) > maxlen:
+        return text[:maxlen-3] + "..."
+    return text
 
-
-# -----------------------------
-# 📝 生成 Markdown（M3 风格）
-# -----------------------------
 def generate_markdown(repos, categorized, output="starred.md"):
+    """
+    生成 Markdown（M3 风格）：
+      - 顶部统计（更新时间 / 总数）
+      - 分类统计表（一级/二级）
+      - 可折叠目录（按一级分组显示二级）
+      - 每个二级以卡片形式列出（标题、描述、meta、Release）
+    """
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    total = len(repos)
 
     with open(output, "w", encoding="utf-8") as f:
+        # 顶部与说明
         f.write('<a id="top"></a>\n\n')
-        f.write("# 我的 GitHub 星标项目整理 ✨\n\n")
-        f.write(f"> **最后更新**：{now}\n")
-        f.write(f"> **总项目数**：{len(repos)}\n\n")
+        f.write('# 我的 GitHub 星标项目整理 ✨\n\n')
+        f.write('> **说明**：此文件由脚本自动生成，按功能/方向分类（支持 overrides.json 精确覆盖）。\n')
+        f.write(f'> **最后更新**：{now}\n')
+        f.write(f'> **总项目数**：{total}\n\n')
 
-        # 统计表
-        f.write("## 📊 分类统计\n\n")
-        f.write("| 分类 | 子分类 | 项目数 |\n|------|--------|--------|\n")
-        for g, subs in categorized.items():
-            cnt = sum(len(s) for s in subs.values())
+        # 分类统计表
+        f.write('## 📊 分类统计\n\n')
+        f.write('| 一级分类 | 子分类（示例） | 项目数 |\n')
+        f.write('|----------|---------------|-------:|\n')
+        for group, subs in categorized.items():
+            cnt = sum(len(v) for v in subs.values())
             sample = ", ".join([f"{k}({len(v)})" for k, v in list(subs.items())[:3]])
-            f.write(f"| {g} | {sample} | {cnt} |\n")
+            f.write(f'| {group} | {safe_text(sample)} | {cnt} |\n')
+        f.write('\n')
 
-        # 目录
-        f.write("\n<details><summary>📂 目录</summary>\n\n")
-        for g, subs in categorized.items():
-            f.write(f"### {g}\n")
-            for s in subs.keys():
-                anchor = s.replace(" ", "").replace("/", "")
-                f.write(f"- [{s}](#{anchor})\n")
-            f.write("\n")
-        f.write("</details>\n\n")
+        # 折叠目录（一级 -> 二级）
+        f.write('<details>\n<summary>📂 目录（点击展开/收起）</summary>\n\n')
+        for group, subs in categorized.items():
+            group_count = sum(len(v) for v in subs.values())
+            f.write(f'<details>\n<summary>📁 {group}（{group_count}）</summary>\n\n')
+            for sub in subs.keys():
+                anchor = sub.replace(" ", "").replace("/", "")
+                f.write(f'- [{sub}](#{anchor})\n')
+            f.write('\n</details>\n')
+        f.write('\n</details>\n\n')
 
-        # 分类内容
-        for g, subs in categorized.items():
-            f.write(f"## {g}\n\n")
-            for s, items in subs.items():
-                anchor = s.replace(" ", "").replace("/", "")
-                f.write(f"### {s}\n\n")
+        # 详细内容（按一级 -> 二级）
+        for group, subs in categorized.items():
+            f.write(f'## {group}\n\n')
+            for sub, items in subs.items():
+                anchor = sub.replace(" ", "").replace("/", "")
+                f.write(f'### {sub}\n\n')
 
-                for repo in items:
-                    full = repo.get("full_name", "")
-                    url = repo.get("html_url", "")
-                    desc = (repo.get("description") or "无描述").strip()
-
+                # 每个 repo 使用卡片样式（标题 + 引用 + metadata + Release）
+                for repo in sorted(items, key=lambda r: r.get("stargazers_count", 0), reverse=True):
+                    full = repo.get("full_name") or ""
+                    url = repo.get("html_url") or ""
+                    desc = safe_text(repo.get("description") or "无描述", maxlen=240)
                     stars = repo.get("stargazers_count", 0)
                     forks = repo.get("forks_count", 0)
                     updated = format_date(repo.get("updated_at"))
 
+                    # Release 信息（如果存在）
                     release = repo.get("_latest_release")
-                    if release:
-                        rel_text = f"📦 最新版本：[{release['tag']}]({release['url']})（{release['published']}）"
+                    if release and release.get("tag"):
+                        rel_line = f"📦 最新版本：[{safe_text(release.get('tag'))}]({release.get('url')})（{release.get('published','N/A')}）"
                     else:
-                        rel_text = "📦 无 Release"
+                        rel_line = "📦 无 Release"
 
-                    f.write(f"#### [{full}]({url})\n")
-                    f.write(f"> {desc}\n\n")
-                    f.write(f"- ⭐ {stars} · 🍴 {forks} · 📅 {updated}\n")
-                    f.write(f"- {rel_text}\n\n")
+                    # 写入卡片
+                    f.write(f'#### [{full}]({url})\n')
+                    f.write(f'> {desc}\n\n')
+                    f.write(f'- ⭐ {stars} · 🍴 {forks} · 📅 {updated}\n')
+                    f.write(f'- {rel_line}\n\n')
 
-        f.write("\n---\n[回到顶部](#top)\n")
+                # 小间隔
+                f.write('\n')
 
-    logging.info(f"Markdown 生成完成：{output}")
-# -----------------------------
-# 🌐 HTML（保持现有卡片知识库风 + Release 显示）
-# -----------------------------
+        # 页脚回到顶部
+        f.write('---\n\n[回到顶部](#top)\n')
+
+    logging.info(f"Markdown 已生成：{output}")
+
+# End of part 2/3
+# ===========================
+# Part 3/3 — 全新 HTML 输出（现代 UI） + main()
+# ===========================
+
 def generate_html(repos, categorized, output="docs/index.html"):
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    """
+    现代化 HTML 输出（卡片式 UI + 深色模式 + 分类折叠 + 自适应布局）
+    """
     os.makedirs("docs", exist_ok=True)
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    total = len(repos)
 
     html = []
-    html.append(f"""<!doctype html>
+
+    # ---------------------------
+    # <head> 部分：CSS + 深色模式
+    # ---------------------------
+    html.append(f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<title>GitHub 星标项目（功能分类）</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GitHub 星标项目</title>
 <style>
+:root {{
+    --bg: #f7f7f9;
+    --fg: #222;
+    --card-bg: #fff;
+    --card-border: #e5e7eb;
+    --primary: #2563eb;
+    --secondary: #6b7280;
+    --hover-bg: #f0f0f5;
+}}
+
+@media (prefers-color-scheme: dark) {{
+    :root {{
+        --bg: #1e1e20;
+        --fg: #e3e3e3;
+        --card-bg: #2b2b2f;
+        --card-border: #3d3d43;
+        --hover-bg: #3a3a3f;
+    }}
+}}
+
 body {{
-    background:#fafafa;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
-    max-width:1100px;margin:auto;padding:24px;
-    line-height:1.6;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
 }}
-.card {{
-    background:#ffffff;
-    padding:14px;border-radius:8px;
-    margin-bottom:10px;
-    box-shadow:0 1px 3px rgba(0,0,0,0.06);
+
+h1 {{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.2rem;
 }}
-a {{ color:#0366d6;text-decoration:none; }}
-.meta {{ color:#666;font-size:13px;margin-top:6px; }}
-.section-title {{ font-size:20px;margin-top:28px;margin-bottom:10px; }}
-.subsection {{ font-size:16px;margin-top:12px;margin-bottom:4px; }}
+
+.header-info {{
+    text-align: center;
+    color: var(--secondary);
+    margin-bottom: 35px;
+}}
+
+.section-title {{
+    font-size: 1.25rem;
+    margin: 35px 0 15px 0;
+    font-weight: bold;
+}}
+
+details {{
+    margin: 12px 0;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 10px 14px;
+}}
+
+details[open] {{
+    background: var(--card-bg);
+    border-color: var(--primary);
+}}
+
+summary {{
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--primary);
+}}
+
+.repo-card {{
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    transition: background 0.2s, transform 0.2s;
+}}
+
+.repo-card:hover {{
+    background: var(--hover-bg);
+    transform: translateY(-2px);
+}}
+
+.repo-title a {{
+    color: var(--primary);
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.05rem;
+}}
+
+.repo-title a:hover {{
+    text-decoration: underline;
+}}
+
+.repo-desc {{
+    color: var(--secondary);
+    margin: 6px 0 10px 0;
+}}
+
+.repo-meta {{
+    font-size: 0.9rem;
+    color: var(--secondary);
+}}
+
+.meta-line {{
+    margin-bottom: 4px;
+}}
+
+.group-title {{
+    font-size: 1.7rem;
+    margin-top: 45px;
+    margin-bottom: 20px;
+}}
+
+.sub-title {{
+    font-size: 1.3rem;
+    margin-top: 25px;
+    margin-bottom: 14px;
+}}
+
+hr {{
+    border: none;
+    border-top: 1px solid var(--card-border);
+    margin: 50px 0 30px 0;
+}}
 </style>
 </head>
 <body>
-<h1>🌟 我的 GitHub 星标项目（按功能分类）</h1>
-<div class="meta">更新时间：{now} · 共 {len(repos)} 个项目</div>
+
+<h1>🌟 我的 GitHub 星标项目</h1>
+<div class="header-info">
+    📅 最后更新：{now} &nbsp;·&nbsp; 🔢 总项目数：{total}
+</div>
 """)
 
-    for g, subs in categorized.items():
-        html.append(f'<div class="section-title">{g}</div>')
-        for s, items in subs.items():
-            html.append(f'<div class="subsection">{s}（{len(items)}）</div>')
+    # ---------------------------
+    # 分类统计区
+    # ---------------------------
+    html.append("<div class='section-title'>📊 分类统计</div>")
+    html.append("<details open><summary>展开 / 收起</summary><ul>")
 
-            for repo in items:
-                name = repo.get("full_name")
-                url = repo.get("html_url")
+    for group, subs in categorized.items():
+        count = sum(len(v) for v in subs.values())
+        html.append(f"<li><b>{group}</b> · {count} 个项目</li>")
+    html.append("</ul></details>")
+
+    # ---------------------------
+    # 分组内容
+    # ---------------------------
+    for group, subs in categorized.items():
+        html.append(f"<div class='group-title'>{group}</div>")
+
+        for subcat, items in subs.items():
+            html.append(f"<div class='sub-title'>{subcat}</div>")
+
+            for repo in sorted(items, key=lambda r: r.get("stargazers_count", 0), reverse=True):
+                full = repo.get("full_name", "")
+                url = repo.get("html_url", "")
                 desc = repo.get("description") or "无描述"
                 stars = repo.get("stargazers_count", 0)
                 forks = repo.get("forks_count", 0)
                 updated = format_date(repo.get("updated_at"))
 
                 release = repo.get("_latest_release")
-                if release:
-                    rel_html = f' · 📦 <a href="{release["url"]}" target="_blank">{release["tag"]}</a>（{release["published"]}）'
+                if release and release.get("tag"):
+                    release_html = (
+                        f"📦 最新版本：<a href='{release['url']}' "
+                        f"target='_blank'>{release['tag']}</a>（{release['published']}）"
+                    )
                 else:
-                    rel_html = " · 📦 无"
+                    release_html = "📦 无 Release"
 
+                # 卡片 HTML
                 html.append(f"""
-<div class="card">
-  <a href="{url}" target="_blank">{name}</a>
-  <div>{desc}</div>
-  <div class="meta">⭐ {stars} · 🍴 {forks} · 📅 {updated}{rel_html}</div>
+<div class="repo-card">
+    <div class="repo-title"><a href="{url}" target="_blank">{full}</a></div>
+    <div class="repo-desc">{desc}</div>
+    <div class="repo-meta">
+        <div class="meta-line">⭐ {stars} · 🍴 {forks} · 📅 {updated}</div>
+        <div class="meta-line">{release_html}</div>
+    </div>
 </div>
 """)
 
+    html.append("<hr><div style='text-align:center;color:var(--secondary);'>此页面由脚本自动生成</div>")
     html.append("</body></html>")
 
-    with open(output, "w", encoding="utf-8") as f:
-        f.write("\n".join(html))
+    # 写入文件
+    with open(output, "w", encoding="utf-8") as fh:
+        fh.write("".join(html))
 
-    logging.info(f"HTML 生成完成：{output}")
+    logging.info(f"HTML 已生成：{output}")
 
-
-# -----------------------------
-# 🚀 主流程
-# -----------------------------
+# ===========================
+# main()
+# ===========================
 def main():
-    username, token = get_config_interactive()
-    session = build_session(token)
+    try:
+        username, token = get_config_interactive()
+        session = build_session(token)
 
-    repos = get_starred_repos(session, username)
+        logging.info(f"开始获取 {username} 的 starred 项目 …")
+        repos = get_starred_repos(session, username)
 
-    # 获取 Release
-    logging.info("正在获取各仓库 Release 信息…")
-    for repo in repos:
-        repo["_latest_release"] = get_latest_release(session, repo.get("full_name"))
+        # 添加最新 release 信息
+        logging.info("获取每个仓库的最新 Release …")
+        for repo in repos:
+            full = repo.get("full_name")
+            repo["_latest_release"] = get_latest_release(session, full)
 
-    categorized = categorize_repos_mixed(repos)
+        # 分类（已包括 overrides.json.repos 的精确覆盖）
+        categorized = categorize_repos_mixed(repos)
 
-    generate_markdown(repos, categorized, "starred.md")
-    generate_html(repos, categorized, "docs/index.html")
+        # 输出 Markdown + HTML
+        generate_markdown(repos, categorized, output="starred.md")
+        generate_html(repos, categorized, output="docs/index.html")
 
-    logging.info("全部生成完成！")
-
+        logging.info("全部生成完毕！")
+    except Exception as e:
+        logging.error(f"执行失败：{e}")
+        raise
 
 if __name__ == "__main__":
     main()
