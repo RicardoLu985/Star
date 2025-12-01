@@ -550,16 +550,25 @@ def main():
 
     username, token = get_config_interactive()
 
-    repos = get_starred_repos(username, token)
-    group_icons = get_category_icons()
+    # 正确构建 session
+    session = build_session(token)
 
-    categorized = categorize_repos(repos)
+    # 正确传入（session, username）
+    repos = get_starred_repos(session, username)
+
+    # 提前获取 Release 并写入 repo 对象
+    for repo in repos:
+        repo['_latest_release'] = get_latest_release(session, repo.get("full_name"))
+
+    categorized = categorize_repos_mixed(repos)
+
+    # group_icons 原脚本不存在 → 使用 ICON_MAP
+    group_icons = {k: v[0] for k, v in ICON_MAP.items()}
 
     generate_markdown(repos, categorized, output="starred.md")
     generate_html(repos, categorized, group_icons, output="docs/index.html")
 
     logging.info("🎉 所有文件已生成完毕！")
-
 
 if __name__ == "__main__":
     main()
