@@ -2,7 +2,7 @@
 
 # 🌟 我的 GitHub 星标项目整理
 
-> 自动生成 · 最后更新：2025-12-02 · 总项目数：90
+> 自动生成 · 最后更新：2025-12-01 · 总项目数：90
 
 ## 📊 分类统计
 
@@ -62,21 +62,21 @@
 
 - **Topics:** `langchain` `openai` `autogen-extension` `autogen` `markdown` `microsoft-office` `pdf`
 - **Tags:** `python`
-- ⭐ 83495 · 🍴 4784 · 📅 更新于 2025-12-01 · 📦 [v0.1.3](https://github.com/microsoft/markitdown/releases/tag/v0.1.3)
+- ⭐ 83498 · 🍴 4784 · 📅 更新于 2025-12-01 · 📦 [v0.1.3](https://github.com/microsoft/markitdown/releases/tag/v0.1.3)
 
 #### [zhayujie/chatgpt-on-wechat](https://github.com/zhayujie/chatgpt-on-wechat)
 > 基于大模型搭建的聊天机器人，同时支持 微信公众号、企业微信应用、飞书、钉钉 等接入，可选择ChatGPT/Claude/DeepSeek/文心一言/讯飞星火/通义千问/ Gemini/GLM-4/Kimi/LinkAI，能处理文本、语音和图片，访问操作系统和互联网，支持基于自有知识库进行定制企业智能客服。
 
 - **Topics:** `chatgpt` `wechat` `openai` `python3` `feishu-bot` `linkai` `ai` `gpt-4` `llm` `qwen` `rag` `wechat-bot` `gemini` `dingtalk` `kimi` `ai-agent` `claude-4` `deepseek` `multi-agent` `mcp`
 - **Tags:** `automation` `ml` `nlp` `python`
-- ⭐ 39891 · 🍴 9522 · 📅 更新于 2025-12-01 · 📦 [1.7.6](https://github.com/zhayujie/chatgpt-on-wechat/releases/tag/1.7.6)
+- ⭐ 39892 · 🍴 9522 · 📅 更新于 2025-12-01 · 📦 [1.7.6](https://github.com/zhayujie/chatgpt-on-wechat/releases/tag/1.7.6)
 
 #### [pbatard/rufus](https://github.com/pbatard/rufus)
 > The Reliable USB Formatting Utility
 
 - **Topics:** `usb` `iso` `bootable-drives` `mbr` `uefi` `bios` `boot` `windows` `syslinux` `freedos` `grub` `grub4dos` `sha1` `sha256` `md5` `gpt` `windows-to-go` `persistence` `secure-boot` `rufus`
 - **Tags:** `c` `nlp`
-- ⭐ 33833 · 🍴 2897 · 📅 更新于 2025-12-01 · 📦 [v4.11](https://github.com/pbatard/rufus/releases/tag/v4.11)
+- ⭐ 33834 · 🍴 2897 · 📅 更新于 2025-12-01 · 📦 [v4.11](https://github.com/pbatard/rufus/releases/tag/v4.11)
 
 #### [datawhalechina/self-llm](https://github.com/datawhalechina/self-llm)
 > 《开源大模型食用指南》针对中国宝宝量身打造的基于Linux环境快速微调（全参数/Lora）、部署国内外开源大模型（LLM）/多模态大模型（MLLM）教程
@@ -171,7 +171,7 @@
 
 - **Topics:** `kodi` `home-theater` `media-center` `multimedia` `c-plus-plus` `python` `xml` `android` `linux` `ios` `macos` `windows-desktop` `windows-uwp` `entertainment-hub` `xbmc` `media-player` `hacktoberfest`
 - **Tags:** `c++` `ml`
-- ⭐ 20127 · 🍴 6467 · 📅 更新于 2025-12-01 · 📦 [21.3-Omega](https://github.com/xbmc/xbmc/releases/tag/21.3-Omega)
+- ⭐ 20128 · 🍴 6467 · 📅 更新于 2025-12-01 · 📦 [21.3-Omega](https://github.com/xbmc/xbmc/releases/tag/21.3-Omega)
 
 #### [windingwind/zotero-better-notes](https://github.com/windingwind/zotero-better-notes)
 > Everything about note management. All in Zotero.
@@ -213,7 +213,7 @@
 
 - **Topics:** `data-analysis` `python` `trending-topics` `feishu-robot` `news` `dingtalk-robot` `telegram-bot` `wechat-robot` `hot-news` `docker` `ntfy` `mail` `mcp` `mcp-server` `wechat` `wework` `wework-bot` `bark` `slack`
 - **Tags:** `automation` `devops` `python`
-- ⭐ 34421 · 🍴 18721 · 📅 更新于 2025-12-01 · 📦 无 Release
+- ⭐ 34441 · 🍴 18726 · 📅 更新于 2025-12-01 · 📦 无 Release
 
 #### [HerbertHe/iptv-sources](https://github.com/HerbertHe/iptv-sources)
 > Autoupdate iptv sources
@@ -227,7 +227,7 @@
 
 - **Topics:** `bilibili` `netcore` `blazor` `quartz-net` `serilog`
 - **Tags:** `c#` `devops`
-- ⭐ 8125 · 🍴 1900 · 📅 更新于 2025-12-01 · 📦 [3.8.1](https://github.com/RayWangQvQ/BiliBiliToolPro/releases/tag/3.8.1)
+- ⭐ 8126 · 🍴 1900 · 📅 更新于 2025-12-01 · 📦 [3.8.1](https://github.com/RayWangQvQ/BiliBiliToolPro/releases/tag/3.8.1)
 
 </details>
 
@@ -301,7 +301,7 @@
 > 😎 Awesome lists about all kinds of interesting topics
 
 - **Topics:** `awesome` `awesome-list` `unicorns` `lists` `resources`
-- ⭐ 419338 · 🍴 32473 · 📅 更新于 2025-12-01 · 📦 无 Release
+- ⭐ 419350 · 🍴 32475 · 📅 更新于 2025-12-01 · 📦 无 Release
 
 #### [OpenListTeam/OpenList](https://github.com/OpenListTeam/OpenList)
 > A new AList Fork to Anti Trust Crisis
@@ -359,7 +359,7 @@
 
 - **Topics:** `algorithm` `leetcode` `interview` `computer-science` `system-design` `java` `python` `cpp`
 - **Tags:** `devops`
-- ⭐ 182987 · 🍴 51254 · 📅 更新于 2025-12-01 · 📦 无 Release
+- ⭐ 182988 · 🍴 51254 · 📅 更新于 2025-12-01 · 📦 无 Release
 
 </details>
 
@@ -380,7 +380,7 @@
 
 - **Topics:** `chrome` `chrome-extension` `firefox` `javascript` `jquery` `video-downloader` `firefox-extension` `m3u8-downloader`
 - **Tags:** `javascript` `web`
-- ⭐ 16915 · 🍴 1457 · 📅 更新于 2025-12-01 · 📦 [2.6.5](https://github.com/xifangczy/cat-catch/releases/tag/2.6.5)
+- ⭐ 16915 · 🍴 1458 · 📅 更新于 2025-12-01 · 📦 [2.6.5](https://github.com/xifangczy/cat-catch/releases/tag/2.6.5)
 
 #### [XIU2/UserScript](https://github.com/XIU2/UserScript)
 > 🐵 自用的一些乱七八糟 油猴脚本~ 
@@ -414,13 +414,13 @@
 
 - **Topics:** `android` `android-tv` `iqiyi` `tv` `cctv`
 - **Tags:** `javascript` `web`
-- ⭐ 2771 · 🍴 189 · 📅 更新于 2025-12-01 · 📦 [release-202412](https://github.com/VonChange/utao/releases/tag/release-202412)
+- ⭐ 2772 · 🍴 189 · 📅 更新于 2025-12-01 · 📦 [release-202412](https://github.com/VonChange/utao/releases/tag/release-202412)
 
 #### [RemotePinee/AudioVisual](https://github.com/RemotePinee/AudioVisual)
 > 解锁所有国内媒体流的钥匙
 
 - **Tags:** `javascript` `web`
-- ⭐ 1240 · 🍴 118 · 📅 更新于 2025-12-01 · 📦 [v1.0.8](https://github.com/RemotePinee/AudioVisual/releases/tag/v1.0.8)
+- ⭐ 1241 · 🍴 118 · 📅 更新于 2025-12-01 · 📦 [v1.0.8](https://github.com/RemotePinee/AudioVisual/releases/tag/v1.0.8)
 
 #### [Cinvin/myuserscripts](https://github.com/Cinvin/myuserscripts)
 > 网易云音乐油猴脚本:歌曲下载、转存云盘、云盘歌曲快传、云盘匹配纠正...
@@ -585,7 +585,7 @@
 
 - **Topics:** `powertoys` `desktop` `windows` `fancyzones` `microsoft-powertoys` `powerrename` `keyboard-manager` `color-picker` `command-palette` `windows-10` `windows-11`
 - **Tags:** `c#` `ml`
-- ⭐ 126165 · 🍴 7512 · 📅 更新于 2025-12-01 · 📦 [v0.96.1](https://github.com/microsoft/PowerToys/releases/tag/v0.96.1)
+- ⭐ 126166 · 🍴 7512 · 📅 更新于 2025-12-01 · 📦 [v0.96.1](https://github.com/microsoft/PowerToys/releases/tag/v0.96.1)
 
 #### [babalae/better-genshin-impact](https://github.com/babalae/better-genshin-impact)
 > 📦BetterGI · 更好的原神 - 自动拾取 \| 自动剧情 \| 全自动钓鱼(AI) \| 全自动七圣召唤 \| 自动伐木 \| 自动刷本 \| 自动采集/挖矿/锄地 \| 一条龙 \| 全连音游 - UI Automation Testing Tools For Genshin Impact
@@ -599,13 +599,13 @@
 
 - **Topics:** `bilibili` `avalonia`
 - **Tags:** `c#`
-- ⭐ 5650 · 🍴 411 · 📅 更新于 2025-12-01 · 📦 [v1.0.23](https://github.com/yaobiao131/downkyicore/releases/tag/v1.0.23)
+- ⭐ 5651 · 🍴 411 · 📅 更新于 2025-12-01 · 📦 [v1.0.23](https://github.com/yaobiao131/downkyicore/releases/tag/v1.0.23)
 
 #### [ZyperWave/ZyperWinOptimize](https://github.com/ZyperWave/ZyperWinOptimize)
 > ZyperWin++是一个轻便的Windows优化工具，适用于Win7-Win11最新版的优化，包括性能优化、服务项优化、垃圾清理等操作，还支持系统激活和Office快速安装。
 
 - **Tags:** `c#`
-- ⭐ 5290 · 🍴 287 · 📅 更新于 2025-12-01 · 📦 [v4.1](https://github.com/ZyperWave/ZyperWinOptimize/releases/tag/v4.1)
+- ⭐ 5292 · 🍴 287 · 📅 更新于 2025-12-01 · 📦 [v4.1](https://github.com/ZyperWave/ZyperWinOptimize/releases/tag/v4.1)
 
 #### [PrelinaMontelli/Edge-Monitor](https://github.com/PrelinaMontelli/Edge-Monitor)
 > 一个监控并弄死异常Edge的程序
@@ -631,7 +631,7 @@
 
 - **Topics:** `android` `cross-platform` `danmaku` `flutter` `windows` `ios` `linux-desktop` `macos`
 - **Tags:** `dart`
-- ⭐ 18125 · 🍴 520 · 📅 更新于 2025-12-01 · 📦 [1.9.1](https://github.com/Predidit/Kazumi/releases/tag/1.9.1)
+- ⭐ 18127 · 🍴 520 · 📅 更新于 2025-12-01 · 📦 [1.9.1](https://github.com/Predidit/Kazumi/releases/tag/1.9.1)
 
 #### [venera-app/venera](https://github.com/venera-app/venera)
 > A comic app
@@ -664,14 +664,14 @@
 > Legado 3.0 Book Reader with powerful controls & full functions❤️阅读3.0, 阅读是一款可以自定义来源阅读网络内容的工具，为广大网络文学爱好者提供一种方便、快捷舒适的试读体验。
 
 - **Tags:** `kotlin`
-- ⭐ 42042 · 🍴 4740 · 📅 更新于 2025-12-01 · 📦 [3.25](https://github.com/gedoor/legado/releases/tag/3.25)
+- ⭐ 42043 · 🍴 4740 · 📅 更新于 2025-12-01 · 📦 [3.25](https://github.com/gedoor/legado/releases/tag/3.25)
 
 #### [JunkFood02/Seal](https://github.com/JunkFood02/Seal)
 > 🦭 Video/Audio Downloader for Android, based on yt-dlp
 
 - **Topics:** `android` `jetpack-compose` `youtube-dl` `material-design` `f-droid` `kotlin` `youtube-downloader` `yt-dlp`
 - **Tags:** `kotlin`
-- ⭐ 23145 · 🍴 972 · 📅 更新于 2025-12-01 · 📦 [v1.13.1](https://github.com/JunkFood02/Seal/releases/tag/v1.13.1)
+- ⭐ 23147 · 🍴 972 · 📅 更新于 2025-12-01 · 📦 [v1.13.1](https://github.com/JunkFood02/Seal/releases/tag/v1.13.1)
 
 #### [open-ani/animeko](https://github.com/open-ani/animeko)
 > 集找番、追番、看番的一站式弹幕追番平台，云收藏同步 (Bangumi)，离线缓存，BitTorrent，弹幕云过滤。100% Kotlin/Compose Multiplatform
