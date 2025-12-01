@@ -1,774 +1,755 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GitHub Stars 整理</title>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
-body {
-    font-family: 'Noto Sans SC', sans-serif;
-    background-color: #f8fafc;
-    color: #1e293b;
-    scroll-behavior: smooth;
-}
-.category-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.category-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-}
-.repo-card {
-    transition: all 0.2s ease;
-    border-left: 4px solid transparent;
-}
-.repo-card:hover {
-    border-left-color: #3b82f6;
-    background-color: #f1f5f9;
-}
-.nav-link {
-    position: relative;
-}
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #3b82f6;
-    transition: width 0.3s ease;
-}
-.nav-link:hover::after {
-    width: 100%;
-}
-.back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-.back-to-top.visible {
-    opacity: 1;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Stars 简洁整理方案</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            scroll-behavior: smooth;
+        }
+        .category-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .category-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
+        .repo-card { transition: all 0.2s ease; border-left: 4px solid transparent; }
+        .repo-card:hover { border-left-color: #3b82f6; background-color: #f1f5f9; }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background-color: #3b82f6; transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+        .back-to-top { position: fixed; bottom: 20px; right: 20px; opacity: 0; transition: opacity 0.3s ease; }
+        .back-to-top.visible { opacity: 1; }
+    </style>
 </head>
-<body class="max-w-5xl mx-auto px-4 py-8">
+<body class="max-w-4xl mx-auto px-4 py-8">
+    <header class="mb-12 text-center">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">GitHub Stars 简洁整理方案</h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">一个简单高效的文档方案，保持编辑简单的同时确保目录索引功能完整可靠</p>
+    </header>
 
-<header class="mb-12 text-center">
-    <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">🌟 GitHub Stars 整理</h1>
-    <p class="text-lg text-gray-600 max-w-2xl mx-auto">自动分类 · 最新 Release · 清爽卡片式展示</p>
-</header>
-
-<!-- 顶部目录导航 -->
-<div class="bg-white rounded-xl shadow-md p-6 mb-8">
-    <h2 class="text-2xl font-semibold mb-4 text-gray-800">📂 目录导航</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-        <a href="#DevOps--工具" class="nav-link text-blue-600 hover:text-blue-800">DevOps &amp; 工具</a>
-        <a href="#Web-开发" class="nav-link text-blue-600 hover:text-blue-800">Web 开发</a>
-        <a href="#AI" class="nav-link text-blue-600 hover:text-blue-800">AI</a>
-        <a href="#脚本自动化" class="nav-link text-blue-600 hover:text-blue-800">脚本自动化</a>
-        <a href="#学习资料" class="nav-link text-blue-600 hover:text-blue-800">学习资料</a>
-        <a href="#其他" class="nav-link text-blue-600 hover:text-blue-800">其他</a>
+    <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800">🌟 My GitHub Stars Collection</h2>
+        <div class="mb-8">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 flex items-center">
+                <i class="fas fa-list-ul mr-2 text-blue-500"></i> 目录导航
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                <a href="#ai" class="nav-link text-blue-600 hover:text-blue-800">AI</a>
+                <a href="#web-开发" class="nav-link text-blue-600 hover:text-blue-800">Web 开发</a>
+                <a href="#devops-&-工具" class="nav-link text-blue-600 hover:text-blue-800">DevOps & 工具</a>
+                <a href="#脚本自动化" class="nav-link text-blue-600 hover:text-blue-800">脚本自动化</a>
+                <a href="#学习资料" class="nav-link text-blue-600 hover:text-blue-800">学习资料</a>
+                <a href="#其他" class="nav-link text-blue-600 hover:text-blue-800">其他</a>
+            </div>
+        </div>
     </div>
-</div>
-
-<!-- 分类卡片：DevOps & 工具 -->
-<div id="DevOps--工具" class="category-card bg-white rounded-xl shadow-md p-6 mb-8">
-    <div class="flex items-center mb-4">
-        <i class="fas fa-tools text-2xl mr-3 text-blue-500"></i>
-        <h2 class="text-2xl font-semibold text-gray-800">DevOps &amp; 工具</h2>
+    <div id="ai" class="category-card bg-white rounded-xl shadow-md p-6 mb-8">
+        <div class="flex items-center mb-4">
+            <i class="fas fa-robot text-2xl mr-3 text-red-500"></i>
+            <h2 class="text-2xl font-semibold text-gray-800">AI</h2>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">大模型/LLM</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/microsoft/markitdown" class="text-lg font-medium text-blue-600 hover:underline">microsoft/markitdown</a>
+                    <p class="text-gray-600 mt-1">Python tool for converting files and office documents to Markdown.</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/zhayujie/chatgpt-on-wechat" class="text-lg font-medium text-blue-600 hover:underline">zhayujie/chatgpt-on-wechat</a>
+                    <p class="text-gray-600 mt-1">基于大模型搭建的聊天机器人，同时支持 微信公众号、企业微信应用、飞书、钉钉 等接入，可选择ChatGPT/Claude/DeepSeek/文心一言/讯飞星火/通义千问/ Gemini/GLM-4/Kimi/LinkAI，能处理文本、语音和图片，访问操作系统和互联网，支持基于自有知识库进行定制企业智能客服。</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/pbatard/rufus" class="text-lg font-medium text-blue-600 hover:underline">pbatard/rufus</a>
+                    <p class="text-gray-600 mt-1">The Reliable USB Formatting Utility</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/datawhalechina/self-llm" class="text-lg font-medium text-blue-600 hover:underline">datawhalechina/self-llm</a>
+                    <p class="text-gray-600 mt-1">《开源大模型食用指南》针对中国宝宝量身打造的基于Linux环境快速微调（全参数/Lora）、部署国内外开源大模型（LLM）/多模态大模型（MLLM）教程</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/eli64s/readme-ai" class="text-lg font-medium text-blue-600 hover:underline">eli64s/readme-ai</a>
+                    <p class="text-gray-600 mt-1">README file generator, powered by AI.</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/liu-ziting/what-to-eat" class="text-lg font-medium text-blue-600 hover:underline">liu-ziting/what-to-eat</a>
+                    <p class="text-gray-600 mt-1">一饭封神：一个基于 AI 的智能菜谱生成平台，支持中华八大菜系 + 国际料理，提供营养分析、酒水推荐、菜谱效果图生成等全方位烹饪指导。</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+            </div>
+        </div>
+        <div class="mt-6 text-right">
+            <a href="#" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
+                <i class="fas fa-arrow-up mr-1"></i> 返回顶部
+            </a>
+        </div>
     </div>
-
-    <div class="mb-6">
-        <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">效率工具（9）</h3>
-        <div class="space-y-3">
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/microsoft/markitdown" class="text-lg font-medium text-blue-600 hover:underline">microsoft/markitdown</a>
-                <p class="text-gray-600 mt-1">Python tool for converting files and office documents to Markdown.</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 83477 · 🍴 4779 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/microsoft/markitdown/releases/tag/v0.1.3">v0.1.3</a></div>
+    <div id="web-开发" class="category-card bg-white rounded-xl shadow-md p-6 mb-8">
+        <div class="flex items-center mb-4">
+            <i class="fas fa-paint-brush text-2xl mr-3 text-purple-500"></i>
+            <h2 class="text-2xl font-semibold text-gray-800">Web 开发</h2>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">前端框架</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/lyswhut/lx-music-desktop" class="text-lg font-medium text-blue-600 hover:underline">lyswhut/lx-music-desktop</a>
+                    <p class="text-gray-600 mt-1">一个基于 electron 的音乐软件</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/hectorqin/reader" class="text-lg font-medium text-blue-600 hover:underline">hectorqin/reader</a>
+                    <p class="text-gray-600 mt-1">阅读3服务器版，桌面端，iOS可用。后端 Kotlin + Spring Boot + Vert.x + Coroutine ；前端 Vue.js + Element。麻烦点点star，关注一下公众号【假装大佬】❗️  </p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/caorushizi/mediago" class="text-lg font-medium text-blue-600 hover:underline">caorushizi/mediago</a>
+                    <p class="text-gray-600 mt-1">跨平台视频提取工具：支持流媒体下载、视频下载、m3u8 下载及 B站视频下载，提供 Windows 和 Mac 桌面客户端。Cross-platform video extraction tool: Supports streaming download, video download, m3u8 download, and Bilibili video download, with desktop clients for Windows and Mac.</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/jiangrui1994/CloudSaver" class="text-lg font-medium text-blue-600 hover:underline">jiangrui1994/CloudSaver</a>
+                    <p class="text-gray-600 mt-1">一个基于 Vue 3 + Express 的网盘资源搜索与转存工具。</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/MoeKoeMusic/MoeKoeMusic" class="text-lg font-medium text-blue-600 hover:underline">MoeKoeMusic/MoeKoeMusic</a>
+                    <p class="text-gray-600 mt-1">一款开源简洁高颜值的酷狗第三方客户端 An open-source, concise, and aesthetically pleasing third-party client for KuGou that supports  Windows / macOS / Linux / Web :electron:</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/btjawa/BiliTools" class="text-lg font-medium text-blue-600 hover:underline">btjawa/BiliTools</a>
+                    <p class="text-gray-600 mt-1">A cross-platform bilibili toolbox. 跨平台哔哩哔哩工具箱，支持下载视频、番剧等等各类资源</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/lanyeeee/bilibili-video-downloader" class="text-lg font-medium text-blue-600 hover:underline">lanyeeee/bilibili-video-downloader</a>
+                    <p class="text-gray-600 mt-1">哔哩哔哩 bilibili B站 视频 下载器，图形界面 + nfo刮削 + 广告标记 + 字幕下载 + 弹幕下载，轻松将视频加入emby等媒体库</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/timeshiftsauce/CeruMusic" class="text-lg font-medium text-blue-600 hover:underline">timeshiftsauce/CeruMusic</a>
+                    <p class="text-gray-600 mt-1">Ceru Music 是基于 Electron 和 Vue 开发的跨平台桌面音乐播放器工具，借鉴洛雪音乐插件思想，提供插件运行框架与播放功能，不直接存储、提供任何音乐源文件。用户需通过自行选择、安装合规插件获取音乐相关数据，项目旨在为开发者提供桌面应用技术实践与学习案例，为用户提供合规的音乐播放工具框架。</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
             </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/dbeaver/dbeaver" class="text-lg font-medium text-blue-600 hover:underline">dbeaver/dbeaver</a>
-                <p class="text-gray-600 mt-1">Free universal database tool and SQL client</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 47475 · 🍴 3957 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/dbeaver/dbeaver/releases/tag/25.3.0">25.3.0</a></div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">后端框架</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/xbmc/xbmc" class="text-lg font-medium text-blue-600 hover:underline">xbmc/xbmc</a>
+                    <p class="text-gray-600 mt-1">Kodi is an award-winning free and open source home theater/media center software and entertainment hub for digital media. With its beautiful interface and powerful skinning engine, it&#39;s available for Android, BSD, Linux, macOS, iOS, tvOS and Windows.</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/windingwind/zotero-better-notes" class="text-lg font-medium text-blue-600 hover:underline">windingwind/zotero-better-notes</a>
+                    <p class="text-gray-600 mt-1">Everything about note management. All in Zotero.</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/viarotel-org/escrcpy" class="text-lg font-medium text-blue-600 hover:underline">viarotel-org/escrcpy</a>
+                    <p class="text-gray-600 mt-1">📱 Display and control your Android device graphically with scrcpy.</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
             </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/ClickHouse/ClickHouse" class="text-lg font-medium text-blue-600 hover:underline">ClickHouse/ClickHouse</a>
-                <p class="text-gray-600 mt-1">ClickHouse® is a real-time analytics database management system</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 44362 · 🍴 7865 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/ClickHouse/ClickHouse/releases/tag/v25.11.1.558-stable">v25.11.1.558-stable</a></div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">全栈工具</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/EcoPasteHub/EcoPaste" class="text-lg font-medium text-blue-600 hover:underline">EcoPasteHub/EcoPaste</a>
+                    <p class="text-gray-600 mt-1">🎉跨平台的剪贴板管理工具 | Cross-platform clipboard management tool</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
             </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/babalae/better-genshin-impact" class="text-lg font-medium text-blue-600 hover:underline">babalae/better-genshin-impact</a>
-                <p class="text-gray-600 mt-1">📦BetterGI · 更好的原神 - 自动拾取   自动剧情   全自动钓鱼(AI)   全自动七圣召唤   自动伐木   自动刷本   自动采集/挖矿/锄地   一条龙   全连音游 - UI Automation Testing Tools For Genshin Impact</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 11559 · 🍴 796 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/babalae/better-genshin-impact/releases/tag/0.53.0">0.53.0</a></div>
+        </div>
+        <div class="mt-6 text-right">
+            <a href="#" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
+                <i class="fas fa-arrow-up mr-1"></i> 返回顶部
+            </a>
+        </div>
+    </div>
+    <div id="devops-&-工具" class="category-card bg-white rounded-xl shadow-md p-6 mb-8">
+        <div class="flex items-center mb-4">
+            <i class="fas fa-tools text-2xl mr-3 text-indigo-500"></i>
+            <h2 class="text-2xl font-semibold text-gray-800">DevOps & 工具</h2>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">容器与编排</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/sansan0/TrendRadar" class="text-lg font-medium text-blue-600 hover:underline">sansan0/TrendRadar</a>
+                    <p class="text-gray-600 mt-1">🎯 告别信息过载，AI 助你看懂新闻资讯热点，简单的舆情监控分析 - 多平台热点聚合+基于 MCP 的AI分析工具。监控35个平台（抖音、知乎、B站、华尔街见闻、财联社等），智能筛选+自动推送+AI对话分析（用自然语言深度挖掘新闻：趋势追踪、情感分析、相似检索等13种工具）。支持企业微信/个人微信/飞书/钉钉/Telegram/邮件/ntfy/bark/slack 推送，30秒网页部署，1分钟手机通知，无需编程。支持Docker部署⭐ 让算法为你服务，用AI理解热点</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/HerbertHe/iptv-sources" class="text-lg font-medium text-blue-600 hover:underline">HerbertHe/iptv-sources</a>
+                    <p class="text-gray-600 mt-1">Autoupdate iptv sources</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/RayWangQvQ/BiliBiliToolPro" class="text-lg font-medium text-blue-600 hover:underline">RayWangQvQ/BiliBiliToolPro</a>
+                    <p class="text-gray-600 mt-1">B 站（bilibili）自动任务工具，支持docker、青龙、k8s等多种部署方式。敏感肌也能用。</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
             </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/YaoFANGUK/video-subtitle-remover" class="text-lg font-medium text-blue-600 hover:underline">YaoFANGUK/video-subtitle-remover</a>
-                <p class="text-gray-600 mt-1">基于AI的图片/视频硬字幕去除、文本水印去除，无损分辨率生成去字幕、去水印后的图片/视频文件。无需申请第三方API，本地实现。AI-based tool for removing hard-coded subtitles and text-like watermarks from videos...</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 8669 · 🍴 1084 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/YaoFANGUK/video-subtitle-remover/releases/tag/1.1.0">1.1.0</a></div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">效率工具</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/jiji262/douyin-downloader" class="text-lg font-medium text-blue-600 hover:underline">jiji262/douyin-downloader</a>
+                    <p class="text-gray-600 mt-1">抖音批量下载工具，去水印，支持视频、图集、合集、音乐(原声)。免费！免费！免费！</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
             </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/windingwind/zotero-better-notes" class="text-lg font-medium text-blue-600 hover:underline">windingwind/zotero-better-notes</a>
-                <p class="text-gray-600 mt-1">Everything about note management. All in Zotero.</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 7068 · 🍴 227 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/windingwind/zotero-better-notes/releases/tag/v2.5.9">v2.5.9</a></div>
+        </div>
+        <div class="mt-6 text-right">
+            <a href="#" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
+                <i class="fas fa-arrow-up mr-1"></i> 返回顶部
+            </a>
+        </div>
+    </div>
+    <div id="脚本自动化" class="category-card bg-white rounded-xl shadow-md p-6 mb-8">
+        <div class="flex items-center mb-4">
+            <i class="fas fa-terminal text-2xl mr-3 text-yellow-600"></i>
+            <h2 class="text-2xl font-semibold text-gray-800">脚本自动化</h2>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">命令行工具</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/dbeaver/dbeaver" class="text-lg font-medium text-blue-600 hover:underline">dbeaver/dbeaver</a>
+                    <p class="text-gray-600 mt-1">Free universal database tool and SQL client</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/ClickHouse/ClickHouse" class="text-lg font-medium text-blue-600 hover:underline">ClickHouse/ClickHouse</a>
+                    <p class="text-gray-600 mt-1">ClickHouse® is a real-time analytics database management system</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/freeok/so-novel" class="text-lg font-medium text-blue-600 hover:underline">freeok/so-novel</a>
+                    <p class="text-gray-600 mt-1">小说下载｜网文下载 | 网络小说</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
             </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/EcoPasteHub/EcoPaste" class="text-lg font-medium text-blue-600 hover:underline">EcoPasteHub/EcoPaste</a>
-                <p class="text-gray-600 mt-1">🎉跨平台的剪贴板管理工具   Cross-platform clipboard management tool</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 6451 · 🍴 302 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/EcoPasteHub/EcoPaste/releases/tag/v0.5.0">v0.5.0</a></div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">爬虫/自动化</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/UFund-Me/Qbot" class="text-lg font-medium text-blue-600 hover:underline">UFund-Me/Qbot</a>
+                    <p class="text-gray-600 mt-1">[🔥updating ...] AI 自动量化交易机器人(完全本地部署) AI-powered Quantitative Investment Research Platform. 📃 online docs: https://ufund-me.github.io/Qbot   ✨ :news: qbot-mini: https://github.com/Charmve/iQuant</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/simonsmh/telegram-bili-feed-helper" class="text-lg font-medium text-blue-600 hover:underline">simonsmh/telegram-bili-feed-helper</a>
+                    <p class="text-gray-600 mt-1">Telegram bot for Bilibili links</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-11-30</p>
+                </div>
             </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/jiji262/douyin-downloader" class="text-lg font-medium text-blue-600 hover:underline">jiji262/douyin-downloader</a>
-                <p class="text-gray-600 mt-1">抖音批量下载工具，去水印，支持视频、图集、合集、音乐(原声)。免费！免费！免费！</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 5947 · 🍴 905 · 📅 2025-12-01 · 📦 无 Release</div>
+        </div>
+        <div class="mt-6 text-right">
+            <a href="#" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
+                <i class="fas fa-arrow-up mr-1"></i> 返回顶部
+            </a>
+        </div>
+    </div>
+    <div id="学习资料" class="category-card bg-white rounded-xl shadow-md p-6 mb-8">
+        <div class="flex items-center mb-4">
+            <i class="fas fa-graduation-cap text-2xl mr-3 text-teal-500"></i>
+            <h2 class="text-2xl font-semibold text-gray-800">学习资料</h2>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">Awesome 列表</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/sindresorhus/awesome" class="text-lg font-medium text-blue-600 hover:underline">sindresorhus/awesome</a>
+                    <p class="text-gray-600 mt-1">😎 Awesome lists about all kinds of interesting topics</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/OpenListTeam/OpenList" class="text-lg font-medium text-blue-600 hover:underline">OpenListTeam/OpenList</a>
+                    <p class="text-gray-600 mt-1">A new AList Fork to Anti Trust Crisis</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/dr34m-cn/taosync" class="text-lg font-medium text-blue-600 hover:underline">dr34m-cn/taosync</a>
+                    <p class="text-gray-600 mt-1">TaoSync是一个适用于OpenList v3+的自动化同步工具/Sync for OpenList/AList</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/liminbai/Awesome-GameEmulator" class="text-lg font-medium text-blue-600 hover:underline">liminbai/Awesome-GameEmulator</a>
+                    <p class="text-gray-600 mt-1">Game emulator information</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/OpenListApp/OpenListApp" class="text-lg font-medium text-blue-600 hover:underline">OpenListApp/OpenListApp</a>
+                    <p class="text-gray-600 mt-1">Alist、OpenList GUI  App for Android、 iOS、Windows、macOS、Linux with Alist、OpenList local server</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
             </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/freeok/so-novel" class="text-lg font-medium text-blue-600 hover:underline">freeok/so-novel</a>
-                <p class="text-gray-600 mt-1">小说下载｜网文下载   网络小说</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 5657 · 🍴 450 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/freeok/so-novel/releases/tag/v1.9.6">v1.9.6</a></div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">教程/文档</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/microsoft/qlib" class="text-lg font-medium text-blue-600 hover:underline">microsoft/qlib</a>
+                    <p class="text-gray-600 mt-1">Qlib is an AI-oriented Quant investment platform that aims to use AI tech to empower Quant Research, from exploring ideas to implementing productions. Qlib supports diverse ML modeling paradigms, including supervised learning, market dynamics modeling, and RL, and is now equipped with https://github.com/microsoft/RD-Agent to automate R&D process.</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/zyronon/TypeWords" class="text-lg font-medium text-blue-600 hover:underline">zyronon/TypeWords</a>
+                    <p class="text-gray-600 mt-1">练习英语，一次敲击，一点进步；Practice English, one strike, one step forward</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
             </div>
-
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">算法与面试</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/CyC2018/CS-Notes" class="text-lg font-medium text-blue-600 hover:underline">CyC2018/CS-Notes</a>
+                    <p class="text-gray-600 mt-1">:books: 技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+            </div>
+        </div>
+        <div class="mt-6 text-right">
+            <a href="#" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
+                <i class="fas fa-arrow-up mr-1"></i> 返回顶部
+            </a>
+        </div>
+    </div>
+    <div id="其他" class="category-card bg-white rounded-xl shadow-md p-6 mb-8">
+        <div class="flex items-center mb-4">
+            <i class="fas fa-ellipsis-h text-2xl mr-3 text-gray-500"></i>
+            <h2 class="text-2xl font-semibold text-gray-800">其他</h2>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">JavaScript 项目</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/Gar-b-age/CookLikeHOC" class="text-lg font-medium text-blue-600 hover:underline">Gar-b-age/CookLikeHOC</a>
+                    <p class="text-gray-600 mt-1">🥢像老乡鸡🐔那样做饭。主要部分于2024年完工，非老乡鸡官方仓库。文字来自《老乡鸡菜品溯源报告》，并做归纳、编辑与整理。CookLikeHOC.</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/xifangczy/cat-catch" class="text-lg font-medium text-blue-600 hover:underline">xifangczy/cat-catch</a>
+                    <p class="text-gray-600 mt-1">猫抓 浏览器资源嗅探扩展 / cat-catch Browser Resource Sniffing Extension</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/XIU2/UserScript" class="text-lg font-medium text-blue-600 hover:underline">XIU2/UserScript</a>
+                    <p class="text-gray-600 mt-1">🐵 自用的一些乱七八糟 油猴脚本~ </p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/youhunwl/TVAPP" class="text-lg font-medium text-blue-600 hover:underline">youhunwl/TVAPP</a>
+                    <p class="text-gray-600 mt-1"> 收集全网 Android TV电视盒子应用，涵盖影视、直播、K歌、工具、游戏等类型，整理优质APK资源，支持便捷下载与自动更新。提供安全验证、分类索引与兼容性标注，助力用户打造家庭影音娱乐中心！              ✅ TVBox/影视仓等影音壳接口配置源。</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/adlered/CSDNGreener" class="text-lg font-medium text-blue-600 hover:underline">adlered/CSDNGreener</a>
+                    <p class="text-gray-600 mt-1">《专 业 团 队》🕺🏿 🕺🏿 🕺🏿 🕺🏿 ⚰️🕺🏿 🕺🏿 🕺🏿 🕺🏿 | 专治 CSDN 广告与各种灵魂打击 | 🐵 油猴脚本 | TamperMonkey | Chrome | FireFox | CSDN 页面浮窗广告完全过滤净化 | 国服最强 CSDN 绿化脚本</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/cv-cat/Spider_XHS" class="text-lg font-medium text-blue-600 hover:underline">cv-cat/Spider_XHS</a>
+                    <p class="text-gray-600 mt-1">小红书爬虫数据采集，小红书全域运营解决方案</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/VonChange/utao" class="text-lg font-medium text-blue-600 hover:underline">VonChange/utao</a>
+                    <p class="text-gray-600 mt-1">油桃TV 电视浏览器 可看各大卫视CCTV直播 无需电视VIP 适配爱奇艺等主流视频平台</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/RemotePinee/AudioVisual" class="text-lg font-medium text-blue-600 hover:underline">RemotePinee/AudioVisual</a>
+                    <p class="text-gray-600 mt-1">解锁所有国内媒体流的钥匙</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/Cinvin/myuserscripts" class="text-lg font-medium text-blue-600 hover:underline">Cinvin/myuserscripts</a>
+                    <p class="text-gray-600 mt-1">网易云音乐油猴脚本:歌曲下载、转存云盘、云盘歌曲快传、云盘匹配纠正...</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-11-30</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/qingmeng1/bilijump-ai" class="text-lg font-medium text-blue-600 hover:underline">qingmeng1/bilijump-ai</a>
+                    <p class="text-gray-600 mt-1">一个使用 AI 自动跳过 Bilibili 视频植入广告的扩展程序。</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">Python 项目</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/rwv/chinese-dos-games" class="text-lg font-medium text-blue-600 hover:underline">rwv/chinese-dos-games</a>
+                    <p class="text-gray-600 mt-1">🎮 Chinese DOS games collections.</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/YaoFANGUK/video-subtitle-remover" class="text-lg font-medium text-blue-600 hover:underline">YaoFANGUK/video-subtitle-remover</a>
+                    <p class="text-gray-600 mt-1">基于AI的图片/视频硬字幕去除、文本水印去除，无损分辨率生成去字幕、去水印后的图片/视频文件。无需申请第三方API，本地实现。AI-based tool for removing hard-coded subtitles and text-like watermarks from videos or Pictures.</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/JefferyHcool/BiliNote" class="text-lg font-medium text-blue-600 hover:underline">JefferyHcool/BiliNote</a>
+                    <p class="text-gray-600 mt-1">AI 视频笔记生成工具 让 AI 为你的视频做笔记</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/icip-cas/PPTAgent" class="text-lg font-medium text-blue-600 hover:underline">icip-cas/PPTAgent</a>
+                    <p class="text-gray-600 mt-1">PPTAgent: Generating and Evaluating Presentations Beyond Text-to-Slides [EMNLP 2025]</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/showlab/Code2Video" class="text-lg font-medium text-blue-600 hover:underline">showlab/Code2Video</a>
+                    <p class="text-gray-600 mt-1">Video generation via code</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/Return-Log/Drive-Icon-Manager" class="text-lg font-medium text-blue-600 hover:underline">Return-Log/Drive-Icon-Manager</a>
+                    <p class="text-gray-600 mt-1">可以轻松删除‘此电脑’及‘资源管理器侧边栏’中讨厌的网盘图标</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/BlueSkyXN/Bili-to-Youtube" class="text-lg font-medium text-blue-600 hover:underline">BlueSkyXN/Bili-to-Youtube</a>
+                    <p class="text-gray-600 mt-1">B2Y，简化从哔哩哔哩视频下载到上传到Youtube的快速操作</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-11-25</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">TypeScript 项目</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/the1812/Bilibili-Evolved" class="text-lg font-medium text-blue-600 hover:underline">the1812/Bilibili-Evolved</a>
+                    <p class="text-gray-600 mt-1">强大的哔哩哔哩增强脚本</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/scriptscat/scriptcat" class="text-lg font-medium text-blue-600 hover:underline">scriptscat/scriptcat</a>
+                    <p class="text-gray-600 mt-1">ScriptCat, a browser extension that can execute userscript; 脚本猫，一个可以执行用户脚本的浏览器扩展</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/waifu-project/movie" class="text-lg font-medium text-blue-600 hover:underline">waifu-project/movie</a>
+                    <p class="text-gray-600 mt-1">小猫影视是一款全平台的影视播放器, 支持 VOD/JS 扩展源</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/chenfan0/fideo-live-record" class="text-lg font-medium text-blue-600 hover:underline">chenfan0/fideo-live-record</a>
+                    <p class="text-gray-600 mt-1">A convenient live broadcast recording software! Supports Tiktok, Youtube, Twitch, Bilibili, Bigo!(一款方便的直播录制软件! 支持tiktok, youtube, twitch, 抖音，虎牙，斗鱼，快手，微博，网易cc，bilibili，花椒, 淘宝, 京东) </p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-11-30</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/xincmm/sageread" class="text-lg font-medium text-blue-600 hover:underline">xincmm/sageread</a>
+                    <p class="text-gray-600 mt-1">一款 AI 辅助阅读器，三栏设计实现笔记、阅读、对话同屏交互，让深度阅读更高效</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/mundane799699/bilibili-history-wxt" class="text-lg font-medium text-blue-600 hover:underline">mundane799699/bilibili-history-wxt</a>
+                    <p class="text-gray-600 mt-1">暂无描述</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-11-30</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/qiweiii/bili-feed-history" class="text-lg font-medium text-blue-600 hover:underline">qiweiii/bili-feed-history</a>
+                    <p class="text-gray-600 mt-1">查看不小心错过的bilibili首页“换一换”推荐视频</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-11-23</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">其他 项目</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/maxiaobang7/ossnav" class="text-lg font-medium text-blue-600 hover:underline">maxiaobang7/ossnav</a>
+                    <p class="text-gray-600 mt-1">开源精选：探索免费优质的开源软件工具，尽享数字自由</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/jayjd/HuYaTv" class="text-lg font-medium text-blue-600 hover:underline">jayjd/HuYaTv</a>
+                    <p class="text-gray-600 mt-1">聚合直播（FUSE）,支持虎牙/抖音/快手/哔哩哔哩/斗鱼/YY/网易CC/电视直播，支持手机/平板/电视/车机</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/moshowgame/dbeaver-driver-all" class="text-lg font-medium text-blue-600 hover:underline">moshowgame/dbeaver-driver-all</a>
+                    <p class="text-gray-600 mt-1">dbeaver所有jdbc驱动都在这，dbeaver all jdbc drivers ,come and download with me , one package come with all jdbc drivers.</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-11-27</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/Keldos-Li/typora-latex-theme-fonts" class="text-lg font-medium text-blue-600 hover:underline">Keldos-Li/typora-latex-theme-fonts</a>
+                    <p class="text-gray-600 mt-1">暂无描述</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/yuanwangokk-1/Hiker-App" class="text-lg font-medium text-blue-600 hover:underline">yuanwangokk-1/Hiker-App</a>
+                    <p class="text-gray-600 mt-1">暂无描述</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-11-16</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">C# 项目</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/microsoft/PowerToys" class="text-lg font-medium text-blue-600 hover:underline">microsoft/PowerToys</a>
+                    <p class="text-gray-600 mt-1">Microsoft PowerToys is a collection of utilities that help you customize Windows and streamline everyday tasks</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/babalae/better-genshin-impact" class="text-lg font-medium text-blue-600 hover:underline">babalae/better-genshin-impact</a>
+                    <p class="text-gray-600 mt-1">📦BetterGI · 更好的原神 - 自动拾取 | 自动剧情 | 全自动钓鱼(AI) | 全自动七圣召唤 | 自动伐木 | 自动刷本 | 自动采集/挖矿/锄地 | 一条龙 | 全连音游 - UI Automation Testing Tools For Genshin Impact</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/yaobiao131/downkyicore" class="text-lg font-medium text-blue-600 hover:underline">yaobiao131/downkyicore</a>
+                    <p class="text-gray-600 mt-1">哔哩下载姬(跨平台版)downkyi，哔哩哔哩网站视频下载工具，支持批量下载，支持8K、HDR、杜比视界，提供工具箱（音视频提取、去水印等）。</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/ZyperWave/ZyperWinOptimize" class="text-lg font-medium text-blue-600 hover:underline">ZyperWave/ZyperWinOptimize</a>
+                    <p class="text-gray-600 mt-1">ZyperWin++是一个轻便的Windows优化工具，适用于Win7-Win11最新版的优化，包括性能优化、服务项优化、垃圾清理等操作，还支持系统激活和Office快速安装。</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/PrelinaMontelli/Edge-Monitor" class="text-lg font-medium text-blue-600 hover:underline">PrelinaMontelli/Edge-Monitor</a>
+                    <p class="text-gray-600 mt-1">一个监控并弄死异常Edge的程序</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-11-28</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">Dart 项目</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/GopeedLab/gopeed" class="text-lg font-medium text-blue-600 hover:underline">GopeedLab/gopeed</a>
+                    <p class="text-gray-600 mt-1">A modern download manager that supports all platforms.  Built with Golang and Flutter.</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/Predidit/Kazumi" class="text-lg font-medium text-blue-600 hover:underline">Predidit/Kazumi</a>
+                    <p class="text-gray-600 mt-1">基于自定义规则的番剧采集APP，支持流媒体在线观看，支持弹幕，支持实时超分辨率。</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/venera-app/venera" class="text-lg font-medium text-blue-600 hover:underline">venera-app/venera</a>
+                    <p class="text-gray-600 mt-1">A comic app</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/Sle2p/AniCh" class="text-lg font-medium text-blue-600 hover:underline">Sle2p/AniCh</a>
+                    <p class="text-gray-600 mt-1">一个支持超分辨率的在线动漫弹幕APP。多平台，多番剧源，多弹幕，高清无广告。追番看番必备软件。</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/MCDFsteve/NipaPlay-Reload" class="text-lg font-medium text-blue-600 hover:underline">MCDFsteve/NipaPlay-Reload</a>
+                    <p class="text-gray-600 mt-1">NipaPlay-Reload 是一个现代化的跨平台本地视频播放器，支持 Windows、macOS、Linux、Android 和 iOS。集成了弹幕显示、多格式字幕支持、多音频轨道切换，新番查看等功能，支持挂载Emby/Jellyfin媒体库。采用 Flutter 开发，提供统一的用户体验。</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">Kotlin 项目</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/gedoor/legado" class="text-lg font-medium text-blue-600 hover:underline">gedoor/legado</a>
+                    <p class="text-gray-600 mt-1">Legado 3.0 Book Reader with powerful controls & full functions❤️阅读3.0, 阅读是一款可以自定义来源阅读网络内容的工具，为广大网络文学爱好者提供一种方便、快捷舒适的试读体验。</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/JunkFood02/Seal" class="text-lg font-medium text-blue-600 hover:underline">JunkFood02/Seal</a>
+                    <p class="text-gray-600 mt-1">🦭 Video/Audio Downloader for Android, based on yt-dlp</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/open-ani/animeko" class="text-lg font-medium text-blue-600 hover:underline">open-ani/animeko</a>
+                    <p class="text-gray-600 mt-1">集找番、追番、看番的一站式弹幕追番平台，云收藏同步 (Bangumi)，离线缓存，BitTorrent，弹幕云过滤。100% Kotlin/Compose Multiplatform</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/laqoome/LaQoo" class="text-lg font-medium text-blue-600 hover:underline">laqoome/LaQoo</a>
+                    <p class="text-gray-600 mt-1">【LaQoo】一个简洁的播放动漫的App，支持下载，弹幕等功能</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">Java 项目</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/loks666/get_jobs" class="text-lg font-medium text-blue-600 hover:underline">loks666/get_jobs</a>
+                    <p class="text-gray-600 mt-1">💼【AI找工作助手】全平台自动投简历脚本：(boss、前程无忧、猎聘、智联招聘)</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/Tosencen/XMBOX" class="text-lg font-medium text-blue-600 hover:underline">Tosencen/XMBOX</a>
+                    <p class="text-gray-600 mt-1">空盒子软件，最近忙着生存，有没愿意维护的朋友</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/wgzhao/dbeaver-agent" class="text-lg font-medium text-blue-600 hover:underline">wgzhao/dbeaver-agent</a>
+                    <p class="text-gray-600 mt-1">DBeaver agent</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">C++ 项目</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/cxasm/notepad--" class="text-lg font-medium text-blue-600 hover:underline">cxasm/notepad--</a>
+                    <p class="text-gray-600 mt-1">一个支持windows/linux/mac的文本编辑器，目标是做中国人自己的编辑器，来自中国。</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/es3n1n/defendnot" class="text-lg font-medium text-blue-600 hover:underline">es3n1n/defendnot</a>
+                    <p class="text-gray-600 mt-1">An even funnier way to disable windows defender. (through WSC api)</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/coolight7/musicxx" class="text-lg font-medium text-blue-600 hover:underline">coolight7/musicxx</a>
+                    <p class="text-gray-600 mt-1">拟声 音视频播放器</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">HTML 项目</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/home-assistant/home-assistant.io" class="text-lg font-medium text-blue-600 hover:underline">home-assistant/home-assistant.io</a>
+                    <p class="text-gray-600 mt-1">:blue_book: Home Assistant User documentation</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">AutoHotkey 项目</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/tranht17/WinTune" class="text-lg font-medium text-blue-600 hover:underline">tranht17/WinTune</a>
+                    <p class="text-gray-600 mt-1">Tweak & optimize your Windows system</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-11-29</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">Go 项目</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/putyy/res-downloader" class="text-lg font-medium text-blue-600 hover:underline">putyy/res-downloader</a>
+                    <p class="text-gray-600 mt-1">视频号、小程序、抖音、快手、小红书、直播流、m3u8、酷狗、QQ音乐等常见网络资源下载!</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">Vue 项目</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/algerkong/AlgerMusicPlayer" class="text-lg font-medium text-blue-600 hover:underline">algerkong/AlgerMusicPlayer</a>
+                    <p class="text-gray-600 mt-1">一个第三方音乐播放器、本地服务、桌面歌词、音乐下载、远程控制</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">CSS 项目</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/caolib/typora-onelight-theme" class="text-lg font-medium text-blue-600 hover:underline">caolib/typora-onelight-theme</a>
+                    <p class="text-gray-600 mt-1">OneLight Theme For Typora</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-11-28</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">SCSS 项目</h3>
+            <div class="space-y-3">
+                <div class="repo-card bg-gray-50 rounded-lg p-4">
+                    <a href="https://github.com/Keldos-Li/typora-latex-theme" class="text-lg font-medium text-blue-600 hover:underline">Keldos-Li/typora-latex-theme</a>
+                    <p class="text-gray-600 mt-1">将Typora伪装成LaTeX的中文样式主题，本科生轻量级课程论文撰写的好帮手。This is a theme disguising Typora into Chinese LaTeX style.</p>
+                    <p class="text-xs text-gray-500 mt-2">仓库更新于 2025-12-01</p>
+                </div>
+            </div>
+        </div>
+        <div class="mt-6 text-right">
+            <a href="#" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
+                <i class="fas fa-arrow-up mr-1"></i> 返回顶部
+            </a>
+        </div>
+    </div>
+    <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800 flex items-center">
+            <i class="fas fa-info-circle mr-2 text-blue-500"></i> 使用说明
+        </h2>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">目录导航</h3>
+            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                <li>点击目录中的链接可以直接跳转到对应部分</li>
+                <li>每个部分末尾有"返回顶部"链接</li>
+            </ul>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">编辑优势</h3>
+            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                <li>纯Markdown格式，无需任何HTML</li>
+                <li>结构清晰，编辑维护简单</li>
+                <li>在任何支持Markdown的编辑器或平台都能完美显示</li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">整理建议</h3>
+            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                <li>按分类顺序逐个整理</li>
+                <li>每次star新项目时立即添加到对应位置</li>
+                <li>每月回顾一次，删除不再需要的项目</li>
+            </ul>
         </div>
     </div>
 
-    <div class="mb-6">
-        <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">CI/CD（5）</h3>
-        <div class="space-y-3">
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/CyC2018/CS-Notes" class="text-lg font-medium text-blue-600 hover:underline">CyC2018/CS-Notes</a>
-                <p class="text-gray-600 mt-1">:books: 技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 182978 · 🍴 51253 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/sansan0/TrendRadar" class="text-lg font-medium text-blue-600 hover:underline">sansan0/TrendRadar</a>
-                <p class="text-gray-600 mt-1">🎯 告别信息过载，AI 助你看懂新闻资讯热点，简单的舆情监控分析 - 多平台热点聚合+基于 MCP 的AI分析工具。监控35个平台（抖音、知乎、B站、华尔街见闻、财联社等），智能筛选+自动推送+AI对话分析（用自然语言深度挖掘新闻：趋势追踪、情感分析、相似检索等13种工具）。支持企业微信/个人...</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 33731 · 🍴 18278 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/HerbertHe/iptv-sources" class="text-lg font-medium text-blue-600 hover:underline">HerbertHe/iptv-sources</a>
-                <p class="text-gray-600 mt-1">Autoupdate iptv sources</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 8419 · 🍴 1160 · 📅 2025-11-30 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/RayWangQvQ/BiliBiliToolPro" class="text-lg font-medium text-blue-600 hover:underline">RayWangQvQ/BiliBiliToolPro</a>
-                <p class="text-gray-600 mt-1">B 站（bilibili）自动任务工具，支持docker、青龙、k8s等多种部署方式。敏感肌也能用。</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 8122 · 🍴 1900 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/RayWangQvQ/BiliBiliToolPro/releases/tag/3.8.1">3.8.1</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/MCDFsteve/NipaPlay-Reload" class="text-lg font-medium text-blue-600 hover:underline">MCDFsteve/NipaPlay-Reload</a>
-                <p class="text-gray-600 mt-1">NipaPlay-Reload 是一个现代化的跨平台本地视频播放器，支持 Windows、macOS、Linux、Android 和 iOS。集成了弹幕显示、多格式字幕支持、多音频轨道切换，新番查看等功能，支持挂载Emby/Jellyfin媒体库。采用 Flutter 开发，提供统一的用户体验。</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 989 · 🍴 41 · 📅 2025-11-30 · 📦 <a class="text-blue-600" href="https://github.com/MCDFsteve/NipaPlay-Reload/releases/tag/v1.7.12">v1.7.12</a></div>
-            </div>
-
-        </div>
+    <div class="bg-white rounded-xl shadow-md p-6 text-center text-gray-500 text-sm">
+        最后更新: 2025-12-02
+    </div>
+    <div class="text-center text-gray-400 text-xs mt-8 mb-4">
+        网页由问小白AI生成，仅供参考；最后更新时间为2025-12-02；问小白的网址：wenxiaobai.com
     </div>
 
-    <div class="mt-6 text-right">
-        <a href="#" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
-            <i class="fas fa-arrow-up mr-1"></i> 返回顶部
-        </a>
-    </div>
-</div>
-
-<!-- 分类卡片：Web 开发 -->
-<div id="Web-开发" class="category-card bg-white rounded-xl shadow-md p-6 mb-8">
-    <div class="flex items-center mb-4">
-        <i class="fas fa-code text-2xl mr-3 text-blue-500"></i>
-        <h2 class="text-2xl font-semibold text-gray-800">Web 开发</h2>
-    </div>
-
-    <div class="mb-6">
-        <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">前端（9）</h3>
-        <div class="space-y-3">
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/lyswhut/lx-music-desktop" class="text-lg font-medium text-blue-600 hover:underline">lyswhut/lx-music-desktop</a>
-                <p class="text-gray-600 mt-1">一个基于 electron 的音乐软件</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 47383 · 🍴 6519 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/lyswhut/lx-music-desktop/releases/tag/v2.12.0">v2.12.0</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/xifangczy/cat-catch" class="text-lg font-medium text-blue-600 hover:underline">xifangczy/cat-catch</a>
-                <p class="text-gray-600 mt-1">猫抓 浏览器资源嗅探扩展 / cat-catch Browser Resource Sniffing Extension</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 16905 · 🍴 1454 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/xifangczy/cat-catch/releases/tag/2.6.5">2.6.5</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/hectorqin/reader" class="text-lg font-medium text-blue-600 hover:underline">hectorqin/reader</a>
-                <p class="text-gray-600 mt-1">阅读3服务器版，桌面端，iOS可用。后端 Kotlin + Spring Boot + Vert.x + Coroutine ；前端 Vue.js + Element。麻烦点点star，关注一下公众号【假装大佬】❗️</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 10518 · 🍴 5452 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/hectorqin/reader/releases/tag/v3.2.14">v3.2.14</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/caorushizi/mediago" class="text-lg font-medium text-blue-600 hover:underline">caorushizi/mediago</a>
-                <p class="text-gray-600 mt-1">跨平台视频提取工具：支持流媒体下载、视频下载、m3u8 下载及 B站视频下载，提供 Windows 和 Mac 桌面客户端。Cross-platform video extraction tool: Supports streaming download, video download, m3...</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 8103 · 🍴 727 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/caorushizi/mediago/releases/tag/v3.0.1">v3.0.1</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/jiangrui1994/CloudSaver" class="text-lg font-medium text-blue-600 hover:underline">jiangrui1994/CloudSaver</a>
-                <p class="text-gray-600 mt-1">一个基于 Vue 3 + Express 的网盘资源搜索与转存工具。</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 7989 · 🍴 674 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/MoeKoeMusic/MoeKoeMusic" class="text-lg font-medium text-blue-600 hover:underline">MoeKoeMusic/MoeKoeMusic</a>
-                <p class="text-gray-600 mt-1">一款开源简洁高颜值的酷狗第三方客户端 An open-source, concise, and aesthetically pleasing third-party client for KuGou that supports  Windows / macOS / Linux / Web :e...</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 4274 · 🍴 270 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/MoeKoeMusic/MoeKoeMusic/releases/tag/v1.5.2">v1.5.2</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/btjawa/BiliTools" class="text-lg font-medium text-blue-600 hover:underline">btjawa/BiliTools</a>
-                <p class="text-gray-600 mt-1">A cross-platform bilibili toolbox. 跨平台哔哩哔哩工具箱，支持下载视频、番剧等等各类资源</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 4169 · 🍴 277 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/btjawa/BiliTools/releases/tag/v1.4.6">v1.4.6</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/lanyeeee/bilibili-video-downloader" class="text-lg font-medium text-blue-600 hover:underline">lanyeeee/bilibili-video-downloader</a>
-                <p class="text-gray-600 mt-1">哔哩哔哩 bilibili B站 视频 下载器，图形界面 + nfo刮削 + 广告标记 + 字幕下载 + 弹幕下载，轻松将视频加入emby等媒体库</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 679 · 🍴 28 · 📅 2025-11-30 · 📦 <a class="text-blue-600" href="https://github.com/lanyeeee/bilibili-video-downloader/releases/tag/v0.1.0">v0.1.0</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/timeshiftsauce/CeruMusic" class="text-lg font-medium text-blue-600 hover:underline">timeshiftsauce/CeruMusic</a>
-                <p class="text-gray-600 mt-1">Ceru Music 是基于 Electron 和 Vue 开发的跨平台桌面音乐播放器工具，借鉴洛雪音乐插件思想，提供插件运行框架与播放功能，不直接存储、提供任何音乐源文件。用户需通过自行选择、安装合规插件获取音乐相关数据，项目旨在为开发者提供桌面应用技术实践与学习案例，为用户提供合规的音乐播...</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 503 · 🍴 23 · 📅 2025-11-30 · 📦 <a class="text-blue-600" href="https://github.com/timeshiftsauce/CeruMusic/releases/tag/v1.5.1">v1.5.1</a></div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="mt-6 text-right">
-        <a href="#" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
-            <i class="fas fa-arrow-up mr-1"></i> 返回顶部
-        </a>
-    </div>
-</div>
-
-<!-- 分类卡片：AI -->
-<div id="AI" class="category-card bg-white rounded-xl shadow-md p-6 mb-8">
-    <div class="flex items-center mb-4">
-        <i class="fas fa-brain text-2xl mr-3 text-blue-500"></i>
-        <h2 class="text-2xl font-semibold text-gray-800">AI</h2>
-    </div>
-
-    <div class="mb-6">
-        <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">自然语言处理（6）</h3>
-        <div class="space-y-3">
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/zhayujie/chatgpt-on-wechat" class="text-lg font-medium text-blue-600 hover:underline">zhayujie/chatgpt-on-wechat</a>
-                <p class="text-gray-600 mt-1">基于大模型搭建的聊天机器人，同时支持 微信公众号、企业微信应用、飞书、钉钉 等接入，可选择ChatGPT/Claude/DeepSeek/文心一言/讯飞星火/通义千问/ Gemini/GLM-4/Kimi/LinkAI，能处理文本、语音和图片，访问操作系统和互联网，支持基于自有知识库进行定制企...</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 39877 · 🍴 9519 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/zhayujie/chatgpt-on-wechat/releases/tag/1.7.6">1.7.6</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/pbatard/rufus" class="text-lg font-medium text-blue-600 hover:underline">pbatard/rufus</a>
-                <p class="text-gray-600 mt-1">The Reliable USB Formatting Utility</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 33829 · 🍴 2897 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/pbatard/rufus/releases/tag/v4.11">v4.11</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/datawhalechina/self-llm" class="text-lg font-medium text-blue-600 hover:underline">datawhalechina/self-llm</a>
-                <p class="text-gray-600 mt-1">《开源大模型食用指南》针对中国宝宝量身打造的基于Linux环境快速微调（全参数/Lora）、部署国内外开源大模型（LLM）/多模态大模型（MLLM）教程</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 26266 · 🍴 2643 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/eli64s/readme-ai" class="text-lg font-medium text-blue-600 hover:underline">eli64s/readme-ai</a>
-                <p class="text-gray-600 mt-1">README file generator, powered by AI.</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 2800 · 🍴 261 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/eli64s/readme-ai/releases/tag/v0.1.6">v0.1.6</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/liu-ziting/what-to-eat" class="text-lg font-medium text-blue-600 hover:underline">liu-ziting/what-to-eat</a>
-                <p class="text-gray-600 mt-1">一饭封神：一个基于 AI 的智能菜谱生成平台，支持中华八大菜系 + 国际料理，提供营养分析、酒水推荐、菜谱效果图生成等全方位烹饪指导。</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 2625 · 🍴 401 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/icip-cas/PPTAgent" class="text-lg font-medium text-blue-600 hover:underline">icip-cas/PPTAgent</a>
-                <p class="text-gray-600 mt-1">PPTAgent: Generating and Evaluating Presentations Beyond Text-to-Slides [EMNLP 2025]</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 2472 · 🍴 296 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/icip-cas/PPTAgent/releases/tag/v0.2.0">v0.2.0</a></div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="mb-6">
-        <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">机器学习（2）</h3>
-        <div class="space-y-3">
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/microsoft/PowerToys" class="text-lg font-medium text-blue-600 hover:underline">microsoft/PowerToys</a>
-                <p class="text-gray-600 mt-1">Microsoft PowerToys is a collection of utilities that help you customize Windows and streamline everyday tasks</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 126156 · 🍴 7512 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/microsoft/PowerToys/releases/tag/v0.96.1">v0.96.1</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/xbmc/xbmc" class="text-lg font-medium text-blue-600 hover:underline">xbmc/xbmc</a>
-                <p class="text-gray-600 mt-1">Kodi is an award-winning free and open source home theater/media center software and entertainment hub for digital media. With its beautiful interf...</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 20124 · 🍴 6468 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/xbmc/xbmc/releases/tag/21.3-Omega">21.3-Omega</a></div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="mt-6 text-right">
-        <a href="#" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
-            <i class="fas fa-arrow-up mr-1"></i> 返回顶部
-        </a>
-    </div>
-</div>
-
-<!-- 分类卡片：脚本自动化 -->
-<div id="脚本自动化" class="category-card bg-white rounded-xl shadow-md p-6 mb-8">
-    <div class="flex items-center mb-4">
-        <i class="fas fa-robot text-2xl mr-3 text-blue-500"></i>
-        <h2 class="text-2xl font-semibold text-gray-800">脚本自动化</h2>
-    </div>
-
-    <div class="mb-6">
-        <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">脚本/自动化（7）</h3>
-        <div class="space-y-3">
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/the1812/Bilibili-Evolved" class="text-lg font-medium text-blue-600 hover:underline">the1812/Bilibili-Evolved</a>
-                <p class="text-gray-600 mt-1">强大的哔哩哔哩增强脚本</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 27627 · 🍴 1697 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/the1812/Bilibili-Evolved/releases/tag/v2.10.4">v2.10.4</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/UFund-Me/Qbot" class="text-lg font-medium text-blue-600 hover:underline">UFund-Me/Qbot</a>
-                <p class="text-gray-600 mt-1">[🔥updating ...] AI 自动量化交易机器人(完全本地部署) AI-powered Quantitative Investment Research Platform. 📃 online docs: https://ufund-me.github.io/Qbot   ✨ :news...</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 15236 · 🍴 2163 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/UFund-Me/Qbot/releases/tag/qbot-pro_v1.2.1">qbot-pro_v1.2.1</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/XIU2/UserScript" class="text-lg font-medium text-blue-600 hover:underline">XIU2/UserScript</a>
-                <p class="text-gray-600 mt-1">🐵 自用的一些乱七八糟 油猴脚本~</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 9135 · 🍴 668 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/adlered/CSDNGreener" class="text-lg font-medium text-blue-600 hover:underline">adlered/CSDNGreener</a>
-                <p class="text-gray-600 mt-1">《专 业 团 队》🕺🏿 🕺🏿 🕺🏿 🕺🏿 ⚰️🕺🏿 🕺🏿 🕺🏿 🕺🏿   专治 CSDN 广告与各种灵魂打击   🐵 油猴脚本   TamperMonkey   Chrome   FireFox   CSDN 页面浮窗广告完全过滤净化   国服最强 CSDN 绿化脚本</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 4022 · 🍴 159 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/scriptscat/scriptcat" class="text-lg font-medium text-blue-600 hover:underline">scriptscat/scriptcat</a>
-                <p class="text-gray-600 mt-1">ScriptCat, a browser extension that can execute userscript; 脚本猫，一个可以执行用户脚本的浏览器扩展</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 3858 · 🍴 299 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/scriptscat/scriptcat/releases/tag/v1.2.0">v1.2.0</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/Cinvin/myuserscripts" class="text-lg font-medium text-blue-600 hover:underline">Cinvin/myuserscripts</a>
-                <p class="text-gray-600 mt-1">网易云音乐油猴脚本:歌曲下载、转存云盘、云盘歌曲快传、云盘匹配纠正...</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 897 · 🍴 60 · 📅 2025-11-30 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/simonsmh/telegram-bili-feed-helper" class="text-lg font-medium text-blue-600 hover:underline">simonsmh/telegram-bili-feed-helper</a>
-                <p class="text-gray-600 mt-1">Telegram bot for Bilibili links</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 242 · 🍴 23 · 📅 2025-11-30 · 📦 无 Release</div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="mt-6 text-right">
-        <a href="#" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
-            <i class="fas fa-arrow-up mr-1"></i> 返回顶部
-        </a>
-    </div>
-</div>
-
-<!-- 分类卡片：学习资料 -->
-<div id="学习资料" class="category-card bg-white rounded-xl shadow-md p-6 mb-8">
-    <div class="flex items-center mb-4">
-        <i class="fas fa-book-open text-2xl mr-3 text-blue-500"></i>
-        <h2 class="text-2xl font-semibold text-gray-800">学习资料</h2>
-    </div>
-
-    <div class="mb-6">
-        <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">资料/教程（3）</h3>
-        <div class="space-y-3">
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/sindresorhus/awesome" class="text-lg font-medium text-blue-600 hover:underline">sindresorhus/awesome</a>
-                <p class="text-gray-600 mt-1">😎 Awesome lists about all kinds of interesting topics</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 419203 · 🍴 32466 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/microsoft/qlib" class="text-lg font-medium text-blue-600 hover:underline">microsoft/qlib</a>
-                <p class="text-gray-600 mt-1">Qlib is an AI-oriented Quant investment platform that aims to use AI tech to empower Quant Research, from exploring ideas to implementing productio...</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 34183 · 🍴 5313 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/microsoft/qlib/releases/tag/v0.9.7">v0.9.7</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/liminbai/Awesome-GameEmulator" class="text-lg font-medium text-blue-600 hover:underline">liminbai/Awesome-GameEmulator</a>
-                <p class="text-gray-600 mt-1">Game emulator information</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 780 · 🍴 54 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="mt-6 text-right">
-        <a href="#" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
-            <i class="fas fa-arrow-up mr-1"></i> 返回顶部
-        </a>
-    </div>
-</div>
-
-<!-- 分类卡片：其他 -->
-<div id="其他" class="category-card bg-white rounded-xl shadow-md p-6 mb-8">
-    <div class="flex items-center mb-4">
-        <i class="fas fa-box-open text-2xl mr-3 text-blue-500"></i>
-        <h2 class="text-2xl font-semibold text-gray-800">其他</h2>
-    </div>
-
-    <div class="mb-6">
-        <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">其他（49）</h3>
-        <div class="space-y-3">
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/gedoor/legado" class="text-lg font-medium text-blue-600 hover:underline">gedoor/legado</a>
-                <p class="text-gray-600 mt-1">Legado 3.0 Book Reader with powerful controls &amp; full functions❤️阅读3.0, 阅读是一款可以自定义来源阅读网络内容的工具，为广大网络文学爱好者提供一种方便、快捷舒适的试读体验。</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 42029 · 🍴 4738 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/gedoor/legado/releases/tag/3.25">3.25</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/JunkFood02/Seal" class="text-lg font-medium text-blue-600 hover:underline">JunkFood02/Seal</a>
-                <p class="text-gray-600 mt-1">🦭 Video/Audio Downloader for Android, based on yt-dlp</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 23139 · 🍴 972 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/JunkFood02/Seal/releases/tag/v1.13.1">v1.13.1</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/Gar-b-age/CookLikeHOC" class="text-lg font-medium text-blue-600 hover:underline">Gar-b-age/CookLikeHOC</a>
-                <p class="text-gray-600 mt-1">🥢像老乡鸡🐔那样做饭。主要部分于2024年完工，非老乡鸡官方仓库。文字来自《老乡鸡菜品溯源报告》，并做归纳、编辑与整理。CookLikeHOC.</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 22354 · 🍴 2262 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/GopeedLab/gopeed" class="text-lg font-medium text-blue-600 hover:underline">GopeedLab/gopeed</a>
-                <p class="text-gray-600 mt-1">A modern download manager that supports all platforms.  Built with Golang and Flutter.</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 21936 · 🍴 1510 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/GopeedLab/gopeed/releases/tag/v1.8.3">v1.8.3</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/OpenListTeam/OpenList" class="text-lg font-medium text-blue-600 hover:underline">OpenListTeam/OpenList</a>
-                <p class="text-gray-600 mt-1">A new AList Fork to Anti Trust Crisis</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 18298 · 🍴 1500 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/OpenListTeam/OpenList/releases/tag/v4.1.8">v4.1.8</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/Predidit/Kazumi" class="text-lg font-medium text-blue-600 hover:underline">Predidit/Kazumi</a>
-                <p class="text-gray-600 mt-1">基于自定义规则的番剧采集APP，支持流媒体在线观看，支持弹幕，支持实时超分辨率。</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 18107 · 🍴 520 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/Predidit/Kazumi/releases/tag/1.9.1">1.9.1</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/open-ani/animeko" class="text-lg font-medium text-blue-600 hover:underline">open-ani/animeko</a>
-                <p class="text-gray-600 mt-1">集找番、追番、看番的一站式弹幕追番平台，云收藏同步 (Bangumi)，离线缓存，BitTorrent，弹幕云过滤。100% Kotlin/Compose Multiplatform</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 13331 · 🍴 329 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/open-ani/animeko/releases/tag/v5.2.0">v5.2.0</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/algerkong/AlgerMusicPlayer" class="text-lg font-medium text-blue-600 hover:underline">algerkong/AlgerMusicPlayer</a>
-                <p class="text-gray-600 mt-1">一个第三方音乐播放器、本地服务、桌面歌词、音乐下载、远程控制</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 13041 · 🍴 1076 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/algerkong/AlgerMusicPlayer/releases/tag/v4.9.0">v4.9.0</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/putyy/res-downloader" class="text-lg font-medium text-blue-600 hover:underline">putyy/res-downloader</a>
-                <p class="text-gray-600 mt-1">视频号、小程序、抖音、快手、小红书、直播流、m3u8、酷狗、QQ音乐等常见网络资源下载!</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 12267 · 🍴 1504 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/putyy/res-downloader/releases/tag/3.1.2">3.1.2</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/rwv/chinese-dos-games" class="text-lg font-medium text-blue-600 hover:underline">rwv/chinese-dos-games</a>
-                <p class="text-gray-600 mt-1">🎮 Chinese DOS games collections.</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 9916 · 🍴 1212 · 📅 2025-11-30 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/cxasm/notepad--" class="text-lg font-medium text-blue-600 hover:underline">cxasm/notepad--</a>
-                <p class="text-gray-600 mt-1">一个支持windows/linux/mac的文本编辑器，目标是做中国人自己的编辑器，来自中国。</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 8471 · 🍴 331 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/cxasm/notepad--/releases/tag/notepad-v3.6.1">notepad-v3.6.1</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/home-assistant/home-assistant.io" class="text-lg font-medium text-blue-600 hover:underline">home-assistant/home-assistant.io</a>
-                <p class="text-gray-600 mt-1">:blue_book: Home Assistant User documentation</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 7598 · 🍴 7998 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/viarotel-org/escrcpy" class="text-lg font-medium text-blue-600 hover:underline">viarotel-org/escrcpy</a>
-                <p class="text-gray-600 mt-1">📱 Display and control your Android device graphically with scrcpy.</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 6639 · 🍴 491 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/viarotel-org/escrcpy/releases/tag/v1.33.0">v1.33.0</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/zyronon/TypeWords" class="text-lg font-medium text-blue-600 hover:underline">zyronon/TypeWords</a>
-                <p class="text-gray-600 mt-1">练习英语，一次敲击，一点进步；Practice English, one strike, one step forward</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 5800 · 🍴 702 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/yaobiao131/downkyicore" class="text-lg font-medium text-blue-600 hover:underline">yaobiao131/downkyicore</a>
-                <p class="text-gray-600 mt-1">哔哩下载姬(跨平台版)downkyi，哔哩哔哩网站视频下载工具，支持批量下载，支持8K、HDR、杜比视界，提供工具箱（音视频提取、去水印等）。</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 5645 · 🍴 411 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/yaobiao131/downkyicore/releases/tag/v1.0.23">v1.0.23</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/Keldos-Li/typora-latex-theme" class="text-lg font-medium text-blue-600 hover:underline">Keldos-Li/typora-latex-theme</a>
-                <p class="text-gray-600 mt-1">将Typora伪装成LaTeX的中文样式主题，本科生轻量级课程论文撰写的好帮手。This is a theme disguising Typora into Chinese LaTeX style.</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 5531 · 🍴 325 · 📅 2025-11-30 · 📦 <a class="text-blue-600" href="https://github.com/Keldos-Li/typora-latex-theme/releases/tag/v0.3.3">v0.3.3</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/venera-app/venera" class="text-lg font-medium text-blue-600 hover:underline">venera-app/venera</a>
-                <p class="text-gray-600 mt-1">A comic app</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 5434 · 🍴 172 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/venera-app/venera/releases/tag/v1.6.1">v1.6.1</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/loks666/get_jobs" class="text-lg font-medium text-blue-600 hover:underline">loks666/get_jobs</a>
-                <p class="text-gray-600 mt-1">💼【AI找工作助手】全平台自动投简历脚本：(boss、前程无忧、猎聘、智联招聘)</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 5368 · 🍴 689 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/loks666/get_jobs/releases/tag/v1.0.0">v1.0.0</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/ZyperWave/ZyperWinOptimize" class="text-lg font-medium text-blue-600 hover:underline">ZyperWave/ZyperWinOptimize</a>
-                <p class="text-gray-600 mt-1">ZyperWin++是一个轻便的Windows优化工具，适用于Win7-Win11最新版的优化，包括性能优化、服务项优化、垃圾清理等操作，还支持系统激活和Office快速安装。</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 5281 · 🍴 287 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/ZyperWave/ZyperWinOptimize/releases/tag/v4.1">v4.1</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/youhunwl/TVAPP" class="text-lg font-medium text-blue-600 hover:underline">youhunwl/TVAPP</a>
-                <p class="text-gray-600 mt-1">收集全网 Android TV电视盒子应用，涵盖影视、直播、K歌、工具、游戏等类型，整理优质APK资源，支持便捷下载与自动更新。提供安全验证、分类索引与兼容性标注，助力用户打造家庭影音娱乐中心！              ✅ TVBox/影视仓等影音壳接口配置源。</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 4902 · 🍴 669 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/JefferyHcool/BiliNote" class="text-lg font-medium text-blue-600 hover:underline">JefferyHcool/BiliNote</a>
-                <p class="text-gray-600 mt-1">AI 视频笔记生成工具 让 AI 为你的视频做笔记</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 4259 · 🍴 502 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/JefferyHcool/BiliNote/releases/tag/v1.8.1">v1.8.1</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/cv-cat/Spider_XHS" class="text-lg font-medium text-blue-600 hover:underline">cv-cat/Spider_XHS</a>
-                <p class="text-gray-600 mt-1">小红书爬虫数据采集，小红书全域运营解决方案</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 3322 · 🍴 582 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/cv-cat/Spider_XHS/releases/tag/xhs">xhs</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/es3n1n/defendnot" class="text-lg font-medium text-blue-600 hover:underline">es3n1n/defendnot</a>
-                <p class="text-gray-600 mt-1">An even funnier way to disable windows defender. (through WSC api)</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 3037 · 🍴 272 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/es3n1n/defendnot/releases/tag/v1.5.0">v1.5.0</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/Sle2p/AniCh" class="text-lg font-medium text-blue-600 hover:underline">Sle2p/AniCh</a>
-                <p class="text-gray-600 mt-1">一个支持超分辨率的在线动漫弹幕APP。多平台，多番剧源，多弹幕，高清无广告。追番看番必备软件。</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 2973 · 🍴 86 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/Sle2p/AniCh/releases/tag/1.4.2">1.4.2</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/VonChange/utao" class="text-lg font-medium text-blue-600 hover:underline">VonChange/utao</a>
-                <p class="text-gray-600 mt-1">油桃TV 电视浏览器 可看各大卫视CCTV直播 无需电视VIP 适配爱奇艺等主流视频平台</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 2764 · 🍴 188 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/VonChange/utao/releases/tag/release-202412">release-202412</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/maxiaobang7/ossnav" class="text-lg font-medium text-blue-600 hover:underline">maxiaobang7/ossnav</a>
-                <p class="text-gray-600 mt-1">开源精选：探索免费优质的开源软件工具，尽享数字自由</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 1854 · 🍴 70 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/coolight7/musicxx" class="text-lg font-medium text-blue-600 hover:underline">coolight7/musicxx</a>
-                <p class="text-gray-600 mt-1">拟声 音视频播放器</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 1849 · 🍴 41 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/waifu-project/movie" class="text-lg font-medium text-blue-600 hover:underline">waifu-project/movie</a>
-                <p class="text-gray-600 mt-1">小猫影视是一款全平台的影视播放器, 支持 VOD/JS 扩展源</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 1724 · 🍴 176 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/waifu-project/movie/releases/tag/release-v2.6.1">release-v2.6.1</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/chenfan0/fideo-live-record" class="text-lg font-medium text-blue-600 hover:underline">chenfan0/fideo-live-record</a>
-                <p class="text-gray-600 mt-1">A convenient live broadcast recording software! Supports Tiktok, Youtube, Twitch, Bilibili, Bigo!(一款方便的直播录制软件! 支持tiktok, youtube, twitch, 抖音，虎牙，斗鱼，...</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 1722 · 🍴 131 · 📅 2025-11-30 · 📦 <a class="text-blue-600" href="https://github.com/chenfan0/fideo-live-record/releases/tag/v2.1.0">v2.1.0</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/RemotePinee/AudioVisual" class="text-lg font-medium text-blue-600 hover:underline">RemotePinee/AudioVisual</a>
-                <p class="text-gray-600 mt-1">解锁所有国内媒体流的钥匙</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 1198 · 🍴 114 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/RemotePinee/AudioVisual/releases/tag/v1.0.8">v1.0.8</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/dr34m-cn/taosync" class="text-lg font-medium text-blue-600 hover:underline">dr34m-cn/taosync</a>
-                <p class="text-gray-600 mt-1">TaoSync是一个适用于OpenList v3+的自动化同步工具/Sync for OpenList/AList</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 1152 · 🍴 88 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/dr34m-cn/taosync/releases/tag/v0.3.2">v0.3.2</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/showlab/Code2Video" class="text-lg font-medium text-blue-600 hover:underline">showlab/Code2Video</a>
-                <p class="text-gray-600 mt-1">Video generation via code</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 1119 · 🍴 159 · 📅 2025-12-01 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/Return-Log/Drive-Icon-Manager" class="text-lg font-medium text-blue-600 hover:underline">Return-Log/Drive-Icon-Manager</a>
-                <p class="text-gray-600 mt-1">可以轻松删除‘此电脑’及‘资源管理器侧边栏’中讨厌的网盘图标</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 968 · 🍴 32 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/Return-Log/Drive-Icon-Manager/releases/tag/v2.2">v2.2</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/PrelinaMontelli/Edge-Monitor" class="text-lg font-medium text-blue-600 hover:underline">PrelinaMontelli/Edge-Monitor</a>
-                <p class="text-gray-600 mt-1">一个监控并弄死异常Edge的程序</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 786 · 🍴 21 · 📅 2025-11-28 · 📦 <a class="text-blue-600" href="https://github.com/PrelinaMontelli/Edge-Monitor/releases/tag/EdgeMonitor-v1.3.3">EdgeMonitor-v1.3.3</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/Tosencen/XMBOX" class="text-lg font-medium text-blue-600 hover:underline">Tosencen/XMBOX</a>
-                <p class="text-gray-600 mt-1">一个看片儿的空盒子软件，需自行配置源</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 665 · 🍴 56 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/Tosencen/XMBOX/releases/tag/v3.1.1">v3.1.1</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/tranht17/WinTune" class="text-lg font-medium text-blue-600 hover:underline">tranht17/WinTune</a>
-                <p class="text-gray-600 mt-1">Tweak &amp; optimize your Windows system</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 580 · 🍴 26 · 📅 2025-11-29 · 📦 <a class="text-blue-600" href="https://github.com/tranht17/WinTune/releases/tag/2.7.3">2.7.3</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/wgzhao/dbeaver-agent" class="text-lg font-medium text-blue-600 hover:underline">wgzhao/dbeaver-agent</a>
-                <p class="text-gray-600 mt-1">DBeaver agent</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 546 · 🍴 166 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/wgzhao/dbeaver-agent/releases/tag/v25.2">v25.2</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/xincmm/sageread" class="text-lg font-medium text-blue-600 hover:underline">xincmm/sageread</a>
-                <p class="text-gray-600 mt-1">一款 AI 辅助阅读器，三栏设计实现笔记、阅读、对话同屏交互，让深度阅读更高效</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 505 · 🍴 50 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/xincmm/sageread/releases/tag/v0.1.3">v0.1.3</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/jayjd/HuYaTv" class="text-lg font-medium text-blue-600 hover:underline">jayjd/HuYaTv</a>
-                <p class="text-gray-600 mt-1">聚合直播（FUSE）,支持虎牙/抖音/快手/哔哩哔哩/斗鱼/YY/网易CC/电视直播，支持手机/平板/电视/车机</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 489 · 🍴 9 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/jayjd/HuYaTv/releases/tag/3.0.19">3.0.19</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/laqoome/LaQoo" class="text-lg font-medium text-blue-600 hover:underline">laqoome/LaQoo</a>
-                <p class="text-gray-600 mt-1">【LaQoo】一个简洁的播放动漫的App，支持下载，弹幕等功能</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 464 · 🍴 13 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/laqoome/LaQoo/releases/tag/v1.3.4">v1.3.4</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/moshowgame/dbeaver-driver-all" class="text-lg font-medium text-blue-600 hover:underline">moshowgame/dbeaver-driver-all</a>
-                <p class="text-gray-600 mt-1">dbeaver所有jdbc驱动都在这，dbeaver all jdbc drivers ,come and download with me , one package come with all jdbc drivers.</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 457 · 🍴 103 · 📅 2025-11-27 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/OpenListApp/OpenListApp" class="text-lg font-medium text-blue-600 hover:underline">OpenListApp/OpenListApp</a>
-                <p class="text-gray-600 mt-1">Alist、OpenList GUI  App for Android、 iOS、Windows、macOS、Linux with Alist、OpenList local server</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 377 · 🍴 26 · 📅 2025-11-30 · 📦 <a class="text-blue-600" href="https://github.com/OpenListApp/OpenListApp/releases/tag/v2025.07.292">v2025.07.292</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/qingmeng1/bilijump-ai" class="text-lg font-medium text-blue-600 hover:underline">qingmeng1/bilijump-ai</a>
-                <p class="text-gray-600 mt-1">一个使用 AI 自动跳过 Bilibili 视频植入广告的扩展程序。</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 365 · 🍴 12 · 📅 2025-12-01 · 📦 <a class="text-blue-600" href="https://github.com/qingmeng1/bilijump-ai/releases/tag/v2.3.21">v2.3.21</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/caolib/typora-onelight-theme" class="text-lg font-medium text-blue-600 hover:underline">caolib/typora-onelight-theme</a>
-                <p class="text-gray-600 mt-1">OneLight Theme For Typora</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 219 · 🍴 11 · 📅 2025-11-28 · 📦 <a class="text-blue-600" href="https://github.com/caolib/typora-onelight-theme/releases/tag/v1.11.7">v1.11.7</a></div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/Keldos-Li/typora-latex-theme-fonts" class="text-lg font-medium text-blue-600 hover:underline">Keldos-Li/typora-latex-theme-fonts</a>
-                <p class="text-gray-600 mt-1">无描述</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 159 · 🍴 19 · 📅 2025-11-06 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/BlueSkyXN/Bili-to-Youtube" class="text-lg font-medium text-blue-600 hover:underline">BlueSkyXN/Bili-to-Youtube</a>
-                <p class="text-gray-600 mt-1">B2Y，简化从哔哩哔哩视频下载到上传到Youtube的快速操作</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 105 · 🍴 10 · 📅 2025-11-25 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/yuanwangokk-1/Hiker-App" class="text-lg font-medium text-blue-600 hover:underline">yuanwangokk-1/Hiker-App</a>
-                <p class="text-gray-600 mt-1">无描述</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 86 · 🍴 17 · 📅 2025-11-16 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/mundane799699/bilibili-history-wxt" class="text-lg font-medium text-blue-600 hover:underline">mundane799699/bilibili-history-wxt</a>
-                <p class="text-gray-600 mt-1">无描述</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 57 · 🍴 4 · 📅 2025-11-30 · 📦 无 Release</div>
-            </div>
-
-            <div class="repo-card bg-gray-50 rounded-lg p-4">
-                <a href="https://github.com/qiweiii/bili-feed-history" class="text-lg font-medium text-blue-600 hover:underline">qiweiii/bili-feed-history</a>
-                <p class="text-gray-600 mt-1">查看不小心错过的bilibili首页“换一换”推荐视频</p>
-                <div class="text-sm text-gray-500 mt-2">⭐ 31 · 🍴 3 · 📅 2025-11-23 · 📦 无 Release</div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="mt-6 text-right">
-        <a href="#" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
-            <i class="fas fa-arrow-up mr-1"></i> 返回顶部
-        </a>
-    </div>
-</div>
-
-<div class="bg-white rounded-xl shadow-md p-6 text-center text-gray-500 text-sm">
-    最后更新: 2025-12-01
-</div>
-
-<div class="text-center text-gray-400 text-xs mt-8 mb-4">
-    页面自动生成 · 仅供个人整理使用
-</div>
-
-<a href="#" class="back-to-top bg-blue-500 text-white p-3 rounded-full shadow-lg">
-    <i class="fas fa-arrow-up"></i>
-</a>
-
-<script>
-// 返回顶部按钮显示/隐藏
-window.addEventListener('scroll', function() {
-    const btn = document.querySelector('.back-to-top');
-    if (window.pageYOffset > 300) btn.classList.add('visible');
-    else btn.classList.remove('visible');
-});
-</script>
-
+    <a href="#" class="back-to-top bg-blue-500 text-white p-3 rounded-full shadow-lg">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>

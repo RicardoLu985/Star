@@ -1,5 +1,5 @@
 {
   "repos": {
-    "jiji262/douyin-downloader": { "category": "DevOps & 工具", "subcategory": "效率工具" }
+    "jiji262/douyin-downloader": { "group": "DevOps & 工具", "sub": "效率工具" }
   }
 }
