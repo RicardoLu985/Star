@@ -1,26 +1,100 @@
-# ============================================================
-# update_starred_semantic.py
-# 全功能版（2025）：智能分类 / overrides / release / 现代HTML / M3 Markdown
-# 去掉搜索功能 / 统计卡片美化 / Release 合并到同一行
-# ============================================================
+# =====================
+# update_starred_semantic.py — Part 1/3
+# 核心：配置、API、分类、overrides、图标映射、Release 获取
+# =====================
 
-import os, json, requests, logging
-from datetime import datetime
+import os
+import sys
+import json
+import requests
+import logging
 from collections import defaultdict
+from datetime import datetime
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
+# ---------------------
+# 手动配置区（可选）
+# ---------------------
+# 本地调试时可在此写入用户名与 PAT，CI/CD（GitHub Actions）会使用环境变量 STAR_USERNAME/STAR_TOKEN
 MANUAL_USERNAME = ""
 MANUAL_TOKEN = ""
 
-# --------------------- 配置 ---------------------
-def get_config():
-    u = MANUAL_USERNAME.strip() or os.getenv("STAR_USERNAME")
-    t = MANUAL_TOKEN.strip() or os.getenv("STAR_TOKEN")
-    if not u or not t:
-        raise ValueError("缺少 STAR_USERNAME / STAR_TOKEN 或手动填写 MANUAL_USERNAME/TOKEN")
-    return u, t
+# ---------------------
+# 图标映射（FontAwesome, Tailwind 颜色）
+# 子分类默认继承父分类映射
+# 若未来添加新分类，只需在此字典中声明
+# ---------------------
+ICON_MAP = {
+    "AI": ("fa-brain", "red-500"),
+    "Web 开发": ("fa-code", "blue-500"),
+    "DevOps & 工具": ("fa-tools", "indigo-500"),
+    "脚本自动化": ("fa-robot", "yellow-500"),
+    "学习资料": ("fa-book-open", "teal-500"),
+    "其他": ("fa-box-open", "gray-500")
+}
 
+# ---------------------
+# 分类关键词（可按需扩展）
+# 一级 -> 二级 -> 关键词列表（小写）
+# ---------------------
+CATEGORY_MAP = {
+    "AI": {
+        "机器学习": ["pytorch", "tensorflow", "ml", "deep learning", "neural"],
+        "自然语言处理": ["nlp", "transformer", "gpt", "llm", "huggingface"]
+    },
+    "Web 开发": {
+        "前端": ["react", "vue", "vite", "svelte", "javascript", "typescript"],
+        "后端": ["fastapi", "django", "flask", "node", "express"]
+    },
+    "DevOps & 工具": {
+        "CI/CD": ["docker", "kubernetes", "k8s", "ci", "cd", "pipeline"],
+        "效率工具": ["cli", "plugin", "utils", "tool"]
+    },
+    "脚本自动化": {
+        "脚本/自动化": ["script", "automation", "bot", "crawler", "scraper"]
+    },
+    "学习资料": {
+        "资料/教程": ["awesome", "tutorial", "guide", "learning", "notes"]
+    },
+    # 注意：“其他” 不放在这里，分类函数会在没有匹配时放入 "其他"
+}
+
+# 将关键词全部转换为小写以便匹配
+for g, subs in list(CATEGORY_MAP.items()):
+    for s, kws in list(subs.items()):
+        subs[s] = [k.lower() for k in kws]
+
+# ---------------------
+# 配置读取：MANUAL -> 交互（tty） -> 环境变量
+# ---------------------
+def get_config_interactive():
+    username = MANUAL_USERNAME.strip() if isinstance(MANUAL_USERNAME, str) else ""
+    token = MANUAL_TOKEN.strip() if isinstance(MANUAL_TOKEN, str) else ""
+
+    # 允许在交互式终端中输入（仅在本地）
+    try:
+        if not username and sys.stdin.isatty():
+            username = input("请输入 GitHub 用户名（回车跳过）：").strip() or ""
+        if not token and sys.stdin.isatty():
+            token = input("请输入 GitHub Token (PAT)（回车跳过）：").strip() or ""
+    except Exception:
+        # 如果输入失败（非交互环境），忽略
+        pass
+
+    # 最后 fallback 到环境变量（用于 GitHub Actions）
+    username = username or os.getenv("STAR_USERNAME")
+    token = token or os.getenv("STAR_TOKEN")
+
+    if not username or not token:
+        raise ValueError(
+            "缺少 GitHub 用户名或 Token。请在脚本 MANUAL_* 填写，或交互输入（tty），或设置环境变量 STAR_USERNAME/STAR_TOKEN。"
+        )
+    return username, token
+
+# ---------------------
+# 构建 HTTP 会话（包含鉴权）
+# ---------------------
 def build_session(token):
     s = requests.Session()
     s.headers.update({
@@ -30,259 +104,462 @@ def build_session(token):
     })
     return s
 
-# --------------------- GitHub API ---------------------
+# ---------------------
+# 获取用户 starred 仓库（分页）
+# 注意：GitHub API 有 rate limit；在大量仓库时请适当控制频率
+# ---------------------
 def get_starred_repos(session, username):
     url = f"https://api.github.com/users/{username}/starred"
     repos = []
+    page = 1
     while url:
-        r = session.get(url, timeout=15)
-        if r.status_code != 200:
-            raise Exception(f"API 错误: {r.status_code} {r.text}")
-        repos.extend(r.json())
-        url = r.links.get("next", {}).get("url")
+        logging.info(f"Fetching starred page {page} ...")
+        resp = session.get(url, timeout=15)
+        if resp.status_code == 401:
+            raise Exception("401 Unauthorized: Token 无效或权限不足")
+        if resp.status_code == 403:
+            raise Exception(f"403 Forbidden: 可能是速率限制或权限问题，响应: {resp.text}")
+        if resp.status_code != 200:
+            raise Exception(f"GitHub API 请求失败：{resp.status_code} - {resp.text}")
+        data = resp.json()
+        if not data:
+            break
+        repos.extend(data)
+        url = resp.links.get("next", {}).get("url")
+        page += 1
+    logging.info(f"Fetched total {len(repos)} starred repos")
     return repos
 
-def format_date(s):
-    if not s: return "N/A"
+# ---------------------
+# 获取仓库最新 release（若无则返回 None）
+# ---------------------
+def format_date(date_str):
+    if not date_str:
+        return "N/A"
     try:
-        return datetime.fromisoformat(s.replace("Z","+00:00")).strftime("%Y-%m-%d")
-    except:
-        return s[:10]
+        return datetime.fromisoformat(date_str.replace("Z", "+00:00")).strftime("%Y-%m-%d")
+    except Exception:
+        return date_str.split("T")[0] if "T" in date_str else date_str
 
-def get_latest_release(session, full):
-    url = f"https://api.github.com/repos/{full}/releases/latest"
-    r = session.get(url, timeout=10)
-    if r.status_code != 200: return None
-    d = r.json()
-    return {
-        "tag": d.get("tag_name"),
-        "url": d.get("html_url"),
-        "published": format_date(d.get("published_at"))
-    }
+def get_latest_release(session, full_name):
+    if not full_name:
+        return None
+    url = f"https://api.github.com/repos/{full_name}/releases/latest"
+    try:
+        resp = session.get(url, timeout=10)
+        if resp.status_code == 404:
+            return None
+        if resp.status_code != 200:
+            logging.warning(f"获取 release 失败 {full_name} - HTTP {resp.status_code}")
+            return None
+        d = resp.json()
+        return {
+            "tag": d.get("tag_name"),
+            "url": d.get("html_url"),
+            "published": format_date(d.get("published_at"))
+        }
+    except Exception as e:
+        logging.warning(f"获取 release 出错 {full_name}: {e}")
+        return None
 
-# --------------------- overrides ---------------------
-def load_overrides():
-    if not os.path.exists("overrides.json"):
+# ---------------------
+# overrides.json 支持（只实现精确 repo 指定）
+# 格式：
+# {
+#   "repos": {
+#       "owner/repo": { "category": "Web 开发", "subcategory": "前端" }
+#   }
+# }
+# ---------------------
+def load_overrides(path="overrides.json"):
+    if not os.path.exists(path):
         return {"repos": {}}
     try:
-        data = json.load(open("overrides.json","r",encoding="utf-8"))
-        return {"repos": data.get("repos", {})}
-    except:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return {"repos": data.get("repos", {})}
+    except Exception as e:
+        logging.warning(f"加载 overrides.json 失败: {e}")
         return {"repos": {}}
 
-# --------------------- 分类规则 ---------------------
-CATEGORY_MAP = {
-    "AI": {
-        "机器学习": ["pytorch","tensorflow","ml","deep learning"],
-        "自然语言处理": ["nlp","transformer","gpt","llm","huggingface"]
-    },
-    "Web 开发": {
-        "前端": ["react","vue","vite","svelte","javascript","typescript"],
-        "后端": ["fastapi","django","flask","node","express"]
-    },
-    "DevOps & 工具": {
-        "CI/CD": ["docker","k8s","kubernetes","ci","cd","pipeline"],
-        "效率工具": ["cli","plugin","utils"]
-    },
-    "脚本自动化": {
-        "脚本/自动化": ["script","automation","bot","crawler"]
-    },
-    "学习资料": {
-        "资料/教程": ["awesome","tutorial","guide","learning"]
-    }
-}
+# ---------------------
+# 智能分类（优先 overrides.repos 精确匹配）
+# 返回已排序的 dict：{ group: { sub: [repo,...], ... }, ... }
+# “其他” 将在最后出现
+# ---------------------
+def categorize_repos_mixed(repos, overrides_path="overrides.json"):
+    overrides = load_overrides(overrides_path).get("repos", {}) or {}
+    categorized = defaultdict(lambda: defaultdict(list))
 
-for g,subs in CATEGORY_MAP.items():
-    for s,kws in subs.items():
-        subs[s] = [x.lower() for x in kws]
+    for repo in repos:
+        full_name = (repo.get("full_name") or "").strip()
+        name = (repo.get("name") or "").lower()
+        desc = (repo.get("description") or "").lower()
+        topics = [t.lower() for t in repo.get("topics", [])] if isinstance(repo.get("topics"), list) else []
+        text_blob = " ".join([full_name.lower(), name, desc] + topics)
 
-# --------------------- 分类逻辑 ---------------------
-def categorize_repos(repos):
-    overrides = load_overrides()["repos"]
-    cat = defaultdict(lambda: defaultdict(list))
-
-    for r in repos:
-        full = r.get("full_name","")
-        desc = (r.get("description") or "").lower()
-        name = (r.get("name") or "").lower()
-        topics = [t.lower() for t in r.get("topics", [])]
-        blob = f"{full.lower()} {name} {desc} {' '.join(topics)}"
-
-        # overrides
-        if full in overrides:
-            g = overrides[full]["category"]
-            s = overrides[full]["subcategory"]
-            cat[g][s].append(r)
+        # 1. 精确 overrides（最高优先）
+        if full_name in overrides:
+            ov = overrides[full_name] or {}
+            cat = ov.get("category", "其他")
+            sub = ov.get("subcategory", "其他")
+            categorized[cat][sub].append(repo)
             continue
 
         matched = False
 
-        # topics
+        # 2. topics 优先匹配（如果存在）
         if topics:
-            tstr = " ".join(topics)
-            for g,subs in CATEGORY_MAP.items():
-                for s,kws in subs.items():
-                    if any(k in tstr for k in kws):
-                        cat[g][s].append(r)
+            t_concat = " ".join(topics)
+            for g, subs in CATEGORY_MAP.items():
+                for s, kws in subs.items():
+                    if any(k in t_concat for k in kws):
+                        categorized[g][s].append(repo)
                         matched = True
                         break
-                if matched: break
-            if matched: continue
+                if matched:
+                    break
+            if matched:
+                continue
 
-        # fuzzy match
-        for g,subs in CATEGORY_MAP.items():
-            for s,kws in subs.items():
-                if any(k in blob for k in kws):
-                    cat[g][s].append(r)
+        # 3. 名称/描述/owner 模糊匹配关键词
+        for g, subs in CATEGORY_MAP.items():
+            for s, kws in subs.items():
+                if any(k in text_blob for k in kws):
+                    categorized[g][s].append(repo)
                     matched = True
                     break
-            if matched: break
+            if matched:
+                break
 
+        # 4. 兜底到其他
         if not matched:
-            cat["其他"]["其他"].append(r)
+            categorized["其他"]["其他"].append(repo)
 
-    # 让“其他”永远最后
-    ordered = {}
-    groups = sorted(cat.keys(), key=lambda x: (x=="其他"))
-    for g in groups:
-        ordered[g] = dict(sorted(cat[g].items(), key=lambda x: len(x[1]), reverse=True))
-    return ordered
+    # 排序：按分类总数降序，同时保证 "其他" 在最后
+    def group_key(item):
+        name, subs = item
+        if name == "其他":
+            return (1, 0)  # 最后
+        total = sum(len(v) for v in subs.values())
+        return (0, -total)
 
-# --------------------- Markdown ---------------------
-def safe(s):
-    return s.replace("\n"," ").replace("|"," ") if s else ""
+    sorted_groups = dict(sorted(
+        ((g, dict(sorted(subs.items(), key=lambda x: len(x[1]), reverse=True))) for g, subs in categorized.items()),
+        key=group_key
+    ))
+    return sorted_groups
+
+# End of Part 1/3
+# =====================
+# Part 2/3 — Markdown 输出（折叠目录 + 子分类跳转 + Release 同行）
+# =====================
+
+import re
+
+def make_anchor(text):
+    """
+    把分类/子分类文本转换为稳定的锚点：
+    - 保留中文/英文/数字
+    - 用短横线连接空格
+    - 移除非法字符
+    """
+    if not text:
+        return ""
+    s = str(text).strip()
+    # 将空白替换为短横
+    s = re.sub(r'\s+', '-', s)
+    # 移除除中文、字母、数字、短横、下划线以外的字符
+    s = re.sub(r'[^\u4e00-\u9fffA-Za-z0-9\-_]', '', s)
+    return s
+
+def safe_text(s, maxlen=None):
+    if not s:
+        return ""
+    t = str(s).replace('\r', ' ').replace('\n', ' ').replace('|', ' ')
+    t = t.strip()
+    if maxlen and len(t) > maxlen:
+        return t[:maxlen-3] + "..."
+    return t
 
 def generate_markdown(repos, categorized, output="starred.md"):
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    total = len(repos)
-    w = open(output,"w",encoding="utf-8")
-
-    w.write(f"# 🌟 我的 GitHub 星标项目\n\n")
-    w.write(f"> 最后更新：{now} · 总项目数：{total}\n\n")
-
-    # 现代 M3 风格卡片统计
-    w.write("## 分类统计\n\n")
-    for g,subs in categorized.items():
-        count = sum(len(v) for v in subs.values())
-        w.write(f"### {g} — `{count}` 项\n\n")
-
-    # 内容
-    for g,subs in categorized.items():
-        w.write(f"\n## {g}\n")
-        for s,items in subs.items():
-            w.write(f"\n### {s}\n\n")
-            for r in sorted(items,key=lambda x:x.get("stargazers_count",0),reverse=True):
-                full = r.get("full_name","")
-                url = r.get("html_url","")
-                desc = safe(r.get("description","无描述"))
-                stars = r.get("stargazers_count",0)
-                forks = r.get("forks_count",0)
-                updated = format_date(r.get("updated_at"))
-                rel = r.get("_latest_release")
-
-                rel_txt = (
-                    f"📦 [{rel['tag']}]({rel['url']})"
-                    if rel else "📦 无 Release"
-                )
-
-                # Release 合并到同一行
-                meta = f"⭐ {stars} · 🍴 {forks} · 📅 {updated} · {rel_txt}"
-
-                w.write(f"#### [{full}]({url})\n")
-                w.write(f"> {desc}\n\n")
-                w.write(f"{meta}\n\n")
-
-    w.close()
-    logging.info("Markdown 完成")
-
-
-# --------------------- HTML ---------------------
-def generate_html(repos, categorized, output="docs/index.html"):
-    os.makedirs("docs", exist_ok=True)
+    """
+    输出风格说明：
+    - 顶部说明 + 更新时间 + 总数
+    - 折叠目录（显示子分类）
+    - 每个一级分类为一级标题（##）
+      - 每个二级分类作为一个 <details> 折叠块，summary 可点击展开/收起
+      - 在每个二级分类上方放一个锚点（id）以支持目录跳转
+    - Repo 列表为卡片风（#### repo），Meta（stars/forks/updated/release）在同一行
+    """
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     total = len(repos)
 
-    css = """
-:root{--bg:#fafafa;--fg:#222;--card:#fff;--border:#e5e7eb;--sec:#6b7280;--pr:#2563eb;}
-@media(prefers-color-scheme:dark){
-:root{--bg:#1f1f20;--fg:#eee;--card:#26272b;--border:#3b3b44;--sec:#aaa;}}
-body{background:var(--bg);color:var(--fg);font-family:-apple-system,Segoe UI,Roboto;margin:0;padding:20px;max-width:1100px;margin:auto;}
-h1{text-align:center;margin:0;margin-bottom:6px;}
-.info{text-align:center;color:var(--sec);margin-bottom:30px;}
-.group{margin-top:40px;font-size:1.6rem;}
-.sub{margin-top:20px;font-size:1.25rem;}
-.repo{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin:12px 0;}
-.repo a{color:var(--pr);font-weight:bold;text-decoration:none;}
-.desc{color:var(--sec);margin:6px 0 10px;}
-.meta{color:var(--sec);font-size:.9rem;}
-.stat-card{padding:14px 16px;background:var(--card);border:1px solid var(--border);
-border-radius:12px;margin:10px 0;font-size:1.05rem;}
-"""
+    with open(output, "w", encoding="utf-8") as f:
+        # Header
+        f.write('<a id="top"></a>\n\n')
+        f.write('# 🌟 我的 GitHub 星标项目整理\n\n')
+        f.write('> 此文件由脚本自动生成，分类按功能/方向（支持 overrides.json 精确覆盖）。\n\n')
+        f.write(f'> **最后更新**：{now}  ·  **总项目数**：{total}\n\n')
 
-    html = []
-    html.append("<!DOCTYPE html><html><head><meta charset='UTF-8'>")
-    html.append(f"<style>{css}</style></head><body>")
+        # 目录（折叠，显示子分类）
+        f.write('<details>\n<summary>📂 目录（点击展开/收起）</summary>\n\n')
+        for group, subs in categorized.items():
+            group_anchor = make_anchor(group)
+            f.write(f'- **[{group}](#{group_anchor})**\n')
+            for sub in subs.keys():
+                sub_anchor = make_anchor(sub)
+                f.write(f'  - [{sub}](#{sub_anchor})\n')
+        f.write('\n</details>\n\n')
 
-    html.append(f"<h1>🌟 GitHub 星标项目</h1>")
-    html.append(f"<div class='info'>最后更新：{now} · 总项目数：{total}</div>")
+        # 具体分组内容
+        for group, subs in categorized.items():
+            # 一级标题
+            group_anchor = make_anchor(group)
+            f.write(f'## {group}\n\n')
 
-    # ---- 统计卡片（现代风） ----
-    html.append("<div>")
-    for g,subs in categorized.items():
-        count = sum(len(v) for v in subs.values())
-        html.append(f"<div class='stat-card'>{g} — {count} 项</div>")
-    html.append("</div>")
+            for sub, items in subs.items():
+                sub_anchor = make_anchor(sub)
+                # 二级折叠（可展开查看里面所有项目），同时提供锚点以支持跳转
+                f.write(f'<a id="{sub_anchor}"></a>\n')
+                f.write(f'<details>\n<summary>🔽 {sub} （{len(items)} 项）</summary>\n\n')
 
-    # ---- 内容部分 ----
-    for g,subs in categorized.items():
-        html.append(f"<div class='group'>{g}</div>")
-        for s,items in subs.items():
-            html.append(f"<div class='sub'>{s}</div>")
-            for r in sorted(items,key=lambda x:x.get("stargazers_count",0),reverse=True):
-                full = r.get("full_name","")
-                url = r.get("html_url","")
-                desc = r.get("description","无描述")
-                stars = r.get("stargazers_count",0)
-                forks = r.get("forks_count",0)
-                updated = format_date(r.get("updated_at"))
-                rel = r.get("_latest_release")
+                # 列出仓库（按 star 降序）
+                for repo in sorted(items, key=lambda r: r.get('stargazers_count', 0), reverse=True):
+                    full = repo.get('full_name') or ""
+                    url = repo.get('html_url') or ""
+                    desc = safe_text(repo.get('description') or "无描述", maxlen=200)
+                    stars = repo.get('stargazers_count', 0)
+                    forks = repo.get('forks_count', 0)
+                    updated = format_date(repo.get('updated_at'))
 
-                rel_txt = (
-                    f"📦 <a href='{rel['url']}' target='_blank'>{rel['tag']}</a>"
-                    if rel else "📦 无 Release"
-                )
+                    release = repo.get('_latest_release')
+                    if release and release.get('tag'):
+                        release_text = f"📦 [{safe_text(release.get('tag'))}]({release.get('url')})"
+                    else:
+                        release_text = "📦 无 Release"
 
-                meta = f"⭐ {stars} · 🍴 {forks} · 📅 {updated} · {rel_txt}"
+                    meta_line = f"⭐ {stars} · 🍴 {forks} · 📅 {updated} · {release_text}"
 
-                html.append(
-                    f"<div class='repo'>"
-                    f"<div><a href='{url}' target='_blank'>{full}</a></div>"
-                    f"<div class='desc'>{desc}</div>"
-                    f"<div class='meta'>{meta}</div>"
-                    f"</div>"
-                )
+                    f.write(f'#### [{full}]({url})\n')
+                    f.write(f'> {desc}\n\n')
+                    f.write(f'- {meta_line}\n\n')
 
-    html.append("</body></html>")
-    open(output,"w",encoding="utf-8").write("".join(html))
-    logging.info("HTML 生成完成")
+                f.write('</details>\n\n')
 
-# --------------------- main ---------------------
+        # Footer
+        f.write('---\n\n[回到顶部](#top)\n')
+
+    logging.info(f"Markdown 生成完成：{output}")
+# =====================
+# Part 3/3 — HTML 输出（Tailwind 卡片风） + main()
+# =====================
+
+def html_escape(s):
+    return (str(s)
+            .replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;"))
+
+def generate_html(repos, categorized, group_icons, output="docs/index.html"):
+    """
+    最终 HTML：
+    - 完整复刻你提供的 Tailwind 模板结构
+    - 动态生成分类目录 / 分类卡片
+    - 每个 repo 使用卡片样式，meta 行与 release 同行
+    """
+    now = datetime.now().strftime("%Y-%m-%d")
+
+    os.makedirs(os.path.dirname(output), exist_ok=True)
+
+    with open(output, "w", encoding="utf-8") as f:
+        f.write(f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Stars 整理</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+body {{
+    font-family: 'Noto Sans SC', sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    scroll-behavior: smooth;
+}}
+.category-card {{
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}}
+.category-card:hover {{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}}
+.repo-card {{
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent;
+}}
+.repo-card:hover {{
+    border-left-color: #3b82f6;
+    background-color: #f1f5f9;
+}}
+.nav-link {{
+    position: relative;
+}}
+.nav-link::after {{
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #3b82f6;
+    transition: width 0.3s ease;
+}}
+.nav-link:hover::after {{
+    width: 100%;
+}}
+.back-to-top {{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}}
+.back-to-top.visible {{
+    opacity: 1;
+}}
+</style>
+</head>
+<body class="max-w-5xl mx-auto px-4 py-8">
+
+<header class="mb-12 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">🌟 GitHub Stars 整理</h1>
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto">自动分类 · 最新 Release · 清爽卡片式展示</p>
+</header>
+
+<!-- 顶部目录导航 -->
+<div class="bg-white rounded-xl shadow-md p-6 mb-8">
+    <h2 class="text-2xl font-semibold mb-4 text-gray-800">📂 目录导航</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">""")
+
+        # 目录导航
+        for group in categorized.keys():
+            anchor = make_anchor(group)
+            f.write(f"""
+        <a href="#{anchor}" class="nav-link text-blue-600 hover:text-blue-800">{html_escape(group)}</a>""")
+
+        f.write("""
+    </div>
+</div>
+""")
+
+        # 分类展示区
+        for group, subs in categorized.items():
+            group_anchor = make_anchor(group)
+            icon = group_icons.get(group, "fa-folder")
+
+            f.write(f"""
+<!-- 分类卡片：{group} -->
+<div id="{group_anchor}" class="category-card bg-white rounded-xl shadow-md p-6 mb-8">
+    <div class="flex items-center mb-4">
+        <i class="fas {icon} text-2xl mr-3 text-blue-500"></i>
+        <h2 class="text-2xl font-semibold text-gray-800">{html_escape(group)}</h2>
+    </div>
+""")
+
+            # 子分类
+            for sub, items in subs.items():
+                f.write(f"""
+    <div class="mb-6">
+        <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">{html_escape(sub)}（{len(items)}）</h3>
+        <div class="space-y-3">""")
+
+                # Repo 列表
+                for repo in sorted(items, key=lambda r: r.get("stargazers_count", 0), reverse=True):
+                    full = repo.get("full_name")
+                    url = repo.get("html_url")
+                    desc = html_escape(safe_text(repo.get("description") or "无描述", 150))
+
+                    stars = repo.get("stargazers_count", 0)
+                    forks = repo.get("forks_count", 0)
+                    updated = format_date(repo.get("updated_at"))
+
+                    release = repo.get("_latest_release")
+                    if release and release.get("tag"):
+                        release_html = f"""📦 <a class="text-blue-600" href="{release['url']}">{html_escape(release['tag'])}</a>"""
+                    else:
+                        release_html = "📦 无 Release"
+
+                    f.write(f"""
+            <div class="repo-card bg-gray-50 rounded-lg p-4">
+                <a href="{url}" class="text-lg font-medium text-blue-600 hover:underline">{html_escape(full)}</a>
+                <p class="text-gray-600 mt-1">{desc}</p>
+                <div class="text-sm text-gray-500 mt-2">⭐ {stars} · 🍴 {forks} · 📅 {updated} · {release_html}</div>
+            </div>
+""")
+
+                f.write("""
+        </div>
+    </div>
+""")
+
+            f.write("""
+    <div class="mt-6 text-right">
+        <a href="#" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
+            <i class="fas fa-arrow-up mr-1"></i> 返回顶部
+        </a>
+    </div>
+</div>
+""")
+
+        # 页脚
+        f.write(f"""
+<div class="bg-white rounded-xl shadow-md p-6 text-center text-gray-500 text-sm">
+    最后更新: {now}
+</div>
+
+<div class="text-center text-gray-400 text-xs mt-8 mb-4">
+    页面自动生成 · 仅供个人整理使用
+</div>
+
+<a href="#" class="back-to-top bg-blue-500 text-white p-3 rounded-full shadow-lg">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<script>
+// 返回顶部按钮显示/隐藏
+window.addEventListener('scroll', function() {{
+    const btn = document.querySelector('.back-to-top');
+    if (window.pageYOffset > 300) btn.classList.add('visible');
+    else btn.classList.remove('visible');
+}});
+</script>
+
+</body>
+</html>
+""")
+
+    logging.info(f"HTML 生成完成：{output}")
+
+
+# ============== main() ==============
 def main():
-    username, token = get_config()
-    session = build_session(token)
+    logging.info("⭐ 开始执行 GitHub Stars 自动整理")
 
-    repos = get_starred_repos(session, username)
+    username, token = get_config_interactive()
 
-    for r in repos:
-        full = r.get("full_name")
-        r["_latest_release"] = get_latest_release(session, full)
+    repos = get_starred_repos(username, token)
+    group_icons = get_category_icons()
 
     categorized = categorize_repos(repos)
 
-    generate_markdown(repos, categorized, "starred.md")
-    generate_html(repos, categorized, "docs/index.html")
+    generate_markdown(repos, categorized, output="starred.md")
+    generate_html(repos, categorized, group_icons, output="docs/index.html")
 
-    logging.info("全部完成")
+    logging.info("🎉 所有文件已生成完毕！")
+
 
 if __name__ == "__main__":
     main()
