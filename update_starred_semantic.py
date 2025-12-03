@@ -33,10 +33,10 @@ OVERRIDES_TEMPLATE = "overrides_template.json"
 STATS_JSON = "stats.json"
 GITHUB_API_ACCEPT = "application/vnd.github.mercy-preview+json"
 
-# ======================= 分类 & 图标 =======================
-CATEGORY_ORDER = ["AI", "Web 开发", "DevOps & 工具", "脚本自动化", "学习资料", "其他"]
+# ======================= 默认分类 & 图标 =======================
+DEFAULT_CATEGORY_ORDER = ["AI", "Web 开发", "DevOps & 工具", "脚本自动化", "学习资料", "其他"]
 
-CATEGORY_ICONS = {
+DEFAULT_CATEGORY_ICONS = {
     "AI": ("fa-robot", "text-red-500"),
     "Web 开发": ("fa-paint-brush", "text-purple-500"),
     "DevOps & 工具": ("fa-tools", "text-indigo-500"),
@@ -45,7 +45,7 @@ CATEGORY_ICONS = {
     "其他": ("fa-ellipsis-h", "text-gray-500"),
 }
 
-CATEGORY_MAP = {
+DEFAULT_CATEGORY_MAP = {
     "AI": {
         "机器学习框架": ["pytorch", "tensorflow", "jax", "keras", "scikit-learn", "mxnet"],
         "大模型/LLM": ["llama", "gpt", "transformers", "huggingface", "langchain", "ollama", "vllm"],
@@ -253,8 +253,54 @@ def auto_tags_for_repo(repo: Dict[str, Any]) -> List[str]:
         tags.add(lang)
     return sorted(tags)
 
+def get_dynamic_categories():
+    """从overrides.json中获取动态分类配置"""
+    overrides = load_overrides()
+
+    # 获取默认配置
+    category_order = DEFAULT_CATEGORY_ORDER.copy()
+    category_icons = DEFAULT_CATEGORY_ICONS.copy()
+    category_map = DEFAULT_CATEGORY_MAP.copy()
+
+    # 从overrides中提取自定义分类
+    custom_groups = set()
+    for repo_info in overrides.values():
+        group = repo_info.get("group", "其他")
+        if group not in category_order:
+            custom_groups.add(group)
+
+    # 将自定义分组添加到分类顺序中
+    for group in custom_groups:
+        if group not in category_order:
+            category_order.insert(-1, group)  # 在"其他"之前插入
+
+    # 为自定义分组设置默认图标
+    for group in custom_groups:
+        if group not in category_icons:
+            # 根据分组名称选择合适的图标
+            if "影音" in group or "视频" in group or "音乐" in group:
+                category_icons[group] = ("fa-film", "text-pink-500")
+            elif "工具" in group:
+                category_icons[group] = ("fa-tools", "text-indigo-500")
+            elif "AI" in group or "智能" in group:
+                category_icons[group] = ("fa-robot", "text-red-500")
+            elif "学习" in group or "教程" in group:
+                category_icons[group] = ("fa-graduation-cap", "text-teal-500")
+            else:
+                category_icons[group] = ("fa-folder", "text-blue-500")
+
+    # 为自定义分组创建默认子分类映射
+    for group in custom_groups:
+        if group not in category_map:
+            category_map[group] = {"其他": []}
+
+    return category_order, category_icons, category_map
+
 def categorize_repos_mixed(repos: List[Dict[str, Any]], overrides: Dict[str, Any]) -> Dict[str, Dict[str, List[Dict[str, Any]]]]:
     """对仓库进行分类"""
+    # 获取动态配置
+    category_order, category_icons, category_map = get_dynamic_categories()
+
     tree = defaultdict(lambda: defaultdict(list))
     for repo in repos:
         full = repo["full_name"]
@@ -271,7 +317,7 @@ def categorize_repos_mixed(repos: List[Dict[str, Any]], overrides: Dict[str, Any
             continue
 
         matched = False
-        for group, subs in CATEGORY_MAP.items():
+        for group, subs in category_map.items():
             for sub, kws in subs.items():
                 if any(kw and kw in blob for kw in kws):
                     tree[group][sub].append(repo)
@@ -283,12 +329,25 @@ def categorize_repos_mixed(repos: List[Dict[str, Any]], overrides: Dict[str, Any
             lang = repo.get("language") or "其他"
             tree["其他"][f"{lang} 项目"].append(repo)
 
+    # 按照动态分类顺序排列
     ordered = {}
-    for g in CATEGORY_ORDER:
+    for g in category_order:
         if g in tree:
             ordered[g] = dict(sorted(tree[g].items(), key=lambda x: len(x[1]), reverse=True))
+
+    # 添加overrides中定义但不在预定义分类中的分组
+    for full, override in overrides.items():
+        g = override.get("group", "其他")
+        s = override.get("sub", "其他")
+        if g not in ordered:
+            ordered[g] = {}
+        if s not in ordered[g]:
+            ordered[g][s] = []
+
+    # 将"其他"分类放在最后
     if "其他" in tree and "其他" not in ordered:
         ordered["其他"] = dict(sorted(tree["其他"].items(), key=lambda x: len(x[1]), reverse=True))
+
     return ordered
 
 # ======================= 工具函数：生成安全的锚点ID =======================
@@ -310,41 +369,27 @@ def make_safe_id(text: str) -> str:
     text = text.strip('-')
     return text
 
-# ======================= Markdown 生成（使用浮动目录方案）=======================
-def generate_markdown(categorized, repos):
+# ======================= Markdown 生成 =======================
+def generate_markdown(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], repos: List[Dict[str, Any]]) -> None:
+    """生成Markdown文档"""
     now = datetime.now().strftime("%Y-%m-%d")
     total = len(repos)
     with open(OUTPUT_MD, "w", encoding="utf-8") as f:
-        # 创建浮动目录
-        f.write('''<div style="position: fixed; top: 20px; right: 20px; background: white; padding: 15px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000; max-width: 250px; max-height: 80vh; overflow-y: auto;">
-<h4 style="margin-top: 0;">📋 快速导航</h4>
-''')
-
-        for g in CATEGORY_ORDER:
-            if g in categorized:
-                safe_id = make_safe_id(g)
-                f.write(f'<div><a href="#{safe_id}" style="font-size: 0.9em; color: #0366d6; text-decoration: none;">▶ {g}</a></div>\n')
-
-        f.write('<div style="margin-top: 10px; border-top: 1px solid #eee; padding-top: 10px;">\n')
-        f.write('<a href="#top" style="font-size: 0.9em; color: #0366d6; text-decoration: none;">⬆️ 返回顶部</a>\n')
-        f.write('</div>\n</div>\n\n')
-
-        # 添加一些占位空间，避免内容被浮动目录遮挡
-        f.write('<div style="height: 50px;"></div>\n\n')
-
         f.write('<a id="top"></a>\n\n')
         f.write('# 🌟 我的 GitHub 星标项目整理\n\n')
         f.write(f'> 自动生成 · 最后更新：{now} · 总项目数：{total}\n\n')
 
         f.write('## 📊 分类统计\n\n')
-        for g in CATEGORY_ORDER:
+        # 获取动态分类顺序
+        category_order, _, _ = get_dynamic_categories()
+        for g in category_order:
             if g in categorized:
                 cnt = sum(len(v) for v in categorized[g].values())
                 f.write(f'- **{g}**：{cnt} 项\n')
         f.write('\n')
 
-        f.write('<details>\n<summary>📂 完整目录（点击展开/收起）</summary>\n\n')
-        for g in CATEGORY_ORDER:
+        f.write('<details>\n<summary>📂 目录（点击展开/收起）</summary>\n\n')
+        for g in category_order:
             if g in categorized:
                 safe_id = make_safe_id(g)
                 f.write(f'- **[{g}](#{safe_id})**\n')
@@ -355,8 +400,9 @@ def generate_markdown(categorized, repos):
 
         f.write('---\n\n')
 
-        for g in CATEGORY_ORDER:
-            if g not in categorized: continue
+        for g in category_order:
+            if g not in categorized:
+                continue
 
             safe_id = make_safe_id(g)
             f.write(f'<a id="{safe_id}"></a>\n')
@@ -388,16 +434,20 @@ def generate_markdown(categorized, repos):
                         f.write(f'- **Tags:** {tags_line}\n')
                     f.write(f'- ⭐ {stars} · 🍴 {forks} · 📅 最后更新 {last_updated} · {rel_txt}\n\n')
 
-                # 在每个子分类折叠块内添加返回链接
+                # 在每个子分类折叠块内添加返回链接（只在展开时可见）
                 f.write('<div style="text-align: right;">\n')
                 f.write(f'<a href="#top">⬆️ 返回顶部</a> | <a href="#{safe_id}">⬆️ 返回分类</a>\n')
                 f.write('</div>\n\n')
                 f.write('</details>\n\n')
 
-            # 在每个主分类后添加返回目录链接
-            f.write('<div style="text-align: center; padding: 20px 0; border-top: 1px dashed #ddd;">\n')
-            f.write(f'<a href="#top">📋 返回目录</a>\n')
-            f.write('</div>\n\n')
+            # 不添加外部的返回链接，让用户从折叠块内部返回
+
+    # 在文档末尾添加一个返回顶部链接
+    with open(OUTPUT_MD, "a", encoding="utf-8") as f:
+        f.write('\n---\n\n')
+        f.write('<div style="text-align: center; padding: 30px 0;">\n')
+        f.write(f'<a href="#top"><strong>⬆️ 返回顶部</strong></a>\n')
+        f.write('</div>\n')
 
     log.info(f"Markdown 生成完成 → {OUTPUT_MD}")
 
@@ -406,6 +456,9 @@ def generate_html(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], repos
     """生成HTML文档"""
     now = datetime.now().strftime("%Y-%m-%d")
     ensure_dir("docs")
+
+    # 获取动态分类配置
+    category_order, category_icons, _ = get_dynamic_categories()
 
     html = f'''<!DOCTYPE html>
 <html lang="zh-CN">
@@ -489,7 +542,7 @@ def generate_html(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], repos
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">'''
 
     # 生成目录导航链接
-    for g in CATEGORY_ORDER:
+    for g in category_order:
         if g in categorized:
             safe_id = make_safe_id(g)
             html += f'''
@@ -501,10 +554,10 @@ def generate_html(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], repos
     </div>'''
 
     # 生成分类内容
-    for g in CATEGORY_ORDER:
+    for g in category_order:
         if g not in categorized:
             continue
-        icon_name, icon_color = CATEGORY_ICONS.get(g, ("fa-ellipsis-h", "text-gray-500"))
+        icon_name, icon_color = category_icons.get(g, ("fa-ellipsis-h", "text-gray-500"))
         safe_id = make_safe_id(g)
 
         html += f'''

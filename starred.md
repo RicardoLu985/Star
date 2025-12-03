@@ -1,23 +1,8 @@
-<div style="position: fixed; top: 20px; right: 20px; background: white; padding: 15px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000; max-width: 250px; max-height: 80vh; overflow-y: auto;">
-<h4 style="margin-top: 0;">📋 快速导航</h4>
-<div><a href="#ai" style="font-size: 0.9em; color: #0366d6; text-decoration: none;">▶ AI</a></div>
-<div><a href="#web-开发" style="font-size: 0.9em; color: #0366d6; text-decoration: none;">▶ Web 开发</a></div>
-<div><a href="#devops-and-工具" style="font-size: 0.9em; color: #0366d6; text-decoration: none;">▶ DevOps & 工具</a></div>
-<div><a href="#脚本自动化" style="font-size: 0.9em; color: #0366d6; text-decoration: none;">▶ 脚本自动化</a></div>
-<div><a href="#学习资料" style="font-size: 0.9em; color: #0366d6; text-decoration: none;">▶ 学习资料</a></div>
-<div><a href="#其他" style="font-size: 0.9em; color: #0366d6; text-decoration: none;">▶ 其他</a></div>
-<div style="margin-top: 10px; border-top: 1px solid #eee; padding-top: 10px;">
-<a href="#top" style="font-size: 0.9em; color: #0366d6; text-decoration: none;">⬆️ 返回顶部</a>
-</div>
-</div>
-
-<div style="height: 50px;"></div>
-
 <a id="top"></a>
 
 # 🌟 我的 GitHub 星标项目整理
 
-> 自动生成 · 最后更新：2025-12-03 · 总项目数：90
+> 自动生成 · 最后更新：2025-12-04 · 总项目数：90
 
 ## 📊 分类统计
 
@@ -26,10 +11,11 @@
 - **DevOps & 工具**：4 项
 - **脚本自动化**：5 项
 - **学习资料**：8 项
+- **影音娱乐**：6 项
 - **其他**：54 项
 
 <details>
-<summary>📂 完整目录（点击展开/收起）</summary>
+<summary>📂 目录（点击展开/收起）</summary>
 
 - **[AI](#ai)**
   - [大模型/LLM](#大模型llm)
@@ -47,6 +33,9 @@
   - [Awesome 列表](#awesome-列表)
   - [教程/文档](#教程文档)
   - [算法与面试](#算法与面试)
+- **[影音娱乐](#影音娱乐)**
+  - [音乐随身听](#音乐随身听)
+  - [追番神器](#追番神器)
 - **[其他](#其他)**
   - [JavaScript 项目](#javascript-项目)
   - [Python 项目](#python-项目)
@@ -80,7 +69,7 @@
 
 - **Topics:** `langchain` `openai` `autogen-extension` `autogen` `markdown` `microsoft-office` `pdf`
 - **Tags:** `python`
-- ⭐ 83662 · 🍴 4794 · 📅 最后更新 2025-12-01 · 📦 [v0.1.4](https://github.com/microsoft/markitdown/releases/tag/v0.1.4)
+- ⭐ 83665 · 🍴 4794 · 📅 最后更新 2025-12-01 · 📦 [v0.1.4](https://github.com/microsoft/markitdown/releases/tag/v0.1.4)
 
 #### [zhayujie/chatgpt-on-wechat](https://github.com/zhayujie/chatgpt-on-wechat)
 > 基于大模型搭建的聊天机器人，同时支持 微信公众号、企业微信应用、飞书、钉钉 等接入，可选择ChatGPT/Claude/DeepSeek/文心一言/讯飞星火/通义千问/ Gemini/GLM-4/Kimi/LinkAI，能处理文本、语音和图片，访问操作系统和互联网，支持基于自有知识库进行定制企业智能客服。
@@ -117,15 +106,19 @@
 - **Tags:** `nlp` `vue` `web`
 - ⭐ 2651 · 🍴 402 · 📅 最后更新 2025-12-02 · 📦 无 Release
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#ai">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#ai)
 </div>
 
 </details>
 
-<div style="text-align: center; padding: 20px 0; border-top: 1px dashed #ddd;">
-<a href="#top">📋 返回目录</a>
+
+<div align="right">
+**[⬆️ 返回顶部](#top)**
 </div>
+
+---
 
 <a id="web-开发"></a>
 ## Web 开发
@@ -155,8 +148,9 @@
 - **Tags:** `javascript` `web`
 - ⭐ 6653 · 🍴 492 · 📅 最后更新 2025-12-01 · 📦 [v1.33.0](https://github.com/viarotel-org/escrcpy/releases/tag/v1.33.0)
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#web-开发">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#web-开发)
 </div>
 
 </details>
@@ -184,8 +178,9 @@
 - **Tags:** `vue` `web`
 - ⭐ 8005 · 🍴 677 · 📅 最后更新 2025-10-10 · 📦 无 Release
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#web-开发">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#web-开发)
 </div>
 
 </details>
@@ -201,15 +196,19 @@
 - **Tags:** `cli` `typescript` `web`
 - ⭐ 6477 · 🍴 302 · 📅 最后更新 2025-11-06 · 📦 [v0.5.0](https://github.com/EcoPasteHub/EcoPaste/releases/tag/v0.5.0)
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#web-开发">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#web-开发)
 </div>
 
 </details>
 
-<div style="text-align: center; padding: 20px 0; border-top: 1px dashed #ddd;">
-<a href="#top">📋 返回目录</a>
+
+<div align="right">
+**[⬆️ 返回顶部](#top)**
 </div>
+
+---
 
 <a id="devops-and-工具"></a>
 ## DevOps & 工具
@@ -223,7 +222,7 @@
 
 - **Topics:** `data-analysis` `python` `trending-topics` `feishu-robot` `news` `dingtalk-robot` `telegram-bot` `wechat-robot` `hot-news` `docker` `ntfy` `mail` `mcp` `mcp-server` `wechat` `wework` `wework-bot` `bark` `slack`
 - **Tags:** `automation` `devops` `python`
-- ⭐ 36567 · 🍴 19899 · 📅 最后更新 2025-12-03 · 📦 无 Release
+- ⭐ 36578 · 🍴 19899 · 📅 最后更新 2025-12-03 · 📦 无 Release
 
 #### [HerbertHe/iptv-sources](https://github.com/HerbertHe/iptv-sources)
 > Autoupdate iptv sources
@@ -239,8 +238,9 @@
 - **Tags:** `c#` `devops`
 - ⭐ 8133 · 🍴 1900 · 📅 最后更新 2025-09-22 · 📦 [3.8.1](https://github.com/RayWangQvQ/BiliBiliToolPro/releases/tag/3.8.1)
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#devops-and-工具">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#devops-and-工具)
 </div>
 
 </details>
@@ -255,15 +255,19 @@
 - **Tags:** `python`
 - ⭐ 5982 · 🍴 913 · 📅 最后更新 2025-12-03 · 📦 无 Release
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#devops-and-工具">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#devops-and-工具)
 </div>
 
 </details>
 
-<div style="text-align: center; padding: 20px 0; border-top: 1px dashed #ddd;">
-<a href="#top">📋 返回目录</a>
+
+<div align="right">
+**[⬆️ 返回顶部](#top)**
 </div>
+
+---
 
 <a id="脚本自动化"></a>
 ## 脚本自动化
@@ -291,10 +295,11 @@
 
 - **Topics:** `content-export` `document-parser` `ebook` `offline-reader` `cli` `tui` `novel`
 - **Tags:** `cli` `java`
-- ⭐ 5675 · 🍴 451 · 📅 最后更新 2025-11-23 · 📦 [v1.9.6](https://github.com/freeok/so-novel/releases/tag/v1.9.6)
+- ⭐ 5676 · 🍴 451 · 📅 最后更新 2025-11-23 · 📦 [v1.9.6](https://github.com/freeok/so-novel/releases/tag/v1.9.6)
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#脚本自动化">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#脚本自动化)
 </div>
 
 </details>
@@ -316,15 +321,19 @@
 - **Tags:** `automation` `python`
 - ⭐ 243 · 🍴 24 · 📅 最后更新 2025-11-30 · 📦 无 Release
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#脚本自动化">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#脚本自动化)
 </div>
 
 </details>
 
-<div style="text-align: center; padding: 20px 0; border-top: 1px dashed #ddd;">
-<a href="#top">📋 返回目录</a>
+
+<div align="right">
+**[⬆️ 返回顶部](#top)**
 </div>
+
+---
 
 <a id="学习资料"></a>
 ## 学习资料
@@ -337,14 +346,14 @@
 > 😎 Awesome lists about all kinds of interesting topics
 
 - **Topics:** `awesome` `awesome-list` `unicorns` `lists` `resources`
-- ⭐ 419803 · 🍴 32483 · 📅 最后更新 2025-11-22 · 📦 无 Release
+- ⭐ 419805 · 🍴 32484 · 📅 最后更新 2025-11-22 · 📦 无 Release
 
 #### [OpenListTeam/OpenList](https://github.com/OpenListTeam/OpenList)
 > A new AList Fork to Anti Trust Crisis
 
 - **Topics:** `alist` `aliyunpan` `baidupan` `openlist`
 - **Tags:** `go`
-- ⭐ 18397 · 🍴 1515 · 📅 最后更新 2025-12-03 · 📦 [v4.1.8](https://github.com/OpenListTeam/OpenList/releases/tag/v4.1.8)
+- ⭐ 18398 · 🍴 1515 · 📅 最后更新 2025-12-03 · 📦 [v4.1.8](https://github.com/OpenListTeam/OpenList/releases/tag/v4.1.8)
 
 #### [dr34m-cn/taosync](https://github.com/dr34m-cn/taosync)
 > TaoSync是一个适用于OpenList v3+的自动化同步工具/Sync for OpenList/AList
@@ -364,8 +373,9 @@
 - **Tags:** `dart`
 - ⭐ 380 · 🍴 27 · 📅 最后更新 2025-07-29 · 📦 [v2025.07.292](https://github.com/OpenListApp/OpenListApp/releases/tag/v2025.07.292)
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#学习资料">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#学习资料)
 </div>
 
 </details>
@@ -379,7 +389,7 @@
 
 - **Topics:** `quantitative-finance` `machine-learning` `stock-data` `platform` `finance` `algorithmic-trading` `python` `investment` `quant` `quantitative-trading` `quant-dataset` `quant-models` `auto-quant` `fintech` `research-paper` `paper` `research` `deep-learning`
 - **Tags:** `ml` `python`
-- ⭐ 34265 · 🍴 5326 · 📅 最后更新 2025-11-28 · 📦 [v0.9.7](https://github.com/microsoft/qlib/releases/tag/v0.9.7)
+- ⭐ 34266 · 🍴 5326 · 📅 最后更新 2025-11-28 · 📦 [v0.9.7](https://github.com/microsoft/qlib/releases/tag/v0.9.7)
 
 #### [zyronon/TypeWords](https://github.com/zyronon/TypeWords)
 > 练习英语，一次敲击，一点进步；Practice English, one strike, one step forward
@@ -388,8 +398,9 @@
 - **Tags:** `vue` `web`
 - ⭐ 5837 · 🍴 713 · 📅 最后更新 2025-12-03 · 📦 无 Release
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#学习资料">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#学习资料)
 </div>
 
 </details>
@@ -405,15 +416,92 @@
 - **Tags:** `devops`
 - ⭐ 183006 · 🍴 51254 · 📅 最后更新 2024-08-21 · 📦 无 Release
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#学习资料">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#学习资料)
 </div>
 
 </details>
 
-<div style="text-align: center; padding: 20px 0; border-top: 1px dashed #ddd;">
-<a href="#top">📋 返回目录</a>
+
+<div align="right">
+**[⬆️ 返回顶部](#top)**
 </div>
+
+---
+
+<a id="影音娱乐"></a>
+## 影音娱乐
+
+<a id="音乐随身听"></a>
+<details>
+<summary>🔽 音乐随身听 (3项)</summary>
+
+#### [lyswhut/lx-music-desktop](https://github.com/lyswhut/lx-music-desktop)
+> 一个基于 electron 的音乐软件
+
+- **Topics:** `music-player` `javascript` `electron` `vue`
+- **Tags:** `typescript` `web`
+- ⭐ 47460 · 🍴 6519 · 📅 最后更新 2025-11-29 · 📦 [v2.12.0](https://github.com/lyswhut/lx-music-desktop/releases/tag/v2.12.0)
+
+#### [MoeKoeMusic/MoeKoeMusic](https://github.com/MoeKoeMusic/MoeKoeMusic)
+> 一款开源简洁高颜值的酷狗第三方客户端 An open-source, concise, and aesthetically pleasing third-party client for KuGou that supports  Windows / macOS / Linux / Web :electron:
+
+- **Topics:** `kugou` `music` `javascript` `linux` `macos` `vue3` `windows`
+- **Tags:** `cli` `devops` `vue` `web`
+- ⭐ 4293 · 🍴 271 · 📅 最后更新 2025-12-03 · 📦 [v1.5.3](https://github.com/MoeKoeMusic/MoeKoeMusic/releases/tag/v1.5.3)
+
+#### [timeshiftsauce/CeruMusic](https://github.com/timeshiftsauce/CeruMusic)
+> Ceru Music 是基于 Electron 和 Vue 开发的跨平台桌面音乐播放器工具，借鉴洛雪音乐插件思想，提供插件运行框架与播放功能，不直接存储、提供任何音乐源文件。用户需通过自行选择、安装合规插件获取音乐相关数据，项目旨在为开发者提供桌面应用技术实践与学习案例，为用户提供合规的音乐播放工具框架。
+
+- **Tags:** `vue` `web`
+- ⭐ 509 · 🍴 23 · 📅 最后更新 2025-11-30 · 📦 [v1.5.1](https://github.com/timeshiftsauce/CeruMusic/releases/tag/v1.5.1)
+
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#影音娱乐)
+</div>
+
+</details>
+
+<a id="追番神器"></a>
+<details>
+<summary>🔽 追番神器 (3项)</summary>
+
+#### [yaobiao131/downkyicore](https://github.com/yaobiao131/downkyicore)
+> 哔哩下载姬(跨平台版)downkyi，哔哩哔哩网站视频下载工具，支持批量下载，支持8K、HDR、杜比视界，提供工具箱（音视频提取、去水印等）。
+
+- **Topics:** `bilibili` `avalonia`
+- **Tags:** `c#`
+- ⭐ 5674 · 🍴 411 · 📅 最后更新 2025-12-02 · 📦 [v1.0.23](https://github.com/yaobiao131/downkyicore/releases/tag/v1.0.23)
+
+#### [btjawa/BiliTools](https://github.com/btjawa/BiliTools)
+> A cross-platform bilibili toolbox. 跨平台哔哩哔哩工具箱，支持下载视频、番剧等等各类资源
+
+- **Topics:** `bilibili` `rust` `typescript` `tauri-app` `vue` `download`
+- **Tags:** `rust` `web`
+- ⭐ 4184 · 🍴 278 · 📅 最后更新 2025-11-18 · 📦 [v1.4.6](https://github.com/btjawa/BiliTools/releases/tag/v1.4.6)
+
+#### [lanyeeee/bilibili-video-downloader](https://github.com/lanyeeee/bilibili-video-downloader)
+> 哔哩哔哩 bilibili B站 视频 下载器，图形界面 + nfo刮削 + 广告标记 + 字幕下载 + 弹幕下载，轻松将视频加入emby等媒体库
+
+- **Topics:** `bilibili` `download` `downloader` `gui` `naive-ui` `rust` `tauri` `tauri-app` `vue`
+- **Tags:** `rust` `web`
+- ⭐ 689 · 🍴 28 · 📅 最后更新 2025-12-02 · 📦 [v0.1.1](https://github.com/lanyeeee/bilibili-video-downloader/releases/tag/v0.1.1)
+
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#影音娱乐)
+</div>
+
+</details>
+
+
+<div align="right">
+**[⬆️ 返回顶部](#top)**
+</div>
+
+---
 
 <a id="其他"></a>
 ## 其他
@@ -489,8 +577,9 @@
 - **Tags:** `javascript` `web`
 - ⭐ 370 · 🍴 13 · 📅 最后更新 2025-12-02 · 📦 [v2.3.22](https://github.com/qingmeng1/bilijump-ai/releases/tag/v2.3.22)
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#其他">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#其他)
 </div>
 
 </details>
@@ -547,8 +636,9 @@
 - **Tags:** `python`
 - ⭐ 105 · 🍴 10 · 📅 最后更新 2025-08-10 · 📦 无 Release
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#其他">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#其他)
 </div>
 
 </details>
@@ -603,8 +693,9 @@
 - **Tags:** `typescript` `web`
 - ⭐ 31 · 🍴 3 · 📅 最后更新 2025-07-24 · 📦 无 Release
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#其他">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#其他)
 </div>
 
 </details>
@@ -639,8 +730,9 @@
 
 - ⭐ 86 · 🍴 17 · 📅 最后更新 2025-10-08 · 📦 无 Release
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#其他">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#其他)
 </div>
 
 </details>
@@ -684,8 +776,9 @@
 - **Tags:** `dart`
 - ⭐ 999 · 🍴 44 · 📅 最后更新 2025-12-03 · 📦 [v1.7.12](https://github.com/MCDFsteve/NipaPlay-Reload/releases/tag/v1.7.12)
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#其他">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#其他)
 </div>
 
 </details>
@@ -712,7 +805,7 @@
 > ZyperWin++是一个轻便的Windows优化工具，适用于Win7-Win11最新版的优化，包括性能优化、服务项优化、垃圾清理等操作，还支持系统激活和Office快速安装。
 
 - **Tags:** `c#`
-- ⭐ 5418 · 🍴 301 · 📅 最后更新 2025-10-07 · 📦 [v4.1](https://github.com/ZyperWave/ZyperWinOptimize/releases/tag/v4.1)
+- ⭐ 5419 · 🍴 301 · 📅 最后更新 2025-10-07 · 📦 [v4.1](https://github.com/ZyperWave/ZyperWinOptimize/releases/tag/v4.1)
 
 #### [PrelinaMontelli/Edge-Monitor](https://github.com/PrelinaMontelli/Edge-Monitor)
 > 一个监控并弄死异常Edge的程序
@@ -720,8 +813,9 @@
 - **Tags:** `c#`
 - ⭐ 788 · 🍴 21 · 📅 最后更新 2025-08-26 · 📦 [EdgeMonitor-v1.3.3](https://github.com/PrelinaMontelli/Edge-Monitor/releases/tag/EdgeMonitor-v1.3.3)
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#其他">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#其他)
 </div>
 
 </details>
@@ -734,7 +828,7 @@
 > Legado 3.0 Book Reader with powerful controls & full functions❤️阅读3.0, 阅读是一款可以自定义来源阅读网络内容的工具，为广大网络文学爱好者提供一种方便、快捷舒适的试读体验。
 
 - **Tags:** `kotlin`
-- ⭐ 42089 · 🍴 4744 · 📅 最后更新 2025-12-03 · 📦 [3.25](https://github.com/gedoor/legado/releases/tag/3.25)
+- ⭐ 42090 · 🍴 4744 · 📅 最后更新 2025-12-03 · 📦 [3.25](https://github.com/gedoor/legado/releases/tag/3.25)
 
 #### [JunkFood02/Seal](https://github.com/JunkFood02/Seal)
 > 🦭 Video/Audio Downloader for Android, based on yt-dlp
@@ -756,8 +850,9 @@
 - **Tags:** `kotlin`
 - ⭐ 467 · 🍴 13 · 📅 最后更新 2025-07-26 · 📦 [v1.3.4](https://github.com/laqoome/LaQoo/releases/tag/v1.3.4)
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#其他">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#其他)
 </div>
 
 </details>
@@ -786,8 +881,9 @@
 - **Tags:** `java`
 - ⭐ 547 · 🍴 169 · 📅 最后更新 2025-11-30 · 📦 [v25.2](https://github.com/wgzhao/dbeaver-agent/releases/tag/v25.2)
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#其他">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#其他)
 </div>
 
 </details>
@@ -814,8 +910,9 @@
 - **Tags:** `c++`
 - ⭐ 1850 · 🍴 41 · 📅 最后更新 2025-11-28 · 📦 无 Release
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#其他">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#其他)
 </div>
 
 </details>
@@ -831,8 +928,9 @@
 - **Tags:** `html` `ml`
 - ⭐ 7611 · 🍴 8000 · 📅 最后更新 2025-12-03 · 📦 无 Release
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#其他">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#其他)
 </div>
 
 </details>
@@ -847,8 +945,9 @@
 - **Tags:** `autohotkey`
 - ⭐ 577 · 🍴 26 · 📅 最后更新 2025-06-24 · 📦 [2.7.3](https://github.com/tranht17/WinTune/releases/tag/2.7.3)
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#其他">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#其他)
 </div>
 
 </details>
@@ -864,8 +963,9 @@
 - **Tags:** `go`
 - ⭐ 12330 · 🍴 1510 · 📅 最后更新 2025-11-30 · 📦 [3.1.2](https://github.com/putyy/res-downloader/releases/tag/3.1.2)
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#其他">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#其他)
 </div>
 
 </details>
@@ -881,8 +981,9 @@
 - **Tags:** `vue` `web`
 - ⭐ 13064 · 🍴 1080 · 📅 最后更新 2025-11-08 · 📦 [v4.9.0](https://github.com/algerkong/AlgerMusicPlayer/releases/tag/v4.9.0)
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#其他">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#其他)
 </div>
 
 </details>
@@ -898,8 +999,9 @@
 - **Tags:** `css`
 - ⭐ 221 · 🍴 11 · 📅 最后更新 2025-11-27 · 📦 [v1.11.7](https://github.com/caolib/typora-onelight-theme/releases/tag/v1.11.7)
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#其他">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#其他)
 </div>
 
 </details>
@@ -915,13 +1017,17 @@
 - **Tags:** `scss`
 - ⭐ 5544 · 🍴 325 · 📅 最后更新 2025-11-28 · 📦 [v0.3.3](https://github.com/Keldos-Li/typora-latex-theme/releases/tag/v0.3.3)
 
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#其他">⬆️ 返回分类</a>
+
+<div align="right">
+[⬆️ 返回顶部](#top) | [⬆️ 返回分类](#其他)
 </div>
 
 </details>
 
-<div style="text-align: center; padding: 20px 0; border-top: 1px dashed #ddd;">
-<a href="#top">📋 返回目录</a>
+
+<div align="right">
+**[⬆️ 返回顶部](#top)**
 </div>
+
+---
 

@@ -1,0 +1,33 @@
+{
+  "total": 90,
+  "updated_at": "2025-12-04",
+  "by_category": {
+    "AI": 6,
+    "Web 开发": 7,
+    "DevOps & 工具": 4,
+    "脚本自动化": 5,
+    "学习资料": 8,
+    "影音娱乐": 6,
+    "其他": 54
+  },
+  "by_language": {
+    "Python": 15,
+    "TypeScript": 12,
+    "JavaScript": 11,
+    "Unknown": 8,
+    "C#": 6,
+    "Dart": 6,
+    "Vue": 6,
+    "Java": 5,
+    "Kotlin": 5,
+    "C++": 5,
+    "Go": 2,
+    "Rust": 2,
+    "Jupyter Notebook": 2,
+    "HTML": 1,
+    "C": 1,
+    "AutoHotkey": 1,
+    "CSS": 1,
+    "SCSS": 1
+  }
+}
