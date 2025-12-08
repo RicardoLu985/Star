@@ -29,7 +29,7 @@ MANUAL_TOKEN = ""
 
 OUTPUT_MD = "starred.md"
 OUTPUT_HTML = "docs/index.html"
-OVERRIDES_PATH = "../overrides.json"
+OVERRIDES_PATH = "overrides.json"
 OVERRIDES_TEMPLATE = "overrides_template.json"
 STATS_JSON = "stats.json"
 GITHUB_API_ACCEPT = "application/vnd.github.mercy-preview+json"
@@ -476,7 +476,7 @@ def generate_markdown(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], r
 def generate_html(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], repos: List[Dict[str, Any]], rename_map: Dict[str, str], category_emoji: Dict[str, str], custom_description: Dict[str, str]) -> None:
     """生成HTML文档 - 支持自定义名字、emoji、描述"""
     now = datetime.now().strftime("%Y-%m-%d")
-    ensure_dir("../docs")
+    ensure_dir("docs")
 
     # 获取动态分类配置
     category_order, category_icons, _ = get_dynamic_categories()
