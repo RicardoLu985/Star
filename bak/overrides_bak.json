@@ -1,0 +1,30 @@
+{
+  "repos": {
+    "jiji262/douyin-downloader": {
+      "group": "DevOps & 工具",
+      "sub": "效率工具"
+    },
+    "yaobiao131/downkyicore": {
+      "group": "影音娱乐",
+      "sub": "追番神器"
+    },
+    "btjawa/BiliTools": {
+      "group": "影音娱乐",
+      "sub": "追番神器"
+    },
+    "lanyeeee/bilibili-video-downloader": {
+      "group": "影音娱乐",
+      "sub": "追番神器"
+    },
+    "lyswhut/lx-music-desktop": {
+      "group": "影音娱乐",
+      "sub": "音乐随身听" },
+    "MoeKoeMusic/MoeKoeMusic": {
+      "group": "影音娱乐",
+      "sub": "音乐随身听" },
+    "timeshiftsauce/CeruMusic": {
+      "group": "影音娱乐",
+      "sub": "音乐随身听"
+    }
+  }
+}

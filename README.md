@@ -15,7 +15,7 @@ An intelligent organizer for your GitHub starred repositories — zero manual ma
 
 ## ✨ 核心特性
 
-- 每日自动拉取所有 Starred 仓库（含私有）
+- 每周五自动拉取所有 Starred 仓库（含私有）
 - 语义聚类（OpenAI 或本地 Sentence Transformer）
 - 自动归档长时间不活跃项目
 - 生成 `starred.md` + 超美观的交互式 HTML 页面（Notion 风格卡片）
