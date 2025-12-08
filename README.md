@@ -1,73 +1,109 @@
-谨以此来纪念我那小而不成熟的学习之旅。
-仅限个人学习使用，不负责任何法律责任。
-To commemorate my humble and budding learning journey.
-For personal educational use only. No legal liability assumed.
+# Star ✨
 
-# 我的 GitHub Star 仓库 ⭐
+[![GitHub stars](https://img.shields.io/github/stars/RicardoLu985/Star?style=social](https://github.com/RicardoLu985/Star/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/RicardoLu985/Star?style=social](https://github.com/RicardoLu985/Star/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/RicardoLu985/Star](https://github.com/RicardoLu985/Star/issues)
+[![GitHub license](https://img.shields.io/github/license/RicardoLu985/Star](https://github.com/RicardoLu985/Star/blob/main/LICENSE)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue](https://www.python.org/downloads/)
 
-本仓库用于记录和展示我收藏的 GitHub Star 仓库，自动化生成并智能分类（语义聚类 + Embeddings）。  
-每个项目带有：最新 Release / 语言 / License / Star 数 / 最后活跃时间。
+[![Update Stars](https://github.com/RicardoLu985/Star/actions/workflows/update_stars.yml/badge.svg)](https://github.com/RicardoLu985/Star/actions/workflows/update_stars.yml)
 
----
+**个人 GitHub Starred 仓库智能整理工具**  
+自动拉取 → 语义聚类 → 生成美观 Markdown + Notion 风可视化页面，每天自动更新，彻底解放你的 Star 列表！
 
-## 🔹 自动更新
+An intelligent organizer for your GitHub starred repositories — zero manual maintenance, updated daily!
 
-- 使用 GitHub Actions 每天自动拉取 Star 列表并更新 Markdown / HTML 页面
-- 支持手动触发 Actions
-- 自动归档长期不活跃仓库（默认 360 天未更新）
-- Markdown 文件：[`starred.md`](./starred.md)
-- 可视化页面：GitHub Pages (`docs/index.html`)
+**在线预览 / Live Demo** → [https://ricardolu985/Star/](https://github.com/RicardoLu985/Star/blob/main/starred.md)
 
----
+## ✨ 核心特性
 
-## 🔹 快捷访问 GitHub Pages
+- 每日自动拉取所有 Starred 仓库（含私有）
+- 语义聚类（OpenAI 或本地 Sentence Transformer）
+- 自动归档长时间不活跃项目
+- 生成 `starred.md` + 超美观的交互式 HTML 页面（Notion 风格卡片）
+- 支持 **overrides.json** 手动干预：改分类、改名字、隐藏仓库、强制归入某类
+- 完全 GitHub Actions 驱动，零本地运行
+- 星标数星级可视化、最新 Release、语言、许可证、最后活跃时间一目了然
 
-点击下面按钮直接访问可视化页面（Notion 风格卡片展示）：
+## 🖼️ 效果截图
 
-[![Open Pages](https://img.shields.io/badge/Open-Pages-blue?style=for-the-badge&logo=github)](https://RicardoLu985.github.io/Star/)
+![demo](https://ricardolu985/Star/assets/demo.png)
 
-> ⚠️ 注意：GitHub Pages 默认指向 `docs/index.html`，请确保 Pages 设置选择 `main` 分支下的 `/docs` 文件夹。
+## 🚀 一键部署到你自己的账号
 
----
+1. Fork 本仓库
+2. Settings → Secrets and variables → Actions 添加以下 Secrets：
 
-## 🔹 使用说明
+| Secret 名              | 必填 | 说明                                      |
+| ---------------------- | ---- | ----------------------------------------- |
+| `GH_PAT`               | 是   | 具有 `repo`+`workflow` 权限的 PAT         |
+| `STAR_TOKEN`           | 是   | 读取 Starred 列表的 Token（可与上面共用） |
+| `OPENAI_API_KEY`       | 否   | 更精准聚类（推荐）                        |
+| `USE_SENT_TRANSFORMER` | 否   | 设为 `true` 使用本地模型（无需 OpenAI）   |
 
-1. **更新 Star**
-    - 修改或添加 GitHub Secrets：
-        - `GH_PAT` → 自动推送更新
-        - `STAR_TOKEN` → 访问 Star 列表
-        - `OPENAI_API_KEY` → (可选) 更智能的语义聚类
-        - `USE_SENT_TRANSFORMER` → (可选) 本地 embeddings fallback
-2. **触发 Actions**
-    - 自动：每天 UTC 2 点
-    - 手动：仓库 → Actions → `Update Starred (Semantic)` → Run workflow
-3. **查看 Markdown / 页面**
-    - [`starred.md`](./starred.md) → Markdown 查看
-    - [GitHub Pages](https://RicardoLu985.github.io/Star/) → 可视化卡片
+3. 手动跑一次 Actions → 几分钟后自动生成所有文件
+4. 开启 GitHub Pages（Source 选 `gh-pages` 分支的 `/docs` 文件夹）
 
----
+## 🛠️ 重要文件说明
 
-## 🔹 输出文件
+Star/ 
 
-| 文件/目录 | 用途 |
-|-----------|------|
-| `starred.md` | 自动生成 Markdown，按语义分类展示 |
-| `docs/index.html` | 可视化 Notion 风格页面（GitHub Pages） |
-| `star_template.md` | Markdown 模板文件 |
-| `update_starred_semantic.py` | 拉取 Star + 聚类 + 输出的主脚本 |
-| `.github/workflows/update_stars.yml` | Actions 自动更新 workflow |
-| `config.json` | 配置文件，控制聚类、归档、输出路径等 |
+├── starred.md                  # 自动生成的 Markdown 报告 
 
----
+├── docs/index.html             # Notion 风格可视化页面 
 
-## 🔹 页面示例
+├── update_starred_semantic.py  # 核心脚本 
 
-- 每个项目显示：
-    - 仓库名（点击跳转）
-    - 描述
-    - Star 数 / 自动星级
-    - 最新 Release（如有）
-    - 语言 / License
-    - 最后活跃时间
+├── config.json                 # 全局配置（聚类数量、归档天数等） 
 
-> 所有内容均由脚本自动生成，无需手动维护。
+├── overrides.json              # ⭐ 手动自定义规则（最高优先级） 
+
+├── star_template.md            # Markdown 模板 
+
+└── .github/workflows/update_stars.yml
+
+### overrides.json —— 你的“分类遥控器”（最强大功能）
+
+即使 AI 聚类再聪明，也总有几个项目想自己说了算。  
+`overrides.json` 会**完全覆盖**自动聚类的结果，支持以下操作：
+
+```json
+{
+  "repos": {
+     "btjawa/BiliTools": { "group": "影音娱乐", "sub": "追番神器" }
+  }
+}
+```
+
+只要改这个文件，下次 Actions 运行时就会立刻生效，无需改任何代码！
+
+⚙️ config.json 部分可配置项
+
+{
+  "max_clusters": 20,
+  "min_cluster_size": 3,
+  "archive_days": 360,
+  "max_repos_per_cluster": 50,
+  "use_openai": true
+}
+
+🤝 贡献
+
+欢迎 PR！聚类优化、UI 美化、新功能都非常欢迎～
+
+## 📄 许可证
+
+[MIT License](https://github.com/RicardoLu985/Star/blob/main/LICENSE) © 2025 RicardoLu
+
+## 🙌 致谢
+
+- GitHub API
+- OpenAI & Sentence Transformers
+- 所有被 Star 的优秀项目作者
+- 所有的开源AI
+
+如果这个工具让你重新爱上自己的 Star 列表，麻烦顺手点个 Star 鼓励一下作者呀 ✨
+
+------
+
+Made with ❤️ by [RicardoLu](https://github.com/RicardoLu985)
