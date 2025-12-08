@@ -1,19 +1,17 @@
 # Star ✨
 
-[![GitHub stars](https://img.shields.io/github/stars/RicardoLu985/Star?style=social](https://github.com/RicardoLu985/Star/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/RicardoLu985/Star?style=social](https://github.com/RicardoLu985/Star/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/RicardoLu985/Star](https://github.com/RicardoLu985/Star/issues)
-[![GitHub license](https://img.shields.io/github/license/RicardoLu985/Star](https://github.com/RicardoLu985/Star/blob/main/LICENSE)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue](https://www.python.org/downloads/)
-
-[![Update Stars](https://github.com/RicardoLu985/Star/actions/workflows/update_stars.yml/badge.svg)](https://github.com/RicardoLu985/Star/actions/workflows/update_stars.yml)
+[![GitHub stars](https://img.shields.io/github/stars/RicardoLu985/Star?style=social)](https://github.com/RicardoLu985/Star/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/RicardoLu985/Star?style=social)](https://github.com/RicardoLu985/Star/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/RicardoLu985/Star)](https://github.com/RicardoLu985/Star/issues)
+[![GitHub license](https://img.shields.io/github/license/RicardoLu985/Star)](https://github.com/RicardoLu985/Star/blob/main/LICENSE)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
 
 **个人 GitHub Starred 仓库智能整理工具**  
 自动拉取 → 语义聚类 → 生成美观 Markdown + Notion 风可视化页面，每天自动更新，彻底解放你的 Star 列表！
 
 An intelligent organizer for your GitHub starred repositories — zero manual maintenance, updated daily!
 
-**在线预览 / Live Demo** → [https://ricardolu985/Star/](https://github.com/RicardoLu985/Star/blob/main/starred.md)
+**在线预览 / Live Demo** → [https://github.com/RicardoLu985/Star/blob/main/starred.md](https://github.com/RicardoLu985/Star/blob/main/starred.md)
 
 ## ✨ 核心特性
 
@@ -27,7 +25,8 @@ An intelligent organizer for your GitHub starred repositories — zero manual ma
 
 ## 🖼️ 效果截图
 
-![demo](https://ricardolu985/Star/assets/demo.png)
+![demo](https://github.com/RicardoLu985/Star/blob/main/assets/demo.png)
+![html](https://github.com/RicardoLu985/Star/blob/main/assets/html.png)
 
 ## 🚀 一键部署到你自己的账号
 
@@ -71,6 +70,7 @@ Star/
 {
   "repos": {
      "btjawa/BiliTools": { "group": "影音娱乐", "sub": "追番神器" }
+//    "用户名/仓库名"：{"group": "分组名", "sub": "子分组名"}
   }
 }
 ```

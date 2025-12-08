@@ -5,7 +5,7 @@ on:
     branches: ["main"]
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * 5"  # 每天 UTC 时间 00:00 运行一次。你可以根据需要调整 cron 表达式，例如 "0 0 * * 0" 表示每周日运行。
+    - cron: "0 0 * * 5"  # 每周五 UTC 时间 00:00 运行一次。你可以根据需要调整 cron 表达式，例如 "0 0 * * 0" 表示每周日运行。
 permissions:
   contents: write  # 允许 workflow push 文件到仓库
 
