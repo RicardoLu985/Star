@@ -744,6 +744,31 @@ def dump_stats_json(repos: List[Dict[str, Any]], categorized: Dict[str, Dict[str
         json.dump(data, f, ensure_ascii=False, indent=2)
     log.info(f"stats.json 已导出")
 
+def write_overrides_template(repos, path="overrides_template.json"):
+    """
+    将 overrides_template.json 写入磁盘。
+    仅包含用户未覆盖的仓库名称，方便手动分类。
+    """
+    template = {
+        "repos": {},
+        "rename_repo": {},
+        "category_emoji": {},
+        "custom_description": {}
+    }
+
+    # 生成最基础的条目：每个 repo 放进 repos{} 作为可填写项
+    for r in repos:
+        full = r["full_name"]
+        template["repos"][full] = {
+            "group": "",
+            "sub": ""
+        }
+
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(template, f, indent=4, ensure_ascii=False)
+
+    log.info(f"overrides_template.json 已生成")
+
 # ======================= 主函数 =======================
 def main() -> None:
     """主函数"""
@@ -766,19 +791,18 @@ def main() -> None:
     rename_map = overrides.get("rename_repo", {})
     category_emoji = overrides.get("category_emoji", {})
     custom_description = overrides.get("custom_description", {})
-
     categorized = categorize_repos_mixed(repos, repo_overrides)
-
     generate_markdown(categorized, repos, rename_map, category_emoji, custom_description)
     generate_html(categorized, repos, rename_map, category_emoji, custom_description)
     dump_stats_json(repos, categorized)
+    write_overrides_template(repos)
 
-    if not os.path.exists(OVERRIDES_PATH):
-        top30 = sorted(repos, key=lambda x: x.get("stargazers_count", 0), reverse=True)[:30]
-        template = {r["full_name"]: {"group": "", "sub": ""} for r in top30}
-        with open(OVERRIDES_TEMPLATE, "w", encoding="utf-8") as f:
-            json.dump({"repos": template}, f, ensure_ascii=False, indent=2)
-        log.info(f"已生成 overrides_template.json")
+    # if not os.path.exists(OVERRIDES_PATH):
+    #     top30 = sorted(repos, key=lambda x: x.get("stargazers_count", 0), reverse=True)[:30]
+    #     template = {r["full_name"]: {"group": "", "sub": ""} for r in top30}
+    #     with open(OVERRIDES_TEMPLATE, "w", encoding="utf-8") as f:
+    #         json.dump({"repos": template}, f, ensure_ascii=False, indent=2)
+    #     log.info(f"已生成 overrides_template.json")
 
     log.info("🎉 所有任务完成！双输出完美就绪！")
 

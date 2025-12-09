@@ -1,19 +1,19 @@
 {
-  "total": 93,
-  "updated_at": "2025-12-08",
+  "total": 95,
+  "updated_at": "2025-12-09",
   "by_category": {
-    "AI": 6,
+    "AI": 7,
     "Web 开发": 13,
     "DevOps & 工具": 4,
     "脚本自动化": 5,
-    "学习资料": 8,
+    "学习资料": 9,
     "影音娱乐": 3,
     "其他": 54
   },
   "by_language": {
-    "Python": 16,
+    "Python": 17,
     "TypeScript": 13,
-    "JavaScript": 11,
+    "JavaScript": 12,
     "Unknown": 8,
     "Vue": 7,
     "C#": 6,
