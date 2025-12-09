@@ -149,7 +149,7 @@
 > 一个基于 Vue 3 + Express 的网盘资源搜索与转存工具。
 
 - **Tags:** `vue` `web`
-- ⭐ 8062 · 🍴 682 · 📅 最后更新 2025-10-10 · 📦 无 Release
+- ⭐ 8063 · 🍴 682 · 📅 最后更新 2025-10-10 · 📦 无 Release
 
 #### [MoeKoeMusic/MoeKoeMusic](https://github.com/MoeKoeMusic/MoeKoeMusic)
 > 一款开源简洁高颜值的酷狗第三方客户端 An open-source, concise, and aesthetically pleasing third-party client for KuGou that supports  Windows / macOS / Linux / Web :electron:
@@ -307,7 +307,7 @@
 
 - **Topics:** `dbms` `olap` `analytics` `sql` `big-data` `mpp` `clickhouse` `hacktoberfest` `cpp` `rust` `ai` `cloud-native` `database` `distributed` `embedded` `lakehouse` `self-hosted`
 - **Tags:** `c++` `cli`
-- ⭐ 44559 · 🍴 7887 · 📅 最后更新 2025-12-09 · 📦 [v25.11.2.24-stable](https://github.com/ClickHouse/ClickHouse/releases/tag/v25.11.2.24-stable)
+- ⭐ 44560 · 🍴 7887 · 📅 最后更新 2025-12-09 · 📦 [v25.11.2.24-stable](https://github.com/ClickHouse/ClickHouse/releases/tag/v25.11.2.24-stable)
 
 #### [freeok/so-novel](https://github.com/freeok/so-novel)
 > 小说下载｜网文下载 \| 网络小说
@@ -356,21 +356,21 @@
 > 😎 Awesome lists about all kinds of interesting topics
 
 - **Topics:** `awesome` `awesome-list` `unicorns` `lists` `resources`
-- ⭐ 421191 · 🍴 32547 · 📅 最后更新 2025-11-22 · 📦 无 Release
+- ⭐ 421192 · 🍴 32547 · 📅 最后更新 2025-11-22 · 📦 无 Release
 
 #### [FortAwesome/Font-Awesome](https://github.com/FortAwesome/Font-Awesome)
 > The iconic SVG, font, and CSS toolkit
 
 - **Topics:** `fontawesome` `icons` `webfont` `font` `css` `svg-icons` `svg-sprites`
 - **Tags:** `javascript` `web`
-- ⭐ 75993 · 🍴 12216 · 📅 最后更新 2025-12-08 · 📦 [7.1.0](https://github.com/FortAwesome/Font-Awesome/releases/tag/7.1.0)
+- ⭐ 75994 · 🍴 12216 · 📅 最后更新 2025-12-08 · 📦 [7.1.0](https://github.com/FortAwesome/Font-Awesome/releases/tag/7.1.0)
 
 #### [OpenListTeam/OpenList](https://github.com/OpenListTeam/OpenList)
 > A new AList Fork to Anti Trust Crisis
 
 - **Topics:** `alist` `aliyunpan` `baidupan` `openlist`
 - **Tags:** `go`
-- ⭐ 18635 · 🍴 1534 · 📅 最后更新 2025-12-09 · 📦 [v4.1.8](https://github.com/OpenListTeam/OpenList/releases/tag/v4.1.8)
+- ⭐ 18636 · 🍴 1534 · 📅 最后更新 2025-12-09 · 📦 [v4.1.8](https://github.com/OpenListTeam/OpenList/releases/tag/v4.1.8)
 
 #### [dr34m-cn/taosync](https://github.com/dr34m-cn/taosync)
 > TaoSync是一个适用于OpenList v3+的自动化同步工具/Sync for OpenList/AList
@@ -412,7 +412,7 @@
 
 - **Topics:** `learn-english` `memorizing-words` `typing-practice` `typingspeedtest` `english-learn` `type-words`
 - **Tags:** `vue` `web`
-- ⭐ 6022 · 🍴 734 · 📅 最后更新 2025-12-05 · 📦 无 Release
+- ⭐ 6023 · 🍴 734 · 📅 最后更新 2025-12-05 · 📦 无 Release
 
 <div style="text-align: right;">
 <a href="#top">⬆️ 返回顶部</a> | <a href="#学习资料">⬆️ 返回分类</a>
@@ -716,7 +716,7 @@
 
 - **Topics:** `android` `cross-platform` `danmaku` `flutter` `windows` `ios` `linux-desktop` `macos`
 - **Tags:** `dart`
-- ⭐ 18337 · 🍴 526 · 📅 最后更新 2025-12-05 · 📦 [1.9.2](https://github.com/Predidit/Kazumi/releases/tag/1.9.2)
+- ⭐ 18338 · 🍴 526 · 📅 最后更新 2025-12-05 · 📦 [1.9.2](https://github.com/Predidit/Kazumi/releases/tag/1.9.2)
 
 #### [venera-app/venera](https://github.com/venera-app/venera)
 > A comic app
@@ -767,7 +767,7 @@
 > ZyperWin++是一个轻便的Windows优化工具，适用于Win7-Win11最新版的优化，包括性能优化、服务项优化、垃圾清理等操作，还支持系统激活和Office快速安装。
 
 - **Tags:** `c#`
-- ⭐ 5602 · 🍴 313 · 📅 最后更新 2025-10-07 · 📦 [v4.1](https://github.com/ZyperWave/ZyperWinOptimize/releases/tag/v4.1)
+- ⭐ 5603 · 🍴 313 · 📅 最后更新 2025-10-07 · 📦 [v4.1](https://github.com/ZyperWave/ZyperWinOptimize/releases/tag/v4.1)
 
 #### [PrelinaMontelli/Edge-Monitor](https://github.com/PrelinaMontelli/Edge-Monitor)
 > 一个监控并弄死异常Edge的程序
@@ -789,7 +789,7 @@
 > Legado 3.0 Book Reader with powerful controls & full functions❤️阅读3.0, 阅读是一款可以自定义来源阅读网络内容的工具，为广大网络文学爱好者提供一种方便、快捷舒适的试读体验。
 
 - **Tags:** `kotlin`
-- ⭐ 42214 · 🍴 4750 · 📅 最后更新 2025-12-06 · 📦 [3.25](https://github.com/gedoor/legado/releases/tag/3.25)
+- ⭐ 42215 · 🍴 4750 · 📅 最后更新 2025-12-06 · 📦 [3.25](https://github.com/gedoor/legado/releases/tag/3.25)
 
 #### [JunkFood02/Seal](https://github.com/JunkFood02/Seal)
 > 🦭 Video/Audio Downloader for Android, based on yt-dlp
