@@ -73,12 +73,12 @@ An intelligent organizer for your GitHub starred repositories — zero manual ma
 
 支持：
 
-| 字段               | 作用                 |
-| ------------------ | -------------------- |
-| repos              | 指定分组 group / sub |
-| rename_repo        | 自定义显示名称       |
-| category_emoji     | Group 标题前 emoji   |
-| custom_description | 替换 Markdown 描述   |
+| 字段               | 作用                 | 示例                                                         |
+| ------------------ | -------------------- | ------------------------------------------------------------ |
+| repos              | 指定分组 group / sub | "jiji262/douyin-downloader": {"group": "DevOps & 工具", "sub": "效率工具"} |
+| rename_repo        | 自定义显示名称       | "jiji262/douyin-downloader": "音符下载神器"                  |
+| category_emoji     | Group 标题前 emoji   | "DevOps & 工具": "🔧"                                         |
+| custom_description | 替换 Markdown 描述   | "jiji262/douyin-downloader": "抖音视频下载神器"              |
 
 并且会自动生成一个 `overrides_template.json` 方便新用户填写。
 
@@ -182,15 +182,6 @@ python update_starred_semantic.py
   }
 }
 ```
-
-### 配置说明
-
-| 字段                 | 说明               | 示例                                                         |
-| -------------------- | ------------------ | ------------------------------------------------------------ |
-| `repos`              | 为特定仓库设置分类 | `"jiji262/douyin-downloader": {"group": "DevOps & 工具", "sub": "效率工具"}` |
-| `rename_repo`        | 重命名仓库显示名称 | `"jiji262/douyin-downloader": "音符下载神器"`                |
-| `category_emoji`     | 为分类添加图标     | `"DevOps & 工具": "🔧"`                                       |
-| `custom_description` | 自定义仓库描述     | `"jiji262/douyin-downloader": "抖音视频下载神器"`            |
 
 ------
 

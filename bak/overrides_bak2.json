@@ -2,9 +2,7 @@
   "repos": {
     "jiji262/douyin-downloader": {
       "group": "DevOps & 工具",
-      "sub": "效率工具",
-      "rename": "音符下载神器",
-      "custom_description": ""
+      "sub": "效率工具"
     },
     "yaobiao131/downkyicore": {
       "group": "影音娱乐",
@@ -14,12 +12,11 @@
       "group": "影音娱乐",
       "sub": "追番神器"
     },
-    "mundane799699/bilibili-history-wxt": {
-      "group": "影音娱乐",
-      "sub": "追番神器",
-      "rename": "B站无限历史记录",
-      "custom_description": "无限历史记录浏览器插件"
-    }
+    "mundane799699/bilibili-history-wxt": { "group": "影音娱乐", "sub": "追番神器" }
+  },
+  "rename_repo": {
+    "mundane799699/bilibili-history-wxt": "B站无限历史记录",
+    "jiji262/douyin-downloader": "音符下载神器"
   },
   "category_emoji": {
     "AI": "🤖",
@@ -28,5 +25,8 @@
     "脚本自动化": "⚙️",
     "学习资料": "📚",
     "其他": "❓"
+  },
+  "custom_description": {
+    "mundane799699/bilibili-history-wxt": "无限历史记录浏览器插件"
   }
 }

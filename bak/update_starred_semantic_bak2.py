@@ -3,7 +3,7 @@
 # update_starred_semantic.py
 # 修改版：修复HTML返回顶部功能，为Markdown添加返回顶部链接
 # 优化版本：提升性能、增强错误处理、改善代码结构
-# 增强版：支持新的配置结构 - 将rename和custom_description整合到repos中，并修复空值回退问题
+# 增强版：支持 rename_repo + category_emoji + custom_description
 
 import os
 import json
@@ -218,10 +218,12 @@ def enrich_repos(session: requests.Session, repos: List[Dict[str, Any]]) -> List
 
 # ======================= Overrides & Tags & 分类 =======================
 def load_overrides() -> Dict[str, Any]:
-    """加载覆盖配置 - 支持新的结构，将rename和custom_description整合到repos中"""
+    """加载覆盖配置 - 增强版，支持 rename_repo, category_emoji, custom_description"""
     defaults = {
         "repos": {},
-        "category_emoji": {}
+        "rename_repo": {},
+        "category_emoji": {},
+        "custom_description": {}
     }
     if not os.path.exists(OVERRIDES_PATH):
         return defaults
@@ -230,7 +232,7 @@ def load_overrides() -> Dict[str, Any]:
             data = json.load(f)
             # 兼容旧格式
             if "repos" not in data and isinstance(data, dict):
-                data = {"repos": data, "category_emoji": {}}
+                data = {"repos": data, "rename_repo": {}, "category_emoji": {}, "custom_description": {}}
             # 补全缺失字段
             for key in defaults:
                 if key not in data:
@@ -323,9 +325,8 @@ def categorize_repos_mixed(repos: List[Dict[str, Any]], overrides: Dict[str, Any
         ])
 
         if full in overrides:
-            override = overrides[full]
-            g = override.get("group") or "其他"
-            s = override.get("sub") or "其他"
+            g = overrides[full].get("group") or "其他"
+            s = overrides[full].get("sub") or "其他"
             tree[g][s].append(repo)
             continue
 
@@ -382,20 +383,9 @@ def make_safe_id(text: str) -> str:
     text = text.strip('-')
     return text
 
-# ======================= 工具函数：处理覆盖值的回退逻辑 =======================
-def get_override_value(repo_full_name: str, overrides: Dict[str, Any], key: str, default_value: str) -> str:
-    """
-    获取覆盖值，如果为空则返回默认值
-    这个函数确保当覆盖值是空字符串时，回退到默认值
-    """
-    override_info = overrides.get(repo_full_name, {})
-    value = override_info.get(key, "")
-    # 如果覆盖值是空字符串或None，则使用默认值
-    return value if value else default_value
-
 # ======================= Markdown 生成 =======================
-def generate_markdown(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], repos: List[Dict[str, Any]], overrides: Dict[str, Any], category_emoji: Dict[str, str]) -> None:
-    """生成Markdown文档 - 支持新的配置结构，修复空值回退问题"""
+def generate_markdown(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], repos: List[Dict[str, Any]], rename_map: Dict[str, str], category_emoji: Dict[str, str], custom_description: Dict[str, str]) -> None:
+    """生成Markdown文档 - 支持自定义名字、emoji、描述"""
     now = datetime.now().strftime("%Y-%m-%d")
     total = len(repos)
     with open(OUTPUT_MD, "w", encoding="utf-8") as f:
@@ -443,15 +433,11 @@ def generate_markdown(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], r
                 for repo in sorted(items, key=lambda x: x.get("stargazers_count", 0), reverse=True):
                     full = repo["full_name"]
                     url = repo["html_url"]
-
-                    # 获取自定义描述，如果为空则使用原始描述
-                    original_desc = repo.get("description") or "无描述"
-                    desc = get_override_value(full, overrides, "custom_description", original_desc)
+                    # 自定义描述优先
+                    desc = custom_description.get(full, repo.get("description") or "无描述")
                     desc = desc.replace("|", "\\|")
-
-                    # 获取自定义名字，如果为空则使用原始名字
-                    display_name = get_override_value(full, overrides, "rename", repo["full_name"])
-
+                    # 自定义名字
+                    display_name = rename_map.get(full, repo["full_name"])
                     stars = repo["stargazers_count"]
                     forks = repo["forks_count"]
                     # 使用 pushed_at 作为代码最后更新时间
@@ -487,8 +473,8 @@ def generate_markdown(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], r
     log.info(f"Markdown 生成完成 → {OUTPUT_MD}")
 
 # ======================= HTML 生成 =======================
-def generate_html(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], repos: List[Dict[str, Any]], overrides: Dict[str, Any], category_emoji: Dict[str, str]) -> None:
-    """生成HTML文档 - 支持新的配置结构，修复空值回退问题"""
+def generate_html(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], repos: List[Dict[str, Any]], rename_map: Dict[str, str], category_emoji: Dict[str, str], custom_description: Dict[str, str]) -> None:
+    """生成HTML文档 - 支持自定义名字、emoji、描述"""
     now = datetime.now().strftime("%Y-%m-%d")
     ensure_dir("docs")
 
@@ -616,15 +602,11 @@ def generate_html(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], repos
             for repo in sorted(items, key=lambda x: x.get("stargazers_count", 0), reverse=True):
                 full = repo["full_name"]
                 url = repo["html_url"]
-
-                # 获取自定义描述，如果为空则使用原始描述
-                original_desc = repo.get("description") or "暂无描述"
-                raw_desc = get_override_value(full, overrides, "custom_description", original_desc)
+                # 自定义描述优先
+                raw_desc = custom_description.get(full, repo.get("description") or "暂无描述")
                 desc = raw_desc.replace('"', '&quot;').replace("'", '&#39;')
-
-                # 获取自定义名字，如果为空则使用原始名字
-                display_name = get_override_value(full, overrides, "rename", repo["full_name"])
-
+                # 自定义名字
+                display_name = rename_map.get(full, repo["full_name"])
                 # 使用 pushed_at 作为代码最后更新时间
                 last_updated = short_date(repo.get("pushed_at"))
                 html += f'''
@@ -765,11 +747,13 @@ def dump_stats_json(repos: List[Dict[str, Any]], categorized: Dict[str, Dict[str
 def write_overrides_template(repos, path="overrides_template.json"):
     """
     将 overrides_template.json 写入磁盘。
-    使用新的结构，将所有配置项整合到repos中。
+    仅包含用户未覆盖的仓库名称，方便手动分类。
     """
     template = {
         "repos": {},
-        "category_emoji": {}
+        "rename_repo": {},
+        "category_emoji": {},
+        "custom_description": {}
     }
 
     # 生成最基础的条目：每个 repo 放进 repos{} 作为可填写项
@@ -777,9 +761,7 @@ def write_overrides_template(repos, path="overrides_template.json"):
         full = r["full_name"]
         template["repos"][full] = {
             "group": "",
-            "sub": "",
-            "rename": "",
-            "custom_description": ""
+            "sub": ""
         }
 
     with open(path, "w", encoding="utf-8") as f:
@@ -804,14 +786,23 @@ def main() -> None:
     repos = enrich_repos(session, repos)
 
     # 加载增强版 overrides
-    overrides_data = load_overrides()
-    repo_overrides = overrides_data.get("repos", {})
-    category_emoji = overrides_data.get("category_emoji", {})
+    overrides = load_overrides()
+    repo_overrides = overrides.get("repos", {})
+    rename_map = overrides.get("rename_repo", {})
+    category_emoji = overrides.get("category_emoji", {})
+    custom_description = overrides.get("custom_description", {})
     categorized = categorize_repos_mixed(repos, repo_overrides)
-    generate_markdown(categorized, repos, repo_overrides, category_emoji)
-    generate_html(categorized, repos, repo_overrides, category_emoji)
+    generate_markdown(categorized, repos, rename_map, category_emoji, custom_description)
+    generate_html(categorized, repos, rename_map, category_emoji, custom_description)
     dump_stats_json(repos, categorized)
     write_overrides_template(repos)
+
+    # if not os.path.exists(OVERRIDES_PATH):
+    #     top30 = sorted(repos, key=lambda x: x.get("stargazers_count", 0), reverse=True)[:30]
+    #     template = {r["full_name"]: {"group": "", "sub": ""} for r in top30}
+    #     with open(OVERRIDES_TEMPLATE, "w", encoding="utf-8") as f:
+    #         json.dump({"repos": template}, f, ensure_ascii=False, indent=2)
+    #     log.info(f"已生成 overrides_template.json")
 
     log.info("🎉 所有任务完成！双输出完美就绪！")
 

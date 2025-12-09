@@ -2,386 +2,574 @@
     "repos": {
         "FortAwesome/Font-Awesome": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "argosopentech/argos-translate": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "MashiroSaber03/Saber-Translator": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "MatrixSeven/file-transfer-go": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "XiangZi7/GlassMusicPlayer": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "home-assistant/home-assistant.io": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "eli64s/readme-ai": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "YaoFANGUK/video-subtitle-remover": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "showlab/Code2Video": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "icip-cas/PPTAgent": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "cv-cat/Spider_XHS": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "sansan0/TrendRadar": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "loks666/get_jobs": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "jiji262/douyin-downloader": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "pbatard/rufus": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "xincmm/sageread": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "jayjd/HuYaTv": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "freeok/so-novel": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "ZyperWave/ZyperWinOptimize": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "PrelinaMontelli/Edge-Monitor": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "Tosencen/XMBOX": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "microsoft/PowerToys": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "venera-app/venera": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "dr34m-cn/taosync": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "OpenListTeam/OpenList": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "OpenListApp/OpenListApp": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "chenfan0/fideo-live-record": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "VonChange/utao": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "laqoome/LaQoo": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "mundane799699/bilibili-history-wxt": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "qiweiii/bili-feed-history": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "Return-Log/Drive-Icon-Manager": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "es3n1n/defendnot": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "tranht17/WinTune": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "viarotel-org/escrcpy": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "xifangczy/cat-catch": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "Cinvin/myuserscripts": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "qingmeng1/bilijump-ai": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "coolight7/musicxx": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "MoeKoeMusic/MoeKoeMusic": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "JunkFood02/Seal": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "liu-ziting/what-to-eat": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "liminbai/Awesome-GameEmulator": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "Gar-b-age/CookLikeHOC": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "maxiaobang7/ossnav": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "youhunwl/TVAPP": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "MCDFsteve/NipaPlay-Reload": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "lanyeeee/bilibili-video-downloader": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "waifu-project/movie": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "timeshiftsauce/CeruMusic": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "JefferyHcool/BiliNote": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "putyy/res-downloader": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "btjawa/BiliTools": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "algerkong/AlgerMusicPlayer": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "Predidit/Kazumi": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "Sle2p/AniCh": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "open-ani/animeko": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "caorushizi/mediago": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "RemotePinee/AudioVisual": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "ClickHouse/ClickHouse": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "moshowgame/dbeaver-driver-all": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "XIU2/UserScript": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "microsoft/markitdown": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "zhayujie/chatgpt-on-wechat": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "xbmc/xbmc": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "scriptscat/scriptcat": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "lyswhut/lx-music-desktop": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "wgzhao/dbeaver-agent": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "GopeedLab/gopeed": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "rwv/chinese-dos-games": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "caolib/typora-onelight-theme": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "zyronon/TypeWords": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "adlered/CSDNGreener": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "simonsmh/telegram-bili-feed-helper": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "windingwind/zotero-better-notes": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "dbeaver/dbeaver": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "yaobiao131/downkyicore": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "EcoPasteHub/EcoPaste": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "BlueSkyXN/Bili-to-Youtube": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "babalae/better-genshin-impact": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "RayWangQvQ/BiliBiliToolPro": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "hectorqin/reader": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "microsoft/qlib": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "datawhalechina/self-llm": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "sindresorhus/awesome": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "HerbertHe/iptv-sources": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "jiangrui1994/CloudSaver": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "gedoor/legado": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "yuanwangokk-1/Hiker-App": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "UFund-Me/Qbot": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "the1812/Bilibili-Evolved": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "CyC2018/CS-Notes": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "cxasm/notepad--": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "Keldos-Li/typora-latex-theme-fonts": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "Keldos-Li/typora-latex-theme": {
             "group": "",
-            "sub": ""
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         }
     },
-    "rename_repo": {},
-    "category_emoji": {},
-    "custom_description": {}
+    "category_emoji": {}
 }
