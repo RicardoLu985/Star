@@ -6,15 +6,14 @@
 
 ## 📊 分类统计
 
-- **AI与自动化**：14 项
-- **学习与资源**：2 项
-- **脚本自动化**：1 项
-- **影音娱乐**：49 项
-- **健康家庭**：2 项
-- **学习资料**：2 项
-- **DevOps 研发**：1 项
+- **AI与自动化**：15 项
+- **学习与资源**：4 项
 - **办公用品**：7 项
-- **AI**：2 项
+- **DevOps 研发**：1 项
+- **学习资料**：2 项
+- **脚本自动化**：1 项
+- **影音娱乐**：53 项
+- **健康家庭**：2 项
 
 <details>
 <summary>📂 目录（点击展开/收起）</summary>
@@ -22,15 +21,29 @@
 - **[AI与自动化](#ai与自动化)**
   - [AI应用](#ai应用)
   - [脚本自动化](#脚本自动化)
+  - [实用工具](#实用工具)
+  - [MCN](#mcn)
 - **[学习与资源](#学习与资源)**
   - [教程资源](#教程资源)
   - [技术笔记](#技术笔记)
+  - [前端开发](#前端开发)
+  - [后端开发](#后端开发)
+- **[办公用品](#办公用品)**
+  - [系统优化](#系统优化)
+  - [文件类](#文件类)
+  - [PPT](#ppt)
+  - [求职](#求职)
+- **[DevOps 研发](#devops-研发)**
+  - [翻译工具](#翻译工具)
+- **[学习资料](#学习资料)**
+  - [图标](#图标)
+  - [教程/文档](#教程文档)
 - **[脚本自动化](#脚本自动化)**
   - [爬虫/自动化](#爬虫自动化)
 - **[影音娱乐](#影音娱乐)**
   - [视频工具](#视频工具)
-  - [音乐工具](#音乐工具)
   - [动漫/追剧](#动漫追剧)
+  - [音乐工具](#音乐工具)
   - [音乐播放](#音乐播放)
   - [追番神器](#追番神器)
   - [读书必备](#读书必备)
@@ -42,30 +55,17 @@
 - **[健康家庭](#健康家庭)**
   - [智慧助手](#智慧助手)
   - [生活厨房](#生活厨房)
-- **[学习资料](#学习资料)**
-  - [图标](#图标)
-  - [教程/文档](#教程文档)
-- **[DevOps 研发](#devops-研发)**
-  - [翻译工具](#翻译工具)
-- **[办公用品](#办公用品)**
-  - [系统优化](#系统优化)
-  - [文件类](#文件类)
-  - [PPT](#ppt)
-  - [求职](#求职)
-- **[AI](#ai)**
-  - [实用工具](#实用工具)
-  - [MCN](#mcn)
 
 </details>
 
 ---
 
 <a id="ai与自动化"></a>
-## AI与自动化
+## 🤖 AI与自动化
 
 <a id="ai应用"></a>
 <details>
-<summary>🔽 AI应用 (9项)</summary>
+<summary>🔽 AI应用 (8项)</summary>
 
 #### [dbeaver/dbeaver](https://github.com/dbeaver/dbeaver)
 > Free universal database tool and SQL client
@@ -79,7 +79,7 @@
 
 - **Topics:** `automation` `cursor` `cursorai` `cursors` `free` `pro` `cursor-ai` `cursor-ide` `freetrial`
 - **Tags:** `automation` `python`
-- ⭐ 45551 · 🍴 5446 · 📅 最后更新 2025-12-02 · 📦 [v1.11.03](https://github.com/yeongpin/cursor-free-vip/releases/tag/v1.11.03)
+- ⭐ 45554 · 🍴 5446 · 📅 最后更新 2025-12-02 · 📦 [v1.11.03](https://github.com/yeongpin/cursor-free-vip/releases/tag/v1.11.03)
 
 #### [zhayujie/chatgpt-on-wechat](https://github.com/zhayujie/chatgpt-on-wechat)
 > 基于大模型搭建的聊天机器人，同时支持 微信公众号、企业微信应用、飞书、钉钉 等接入，可选择ChatGPT/Claude/DeepSeek/文心一言/讯飞星火/通义千问/ Gemini/GLM-4/Kimi/LinkAI，能处理文本、语音和图片，访问操作系统和互联网，支持基于自有知识库进行定制企业智能客服。
@@ -116,17 +116,10 @@
 - **Tags:** `nlp` `vue` `web`
 - ⭐ 2703 · 🍴 413 · 📅 最后更新 2025-12-09 · 📦 无 Release
 
-#### [waifu-project/movie](https://github.com/waifu-project/movie)
-> 小猫影视是一款全平台的影视播放器, 支持 VOD/JS 扩展源
-
-- **Topics:** `flutter` `getx`
-- **Tags:** `typescript` `web`
-- ⭐ 1770 · 🍴 177 · 📅 最后更新 2025-11-07 · 📦 [release-v2.6.1](https://github.com/waifu-project/movie/releases/tag/release-v2.6.1)
-
 #### [liminbai/Awesome-GameEmulator](https://github.com/liminbai/Awesome-GameEmulator)
 > Game emulator information
 
-- ⭐ 794 · 🍴 54 · 📅 最后更新 2025-07-09 · 📦 无 Release
+- ⭐ 795 · 🍴 54 · 📅 最后更新 2025-07-09 · 📦 无 Release
 
 <div style="text-align: right;">
 <a href="#top">⬆️ 返回顶部</a> | <a href="#ai与自动化">⬆️ 返回分类</a>
@@ -179,6 +172,40 @@
 
 </details>
 
+<a id="实用工具"></a>
+<details>
+<summary>🔽 实用工具 (1项)</summary>
+
+#### [eli64s/readme-ai](https://github.com/eli64s/readme-ai)
+> 让AI给你生成README.md文档
+
+- **Topics:** `readme-generator` `readme` `readme-md-generator` `ai` `markdown` `documentation` `developer-tools` `documentation-generator` `python` `markdown-generator` `devtools` `readme-template` `badge-generator` `ai-documentation` `anthropic` `cli` `gemini` `gpt` `agents` `ai-agents`
+- **Tags:** `cli` `nlp` `python`
+- ⭐ 2810 · 🍴 261 · 📅 最后更新 2025-12-06 · 📦 [v0.1.6](https://github.com/eli64s/readme-ai/releases/tag/v0.1.6)
+
+<div style="text-align: right;">
+<a href="#top">⬆️ 返回顶部</a> | <a href="#ai与自动化">⬆️ 返回分类</a>
+</div>
+
+</details>
+
+<a id="mcn"></a>
+<details>
+<summary>🔽 MCN (1项)</summary>
+
+#### [sansan0/TrendRadar](https://github.com/sansan0/TrendRadar)
+> 🎯 告别信息过载，AI 助你看懂新闻资讯热点，简单的舆情监控分析 - 多平台热点聚合+基于 MCP 的AI分析工具。监控35个平台（抖音、知乎、B站、华尔街见闻、财联社等），智能筛选+自动推送+AI对话分析（用自然语言深度挖掘新闻：趋势追踪、情感分析、相似检索等13种工具）。支持企业微信/个人微信/飞书/钉钉/Telegram/邮件/ntfy/bark/slack 推送，1分钟手机通知，无需编程。支持Docker部署⭐ 让算法为你服务，用AI理解热点
+
+- **Topics:** `data-analysis` `python` `trending-topics` `feishu-robot` `news` `dingtalk-robot` `telegram-bot` `wechat-robot` `hot-news` `docker` `ntfy` `mail` `mcp` `mcp-server` `wechat` `wework` `wework-bot` `bark` `slack`
+- **Tags:** `automation` `devops` `python`
+- ⭐ 38565 · 🍴 20302 · 📅 最后更新 2025-12-10 · 📦 无 Release
+
+<div style="text-align: right;">
+<a href="#top">⬆️ 返回顶部</a> | <a href="#ai与自动化">⬆️ 返回分类</a>
+</div>
+
+</details>
+
 <a id="学习与资源"></a>
 ## 学习与资源
 
@@ -207,7 +234,7 @@
 > 😎 Awesome lists about all kinds of interesting topics
 
 - **Topics:** `awesome` `awesome-list` `unicorns` `lists` `resources`
-- ⭐ 421443 · 🍴 32559 · 📅 最后更新 2025-11-22 · 📦 无 Release
+- ⭐ 421444 · 🍴 32560 · 📅 最后更新 2025-11-22 · 📦 无 Release
 
 <div style="text-align: right;">
 <a href="#top">⬆️ 返回顶部</a> | <a href="#学习与资源">⬆️ 返回分类</a>
@@ -215,8 +242,185 @@
 
 </details>
 
+<a id="前端开发"></a>
+<details>
+<summary>🔽 前端开发 (1项)</summary>
+
+#### [jiangrui1994/CloudSaver](https://github.com/jiangrui1994/CloudSaver)
+> 一个基于 Vue 3 + Express 的网盘资源搜索与转存工具。
+
+- **Tags:** `vue` `web`
+- ⭐ 8067 · 🍴 684 · 📅 最后更新 2025-10-10 · 📦 无 Release
+
+<div style="text-align: right;">
+<a href="#top">⬆️ 返回顶部</a> | <a href="#学习与资源">⬆️ 返回分类</a>
+</div>
+
+</details>
+
+<a id="后端开发"></a>
+<details>
+<summary>🔽 后端开发 (1项)</summary>
+
+#### [yuanwangokk-1/Hiker-App](https://github.com/yuanwangokk-1/Hiker-App)
+> 无描述
+
+- ⭐ 86 · 🍴 17 · 📅 最后更新 2025-10-08 · 📦 无 Release
+
+<div style="text-align: right;">
+<a href="#top">⬆️ 返回顶部</a> | <a href="#学习与资源">⬆️ 返回分类</a>
+</div>
+
+</details>
+
+<a id="办公用品"></a>
+## 办公用品
+
+<a id="系统优化"></a>
+<details>
+<summary>🔽 系统优化 (4项)</summary>
+
+#### [microsoft/PowerToys](https://github.com/microsoft/PowerToys)
+> Microsoft PowerToys is a collection of utilities that help you customize Windows and streamline everyday tasks
+
+- **Topics:** `powertoys` `desktop` `windows` `fancyzones` `microsoft-powertoys` `powerrename` `keyboard-manager` `color-picker` `command-palette` `windows-10` `windows-11`
+- **Tags:** `c#` `ml`
+- ⭐ 126376 · 🍴 7526 · 📅 最后更新 2025-12-10 · 📦 [v0.96.1](https://github.com/microsoft/PowerToys/releases/tag/v0.96.1)
+
+#### [pbatard/rufus](https://github.com/pbatard/rufus)
+> 使用USB制作系统安装器
+
+- **Topics:** `usb` `iso` `bootable-drives` `mbr` `uefi` `bios` `boot` `windows` `syslinux` `freedos` `grub` `grub4dos` `sha1` `sha256` `md5` `gpt` `windows-to-go` `persistence` `secure-boot` `rufus`
+- **Tags:** `c` `nlp`
+- ⭐ 33933 · 🍴 2899 · 📅 最后更新 2025-11-26 · 📦 [v4.11](https://github.com/pbatard/rufus/releases/tag/v4.11)
+
+#### [ZyperWave/ZyperWinOptimize](https://github.com/ZyperWave/ZyperWinOptimize)
+> ZyperWin++是一个轻便的Windows优化工具，适用于Win7-Win11最新版的优化，包括性能优化、服务项优化、垃圾清理等操作，还支持系统激活和Office快速安装。
+
+- **Tags:** `c#`
+- ⭐ 5628 · 🍴 318 · 📅 最后更新 2025-10-07 · 📦 [v4.1](https://github.com/ZyperWave/ZyperWinOptimize/releases/tag/v4.1)
+
+#### [PrelinaMontelli/Edge-Monitor](https://github.com/PrelinaMontelli/Edge-Monitor)
+> 一个监控并弄死异常Edge的程序
+
+- **Tags:** `c#`
+- ⭐ 789 · 🍴 20 · 📅 最后更新 2025-08-26 · 📦 [EdgeMonitor-v1.3.3](https://github.com/PrelinaMontelli/Edge-Monitor/releases/tag/EdgeMonitor-v1.3.3)
+
+<div style="text-align: right;">
+<a href="#top">⬆️ 返回顶部</a> | <a href="#办公用品">⬆️ 返回分类</a>
+</div>
+
+</details>
+
+<a id="文件类"></a>
+<details>
+<summary>🔽 文件类 (1项)</summary>
+
+#### [文件传输 GO](https://github.com/MatrixSeven/file-transfer-go)
+> Go/React开发的端到端webrtc的文件传输/文字传输/桌面共享，安全，隐私，数据不经过服务器。
+
+- **Tags:** `typescript` `web`
+- ⭐ 4101 · 🍴 533 · 📅 最后更新 2025-12-01 · 📦 [v1.0.7](https://github.com/MatrixSeven/file-transfer-go/releases/tag/v1.0.7)
+
+<div style="text-align: right;">
+<a href="#top">⬆️ 返回顶部</a> | <a href="#办公用品">⬆️ 返回分类</a>
+</div>
+
+</details>
+
+<a id="ppt"></a>
+<details>
+<summary>🔽 PPT (1项)</summary>
+
+#### [icip-cas/PPTAgent](https://github.com/icip-cas/PPTAgent)
+> 一句话让AI生成PPT！
+
+- **Topics:** `agent` `llm` `presentation` `slide` `agentic-ai` `workflow` `mcp` `mcp-server`
+- **Tags:** `devops` `ml` `nlp` `python`
+- ⭐ 2784 · 🍴 331 · 📅 最后更新 2025-12-09 · 📦 [v0.2.0](https://github.com/icip-cas/PPTAgent/releases/tag/v0.2.0)
+
+<div style="text-align: right;">
+<a href="#top">⬆️ 返回顶部</a> | <a href="#办公用品">⬆️ 返回分类</a>
+</div>
+
+</details>
+
+<a id="求职"></a>
+<details>
+<summary>🔽 求职 (1项)</summary>
+
+#### [loks666/get_jobs](https://github.com/loks666/get_jobs)
+> 💼【AI找工作助手】全平台自动投简历脚本：(boss、前程无忧、猎聘、智联招聘)
+
+- **Topics:** `resume` `submit` `voluntarily` `getjobs` `job`
+- **Tags:** `java`
+- ⭐ 5445 · 🍴 703 · 📅 最后更新 2025-11-27 · 📦 [v1.0.0](https://github.com/loks666/get_jobs/releases/tag/v1.0.0)
+
+<div style="text-align: right;">
+<a href="#top">⬆️ 返回顶部</a> | <a href="#办公用品">⬆️ 返回分类</a>
+</div>
+
+</details>
+
+<a id="devops-研发"></a>
+## DevOps 研发
+
+<a id="翻译工具"></a>
+<details>
+<summary>🔽 翻译工具 (1项)</summary>
+
+#### [离线翻译库](https://github.com/argosopentech/argos-translate)
+> Open-source offline translation library written in Python
+
+- **Topics:** `python` `machine-translation` `transformers` `translation` `language-models` `linux` `nlp` `open-source`
+- **Tags:** `nlp` `python`
+- ⭐ 5263 · 🍴 387 · 📅 最后更新 2025-10-21 · 📦 [v1.4.0](https://github.com/argosopentech/argos-translate/releases/tag/v1.4.0)
+
+<div style="text-align: right;">
+<a href="#top">⬆️ 返回顶部</a> | <a href="#devops-研发">⬆️ 返回分类</a>
+</div>
+
+</details>
+
+<a id="学习资料"></a>
+## 学习资料
+
+<a id="图标"></a>
+<details>
+<summary>🔽 图标 (1项)</summary>
+
+#### [FortAwesome/Font-Awesome](https://github.com/FortAwesome/Font-Awesome)
+> The iconic SVG, font, and CSS toolkit
+
+- **Topics:** `fontawesome` `icons` `webfont` `font` `css` `svg-icons` `svg-sprites`
+- **Tags:** `javascript` `web`
+- ⭐ 76034 · 🍴 12220 · 📅 最后更新 2025-12-08 · 📦 [7.1.0](https://github.com/FortAwesome/Font-Awesome/releases/tag/7.1.0)
+
+<div style="text-align: right;">
+<a href="#top">⬆️ 返回顶部</a> | <a href="#学习资料">⬆️ 返回分类</a>
+</div>
+
+</details>
+
+<a id="教程文档"></a>
+<details>
+<summary>🔽 教程/文档 (1项)</summary>
+
+#### [showlab/Code2Video](https://github.com/showlab/Code2Video)
+> 以代码为中心的教学视频生成新范式
+
+- **Topics:** `coding` `multi-agent` `video-generation` `education`
+- **Tags:** `python`
+- ⭐ 1331 · 🍴 176 · 📅 最后更新 2025-11-25 · 📦 无 Release
+
+<div style="text-align: right;">
+<a href="#top">⬆️ 返回顶部</a> | <a href="#学习资料">⬆️ 返回分类</a>
+</div>
+
+</details>
+
 <a id="脚本自动化"></a>
-## ⚙️ 脚本自动化
+## 脚本自动化
 
 <a id="爬虫自动化"></a>
 <details>
@@ -235,11 +439,11 @@
 </details>
 
 <a id="影音娱乐"></a>
-## 📺 影音娱乐
+## 影音娱乐
 
 <a id="视频工具"></a>
 <details>
-<summary>🔽 视频工具 (22项)</summary>
+<summary>🔽 视频工具 (28项)</summary>
 
 #### [agalwood/Motrix](https://github.com/agalwood/Motrix)
 > A full-featured download manager.
@@ -267,7 +471,7 @@
 
 - **Topics:** `bittorrent` `downloader` `flutter` `torrent` `http` `https` `golang` `android` `cross-platform` `ios` `macos` `ubuntu` `windows` `debian` `magnet`
 - **Tags:** `dart`
-- ⭐ 22034 · 🍴 1517 · 📅 最后更新 2025-12-09 · 📦 [v1.8.3](https://github.com/GopeedLab/gopeed/releases/tag/v1.8.3)
+- ⭐ 22036 · 🍴 1517 · 📅 最后更新 2025-12-09 · 📦 [v1.8.3](https://github.com/GopeedLab/gopeed/releases/tag/v1.8.3)
 
 #### [HandBrake/HandBrake](https://github.com/HandBrake/HandBrake)
 > HandBrake's development repository 
@@ -275,6 +479,13 @@
 - **Topics:** `video-transcoding` `multi-platform` `gplv2`
 - **Tags:** `c`
 - ⭐ 21675 · 🍴 1553 · 📅 最后更新 2025-12-10 · 📦 [1.10.2](https://github.com/HandBrake/HandBrake/releases/tag/1.10.2)
+
+#### [Predidit/Kazumi](https://github.com/Predidit/Kazumi)
+> 基于自定义规则的番剧采集APP，支持流媒体在线观看，支持弹幕，支持实时超分辨率。
+
+- **Topics:** `android` `cross-platform` `danmaku` `flutter` `windows` `ios` `linux-desktop` `macos`
+- **Tags:** `dart`
+- ⭐ 18362 · 🍴 527 · 📅 最后更新 2025-12-10 · 📦 [1.9.2](https://github.com/Predidit/Kazumi/releases/tag/1.9.2)
 
 #### [xifangczy/cat-catch](https://github.com/xifangczy/cat-catch)
 > 猫抓 浏览器资源嗅探扩展 / cat-catch Browser Resource Sniffing Extension
@@ -288,7 +499,14 @@
 
 - **Topics:** `anime` `compose` `kotlin` `android` `bangumi` `compose-multiplatform` `macos` `video` `windows` `bittorrent` `danmaku` `jetpack-compose` `kotlin-multiplatform` `ani` `bt` `player` `torrent` `ios` `linux`
 - **Tags:** `kotlin`
-- ⭐ 13496 · 🍴 332 · 📅 最后更新 2025-12-09 · 📦 [v5.2.0](https://github.com/open-ani/animeko/releases/tag/v5.2.0)
+- ⭐ 13498 · 🍴 332 · 📅 最后更新 2025-12-09 · 📦 [v5.2.0](https://github.com/open-ani/animeko/releases/tag/v5.2.0)
+
+#### [algerkong/AlgerMusicPlayer](https://github.com/algerkong/AlgerMusicPlayer)
+> 一个第三方音乐播放器、本地服务、桌面歌词、音乐下载、远程控制
+
+- **Topics:** `alger` `music` `music-player`
+- **Tags:** `vue` `web`
+- ⭐ 13203 · 🍴 1094 · 📅 最后更新 2025-11-08 · 📦 [v4.9.0](https://github.com/algerkong/AlgerMusicPlayer/releases/tag/v4.9.0)
 
 #### [putyy/res-downloader](https://github.com/putyy/res-downloader)
 > 视频号、小程序、抖音、快手、小红书、直播流、m3u8、酷狗、QQ音乐等常见网络资源下载!
@@ -332,12 +550,32 @@
 - **Tags:** `javascript` `web`
 - ⭐ 3865 · 🍴 1350 · 📅 最后更新 2025-09-23 · 📦 [v0.1.5](https://github.com/microfeed/microfeed/releases/tag/v0.1.5)
 
+#### [Sle2p/AniCh](https://github.com/Sle2p/AniCh)
+> 一个支持超分辨率的在线动漫弹幕APP。多平台，多番剧源，多弹幕，高清无广告。追番看番必备软件。
+
+- **Topics:** `anime` `bangumi` `danmaku` `acg` `anime4k` `anime-chan` `anime-channel`
+- **Tags:** `dart`
+- ⭐ 2999 · 🍴 88 · 📅 最后更新 2025-07-03 · 📦 [1.4.2](https://github.com/Sle2p/AniCh/releases/tag/1.4.2)
+
 #### [siddharthvaddem/openscreen](https://github.com/siddharthvaddem/openscreen)
 > Create stunning screen recordings for free. Open-source, no subscriptions, no watermarks, and free for commercial use. An alternative to Screen Studio. 
 
 - **Topics:** `electron` `pixijs` `screen-recorder` `open-source` `screen-capture`
 - **Tags:** `devops` `typescript` `web`
-- ⭐ 2176 · 🍴 121 · 📅 最后更新 2025-12-09 · 📦 [v1.0.1](https://github.com/siddharthvaddem/openscreen/releases/tag/v1.0.1)
+- ⭐ 2177 · 🍴 121 · 📅 最后更新 2025-12-09 · 📦 [v1.0.1](https://github.com/siddharthvaddem/openscreen/releases/tag/v1.0.1)
+
+#### [coolight7/musicxx](https://github.com/coolight7/musicxx)
+> 拟声 音视频播放器
+
+- **Tags:** `c++`
+- ⭐ 1857 · 🍴 41 · 📅 最后更新 2025-11-28 · 📦 无 Release
+
+#### [waifu-project/movie](https://github.com/waifu-project/movie)
+> 小猫影视是一款全平台的影视播放器, 支持 VOD/JS 扩展源
+
+- **Topics:** `flutter` `getx`
+- **Tags:** `typescript` `web`
+- ⭐ 1770 · 🍴 177 · 📅 最后更新 2025-11-07 · 📦 [release-v2.6.1](https://github.com/waifu-project/movie/releases/tag/release-v2.6.1)
 
 #### [chenfan0/fideo-live-record](https://github.com/chenfan0/fideo-live-record)
 > A convenient live broadcast recording software! Supports Tiktok, Youtube, Twitch, Bilibili, Bigo!(一款方便的直播录制软件! 支持tiktok, youtube, twitch, 抖音，虎牙，斗鱼，快手，微博，网易cc，bilibili，花椒, 淘宝, 京东) 
@@ -359,6 +597,12 @@
 - **Topics:** `music-download` `userscript` `netease-cloud-music`
 - **Tags:** `devops` `javascript` `web`
 - ⭐ 903 · 🍴 61 · 📅 最后更新 2025-11-30 · 📦 无 Release
+
+#### [laqoome/LaQoo](https://github.com/laqoome/LaQoo)
+> 【LaQoo】一个简洁的播放动漫的App，支持下载，弹幕等功能
+
+- **Tags:** `kotlin`
+- ⭐ 472 · 🍴 13 · 📅 最后更新 2025-07-26 · 📦 [v1.3.4](https://github.com/laqoome/LaQoo/releases/tag/v1.3.4)
 
 #### [moshowgame/dbeaver-driver-all](https://github.com/moshowgame/dbeaver-driver-all)
 > dbeaver所有jdbc驱动都在这，dbeaver all jdbc drivers ,come and download with me , one package come with all jdbc drivers.
@@ -397,56 +641,6 @@
 
 </details>
 
-<a id="音乐工具"></a>
-<details>
-<summary>🔽 音乐工具 (6项)</summary>
-
-#### [microsoft/markitdown](https://github.com/microsoft/markitdown)
-> Python tool for converting files and office documents to Markdown.
-
-- **Topics:** `langchain` `openai` `autogen-extension` `autogen` `markdown` `microsoft-office` `pdf`
-- **Tags:** `python`
-- ⭐ 84108 · 🍴 4837 · 📅 最后更新 2025-12-01 · 📦 [v0.1.4](https://github.com/microsoft/markitdown/releases/tag/v0.1.4)
-
-#### [xbmc/xbmc](https://github.com/xbmc/xbmc)
-> Kodi is an award-winning free and open source home theater/media center software and entertainment hub for digital media. With its beautiful interface and powerful skinning engine, it's available for Android, BSD, Linux, macOS, iOS, tvOS and Windows.
-
-- **Topics:** `kodi` `home-theater` `media-center` `multimedia` `c-plus-plus` `python` `xml` `android` `linux` `ios` `macos` `windows-desktop` `windows-uwp` `entertainment-hub` `xbmc` `media-player` `hacktoberfest`
-- **Tags:** `c++` `ml`
-- ⭐ 20162 · 🍴 6471 · 📅 最后更新 2025-12-10 · 📦 [21.3-Omega](https://github.com/xbmc/xbmc/releases/tag/21.3-Omega)
-
-#### [algerkong/AlgerMusicPlayer](https://github.com/algerkong/AlgerMusicPlayer)
-> 一个第三方音乐播放器、本地服务、桌面歌词、音乐下载、远程控制
-
-- **Topics:** `alger` `music` `music-player`
-- **Tags:** `vue` `web`
-- ⭐ 13203 · 🍴 1094 · 📅 最后更新 2025-11-08 · 📦 [v4.9.0](https://github.com/algerkong/AlgerMusicPlayer/releases/tag/v4.9.0)
-
-#### [alam00000/bentopdf](https://github.com/alam00000/bentopdf)
-> A Privacy First PDF Toolkit
-
-- **Topics:** `jpgtopdf` `pdf` `pdf-converter` `pdf-document-processor` `pdf-generation` `pdf-viewer` `hacktoberfest` `hacktoberfest-accepted` `javascript` `pdf-document` `pdffiller` `privacy` `toolkit` `typescript` `bentopdf`
-- **Tags:** `javascript` `web`
-- ⭐ 6705 · 🍴 428 · 📅 最后更新 2025-12-10 · 📦 [v1.10.5](https://github.com/alam00000/bentopdf/releases/tag/v1.10.5)
-
-#### [coolight7/musicxx](https://github.com/coolight7/musicxx)
-> 拟声 音视频播放器
-
-- **Tags:** `c++`
-- ⭐ 1857 · 🍴 41 · 📅 最后更新 2025-11-28 · 📦 无 Release
-
-#### [RemotePinee/AudioVisual](https://github.com/RemotePinee/AudioVisual)
-> 解锁所有国内媒体流的钥匙
-
-- **Tags:** `javascript` `web`
-- ⭐ 1714 · 🍴 182 · 📅 最后更新 2025-10-24 · 📦 [v1.0.8](https://github.com/RemotePinee/AudioVisual/releases/tag/v1.0.8)
-
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#影音娱乐">⬆️ 返回分类</a>
-</div>
-
-</details>
-
 <a id="动漫追剧"></a>
 <details>
 <summary>🔽 动漫/追剧 (5项)</summary>
@@ -456,7 +650,7 @@
 
 - **Topics:** `assistant` `learning` `note-taking` `notebook` `notes-app` `self-learning`
 - **Tags:** `typescript` `web`
-- ⭐ 13898 · 🍴 1402 · 📅 最后更新 2025-12-06 · 📦 [v1.2.0](https://github.com/lfnovo/open-notebook/releases/tag/v1.2.0)
+- ⭐ 13902 · 🍴 1402 · 📅 最后更新 2025-12-06 · 📦 [v1.2.0](https://github.com/lfnovo/open-notebook/releases/tag/v1.2.0)
 
 #### [cjpais/Handy](https://github.com/cjpais/Handy)
 > A free, open source, and extensible speech-to-text application that works completely offline.
@@ -464,6 +658,13 @@
 - **Topics:** `speech-to-text` `tauri-v2` `accessibility` `cross-platform`
 - **Tags:** `typescript` `web`
 - ⭐ 8042 · 🍴 543 · 📅 最后更新 2025-12-10 · 📦 [v0.6.5](https://github.com/cjpais/Handy/releases/tag/v0.6.5)
+
+#### [youhunwl/TVAPP](https://github.com/youhunwl/TVAPP)
+>  收集全网 Android TV电视盒子应用，涵盖影视、直播、K歌、工具、游戏等类型，整理优质APK资源，支持便捷下载与自动更新。提供安全验证、分类索引与兼容性标注，助力用户打造家庭影音娱乐中心！              ✅ TVBox/影视仓等影音壳接口配置源。
+
+- **Topics:** `android-tv` `tv-box` `tv` `android` `apk` `app`
+- **Tags:** `javascript` `web`
+- ⭐ 5773 · 🍴 771 · 📅 最后更新 2025-12-10 · 📦 无 Release
 
 #### [venera-app/venera](https://github.com/venera-app/venera)
 > A comic app
@@ -478,12 +679,42 @@
 - **Tags:** `python`
 - ⭐ 4339 · 🍴 514 · 📅 最后更新 2025-10-18 · 📦 [v1.8.1](https://github.com/JefferyHcool/BiliNote/releases/tag/v1.8.1)
 
-#### [Sle2p/AniCh](https://github.com/Sle2p/AniCh)
-> 一个支持超分辨率的在线动漫弹幕APP。多平台，多番剧源，多弹幕，高清无广告。追番看番必备软件。
+<div style="text-align: right;">
+<a href="#top">⬆️ 返回顶部</a> | <a href="#影音娱乐">⬆️ 返回分类</a>
+</div>
 
-- **Topics:** `anime` `bangumi` `danmaku` `acg` `anime4k` `anime-chan` `anime-channel`
-- **Tags:** `dart`
-- ⭐ 2999 · 🍴 88 · 📅 最后更新 2025-07-03 · 📦 [1.4.2](https://github.com/Sle2p/AniCh/releases/tag/1.4.2)
+</details>
+
+<a id="音乐工具"></a>
+<details>
+<summary>🔽 音乐工具 (4项)</summary>
+
+#### [microsoft/markitdown](https://github.com/microsoft/markitdown)
+> Python tool for converting files and office documents to Markdown.
+
+- **Topics:** `langchain` `openai` `autogen-extension` `autogen` `markdown` `microsoft-office` `pdf`
+- **Tags:** `python`
+- ⭐ 84110 · 🍴 4837 · 📅 最后更新 2025-12-01 · 📦 [v0.1.4](https://github.com/microsoft/markitdown/releases/tag/v0.1.4)
+
+#### [xbmc/xbmc](https://github.com/xbmc/xbmc)
+> Kodi is an award-winning free and open source home theater/media center software and entertainment hub for digital media. With its beautiful interface and powerful skinning engine, it's available for Android, BSD, Linux, macOS, iOS, tvOS and Windows.
+
+- **Topics:** `kodi` `home-theater` `media-center` `multimedia` `c-plus-plus` `python` `xml` `android` `linux` `ios` `macos` `windows-desktop` `windows-uwp` `entertainment-hub` `xbmc` `media-player` `hacktoberfest`
+- **Tags:** `c++` `ml`
+- ⭐ 20162 · 🍴 6471 · 📅 最后更新 2025-12-10 · 📦 [21.3-Omega](https://github.com/xbmc/xbmc/releases/tag/21.3-Omega)
+
+#### [alam00000/bentopdf](https://github.com/alam00000/bentopdf)
+> A Privacy First PDF Toolkit
+
+- **Topics:** `jpgtopdf` `pdf` `pdf-converter` `pdf-document-processor` `pdf-generation` `pdf-viewer` `hacktoberfest` `hacktoberfest-accepted` `javascript` `pdf-document` `pdffiller` `privacy` `toolkit` `typescript` `bentopdf`
+- **Tags:** `javascript` `web`
+- ⭐ 6707 · 🍴 428 · 📅 最后更新 2025-12-10 · 📦 [v1.10.5](https://github.com/alam00000/bentopdf/releases/tag/v1.10.5)
+
+#### [RemotePinee/AudioVisual](https://github.com/RemotePinee/AudioVisual)
+> 解锁所有国内媒体流的钥匙
+
+- **Tags:** `javascript` `web`
+- ⭐ 1714 · 🍴 182 · 📅 最后更新 2025-10-24 · 📦 [v1.0.8](https://github.com/RemotePinee/AudioVisual/releases/tag/v1.0.8)
 
 <div style="text-align: right;">
 <a href="#top">⬆️ 返回顶部</a> | <a href="#影音娱乐">⬆️ 返回分类</a>
@@ -500,7 +731,7 @@
 
 - **Topics:** `music-player` `javascript` `electron` `vue`
 - **Tags:** `typescript` `web`
-- ⭐ 47609 · 🍴 6534 · 📅 最后更新 2025-12-07 · 📦 [v2.12.0](https://github.com/lyswhut/lx-music-desktop/releases/tag/v2.12.0)
+- ⭐ 47610 · 🍴 6534 · 📅 最后更新 2025-12-07 · 📦 [v2.12.0](https://github.com/lyswhut/lx-music-desktop/releases/tag/v2.12.0)
 
 #### [MoeKoeMusic/MoeKoeMusic](https://github.com/MoeKoeMusic/MoeKoeMusic)
 > 一款开源简洁高颜值的酷狗第三方客户端 An open-source, concise, and aesthetically pleasing third-party client for KuGou that supports  Windows / macOS / Linux / Web :electron:
@@ -520,7 +751,7 @@
 
 - **Topics:** `music` `player` `vue` `css` `js`
 - **Tags:** `vue` `web`
-- ⭐ 407 · 🍴 86 · 📅 最后更新 2025-12-10 · 📦 [V2.5](https://github.com/XiangZi7/GlassMusicPlayer/releases/tag/V2.5)
+- ⭐ 408 · 🍴 86 · 📅 最后更新 2025-12-10 · 📦 [V2.5](https://github.com/XiangZi7/GlassMusicPlayer/releases/tag/V2.5)
 
 <div style="text-align: right;">
 <a href="#top">⬆️ 返回顶部</a> | <a href="#影音娱乐">⬆️ 返回分类</a>
@@ -537,7 +768,7 @@
 
 - **Topics:** `bilibili` `avalonia`
 - **Tags:** `c#`
-- ⭐ 5814 · 🍴 426 · 📅 最后更新 2025-12-10 · 📦 [v1.0.23](https://github.com/yaobiao131/downkyicore/releases/tag/v1.0.23)
+- ⭐ 5815 · 🍴 426 · 📅 最后更新 2025-12-10 · 📦 [v1.0.23](https://github.com/yaobiao131/downkyicore/releases/tag/v1.0.23)
 
 #### [btjawa/BiliTools](https://github.com/btjawa/BiliTools)
 > A cross-platform bilibili toolbox. 跨平台哔哩哔哩工具箱，支持下载视频、番剧等等各类资源
@@ -707,189 +938,6 @@
 
 <div style="text-align: right;">
 <a href="#top">⬆️ 返回顶部</a> | <a href="#健康家庭">⬆️ 返回分类</a>
-</div>
-
-</details>
-
-<a id="学习资料"></a>
-## 📖 学习资料
-
-<a id="图标"></a>
-<details>
-<summary>🔽 图标 (1项)</summary>
-
-#### [FortAwesome/Font-Awesome](https://github.com/FortAwesome/Font-Awesome)
-> The iconic SVG, font, and CSS toolkit
-
-- **Topics:** `fontawesome` `icons` `webfont` `font` `css` `svg-icons` `svg-sprites`
-- **Tags:** `javascript` `web`
-- ⭐ 76033 · 🍴 12220 · 📅 最后更新 2025-12-08 · 📦 [7.1.0](https://github.com/FortAwesome/Font-Awesome/releases/tag/7.1.0)
-
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#学习资料">⬆️ 返回分类</a>
-</div>
-
-</details>
-
-<a id="教程文档"></a>
-<details>
-<summary>🔽 教程/文档 (1项)</summary>
-
-#### [showlab/Code2Video](https://github.com/showlab/Code2Video)
-> 以代码为中心的教学视频生成新范式
-
-- **Topics:** `coding` `multi-agent` `video-generation` `education`
-- **Tags:** `python`
-- ⭐ 1331 · 🍴 176 · 📅 最后更新 2025-11-25 · 📦 无 Release
-
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#学习资料">⬆️ 返回分类</a>
-</div>
-
-</details>
-
-<a id="devops-研发"></a>
-## 🔧 DevOps 研发
-
-<a id="翻译工具"></a>
-<details>
-<summary>🔽 翻译工具 (1项)</summary>
-
-#### [离线翻译库](https://github.com/argosopentech/argos-translate)
-> Open-source offline translation library written in Python
-
-- **Topics:** `python` `machine-translation` `transformers` `translation` `language-models` `linux` `nlp` `open-source`
-- **Tags:** `nlp` `python`
-- ⭐ 5262 · 🍴 387 · 📅 最后更新 2025-10-21 · 📦 [v1.4.0](https://github.com/argosopentech/argos-translate/releases/tag/v1.4.0)
-
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#devops-研发">⬆️ 返回分类</a>
-</div>
-
-</details>
-
-<a id="办公用品"></a>
-## 📂 办公用品
-
-<a id="系统优化"></a>
-<details>
-<summary>🔽 系统优化 (4项)</summary>
-
-#### [microsoft/PowerToys](https://github.com/microsoft/PowerToys)
-> Microsoft PowerToys is a collection of utilities that help you customize Windows and streamline everyday tasks
-
-- **Topics:** `powertoys` `desktop` `windows` `fancyzones` `microsoft-powertoys` `powerrename` `keyboard-manager` `color-picker` `command-palette` `windows-10` `windows-11`
-- **Tags:** `c#` `ml`
-- ⭐ 126376 · 🍴 7526 · 📅 最后更新 2025-12-10 · 📦 [v0.96.1](https://github.com/microsoft/PowerToys/releases/tag/v0.96.1)
-
-#### [pbatard/rufus](https://github.com/pbatard/rufus)
-> 使用USB制作系统安装器
-
-- **Topics:** `usb` `iso` `bootable-drives` `mbr` `uefi` `bios` `boot` `windows` `syslinux` `freedos` `grub` `grub4dos` `sha1` `sha256` `md5` `gpt` `windows-to-go` `persistence` `secure-boot` `rufus`
-- **Tags:** `c` `nlp`
-- ⭐ 33933 · 🍴 2899 · 📅 最后更新 2025-11-26 · 📦 [v4.11](https://github.com/pbatard/rufus/releases/tag/v4.11)
-
-#### [ZyperWave/ZyperWinOptimize](https://github.com/ZyperWave/ZyperWinOptimize)
-> ZyperWin++是一个轻便的Windows优化工具，适用于Win7-Win11最新版的优化，包括性能优化、服务项优化、垃圾清理等操作，还支持系统激活和Office快速安装。
-
-- **Tags:** `c#`
-- ⭐ 5628 · 🍴 318 · 📅 最后更新 2025-10-07 · 📦 [v4.1](https://github.com/ZyperWave/ZyperWinOptimize/releases/tag/v4.1)
-
-#### [PrelinaMontelli/Edge-Monitor](https://github.com/PrelinaMontelli/Edge-Monitor)
-> 一个监控并弄死异常Edge的程序
-
-- **Tags:** `c#`
-- ⭐ 789 · 🍴 20 · 📅 最后更新 2025-08-26 · 📦 [EdgeMonitor-v1.3.3](https://github.com/PrelinaMontelli/Edge-Monitor/releases/tag/EdgeMonitor-v1.3.3)
-
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#办公用品">⬆️ 返回分类</a>
-</div>
-
-</details>
-
-<a id="文件类"></a>
-<details>
-<summary>🔽 文件类 (1项)</summary>
-
-#### [文件传输 GO](https://github.com/MatrixSeven/file-transfer-go)
-> Go/React开发的端到端webrtc的文件传输/文字传输/桌面共享，安全，隐私，数据不经过服务器。
-
-- **Tags:** `typescript` `web`
-- ⭐ 4100 · 🍴 533 · 📅 最后更新 2025-12-01 · 📦 [v1.0.7](https://github.com/MatrixSeven/file-transfer-go/releases/tag/v1.0.7)
-
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#办公用品">⬆️ 返回分类</a>
-</div>
-
-</details>
-
-<a id="ppt"></a>
-<details>
-<summary>🔽 PPT (1项)</summary>
-
-#### [icip-cas/PPTAgent](https://github.com/icip-cas/PPTAgent)
-> 一句话让AI生成PPT！
-
-- **Topics:** `agent` `llm` `presentation` `slide` `agentic-ai` `workflow` `mcp` `mcp-server`
-- **Tags:** `devops` `ml` `nlp` `python`
-- ⭐ 2784 · 🍴 331 · 📅 最后更新 2025-12-09 · 📦 [v0.2.0](https://github.com/icip-cas/PPTAgent/releases/tag/v0.2.0)
-
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#办公用品">⬆️ 返回分类</a>
-</div>
-
-</details>
-
-<a id="求职"></a>
-<details>
-<summary>🔽 求职 (1项)</summary>
-
-#### [loks666/get_jobs](https://github.com/loks666/get_jobs)
-> 💼【AI找工作助手】全平台自动投简历脚本：(boss、前程无忧、猎聘、智联招聘)
-
-- **Topics:** `resume` `submit` `voluntarily` `getjobs` `job`
-- **Tags:** `java`
-- ⭐ 5445 · 🍴 703 · 📅 最后更新 2025-11-27 · 📦 [v1.0.0](https://github.com/loks666/get_jobs/releases/tag/v1.0.0)
-
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#办公用品">⬆️ 返回分类</a>
-</div>
-
-</details>
-
-<a id="ai"></a>
-## 🤖 AI
-
-<a id="实用工具"></a>
-<details>
-<summary>🔽 实用工具 (1项)</summary>
-
-#### [eli64s/readme-ai](https://github.com/eli64s/readme-ai)
-> 让AI给你生成README.md文档
-
-- **Topics:** `readme-generator` `readme` `readme-md-generator` `ai` `markdown` `documentation` `developer-tools` `documentation-generator` `python` `markdown-generator` `devtools` `readme-template` `badge-generator` `ai-documentation` `anthropic` `cli` `gemini` `gpt` `agents` `ai-agents`
-- **Tags:** `cli` `nlp` `python`
-- ⭐ 2810 · 🍴 261 · 📅 最后更新 2025-12-06 · 📦 [v0.1.6](https://github.com/eli64s/readme-ai/releases/tag/v0.1.6)
-
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#ai">⬆️ 返回分类</a>
-</div>
-
-</details>
-
-<a id="mcn"></a>
-<details>
-<summary>🔽 MCN (1项)</summary>
-
-#### [sansan0/TrendRadar](https://github.com/sansan0/TrendRadar)
-> 🎯 告别信息过载，AI 助你看懂新闻资讯热点，简单的舆情监控分析 - 多平台热点聚合+基于 MCP 的AI分析工具。监控35个平台（抖音、知乎、B站、华尔街见闻、财联社等），智能筛选+自动推送+AI对话分析（用自然语言深度挖掘新闻：趋势追踪、情感分析、相似检索等13种工具）。支持企业微信/个人微信/飞书/钉钉/Telegram/邮件/ntfy/bark/slack 推送，1分钟手机通知，无需编程。支持Docker部署⭐ 让算法为你服务，用AI理解热点
-
-- **Topics:** `data-analysis` `python` `trending-topics` `feishu-robot` `news` `dingtalk-robot` `telegram-bot` `wechat-robot` `hot-news` `docker` `ntfy` `mail` `mcp` `mcp-server` `wechat` `wework` `wework-bot` `bark` `slack`
-- **Tags:** `automation` `devops` `python`
-- ⭐ 38563 · 🍴 20300 · 📅 最后更新 2025-12-10 · 📦 无 Release
-
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#ai">⬆️ 返回分类</a>
 </div>
 
 </details>
