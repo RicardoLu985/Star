@@ -35,49 +35,153 @@ STATS_JSON = "stats.json"
 GITHUB_API_ACCEPT = "application/vnd.github.mercy-preview+json"
 
 # ======================= 默认分类 & 图标 =======================
-DEFAULT_CATEGORY_ORDER = ["AI", "Web 开发", "DevOps & 工具", "脚本自动化", "学习资料", "其他"]
+# 一级分类顺序（按收藏数量优先级排序）
+DEFAULT_CATEGORY_ORDER = [
+    "影音娱乐工具", "实用效率工具", "AI与自动化",
+    "数据库与数据工具", "学习与资源", "其他工具"
+]
 
+# 分类图标配置
 DEFAULT_CATEGORY_ICONS = {
-    "AI": ("fa-robot", "text-red-500"),
-    "Web 开发": ("fa-paint-brush", "text-purple-500"),
-    "DevOps & 工具": ("fa-tools", "text-indigo-500"),
-    "脚本自动化": ("fa-terminal", "text-yellow-600"),
-    "学习资料": ("fa-graduation-cap", "text-teal-500"),
-    "其他": ("fa-ellipsis-h", "text-gray-500"),
+    "影音娱乐": ("fa-film", "text-rose-500"),
+    "实用效率": ("fa-bolt", "text-amber-500"),
+    "AI与自动化": ("fa-robot", "text-blue-500"),
+    "数据库与数据": ("fa-database", "text-emerald-500"),
+    "学习与资源": ("fa-book", "text-purple-500"),
+    "其他工具": ("fa-wrench", "text-gray-500")
 }
 
+# 子分类映射（模糊匹配关键词：仅保留功能/场景词，无具体仓库名）
 DEFAULT_CATEGORY_MAP = {
-    "AI": {
-        "机器学习框架": ["pytorch", "tensorflow", "jax", "keras", "scikit-learn", "mxnet"],
-        "大模型/LLM": ["llama", "gpt", "transformers", "huggingface", "langchain", "ollama", "vllm"],
-        "AI 应用": ["stable-diffusion", "comfyui", "whisper", "auto-gpt", "privategpt"],
-        "计算机视觉": ["opencv", "yolo", "detectron", "segment-anything"],
-        "其他 AI": []
+    "影音娱乐": {
+        "视频工具": [
+            "video", "download", "subtitle", "live", "record", "stream",
+            "bilibili", "douyin", "tiktok", "youtube", "ffmpeg", "edit",
+            "video player", "danmaku", "transcoder",
+            "播放器", "字幕", "弹幕", "格式转换"
+        ],
+        "音乐工具": [
+            "music", "audio", "player", "lyrics", "download", "convert",
+            "spotify", "netease", "kugou",
+            "music player", "audio converter",
+            "音乐播放器", "歌词", "音频转换"
+        ],
+        "动漫/追剧": [
+            "anime", "cartoon", "bangumi", "episode", "subtitle", "tracker",
+            "bili", "ani", "comic",
+            "video streaming",
+            "动漫", "影视", "流媒体", "番剧"
+        ]
     },
-    "Web 开发": {
-        "前端框架": ["react", "vue", "svelte", "nextjs", "nuxt", "astro", "solidjs", "remix"],
-        "后端框架": ["fastapi", "django", "flask", "express", "nest", "spring", "gin"],
-        "全栈工具": ["tauri", "electron", "wails", "neutralino"],
-        "UI 组件库": ["antd", "element-plus", "naive-ui", "shadcn", "daisyui", "mui", "chakra"],
-        "其他 Web": []
+    "实用效率": {
+        "系统工具": [
+            "system", "optimize", "tune", "clean", "registry", "process",
+            "powertoy", "windows", "macos", "linux", "drive", "icon",
+            "system optimization", "process manager", "registry", "cleaner",
+            "系统优化", "进程管理", "清理工具"
+        ],
+        "下载工具": [
+            "download", "gopeed", "file-transfer", "ftp", "sftp", "magnet",
+            "torrent", "speedup", "resume",
+            "downloader","video download","下载器", "磁力链接", "视频抓取"
+        ],
+        "办公辅助": [
+            "office", "ppt", "markdown", "notepad", "paste", "ocr",
+            "pdf", "excel", "word", "mindmap",
+            "document conversion", "mind map",
+            "文档转换", "思维导图", "格式处理"
+        ],
+        "设备管理": [
+            "device", "manager", "escrcpy", "android", "ios", "remote",
+            "home-assistant", "iot", "control"
+        ]
     },
-    "DevOps & 工具": {
-        "容器与编排": ["docker", "kubernetes", "k8s", "helm", "podman"],
-        "CI/CD": ["github-actions", "jenkins", "gitlab-ci", "drone", "argo"],
-        "监控告警": ["prometheus", "grafana", "loki", "zabbix"],
-        "基础设施": ["terraform", "pulumi", "ansible", "crossplane"],
-        "其他 DevOps": []
+    "AI与自动化": {
+        "AI应用": [
+            "ai", "llm", "chatgpt", "gpt", "wechat", "self-llm",
+            "machine-learning", "nlp", "cv", "readme-ai",
+            "ai assistant", "image generation", "nlp", "语音识别",
+            "AI绘画", "智能翻译", "自然语言处理"
+        ],
+        "大模型/LLM": [
+            "llm", "gpt", "llama", "chatglm", "internlm", "large language model",
+            "大模型", "对话模型", "生成式AI"
+        ],
+        "机器学习工具": [
+            "machine learning", "tensorflow", "pytorch", "scikit-learn",
+            "机器学习", "深度学习", "神经网络"
+        ],
+        "脚本自动化": [
+            "script", "userscript", "automate", "auto", "tampermonkey",
+            "scriptcat", "crawl", "scrape"
+        ],
+        "内容生成": [
+            "generate", "code2video", "translate", "argos-translate",
+            "saber", "text2image", "audio2text"
+        ]
     },
-    "脚本自动化": {
-        "爬虫/自动化": ["scrapy", "playwright", "selenium", "crawler", "bot"],
-        "命令行工具": ["cli", "cobra", "typer", "click"],
-        "其他脚本": []
+    "数据库与数据": {
+        "数据库引擎": [
+            "database", "clickhouse", "mysql", "postgres", "mongodb",
+            "redis", "sqlite", "engine"
+        ],
+        "数据库工具": [
+            "dbeaver", "client", "tool", "driver", "agent", "admin",
+            "query", "visualize"
+        ]
     },
-    "学习资料": {
-        "Awesome 列表": ["awesome", "curated", "list"],
-        "教程/文档": ["tutorial", "course", "learn", "guide", "handbook"],
-        "算法与面试": ["leetcode", "algorithm", "interview"],
-        "其他学习": []
+    "学习与资源": {
+        "技术笔记": [
+            "note", "cs-notes", "awesome", "docs", "knowledge", "wiki"
+        ],
+        "阅读工具": [
+            "read", "reader", "sageread", "legado", "ebook", "epub",
+            "pdf-reader", "browser"
+        ],
+        "教程资源": [
+            "tutorial", "guide", "course", "learn", "docs", "io", "example",
+            "algorithm", "interview", "leetcode",
+            "教程", "算法", "面试", "刷题"
+        ],
+        "前端开发": [
+            "react", "vue", "angular", "js", "javascript", "css", "html",
+            "前端框架", "UI库", "小程序", "web"
+        ],
+        "后端开发": [
+            "python", "java", "go", "node.js", "spring", "django", "flask",
+            "后端框架", "数据库", "api", "server"
+        ],
+        "DevOps工具": [
+            "docker", "kubernetes", "ci/cd", "github actions", "jenkins",
+            "容器", "自动化部署", "监控", "脚本"
+        ]
+    },
+    "游戏相关": {
+        "游戏工具": [
+            "game", "emulator", "genshin", "impact", "awesome-game",
+            "mod", "cheat", "controller",
+            "game assistant", "auto play", "script",
+            "自动操作", "脚本", "辅助工具"
+        ],
+        "游戏资源": [
+            "resource", "mod", "patch", "skin", "theme", "character",
+            "character skin", "character theme", "character patch",
+            "mods", "patchs", "skins", "themes", "characters",
+            "游戏资源", "皮肤", "主题", "汉化", "补丁"
+        ],
+        "模拟器": [
+            "emulator", "game engine",
+            "模拟器", "游戏引擎"
+        ]
+    },
+    "其他工具": {
+        "网络工具": [
+            "network", "defend", "proxy", "vpn", "tvapp", "iptv",
+            "speedtest", "ping", "traceroute"
+        ],
+        "杂项工具": [
+            "tool", "misc", "utility", "helper", "other", "unsorted"
+        ]
     }
 }
 
@@ -221,7 +325,8 @@ def load_overrides() -> Dict[str, Any]:
     """加载覆盖配置 - 支持新的结构，将rename和custom_description整合到repos中"""
     defaults = {
         "repos": {},
-        "category_emoji": {}
+        "category_emoji": {},
+        "category_icons": {}  # 添加自定义图标配置
     }
     if not os.path.exists(OVERRIDES_PATH):
         return defaults
@@ -230,7 +335,7 @@ def load_overrides() -> Dict[str, Any]:
             data = json.load(f)
             # 兼容旧格式
             if "repos" not in data and isinstance(data, dict):
-                data = {"repos": data, "category_emoji": {}}
+                data = {"repos": data, "category_emoji": {}, "category_icons": {}}
             # 补全缺失字段
             for key in defaults:
                 if key not in data:
@@ -285,6 +390,10 @@ def get_dynamic_categories():
     for group in custom_groups:
         if group not in category_order:
             category_order.insert(-1, group)  # 在"其他"之前插入
+
+    # 从overrides中获取自定义图标配置
+    custom_icons = overrides.get("category_icons", {})
+    category_icons.update(custom_icons)
 
     # 为自定义分组设置默认图标
     for group in custom_groups:
@@ -647,13 +756,20 @@ def generate_html(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], repos
         </div>
     </div>'''
 
+    # 获取图标信息用于说明部分
+    info_icon_name, info_icon_color = category_icons.get("学习资料", ("fa-graduation-cap", "text-teal-500"))
+    nav_icon_name, nav_icon_color = category_icons.get("脚本自动化", ("fa-terminal", "text-yellow-600"))
+    edit_icon_name, edit_icon_color = category_icons.get("Web 开发", ("fa-paint-brush", "text-purple-500"))
+
     html += f'''
     <div class="bg-white rounded-xl shadow-md p-6 mb-8">
         <h2 class="text-2xl font-semibold mb-4 text-gray-800 flex items-center">
-            <i class="fas fa-info-circle mr-2 text-blue-500"></i> 使用说明
+            <i class="fas {info_icon_name} text-2xl mr-2 {info_icon_color}"></i> 使用说明
         </h2>
         <div class="mb-6">
-            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">目录导航</h3>
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2 flex items-center">
+                <i class="fas {nav_icon_name} mr-2 {nav_icon_color}"></i> 目录导航
+            </h3>
             <ul class="list-disc pl-5 space-y-2 text-gray-600">
                 <li>点击目录中的链接可以直接跳转到对应部分</li>
                 <li>每个部分末尾有"返回顶部"链接</li>
@@ -661,7 +777,9 @@ def generate_html(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], repos
             </ul>
         </div>
         <div class="mb-6">
-            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">编辑优势</h3>
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2 flex items-center">
+                <i class="fas {edit_icon_name} mr-2 {edit_icon_color}"></i> 编辑优势
+            </h3>
             <ul class="list-disc pl-5 space-y-2 text-gray-600">
                 <li>纯Markdown格式，无需任何HTML</li>
                 <li>结构清晰，编辑维护简单</li>
@@ -669,7 +787,9 @@ def generate_html(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], repos
             </ul>
         </div>
         <div>
-            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">整理建议</h3>
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2 flex items-center">
+                <i class="fas fa-tasks mr-2 text-green-500"></i> 整理建议
+            </h3>
             <ul class="list-disc pl-5 space-y-2 text-gray-600">
                 <li>按分类顺序逐个整理</li>
                 <li>每次star新项目时立即添加到对应位置</li>
@@ -766,26 +886,34 @@ def write_overrides_template(repos, path="overrides_template.json"):
     """
     将 overrides_template.json 写入磁盘。
     使用新的结构，将所有配置项整合到repos中。
+    仅包含未分组的仓库（没有在overrides.json中设置group的仓库）
     """
     template = {
         "repos": {},
-        "category_emoji": {}
+        "category_emoji": {},
+        "category_icons": {}  # 添加图标配置模板
     }
 
-    # 生成最基础的条目：每个 repo 放进 repos{} 作为可填写项
+    # 加载现有的overrides配置
+    overrides_data = load_overrides()
+    overrides_repos = overrides_data.get("repos", {})
+
+    # 生成模板：仅包含未分组的仓库
     for r in repos:
         full = r["full_name"]
-        template["repos"][full] = {
-            "group": "",
-            "sub": "",
-            "rename": "",
-            "custom_description": ""
-        }
+        # 如果仓库在overrides中没有设置group（或group为空），则添加到模板中
+        if full not in overrides_repos or not overrides_repos[full].get("group"):
+            template["repos"][full] = {
+                "group": "",
+                "sub": "",
+                "rename": "",
+                "custom_description": ""
+            }
 
     with open(path, "w", encoding="utf-8") as f:
         json.dump(template, f, indent=4, ensure_ascii=False)
 
-    log.info(f"overrides_template.json 已生成")
+    log.info(f"overrides_template.json 已生成，包含 {len(template['repos'])} 个未分组仓库")
 
 # ======================= 主函数 =======================
 def main() -> None:

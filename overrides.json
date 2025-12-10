@@ -1,12 +1,22 @@
 {
   "repos": {
     "jiji262/douyin-downloader": {
-      "group": "DevOps & 工具",
+      "group": "影音娱乐",
       "sub": "效率工具",
       "rename": "音符下载神器",
       "custom_description": ""
     },
+    "jcaorushizi/mediago": {
+      "group": "影音娱乐",
+      "sub": "效率工具",
+      "rename": "",
+      "custom_description": ""
+    },
     "yaobiao131/downkyicore": {
+      "group": "影音娱乐",
+      "sub": "追番神器"
+    },
+    "lanyeeee/bilibili-video-downloader": {
       "group": "影音娱乐",
       "sub": "追番神器"
     },
@@ -19,14 +29,167 @@
       "sub": "追番神器",
       "rename": "B站无限历史记录",
       "custom_description": "无限历史记录浏览器插件"
+    },
+    "lyswhut/lx-music-desktop": {
+      "group": "影音娱乐",
+      "sub": "音乐播放",
+      "rename": "洛雪音乐",
+      "custom_description": ""
+    },
+    "timeshiftsauce/CeruMusic": {
+      "group": "影音娱乐",
+      "sub": "音乐播放",
+      "rename": "",
+      "custom_description": ""
+    },
+    "MoeKoeMusic/MoeKoeMusic": {
+      "group": "影音娱乐",
+      "sub": "音乐播放",
+      "rename": "",
+      "custom_description": ""
+    },
+    "xincmm/sageread": {
+      "group": "影音娱乐",
+      "sub": "读书必备",
+      "rename": "",
+      "custom_description": ""
+    },
+    "jayjd/HuYaTv": {
+      "group": "影音娱乐",
+      "sub": "直播助手",
+      "rename": "",
+      "custom_description": ""
+    },
+    "freeok/so-novel": {
+      "group": "影音娱乐",
+      "sub": "读书必备",
+      "rename": "",
+      "custom_description": ""
+    },
+    "hectorqin/reader": {
+      "group": "影音娱乐",
+      "sub": "读书必备",
+      "rename": "",
+      "custom_description": ""
+    },
+    "FortAwesome/Font-Awesome": {
+      "group": "学习资料",
+      "sub": "图标",
+      "rename": "",
+      "custom_description": ""
+    },
+    "argosopentech/argos-translate": {
+      "group": "DevOps 研发",
+      "sub": "翻译工具",
+      "rename": "离线翻译库",
+      "custom_description": ""
+    },
+    "MashiroSaber03/Saber-Translator": {
+      "group": "影音娱乐",
+      "sub": "看漫神器",
+      "rename": "",
+      "custom_description": ""
+    },
+    "MatrixSeven/file-transfer-go": {
+      "group": "办公用品",
+      "sub": "文件类",
+      "rename": "文件传输 GO",
+      "custom_description": ""
+    },
+    "XiangZi7/GlassMusicPlayer": {
+      "group": "影音娱乐",
+      "sub": "音乐播放",
+      "rename": "",
+      "custom_description": ""
+    },
+    "home-assistant/home-assistant.io": {
+      "group": "健康家庭",
+      "sub": "智慧助手",
+      "rename": "",
+      "custom_description": ""
+    },
+    "eli64s/readme-ai": {
+      "group": "AI与自动化",
+      "sub": "实用工具",
+      "rename": "",
+      "custom_description": "让AI给你生成README.md文档"
+    },
+    "YaoFANGUK/video-subtitle-remover": {
+      "group": "影音娱乐",
+      "sub": "实用工具",
+      "rename": "",
+      "custom_description": ""
+    },
+    "showlab/Code2Video": {
+      "group": "学习资料",
+      "sub": "教程/文档",
+      "rename": "",
+      "custom_description": "以代码为中心的教学视频生成新范式"
+    },
+    "icip-cas/PPTAgent": {
+      "group": "办公用品",
+      "sub": "PPT",
+      "rename": "",
+      "custom_description": "一句话让AI生成PPT！"
+    },
+    "cv-cat/Spider_XHS": {
+      "group": "脚本自动化",
+      "sub": "爬虫/自动化",
+      "rename": "",
+      "custom_description": ""
+    },
+    "sansan0/TrendRadar": {
+      "group": "AI与自动化",
+      "sub": "MCN",
+      "rename": "",
+      "custom_description": ""
+    },
+    "loks666/get_jobs": {
+      "group": "办公用品",
+      "sub": "求职",
+      "rename": "",
+      "custom_description": ""
+    },
+    "pbatard/rufus": {
+      "group": "办公用品",
+      "sub": "系统优化",
+      "rename": "",
+      "custom_description": "使用USB制作系统安装器"
+    },
+    "ZyperWave/ZyperWinOptimize": {
+      "group": "办公用品",
+      "sub": "系统优化",
+      "rename": "",
+      "custom_description": ""
+    },
+    "PrelinaMontelli/Edge-Monitor": {
+      "group": "办公用品",
+      "sub": "系统优化",
+      "rename": "",
+      "custom_description": ""
+    },
+    "Tosencen/XMBOX": {
+      "group": "影音娱乐",
+      "sub": "电视盒子",
+      "rename": "",
+      "custom_description": "需要自己找影视源填充"
+    },
+    "microsoft/PowerToys": {
+      "group": "办公用品",
+      "sub": "系统优化",
+      "rename": "",
+      "custom_description": ""
+    },
+    "Gar-b-age/CookLikeHOC": {
+      "group": "健康家庭",
+      "sub": "生活厨房",
+      "rename": "",
+      "custom_description": ""
     }
   },
   "category_emoji": {
-    "AI": "🤖",
-    "Web 开发": "🌐",
-    "DevOps & 工具": "🔧",
-    "脚本自动化": "⚙️",
-    "学习资料": "📚",
-    "其他": "❓"
+    "AI与自动化": "🤖",
+    "实用效率": "⚙️",
+    "其他工具": "🔧"
   }
 }
