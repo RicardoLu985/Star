@@ -37,8 +37,8 @@ GITHUB_API_ACCEPT = "application/vnd.github.mercy-preview+json"
 # ======================= 默认分类 & 图标 =======================
 # 一级分类顺序（按收藏数量优先级排序）
 DEFAULT_CATEGORY_ORDER = [
-    "影音娱乐工具", "实用效率工具", "AI与自动化",
-    "数据库与数据工具", "学习与资源", "其他工具"
+    "影音娱乐", "实用效率", "AI与自动化",
+    "数据库与数据", "学习资料", "其他工具"
 ]
 
 # 分类图标配置
@@ -47,7 +47,7 @@ DEFAULT_CATEGORY_ICONS = {
     "实用效率": ("fa-bolt", "text-amber-500"),
     "AI与自动化": ("fa-robot", "text-blue-500"),
     "数据库与数据": ("fa-database", "text-emerald-500"),
-    "学习与资源": ("fa-book", "text-purple-500"),
+    "学习资料": ("fa-book", "text-purple-500"),
     "其他工具": ("fa-wrench", "text-gray-500")
 }
 
@@ -130,7 +130,7 @@ DEFAULT_CATEGORY_MAP = {
             "query", "visualize"
         ]
     },
-    "学习与资源": {
+    "学习资料": {
         "技术笔记": [
             "note", "cs-notes", "awesome", "docs", "knowledge", "wiki"
         ],
@@ -142,18 +142,6 @@ DEFAULT_CATEGORY_MAP = {
             "tutorial", "guide", "course", "learn", "docs", "io", "example",
             "algorithm", "interview", "leetcode",
             "教程", "算法", "面试", "刷题"
-        ],
-        "前端开发": [
-            "react", "vue", "angular", "js", "javascript", "css", "html",
-            "前端框架", "UI库", "小程序", "web"
-        ],
-        "后端开发": [
-            "python", "java", "go", "node.js", "spring", "django", "flask",
-            "后端框架", "数据库", "api", "server"
-        ],
-        "DevOps工具": [
-            "docker", "kubernetes", "ci/cd", "github actions", "jenkins",
-            "容器", "自动化部署", "监控", "脚本"
         ]
     },
     "游戏相关": {
@@ -172,6 +160,20 @@ DEFAULT_CATEGORY_MAP = {
         "模拟器": [
             "emulator", "game engine",
             "模拟器", "游戏引擎"
+        ]
+    },
+    "开发工具":{
+        "前端开发": [
+            "react", "vue", "angular", "js", "javascript", "css", "html",
+            "前端框架", "UI库", "小程序", "web"
+        ],
+        "后端开发": [
+            "python", "java", "go", "node.js", "spring", "django", "flask",
+            "后端框架", "数据库", "api", "server"
+        ],
+        "DevOps工具": [
+            "docker", "kubernetes", "ci/cd", "github actions", "jenkins",
+            "容器", "自动化部署", "监控", "脚本"
         ]
     },
     "其他工具": {
