@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # update_starred_semantic.py
-# 修改版：支持默认分类外置配置、生成完整 overrides_template
+# 修改版：修复HTML返回顶部功能，为Markdown添加返回顶部链接
+# 优化版本：提升性能、增强错误处理、改善代码结构
+# 增强版：支持新的配置结构 - 将rename和custom_description整合到repos中，并修复空值回退问题
 
 import os
 import json
@@ -29,20 +31,174 @@ OUTPUT_MD = "starred.md"
 OUTPUT_HTML = "docs/index.html"
 OVERRIDES_PATH = "overrides.json"
 OVERRIDES_TEMPLATE = "overrides_template.json"
-CATEGORY_DEFAULTS_PATH = "category_defaults.json"
 STATS_JSON = "stats.json"
 GITHUB_API_ACCEPT = "application/vnd.github.mercy-preview+json"
 
+# ======================= 默认分类 & 图标 =======================
+# 一级分类顺序（按收藏数量优先级排序）
+DEFAULT_CATEGORY_ORDER = [
+    "影音娱乐", "实用效率", "AI与自动化",
+    "数据库与数据", "学习资料", "其他工具"
+]
+
+# 分类图标配置
+DEFAULT_CATEGORY_ICONS = {
+    "影音娱乐": ("fa-film", "text-rose-500"),
+    "实用效率": ("fa-bolt", "text-amber-500"),
+    "AI与自动化": ("fa-robot", "text-blue-500"),
+    "数据库与数据": ("fa-database", "text-emerald-500"),
+    "学习资料": ("fa-book", "text-purple-500"),
+    "其他工具": ("fa-wrench", "text-gray-500")
+}
+
+# 子分类映射（模糊匹配关键词：仅保留功能/场景词，无具体仓库名）
+DEFAULT_CATEGORY_MAP = {
+    "影音娱乐": {
+        "视频工具": [
+            "video", "download", "subtitle", "live", "record", "stream",
+            "bilibili", "douyin", "tiktok", "youtube", "ffmpeg", "edit",
+            "video player", "danmaku", "transcoder",
+            "播放器", "字幕", "弹幕", "格式转换"
+        ],
+        "音乐工具": [
+            "music", "audio", "player", "lyrics", "download", "convert",
+            "spotify", "netease", "kugou",
+            "music player", "audio converter",
+            "音乐播放器", "歌词", "音频转换"
+        ],
+        "动漫/追剧": [
+            "anime", "cartoon", "bangumi", "episode", "subtitle", "tracker",
+            "bili", "ani", "comic",
+            "video streaming",
+            "动漫", "影视", "流媒体", "番剧"
+        ]
+    },
+    "实用效率": {
+        "系统工具": [
+            "system", "optimize", "tune", "clean", "registry", "process",
+            "powertoy", "windows", "macos", "linux", "drive", "icon",
+            "system optimization", "process manager", "registry", "cleaner",
+            "系统优化", "进程管理", "清理工具"
+        ],
+        "下载工具": [
+            "download", "gopeed", "file-transfer", "ftp", "sftp", "magnet",
+            "torrent", "speedup", "resume",
+            "downloader","video download","下载器", "磁力链接", "视频抓取"
+        ],
+        "办公辅助": [
+            "office", "ppt", "markdown", "notepad", "paste", "ocr",
+            "pdf", "excel", "word", "mindmap",
+            "document conversion", "mind map",
+            "文档转换", "思维导图", "格式处理"
+        ],
+        "设备管理": [
+            "device", "manager", "escrcpy", "android", "ios", "remote",
+            "home-assistant", "iot", "control"
+        ]
+    },
+    "AI与自动化": {
+        "AI应用": [
+            "ai", "llm", "chatgpt", "gpt", "wechat", "self-llm",
+            "machine-learning", "nlp", "cv", "readme-ai",
+            "ai assistant", "image generation", "nlp", "语音识别",
+            "AI绘画", "智能翻译", "自然语言处理"
+        ],
+        "大模型/LLM": [
+            "llm", "gpt", "llama", "chatglm", "internlm", "large language model",
+            "大模型", "对话模型", "生成式AI"
+        ],
+        "机器学习工具": [
+            "machine learning", "tensorflow", "pytorch", "scikit-learn",
+            "机器学习", "深度学习", "神经网络"
+        ],
+        "脚本自动化": [
+            "script", "userscript", "automate", "auto", "tampermonkey",
+            "scriptcat", "crawl", "scrape"
+        ],
+        "内容生成": [
+            "generate", "code2video", "translate", "argos-translate",
+            "saber", "text2image", "audio2text"
+        ]
+    },
+    "数据库与数据": {
+        "数据库引擎": [
+            "database", "clickhouse", "mysql", "postgres", "mongodb",
+            "redis", "sqlite", "engine"
+        ],
+        "数据库工具": [
+            "dbeaver", "client", "tool", "driver", "agent", "admin",
+            "query", "visualize"
+        ]
+    },
+    "学习资料": {
+        "技术笔记": [
+            "note", "cs-notes", "awesome", "docs", "knowledge", "wiki"
+        ],
+        "阅读工具": [
+            "read", "reader", "sageread", "legado", "ebook", "epub",
+            "pdf-reader", "browser"
+        ],
+        "教程资源": [
+            "tutorial", "guide", "course", "learn", "docs", "io", "example",
+            "algorithm", "interview", "leetcode",
+            "教程", "算法", "面试", "刷题"
+        ]
+    },
+    "游戏相关": {
+        "游戏工具": [
+            "game", "emulator", "genshin", "impact", "awesome-game",
+            "mod", "cheat", "controller",
+            "game assistant", "auto play", "script",
+            "自动操作", "脚本", "辅助工具"
+        ],
+        "游戏资源": [
+            "resource", "mod", "patch", "skin", "theme", "character",
+            "character skin", "character theme", "character patch",
+            "mods", "patchs", "skins", "themes", "characters",
+            "游戏资源", "皮肤", "主题", "汉化", "补丁"
+        ],
+        "模拟器": [
+            "emulator", "game engine",
+            "模拟器", "游戏引擎"
+        ]
+    },
+    "开发工具":{
+        "前端开发": [
+            "react", "vue", "angular", "js", "javascript", "css", "html",
+            "前端框架", "UI库", "小程序", "web"
+        ],
+        "后端开发": [
+            "python", "java", "go", "node.js", "spring", "django", "flask",
+            "后端框架", "数据库", "api", "server"
+        ],
+        "DevOps工具": [
+            "docker", "kubernetes", "ci/cd", "github actions", "jenkins",
+            "容器", "自动化部署", "监控", "脚本"
+        ]
+    },
+    "其他工具": {
+        "网络工具": [
+            "network", "defend", "proxy", "vpn", "tvapp", "iptv",
+            "speedtest", "ping", "traceroute"
+        ],
+        "杂项工具": [
+            "tool", "misc", "utility", "helper", "other", "unsorted"
+        ]
+    }
+}
 
 # ======================= 工具函数 =======================
 def ensure_dir(path: str) -> None:
+    """确保目录存在"""
     if path and not os.path.exists(path):
         os.makedirs(path, exist_ok=True)
 
 def now_str() -> str:
+    """返回当前时间字符串"""
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 def short_date(iso_str: Optional[str]) -> str:
+    """将ISO格式日期字符串转换为短格式"""
     if not iso_str:
         return "N/A"
     try:
@@ -50,10 +206,13 @@ def short_date(iso_str: Optional[str]) -> str:
     except:
         return iso_str.split("T")[0] if "T" in iso_str else iso_str
 
+# ======================= 配置获取 =======================
 def running_in_ci() -> bool:
+    """检查是否在CI环境中运行"""
     return os.getenv("CI") == "true" or os.getenv("GITHUB_ACTIONS") == "true"
 
 def get_config() -> tuple[str, str]:
+    """获取GitHub配置信息"""
     if MANUAL_USERNAME and MANUAL_TOKEN:
         return MANUAL_USERNAME, MANUAL_TOKEN
 
@@ -71,6 +230,7 @@ def get_config() -> tuple[str, str]:
     raise ValueError("无法获取 GitHub 凭证！")
 
 def build_session(token: str) -> requests.Session:
+    """创建带有认证信息的请求会话"""
     s = requests.Session()
     s.headers.update({
         "Authorization": f"token {token}",
@@ -79,10 +239,9 @@ def build_session(token: str) -> requests.Session:
     })
     return s
 
-
 # ======================= 数据获取 =======================
-
 def fetch_url(session: requests.Session, url: str) -> Optional[Dict[str, Any]]:
+    """获取URL数据"""
     for attempt in range(3):
         try:
             r = session.get(url, timeout=15)
@@ -100,6 +259,7 @@ def fetch_url(session: requests.Session, url: str) -> Optional[Dict[str, Any]]:
     return None
 
 def get_starred_repos(session: requests.Session, username: str) -> List[Dict[str, Any]]:
+    """获取用户星标仓库列表"""
     repos = []
     url = f"https://api.github.com/users/{username}/starred?per_page=100"
     page = 1
@@ -111,6 +271,7 @@ def get_starred_repos(session: requests.Session, username: str) -> List[Dict[str
             break
         repos.extend(data)
 
+        # 检查是否有下一页
         try:
             r = session.get(url)
             link = r.headers.get("Link", "")
@@ -130,10 +291,12 @@ def get_starred_repos(session: requests.Session, username: str) -> List[Dict[str
     return repos
 
 def fetch_repo_topics(session: requests.Session, full_name: str) -> List[str]:
+    """获取仓库主题"""
     data = fetch_url(session, f"https://api.github.com/repos/{full_name}/topics")
     return data.get("names", []) if isinstance(data, dict) else []
 
 def fetch_latest_release(session: requests.Session, full_name: str) -> Optional[Dict[str, str]]:
+    """获取仓库最新发布"""
     data = fetch_url(session, f"https://api.github.com/repos/{full_name}/releases/latest")
     if not data or not isinstance(data, dict):
         return None
@@ -143,12 +306,14 @@ def fetch_latest_release(session: requests.Session, full_name: str) -> Optional[
     return {"tag": tag, "url": url, "date": short_date(date)} if tag else None
 
 def enrich_repos(session: requests.Session, repos: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """丰富仓库信息"""
     log.info("开始富化仓库信息...")
     for i, repo in enumerate(repos, 1):
         full = repo["full_name"]
         repo["_topics"] = fetch_repo_topics(session, full)
         repo["_release"] = fetch_latest_release(session, full)
 
+        # 确保有 pushed_at 字段，如果没有则使用 updated_at
         if "pushed_at" not in repo or not repo["pushed_at"]:
             repo["pushed_at"] = repo.get("updated_at", "")
 
@@ -157,24 +322,23 @@ def enrich_repos(session: requests.Session, repos: List[Dict[str, Any]]) -> List
     log.info("富化完成")
     return repos
 
-
-# ======================= Overrides 读取 =======================
-
+# ======================= Overrides & Tags & 分类 =======================
 def load_overrides() -> Dict[str, Any]:
+    """加载覆盖配置 - 支持新的结构，将rename和custom_description整合到repos中"""
     defaults = {
         "repos": {},
         "category_emoji": {},
-        "category_icons": {}
+        "category_icons": {}  # 添加自定义图标配置
     }
-
     if not os.path.exists(OVERRIDES_PATH):
         return defaults
-
     try:
         with open(OVERRIDES_PATH, "r", encoding="utf-8") as f:
             data = json.load(f)
-            if "repos" not in data:
+            # 兼容旧格式
+            if "repos" not in data and isinstance(data, dict):
                 data = {"repos": data, "category_emoji": {}, "category_icons": {}}
+            # 补全缺失字段
             for key in defaults:
                 if key not in data:
                     data[key] = defaults[key]
@@ -183,32 +347,8 @@ def load_overrides() -> Dict[str, Any]:
         log.error(f"加载 overrides.json 失败: {e}")
         return defaults
 
-
-# ======================= Category defaults（外置配置） =======================
-
-def load_category_defaults():
-    if not os.path.exists(CATEGORY_DEFAULTS_PATH):
-        log.warning("category_defaults.json 未找到，将使用脚本内部默认值。")
-        return {
-            "category_order": [],
-            "category_icons": {},
-            "category_map": {}
-        }
-    try:
-        with open(CATEGORY_DEFAULTS_PATH, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception as e:
-        log.error(f"读取 category_defaults.json 失败，将采用空配置: {e}")
-        return {
-            "category_order": [],
-            "category_icons": {},
-            "category_map": {}
-        }
-
-
-# ======================= 自动 Tags =======================
-
 def auto_tags_for_repo(repo: Dict[str, Any]) -> List[str]:
+    """为仓库自动生成标签"""
     blob = " ".join([
         repo.get("full_name", "").lower(),
         (repo.get("description") or "").lower(),
@@ -232,62 +372,59 @@ def auto_tags_for_repo(repo: Dict[str, Any]) -> List[str]:
         tags.add(lang)
     return sorted(tags)
 
-
-# ========== 下一部分（Part 2）准备继续 ==========
-# ======================= 分类逻辑：动态分类 + 外置配置 =======================
-
 def get_dynamic_categories():
+    """从overrides.json中获取动态分类配置"""
     overrides = load_overrides()
-    category_defaults = load_category_defaults()
 
-    # 来自 category_defaults.json 的外置配置
-    category_order = category_defaults.get("category_order", []).copy()
-    category_icons = category_defaults.get("category_icons", {}).copy()
-    category_map = category_defaults.get("category_map", {}).copy()
+    # 获取默认配置
+    category_order = DEFAULT_CATEGORY_ORDER.copy()
+    category_icons = DEFAULT_CATEGORY_ICONS.copy()
+    category_map = DEFAULT_CATEGORY_MAP.copy()
 
-    # 自动检测 overrides 中新增的自定义 group
+    # 从overrides中提取自定义分类
     custom_groups = set()
     for repo_info in overrides.get("repos", {}).values():
-        group = repo_info.get("group", "")
-        if group and group not in category_order:
+        group = repo_info.get("group", "其他")
+        if group not in category_order:
             custom_groups.add(group)
 
-    # 将新 group 插入到倒数第二（“其他工具”前）
+    # 将自定义分组添加到分类顺序中
     for group in custom_groups:
         if group not in category_order:
-            if "其他工具" in category_order:
-                idx = max(0, category_order.index("其他工具"))
-                category_order.insert(idx, group)
-            else:
-                category_order.append(group)
+            category_order.insert(-1, group)  # 在"其他"之前插入
 
-    # 为新增 group 自动生成图标（若未定义）
+    # 从overrides中获取自定义图标配置
+    custom_icons = overrides.get("category_icons", {})
+    category_icons.update(custom_icons)
+
+    # 为自定义分组设置默认图标
     for group in custom_groups:
         if group not in category_icons:
+            # 根据分组名称选择合适的图标
             if "影音" in group or "视频" in group or "音乐" in group:
-                category_icons[group] = ["fa-film", "text-pink-500"]
-            elif "AI" in group or "智能" in group:
-                category_icons[group] = ["fa-robot", "text-red-500"]
-            elif "学习" in group or "教程" in group:
-                category_icons[group] = ["fa-graduation-cap", "text-teal-500"]
+                category_icons[group] = ("fa-film", "text-pink-500")
             elif "工具" in group:
-                category_icons[group] = ["fa-tools", "text-indigo-500"]
+                category_icons[group] = ("fa-tools", "text-indigo-500")
+            elif "AI" in group or "智能" in group:
+                category_icons[group] = ("fa-robot", "text-red-500")
+            elif "学习" in group or "教程" in group:
+                category_icons[group] = ("fa-graduation-cap", "text-teal-500")
             else:
-                category_icons[group] = ["fa-folder", "text-blue-500"]
+                category_icons[group] = ("fa-folder", "text-blue-500")
 
-    # 为新增 group 创建空子分类（防止 KeyError）
+    # 为自定义分组创建默认子分类映射
     for group in custom_groups:
         if group not in category_map:
             category_map[group] = {"其他": []}
 
     return category_order, category_icons, category_map
 
-
-def categorize_repos_mixed(repos: List[Dict[str, Any]], overrides: Dict[str, Any]):
+def categorize_repos_mixed(repos: List[Dict[str, Any]], overrides: Dict[str, Any]) -> Dict[str, Dict[str, List[Dict[str, Any]]]]:
+    """对仓库进行分类"""
+    # 获取动态配置
     category_order, category_icons, category_map = get_dynamic_categories()
 
     tree = defaultdict(lambda: defaultdict(list))
-
     for repo in repos:
         full = repo["full_name"]
         blob = " ".join([
@@ -296,73 +433,89 @@ def categorize_repos_mixed(repos: List[Dict[str, Any]], overrides: Dict[str, Any
             " ".join([t.lower() for t in repo.get("_topics", [])])
         ])
 
-        # overrides 优先
         if full in overrides:
             override = overrides[full]
-            g = override.get("group") or "其他工具"
+            g = override.get("group") or "其他"
             s = override.get("sub") or "其他"
             tree[g][s].append(repo)
             continue
 
         matched = False
-        # 使用 category_defaults.json 的映射规则
         for group, subs in category_map.items():
             for sub, kws in subs.items():
-                if any(kw and kw.lower() in blob for kw in kws):
+                if any(kw and kw in blob for kw in kws):
                     tree[group][sub].append(repo)
                     matched = True
                     break
             if matched:
                 break
-
-        # 默认 fallback
         if not matched:
             lang = repo.get("language") or "其他"
-            tree["其他工具"][f"{lang} 项目"].append(repo)
+            tree["其他"][f"{lang} 项目"].append(repo)
 
-    # 按 category_order 输出排序好的结构
+    # 按照动态分类顺序排列
     ordered = {}
     for g in category_order:
         if g in tree:
             ordered[g] = dict(sorted(tree[g].items(), key=lambda x: len(x[1]), reverse=True))
 
-    # 若 "其他工具" 不在序列但存在结果，则追加
-    if "其他工具" in tree and "其他工具" not in ordered:
-        ordered["其他工具"] = dict(sorted(tree["其他工具"].items(), key=lambda x: len(x[1]), reverse=True))
+    # 添加overrides中定义但不在预定义分类中的分组
+    for full, override in overrides.items():
+        g = override.get("group", "其他")
+        s = override.get("sub", "其他")
+        if g not in ordered:
+            ordered[g] = {}
+        if s not in ordered[g]:
+            ordered[g][s] = []
+
+    # 将"其他"分类放在最后
+    if "其他" in tree and "其他" not in ordered:
+        ordered["其他"] = dict(sorted(tree["其他"].items(), key=lambda x: len(x[1]), reverse=True))
 
     return ordered
 
-
-# ======================= 工具函数：生成安全锚点 =======================
-
+# ======================= 工具函数：生成安全的锚点ID =======================
 def make_safe_id(text: str) -> str:
+    """将文本转换为安全的HTML锚点ID"""
+    # 替换特殊字符
+    import re
+    # 将&替换为and
     text = text.replace("&", "and")
+    # 替换其他特殊字符为连字符
     text = re.sub(r'[^\w\s-]', '', text)
-    text = text.replace(' ', '-').lower()
+    # 将空格替换为连字符
+    text = text.replace(' ', '-')
+    # 转换为小写
+    text = text.lower()
+    # 移除多余的连字符
     text = re.sub(r'[-]+', '-', text)
-    return text.strip('-')
+    # 确保不以连字符开头或结尾
+    text = text.strip('-')
+    return text
 
-
-# ======================= override 回退逻辑 =======================
-
+# ======================= 工具函数：处理覆盖值的回退逻辑 =======================
 def get_override_value(repo_full_name: str, overrides: Dict[str, Any], key: str, default_value: str) -> str:
+    """
+    获取覆盖值，如果为空则返回默认值
+    这个函数确保当覆盖值是空字符串时，回退到默认值
+    """
     override_info = overrides.get(repo_full_name, {})
     value = override_info.get(key, "")
+    # 如果覆盖值是空字符串或None，则使用默认值
     return value if value else default_value
 
-
 # ======================= Markdown 生成 =======================
-
-def generate_markdown(categorized, repos, overrides, category_emoji):
+def generate_markdown(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], repos: List[Dict[str, Any]], overrides: Dict[str, Any], category_emoji: Dict[str, str]) -> None:
+    """生成Markdown文档 - 支持新的配置结构，修复空值回退问题"""
     now = datetime.now().strftime("%Y-%m-%d")
     total = len(repos)
-
     with open(OUTPUT_MD, "w", encoding="utf-8") as f:
         f.write('<a id="top"></a>\n\n')
         f.write('# 🌟 我的 GitHub 星标项目整理\n\n')
         f.write(f'> 自动生成 · 最后更新：{now} · 总项目数：{total}\n\n')
 
         f.write('## 📊 分类统计\n\n')
+        # 获取动态分类顺序
         category_order, _, _ = get_dynamic_categories()
         for g in category_order:
             if g in categorized:
@@ -385,10 +538,12 @@ def generate_markdown(categorized, repos, overrides, category_emoji):
         for g in category_order:
             if g not in categorized:
                 continue
+
             safe_id = make_safe_id(g)
+            f.write(f'<a id="{safe_id}"></a>\n')
+            # 加 emoji
             emoji = category_emoji.get(g, "")
             title = f"{emoji} {g}" if emoji else g
-            f.write(f'<a id="{safe_id}"></a>\n')
             f.write(f'## {title}\n\n')
 
             for s, items in categorized[g].items():
@@ -400,18 +555,20 @@ def generate_markdown(categorized, repos, overrides, category_emoji):
                     full = repo["full_name"]
                     url = repo["html_url"]
 
+                    # 获取自定义描述，如果为空则使用原始描述
                     original_desc = repo.get("description") or "无描述"
                     desc = get_override_value(full, overrides, "custom_description", original_desc)
                     desc = desc.replace("|", "\\|")
 
+                    # 获取自定义名字，如果为空则使用原始名字
                     display_name = get_override_value(full, overrides, "rename", repo["full_name"])
 
                     stars = repo["stargazers_count"]
                     forks = repo["forks_count"]
+                    # 使用 pushed_at 作为代码最后更新时间
                     last_updated = short_date(repo.get("pushed_at"))
                     rel = repo.get("_release")
                     rel_txt = f"📦 [{rel['tag']}]({rel['url']})" if rel and rel.get("tag") else "📦 无 Release"
-
                     topics = " ".join([f"`{t}`" for t in repo.get("_topics", [])])
                     tags_line = " ".join([f"`{t}`" for t in auto_tags_for_repo(repo)])
 
@@ -423,11 +580,15 @@ def generate_markdown(categorized, repos, overrides, category_emoji):
                         f.write(f'- **Tags:** {tags_line}\n')
                     f.write(f'- ⭐ {stars} · 🍴 {forks} · 📅 最后更新 {last_updated} · {rel_txt}\n\n')
 
+                # 在每个子分类折叠块内添加返回链接（只在展开时可见）
                 f.write('<div style="text-align: right;">\n')
                 f.write(f'<a href="#top">⬆️ 返回顶部</a> | <a href="#{safe_id}">⬆️ 返回分类</a>\n')
                 f.write('</div>\n\n')
                 f.write('</details>\n\n')
 
+            # 不添加外部的返回链接，让用户从折叠块内部返回
+
+    # 在文档末尾添加一个返回顶部链接
     with open(OUTPUT_MD, "a", encoding="utf-8") as f:
         f.write('\n---\n\n')
         f.write('<div style="text-align: center; padding: 30px 0;">\n')
@@ -436,14 +597,13 @@ def generate_markdown(categorized, repos, overrides, category_emoji):
 
     log.info(f"Markdown 生成完成 → {OUTPUT_MD}")
 
-
-# ========== 下一部分（Part 3）准备继续 ==========
 # ======================= HTML 生成 =======================
-
-def generate_html(categorized, repos, overrides, category_emoji):
+def generate_html(categorized: Dict[str, Dict[str, List[Dict[str, Any]]]], repos: List[Dict[str, Any]], overrides: Dict[str, Any], category_emoji: Dict[str, str]) -> None:
+    """生成HTML文档 - 支持新的配置结构，修复空值回退问题"""
     now = datetime.now().strftime("%Y-%m-%d")
     ensure_dir("docs")
 
+    # 获取动态分类配置
     category_order, category_icons, _ = get_dynamic_categories()
 
     html = f'''<!DOCTYPE html>
@@ -469,10 +629,10 @@ def generate_html(categorized, repos, overrides, category_emoji):
         .nav-link {{ position: relative; }}
         .nav-link::after {{ content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background-color: #3b82f6; transition: width 0.3s ease; }}
         .nav-link:hover::after {{ width: 100%; }}
-        .back-to-top {{
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
+        .back-to-top {{ 
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; 
             width: 50px;
             height: 50px;
             background-color: #3b82f6;
@@ -488,7 +648,7 @@ def generate_html(categorized, repos, overrides, category_emoji):
             transition: all 0.3s ease;
             z-index: 1000;
         }}
-        .back-to-top.visible {{
+        .back-to-top.visible {{ 
             opacity: 1;
             visibility: visible;
         }}
@@ -527,6 +687,7 @@ def generate_html(categorized, repos, overrides, category_emoji):
             </h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">'''
 
+    # 生成目录导航链接
     for g in category_order:
         if g in categorized:
             safe_id = make_safe_id(g)
@@ -540,11 +701,11 @@ def generate_html(categorized, repos, overrides, category_emoji):
         </div>
     </div>'''
 
-    # 分类内容渲染
+    # 生成分类内容
     for g in category_order:
         if g not in categorized:
             continue
-        icon_name, icon_color = category_icons.get(g, ["fa-ellipsis-h", "text-gray-500"])
+        icon_name, icon_color = category_icons.get(g, ("fa-ellipsis-h", "text-gray-500"))
         safe_id = make_safe_id(g)
         emoji = category_emoji.get(g, "")
         title = f"{emoji} {g}" if emoji else g
@@ -558,7 +719,6 @@ def generate_html(categorized, repos, overrides, category_emoji):
 
         for s, items in categorized[g].items():
             sub_id = make_safe_id(s)
-
             html += f'''
         <div id="{sub_id}" class="section mb-6">
             <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2">{s}</h3>
@@ -568,13 +728,16 @@ def generate_html(categorized, repos, overrides, category_emoji):
                 full = repo["full_name"]
                 url = repo["html_url"]
 
+                # 获取自定义描述，如果为空则使用原始描述
                 original_desc = repo.get("description") or "暂无描述"
                 raw_desc = get_override_value(full, overrides, "custom_description", original_desc)
                 desc = raw_desc.replace('"', '&quot;').replace("'", '&#39;')
 
+                # 获取自定义名字，如果为空则使用原始名字
                 display_name = get_override_value(full, overrides, "rename", repo["full_name"])
-                last_updated = short_date(repo.get("pushed_at"))
 
+                # 使用 pushed_at 作为代码最后更新时间
+                last_updated = short_date(repo.get("pushed_at"))
                 html += f'''
                 <div class="repo-card bg-gray-50 rounded-lg p-4">
                     <a href="{url}" class="text-lg font-medium text-blue-600 hover:underline">{display_name}</a>
@@ -586,6 +749,7 @@ def generate_html(categorized, repos, overrides, category_emoji):
             </div>
         </div>'''
 
+        # 在每个分类末尾添加返回顶部链接
         html += f'''
         <div class="mt-6 pt-4 border-t text-right">
             <a href="#top" class="return-top-link">
@@ -594,10 +758,10 @@ def generate_html(categorized, repos, overrides, category_emoji):
         </div>
     </div>'''
 
-    # 说明部分
-    info_icon_name, info_icon_color = category_icons.get("学习资料", ["fa-graduation-cap", "text-teal-500"])
-    nav_icon_name, nav_icon_color = category_icons.get("脚本自动化", ["fa-terminal", "text-yellow-600"])
-    edit_icon_name, edit_icon_color = category_icons.get("Web 开发", ["fa-paint-brush", "text-purple-500"])
+    # 获取图标信息用于说明部分
+    info_icon_name, info_icon_color = category_icons.get("学习资料", ("fa-graduation-cap", "text-teal-500"))
+    nav_icon_name, nav_icon_color = category_icons.get("脚本自动化", ("fa-terminal", "text-yellow-600"))
+    edit_icon_name, edit_icon_color = category_icons.get("Web 开发", ("fa-paint-brush", "text-purple-500"))
 
     html += f'''
     <div class="bg-white rounded-xl shadow-md p-6 mb-8">
@@ -613,10 +777,7 @@ def generate_html(categorized, repos, overrides, category_emoji):
                 <li>每个部分末尾有"返回顶部"链接</li>
                 <li>右下角的浮动按钮也可以快速返回顶部</li>
             </ul>
-        </div>'''
-
-    # 说明部分续
-    html += f'''
+        </div>
         <div class="mb-6">
             <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2 flex items-center">
                 <i class="fas {edit_icon_name} mr-2 {edit_icon_color}"></i> 编辑优势
@@ -626,9 +787,17 @@ def generate_html(categorized, repos, overrides, category_emoji):
                 <li>结构清晰，编辑维护简单</li>
                 <li>在任何支持Markdown的编辑器或平台都能完美显示</li>
             </ul>
-        </div>'''
-
-    html += '''
+        </div>
+        <div>
+            <h3 class="text-xl font-medium mb-3 text-gray-700 border-b pb-2 flex items-center">
+                <i class="fas fa-tasks mr-2 text-green-500"></i> 整理建议
+            </h3>
+            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                <li>按分类顺序逐个整理</li>
+                <li>每次star新项目时立即添加到对应位置</li>
+                <li>每月回顾一次，删除不再需要的项目</li>
+            </ul>
+        </div>
         <div class="mt-6 pt-4 border-t text-right">
             <a href="#top" class="return-top-link">
                 <i class="fas fa-arrow-up mr-1"></i> 返回顶部
@@ -637,7 +806,10 @@ def generate_html(categorized, repos, overrides, category_emoji):
     </div>
 
     <div class="bg-white rounded-xl shadow-md p-6 text-center text-gray-500 text-sm">
-        最后更新: ''' + now + '''
+        最后更新: {now}
+    </div>
+    <div class="text-center text-gray-400 text-xs mt-8 mb-4">
+        网页仅供学习与参考，请勿用于商业用途。
     </div>
 
     <a href="#top" class="back-to-top" id="backToTop">
@@ -645,27 +817,62 @@ def generate_html(categorized, repos, overrides, category_emoji):
     </a>
 
     <script>
-        window.addEventListener('scroll', function() {
+        // 显示/隐藏返回顶部按钮
+        window.addEventListener('scroll', function() {{
             const backToTop = document.getElementById('backToTop');
-            if (window.pageYOffset > 300) {
+            if (window.pageYOffset > 300) {{
                 backToTop.classList.add('visible');
-            } else {
+            }} else {{
                 backToTop.classList.remove('visible');
-            }
-        });
-    </script>
+            }}
+        }});
 
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {{
+            anchor.addEventListener('click', function (e) {{
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+                if (targetElement) {{
+                    // 添加偏移以考虑固定头部
+                    const offsetTop = targetElement.offsetTop - 80; // 调整偏移量以适应标题高度
+                    window.scrollTo({{
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    }});
+                }}
+            }});
+        }});
+        
+        // 页面加载后初始化
+        document.addEventListener('DOMContentLoaded', function() {{
+            // 检查URL中的锚点并滚动到对应位置
+            if (window.location.hash) {{
+                const targetElement = document.querySelector(window.location.hash);
+                if (targetElement) {{
+                    setTimeout(function() {{
+                        const offsetTop = targetElement.offsetTop - 80;
+                        window.scrollTo({{
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        }});
+                    }}, 100);
+                }}
+            }}
+        }});
+    </script>
 </body>
 </html>'''
 
     with open(OUTPUT_HTML, "w", encoding="utf-8") as f:
         f.write(html)
-    log.info(f"HTML 已生成 → {OUTPUT_HTML}")
+    log.info(f"极简美观 HTML 已生成 → {OUTPUT_HTML}")
 
-
-# ======================= stats.json 生成 =======================
-
-def dump_stats_json(repos, categorized):
+# ======================= 统计数据生成 =======================
+def dump_stats_json(repos: List[Dict[str, Any]], categorized: Dict[str, Dict[str, List[Dict[str, Any]]]]) -> None:
+    """生成统计信息JSON"""
     lang_counter = Counter((r.get("language") or "Unknown") for r in repos)
     data = {
         "total": len(repos),
@@ -675,64 +882,68 @@ def dump_stats_json(repos, categorized):
     }
     with open(STATS_JSON, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-    log.info("stats.json 已导出")
+    log.info(f"stats.json 已导出")
 
-
-# ========== 下一部分（Part 4）准备继续 ==========
-# ======================= overrides_template.json（始终包含全部仓库） =======================
-
-def write_overrides_template(repos, path=OVERRIDES_TEMPLATE):
+def write_overrides_template(repos, path="overrides_template.json"):
+    """
+    将 overrides_template.json 写入磁盘。
+    使用新的结构，将所有配置项整合到repos中。
+    仅包含未分组的仓库（没有在overrides.json中设置group的仓库）
+    """
     template = {
         "repos": {},
         "category_emoji": {},
-        "category_icons": {}
+        "category_icons": {}  # 添加图标配置模板
     }
 
-    for repo in repos:
-        full = repo["full_name"]
+    # 加载现有的overrides配置
+    overrides_data = load_overrides()
+    overrides_repos = overrides_data.get("repos", {})
 
-        template["repos"][full] = {
-            "//": "group: 一级分类, sub: 子分类, rename: 自定义名称, custom_description: 自定义描述",
-            "group": "",
-            "sub": "",
-            "rename": "",
-            "custom_description": ""
-        }
+    # 生成模板：仅包含未分组的仓库
+    for r in repos:
+        full = r["full_name"]
+        # 如果仓库在overrides中没有设置group（或group为空），则添加到模板中
+        if full not in overrides_repos or not overrides_repos[full].get("group"):
+            template["repos"][full] = {
+                "group": "",
+                "sub": "",
+                "rename": "",
+                "custom_description": ""
+            }
 
     with open(path, "w", encoding="utf-8") as f:
         json.dump(template, f, indent=4, ensure_ascii=False)
 
-    log.info(f"overrides_template.json 已生成，共包含 {len(template['repos'])} 项模板")
+    log.info(f"overrides_template.json 已生成，包含 {len(template['repos'])} 个未分组仓库")
 
-
-# ======================= Main 流程 =======================
-
-def main():
+# ======================= 主函数 =======================
+def main() -> None:
+    """主函数"""
     username, token = get_config()
-    log.info(f"开始处理用户：{username}")
+
+    log.info("开始执行 GitHub Stars 自动整理")
 
     session = build_session(token)
 
     repos = get_starred_repos(session, username)
+    if not repos:
+        log.error("未获取到星标项目")
+        return
+
     repos = enrich_repos(session, repos)
 
+    # 加载增强版 overrides
     overrides_data = load_overrides()
-    overrides = overrides_data.get("repos", {})
+    repo_overrides = overrides_data.get("repos", {})
     category_emoji = overrides_data.get("category_emoji", {})
-
-    categorized = categorize_repos_mixed(repos, overrides)
-
-    generate_markdown(categorized, repos, overrides, category_emoji)
-    generate_html(categorized, repos, overrides, category_emoji)
-
+    categorized = categorize_repos_mixed(repos, repo_overrides)
+    generate_markdown(categorized, repos, repo_overrides, category_emoji)
+    generate_html(categorized, repos, repo_overrides, category_emoji)
     dump_stats_json(repos, categorized)
-
     write_overrides_template(repos)
 
-    log.info("全部流程已完成！")
-
-
-# ======================= 入口 =======================
+    log.info("🎉 所有任务完成！双输出完美就绪！")
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,50 @@
+{
+  "category_order": [
+    "影音娱乐",
+    "实用效率",
+    "AI与自动化",
+    "数据库与数据",
+    "学习资料",
+    "其他工具"
+  ],
+  "category_icons": {
+    "影音娱乐": ["fa-film", "text-rose-500"],
+    "实用效率": ["fa-bolt", "text-amber-500"],
+    "AI与自动化": ["fa-robot", "text-blue-500"],
+    "数据库与数据": ["fa-database", "text-emerald-500"],
+    "学习资料": ["fa-book", "text-purple-500"],
+    "其他工具": ["fa-wrench", "text-gray-500"]
+  },
+  "category_map": {
+    "影音娱乐": {
+      "视频工具": ["video", "download", "bilibili", "youtube", "media"],
+      "音乐工具": ["music", "audio", "mp3", "sound"],
+      "动画漫画": ["comic", "acg", "danmaku", "animation"]
+    },
+    "实用效率": {
+      "系统工具": ["system", "os", "linux", "shell", "terminal"],
+      "下载工具": ["download", "aria2", "torrent"],
+      "效率工具": ["productivity", "notes", "task", "todo", "notion"],
+      "网络工具": ["proxy", "vpn", "http", "network"]
+    },
+    "AI与自动化": {
+      "AI模型与框架": ["ai", "ml", "pytorch", "tensorflow", "llm"],
+      "自然语言处理": ["nlp", "transformer", "bert", "gpt"],
+      "图像与视觉": ["opencv", "vision", "cv", "image"],
+      "自动化脚本": ["crawler", "automation", "bot", "script"]
+    },
+    "数据库与数据": {
+      "数据库引擎": ["database", "mysql", "postgres", "sqlite", "mongo"],
+      "数据处理": ["data", "etl", "analysis", "analytics"],
+      "可视化": ["chart", "visualization", "plot"]
+    },
+    "学习资料": {
+      "教程与示例": ["tutorial", "example", "course"],
+      "编程学习": ["learn", "python", "rust", "go", "java"],
+      "算法与刷题": ["algorithm", "leetcode", "coding"]
+    },
+    "其他工具": {
+      "其他": []
+    }
+  }
+}

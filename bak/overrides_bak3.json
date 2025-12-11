@@ -1,0 +1,693 @@
+{
+  "repos": {
+    "jiji262/douyin-downloader": {
+      "group": "影音娱乐",
+      "sub": "视频工具",
+      "rename": "抖音下载器",
+      "custom_description": ""
+    },
+    "caorushizi/mediago": {
+      "group": "影音娱乐",
+      "sub": "视频工具",
+      "rename": "MediaGo",
+      "custom_description": ""
+    },
+    "yaobiao131/downkyicore": {
+      "group": "影音娱乐",
+      "sub": "阿B专栏",
+      "rename": "下载姬",
+      "custom_description": "支持多平台动漫资源下载的核心组件"
+    },
+    "lanyeeee/bilibili-video-downloader": {
+      "group": "影音娱乐",
+      "sub": "阿B专栏",
+      "rename": "哔哩哔哩视频下载器",
+      "custom_description": ""
+    },
+    "btjawa/BiliTools": {
+      "group": "影音娱乐",
+      "sub": "阿B专栏",
+      "rename": "哔哩哔哩工具箱",
+      "custom_description": ""
+    },
+    "mundane799699/bilibili-history-wxt": {
+      "group": "影音娱乐",
+      "sub": "阿B专栏",
+      "rename": "B站无限历史记录",
+      "custom_description": "突破B站历史记录限制的浏览器插件"
+    },
+    "lyswhut/lx-music-desktop": {
+      "group": "影音娱乐",
+      "sub": "音乐工具",
+      "rename": "洛雪音乐桌面版",
+      "custom_description": "多平台音乐聚合播放器"
+    },
+    "timeshiftsauce/CeruMusic": {
+      "group": "影音娱乐",
+      "sub": "音乐工具",
+      "rename": "Ceru Music 澜音",
+      "custom_description": ""
+    },
+    "MoeKoeMusic/MoeKoeMusic": {
+      "group": "影音娱乐",
+      "sub": "音乐工具",
+      "rename": "MoeKoeMusic",
+      "custom_description": ""
+    },
+    "xincmm/sageread": {
+      "group": "影音娱乐",
+      "sub": "读书必备",
+      "rename": "SageRead",
+      "custom_description": ""
+    },
+    "jayjd/HuYaTv": {
+      "group": "影音娱乐",
+      "sub": "直播工具",
+      "rename": "虎牙直播辅助工具",
+      "custom_description": "虎牙直播下载与解析工具"
+    },
+    "freeok/so-novel": {
+      "group": "影音娱乐",
+      "sub": "读书必备",
+      "rename": "So Novel",
+      "custom_description": ""
+    },
+    "hectorqin/reader": {
+      "group": "影音娱乐",
+      "sub": "读书必备",
+      "rename": "阅读",
+      "custom_description": ""
+    },
+    "FortAwesome/Font-Awesome": {
+      "group": "开发工具",
+      "sub": "UI 组件库",
+      "rename": "Font Awesome图标库",
+      "custom_description": "开源矢量图标库，支持多种框架集成"
+    },
+    "argosopentech/argos-translate": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "Argos 翻译助手",
+      "custom_description": ""
+    },
+    "MashiroSaber03/Saber-Translator": {
+      "group": "影音娱乐",
+      "sub": "看漫神器",
+      "rename": "Saber-Translator",
+      "custom_description": ""
+    },
+    "MatrixSeven/file-transfer-go": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "文件传输 GO",
+      "custom_description": ""
+    },
+    "XiangZi7/GlassMusicPlayer": {
+      "group": "影音娱乐",
+      "sub": "音乐工具",
+      "rename": "GlassMusicPlayer",
+      "custom_description": "透明玻璃风格的音乐播放器"
+    },
+    "home-assistant/home-assistant.io": {
+      "group": "健康生活",
+      "sub": "智慧助手",
+      "rename": "Home Assistant",
+      "custom_description": ""
+    },
+    "eli64s/readme-ai": {
+      "group": "AI与自动化",
+      "sub": "AI应用",
+      "rename": "README生成AI",
+      "custom_description": "自动生成项目README文档的AI工具"
+    },
+    "YaoFANGUK/video-subtitle-remover": {
+      "group": "影音娱乐",
+      "sub": "视频工具",
+      "rename": "视频字幕移除工具",
+      "custom_description": "AI驱动的视频字幕检测与移除工具"
+    },
+    "showlab/Code2Video": {
+      "group": "AI与自动化",
+      "sub": "AI应用",
+      "rename": "代码转视频工具",
+      "custom_description": "将代码片段转换为演示视频的AI工具"
+    },
+    "icip-cas/PPTAgent": {
+      "group": "AI与自动化",
+      "sub": "AI应用",
+      "rename": "PPT智能助手",
+      "custom_description": "AI驱动的PPT生成与编辑工具"
+    },
+    "cv-cat/Spider_XHS": {
+      "group": "AI与自动化",
+      "sub": "脚本自动化",
+      "rename": "小红书爬虫",
+      "custom_description": "小红书内容爬取与分析工具"
+    },
+    "sansan0/TrendRadar": {
+      "group": "AI与自动化",
+      "sub": "MCN",
+      "rename": "",
+      "custom_description": ""
+    },
+    "loks666/get_jobs": {
+      "group": "AI与自动化",
+      "sub": "脚本自动化",
+      "rename": "招聘信息爬取工具",
+      "custom_description": "自动抓取招聘网站职位信息的脚本"
+    },
+    "pbatard/rufus": {
+      "group": "实用效率",
+      "sub": "系统工具",
+      "rename": "Rufus",
+      "custom_description": "使用USB制作系统安装器"
+    },
+    "ZyperWave/ZyperWinOptimize": {
+      "group": "实用效率",
+      "sub": "系统工具",
+      "rename": "ZyperWin++",
+      "custom_description": ""
+    },
+    "PrelinaMontelli/Edge-Monitor": {
+      "group": "实用效率",
+      "sub": "系统工具",
+      "rename": "Edge-Monitor",
+      "custom_description": ""
+    },
+    "Tosencen/XMBOX": {
+      "group": "影音娱乐",
+      "sub": "电视盒子",
+      "rename": "XMBOX",
+      "custom_description": "需要自己找影视源填充"
+    },
+    "microsoft/PowerToys": {
+      "group": "实用效率",
+      "sub": "系统工具",
+      "rename": "微软PowerToys",
+      "custom_description": "Windows系统增强工具集（窗口管理、快捷键等）"
+    },
+    "Gar-b-age/CookLikeHOC": {
+      "group": "健康生活",
+      "sub": "生活厨房",
+      "rename": "像老乡鸡一样做饭",
+      "custom_description": ""
+    },
+    "agalwood/Motrix": {
+      "group": "实用效率",
+      "sub": "下载工具",
+      "rename": "Motrix",
+      "custom_description": ""
+    },
+    "hmjz100/LinkSwift": {
+      "group": "AI与自动化",
+      "sub": "脚本自动化",
+      "rename": "LinkSwift",
+      "custom_description": ""
+    },
+    "xifangczy/cat-catch": {
+      "group": "AI与自动化",
+      "sub": "脚本自动化",
+      "rename": "猫抓",
+      "custom_description": "浏览器插件，用于提取、分析和下载网页元素"
+    },
+    "Cinvin/myuserscripts": {
+      "group": "AI与自动化",
+      "sub": "脚本自动化",
+      "rename": "个人用户脚本集",
+      "custom_description": "自定义浏览器用户脚本集合"
+    },
+    "liminbai/Awesome-GameEmulator": {
+      "group": "游戏相关",
+      "sub": "游戏资源",
+      "rename": "游戏模拟器精选列表",
+      "custom_description": "各类平台游戏模拟器的汇总与介绍"
+    },
+    "XIU2/UserScript": {
+      "group": "AI与自动化",
+      "sub": "脚本自动化",
+      "rename": "XIU2的用户脚本集",
+      "custom_description": "多个平台的增强脚本（去广告、功能扩展等）"
+    },
+    "zhayujie/chatgpt-on-wechat": {
+      "group": "AI与自动化",
+      "sub": "大模型/LLM",
+      "rename": "微信GPT助手",
+      "custom_description": "基于ChatGPT的微信聊天机器人"
+    },
+    "scriptscat/scriptcat": {
+      "group": "AI与自动化",
+      "sub": "脚本自动化",
+      "rename": "脚本猫",
+      "custom_description": "中国版的油猴"
+    },
+    "the1812/Bilibili-Evolved": {
+      "group": "影音娱乐",
+      "sub": "阿B专栏",
+      "rename": "B站增强脚本",
+      "custom_description": "增强B站功能的用户脚本（去广告、倍速等）"
+    },
+    "CyC2018/CS-Notes": {
+      "group": "学习资料",
+      "sub": "技术笔记",
+      "rename": "CS-Notes",
+      "custom_description": "计算机科学基础知识总结（算法、操作系统等）"
+    },
+    "cxasm/notepad--": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "Notepad--",
+      "custom_description": "轻量级代码编辑器，支持多语言高亮"
+    },
+    "Keldos-Li/typora-latex-theme-fonts": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "Typora LaTeX主题字体",
+      "custom_description": "为Typora优化的LaTeX排版主题的字体"
+    },
+    "Keldos-Li/typora-latex-theme": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "Typora LaTeX主题",
+      "custom_description": "为Typora优化的LaTeX排版主题"
+    },
+    "caolib/typora-onelight-theme": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "Typora OneLight主题",
+      "custom_description": ""
+    },
+    "alam00000/bentopdf": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "BentoPDF",
+      "custom_description": "推测是一款与PDF处理相关的工具，可能具备PDF转换、编辑等功能。"
+    },
+    "tw93/MiaoYan": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "MiaoYan",
+      "custom_description": "一款简洁的Markdown编辑器，专注于提供流畅的写作体验，支持多种格式导出。（macOS专属））"
+    },
+    "HandBrake/HandBrake": {
+      "group": "影音娱乐",
+      "sub": "视频工具",
+      "rename": "HandBrake",
+      "custom_description": "知名的开源视频转换工具，支持多种视频格式转换，可自定义参数调整视频质量等。"
+    },
+    "siddharthvaddem/openscreen": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "OpenScreen",
+      "custom_description": "推测是一款开源的屏幕共享或远程控制工具，方便用户进行远程协作等操作。（macOS）"
+    },
+    "mirai-mamori/Sakurairo": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "Sakurairo",
+      "custom_description": "一款美观的WordPress主题，具有丰富的自定义选项和良好的兼容性。"
+    },
+    "penpot/penpot": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "Penpot",
+      "custom_description": "Penpot 是首个用于设计和代码协作的开源设计工具，支持创建设计、交互式原型和设计系统，开发者可获取现成代码，支持开放标准与插件系统，具备自托管能力，通过环境变量和标志进行配置，采用 MPL-2.0 许可证。"
+    },
+    "microfeed/microfeed": {
+      "group": "AI与自动化",
+      "sub": "MCN",
+      "rename": "Microfeed",
+      "custom_description": "可能是一款用于聚合各类信息源的工具，帮助用户高效获取感兴趣的内容。"
+    },
+    "lfnovo/open-notebook": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "OpenNotebook",
+      "custom_description": "一款开源的笔记应用，支持笔记的创建、编辑和管理，注重数据隐私和自定义功能。"
+    },
+    "ClickHouse/ClickHouse": {
+      "group": "数据库与数据",
+      "sub": "数据库引擎",
+      "rename": "ClickHouse",
+      "custom_description": "一款高性能的列式数据库管理系统，适用于大数据分析场景，支持实时数据处理和复杂查询。"
+    },
+    "moshowgame/dbeaver-driver-all": {
+      "group": "数据库与数据",
+      "sub": "数据库工具",
+      "rename": "",
+      "custom_description": ""
+    },
+    "wgzhao/dbeaver-agent": {
+      "group": "数据库与数据",
+      "sub": "数据库工具",
+      "rename": "",
+      "custom_description": ""
+    },
+    "dbeaver/dbeaver": {
+      "group": "数据库与数据",
+      "sub": "数据库工具",
+      "rename": "DBeaver",
+      "custom_description": "通用的数据库管理客户端工具，支持多种数据库类型，提供直观的界面用于数据库的查询、管理等操作。"
+    },
+    "VERT-sh/VERT": {
+      "group": "AI与自动化",
+      "sub": "AI应用",
+      "rename": "VERT",
+      "custom_description": ""
+    },
+    "google-research/inksight": {
+      "group": "AI与自动化",
+      "sub": "机器学习工具",
+      "rename": "InkSight",
+      "custom_description": "一个将离线手写内容（如手写笔记照片）转换为在线数字墨水的系统"
+    },
+    "AI4Finance-Foundation/FinRL": {
+      "group": "AI与自动化",
+      "sub": "机器学习工具",
+      "rename": "金融强化学习框架",
+      "custom_description": "基于强化学习的金融交易算法框架"
+    },
+    "RICHQAQ/PasteMD": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "Markdown粘贴工具",
+      "custom_description": "方便粘贴内容到Markdown文档的辅助工具"
+    },
+    "Anionex/banana-slides": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "幻灯片工具",
+      "custom_description": "幻灯片制作或优化相关工具"
+    },
+    "cjpais/Handy": {
+      "group": "实用效率",
+      "sub": "系统工具",
+      "rename": "便捷系统工具",
+      "custom_description": "系统便捷操作相关工具集"
+    },
+    "yeongpin/cursor-free-vip": {
+      "group": "AI与自动化",
+      "sub": "AI应用",
+      "rename": "Cursor免费VIP功能",
+      "custom_description": "为Cursor编辑器解锁免费VIP功能的工具"
+    },
+    "venera-app/venera": {
+      "group": "影音娱乐",
+      "sub": "动漫/追剧",
+      "rename": "Vnera",
+      "custom_description": ""
+    },
+    "dr34m-cn/taosync": {
+      "group": "影音娱乐",
+      "sub": "电视盒子",
+      "rename": "TaoSync",
+      "custom_description": ""
+    },
+    "OpenListTeam/OpenList": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "OpenList",
+      "custom_description": ""
+    },
+    "OpenListApp/OpenListApp": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "OpenListAPP",
+      "custom_description": "一个AList、OpenList跨平台客户端"
+    },
+    "chenfan0/fideo-live-record": {
+      "group": "影音娱乐",
+      "sub": "视频工具",
+      "rename": "直播录制工具",
+      "custom_description": "视频直播录制相关工具"
+    },
+    "VonChange/utao": {
+      "group": "影音娱乐",
+      "sub": "电视盒子",
+      "rename": "油桃TV",
+      "custom_description": ""
+    },
+    "laqoome/LaQoo": {
+      "group": "影音娱乐",
+      "sub": "动漫/追剧",
+      "rename": "LaQoo",
+      "custom_description": ""
+    },
+    "qiweiii/bili-feed-history": {
+      "group": "影音娱乐",
+      "sub": "阿B专栏",
+      "rename": "B站feed历史",
+      "custom_description": "B站动态历史记录相关工具"
+    },
+    "Return-Log/Drive-Icon-Manager": {
+      "group": "实用效率",
+      "sub": "系统工具",
+      "rename": "网盘图标删除器",
+      "custom_description": ""
+    },
+    "es3n1n/defendnot": {
+      "group": "其他工具",
+      "sub": "网络工具",
+      "rename": "Defendnot",
+      "custom_description": ""
+    },
+    "tranht17/WinTune": {
+      "group": "实用效率",
+      "sub": "系统工具",
+      "rename": "WinTune",
+      "custom_description": "Windows系统优化与调整工具"
+    },
+    "viarotel-org/escrcpy": {
+      "group": "实用效率",
+      "sub": "设备管理",
+      "rename": "Escrcpy",
+      "custom_description": "基于scrcpy的安卓设备远程控制工具"
+    },
+    "qingmeng1/bilijump-ai": {
+      "group": "影音娱乐",
+      "sub": "阿B专栏",
+      "rename": "Bilibili AI Skip",
+      "custom_description": ""
+    },
+    "coolight7/musicxx": {
+      "group": "影音娱乐",
+      "sub": "音乐工具",
+      "rename": "Musicxx 拟声",
+      "custom_description": "音乐播放或处理相关工具"
+    },
+    "JunkFood02/Seal": {
+      "group": "实用效率",
+      "sub": "下载工具",
+      "rename": "Seal下载器",
+      "custom_description": "多平台下载工具"
+    },
+    "liu-ziting/what-to-eat": {
+      "group": "健康生活",
+      "sub": "生活厨房",
+      "rename": "今日吃什么",
+      "custom_description": "饮食选择推荐工具"
+    },
+    "maxiaobang7/ossnav": {
+      "group": "学习资料",
+      "sub": "技术笔记",
+      "rename": "开源导航",
+      "custom_description": "开源项目导航工具"
+    },
+    "youhunwl/TVAPP": {
+      "group": "影音娱乐",
+      "sub": "电视盒子",
+      "rename": "电视应用",
+      "custom_description": "电视端网络应用"
+    },
+    "MCDFsteve/NipaPlay-Reload": {
+      "group": "影音娱乐",
+      "sub": "电视盒子",
+      "rename": "NipaPlay-Reload",
+      "custom_description": ""
+    },
+    "waifu-project/movie": {
+      "group": "影音娱乐",
+      "sub": "动漫/追剧",
+      "rename": "小猫影视",
+      "custom_description": ""
+    },
+    "JefferyHcool/BiliNote": {
+      "group": "影音娱乐",
+      "sub": "阿B专栏",
+      "rename": "B站笔记工具",
+      "custom_description": "B站视频笔记辅助工具"
+    },
+    "putyy/res-downloader": {
+      "group": "实用效率",
+      "sub": "下载工具",
+      "rename": "资源下载器",
+      "custom_description": "各类资源下载工具"
+    },
+    "algerkong/AlgerMusicPlayer": {
+      "group": "影音娱乐",
+      "sub": "音乐工具",
+      "rename": "Alger音乐播放器",
+      "custom_description": "音乐播放软件"
+    },
+    "Predidit/Kazumi": {
+      "group": "影音娱乐",
+      "sub": "动漫/追剧",
+      "rename": "Kazumi",
+      "custom_description": ""
+    },
+    "Sle2p/AniCh": {
+      "group": "影音娱乐",
+      "sub": "动漫/追剧",
+      "rename": "AniCh",
+      "custom_description": "动漫追更与管理工具"
+    },
+    "open-ani/animeko": {
+      "group": "影音娱乐",
+      "sub": "动漫/追剧",
+      "rename": "Animeko",
+      "custom_description": ""
+    },
+    "RemotePinee/AudioVisual": {
+      "group": "影音娱乐",
+      "sub": "电视盒子",
+      "rename": "AudioVisual",
+      "custom_description": ""
+    },
+    "microsoft/markitdown": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "MarkItDown",
+      "custom_description": "一个轻量级 Python 工具，用于将各种文件转换为 Markdown 格式，适用于大语言模型（LLMs）及相关文本分析管道"
+    },
+    "xbmc/xbmc": {
+      "group": "影音娱乐",
+      "sub": "电视盒子",
+      "rename": "Kodi",
+      "custom_description": "开源媒体中心软件"
+    },
+    "GopeedLab/gopeed": {
+      "group": "实用效率",
+      "sub": "下载工具",
+      "rename": "Gopeed下载器",
+      "custom_description": "高性能多协议下载工具"
+    },
+    "rwv/chinese-dos-games": {
+      "group": "游戏相关",
+      "sub": "游戏资源",
+      "rename": "中文DOS游戏集合",
+      "custom_description": "中文DOS游戏资源汇总"
+    },
+    "caolib/typora-onelight-theme": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "Typora OneLight主题",
+      "custom_description": "Typora编辑器的OneLight主题"
+    },
+    "zyronon/TypeWords": {
+      "group": "学习资料",
+      "sub": "教程资源",
+      "rename": "打字练习工具",
+      "custom_description": "文字打字练习工具"
+    },
+    "adlered/CSDNGreener": {
+      "group": "AI与自动化",
+      "sub": "脚本自动化",
+      "rename": "CSDN优化脚本",
+      "custom_description": "优化CSDN阅读体验的脚本"
+    },
+    "simonsmh/telegram-bili-feed-helper": {
+      "group": "影音娱乐",
+      "sub": "阿B专栏",
+      "rename": "TelegramB站推送助手",
+      "custom_description": "Telegram的B站动态推送辅助工具"
+    },
+    "windingwind/zotero-better-notes": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "Zotero笔记增强",
+      "custom_description": "Zotero文献管理软件的笔记增强插件"
+    },
+    "EcoPasteHub/EcoPaste": {
+      "group": "实用效率",
+      "sub": "办公辅助",
+      "rename": "Eco粘贴工具",
+      "custom_description": "粘贴板增强工具"
+    },
+    "BlueSkyXN/Bili-to-Youtube": {
+      "group": "影音娱乐",
+      "sub": "阿B专栏",
+      "rename": "B站转YouTube工具",
+      "custom_description": "B站视频转存到YouTube的工具"
+    },
+    "babalae/better-genshin-impact": {
+      "group": "游戏相关",
+      "sub": "游戏工具",
+      "rename": "原神辅助工具",
+      "custom_description": "原神游戏增强辅助工具"
+    },
+    "RayWangQvQ/BiliBiliToolPro": {
+      "group": "影音娱乐",
+      "sub": "阿B专栏",
+      "rename": "B站工具专业版",
+      "custom_description": "B站自动签到、刷经验等功能工具"
+    },
+    "microsoft/qlib": {
+      "group": "AI与自动化",
+      "sub": "机器学习工具",
+      "rename": "QLib量化工具",
+      "custom_description": "微软开源的量化投资AI工具包"
+    },
+    "datawhalechina/self-llm": {
+      "group": "AI与自动化",
+      "sub": "大模型/LLM",
+      "rename": "自建LLM指南",
+      "custom_description": "本地部署大语言模型的教程与工具"
+    },
+    "sindresorhus/awesome": {
+      "group": "学习资料",
+      "sub": "技术笔记",
+      "rename": "Awesome系列汇总",
+      "custom_description": "各类Awesome清单的集合"
+    },
+    "HerbertHe/iptv-sources": {
+      "group": "影音娱乐",
+      "sub": "电视盒子",
+      "rename": "IPTV源集合",
+      "custom_description": "IPTV直播源汇总"
+    },
+    "jiangrui1994/CloudSaver": {
+      "group": "实用效率",
+      "sub": "系统工具",
+      "rename": "云存储工具",
+      "custom_description": ""
+    },
+    "gedoor/legado": {
+      "group": "影音娱乐",
+      "sub": "读书必备",
+      "rename": "Legado阅读器",
+      "custom_description": "开源电子书阅读器"
+    },
+    "yuanwangokk-1/Hiker-App": {
+      "group": "其他工具",
+      "sub": "杂项工具",
+      "rename": "海阔应用",
+      "custom_description": ""
+    },
+    "UFund-Me/Qbot": {
+      "group": "AI与自动化",
+      "sub": "脚本自动化",
+      "rename": "Q机器人",
+      "custom_description": "AI 自动量化交易机器人"
+    }
+  },
+  "category_emoji": {
+    "影音娱乐": "🎬",
+    "AI与自动化": "🤖",
+    "数据库与数据": "📦",
+    "实用效率": "🚀",
+    "学习资料": "📚",
+    "游戏相关": "🎮",
+    "健康生活": "🍏",
+    "开发工具": "🛠",
+    "其他工具": "🔧"
+  }
+}
