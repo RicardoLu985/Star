@@ -11,9 +11,9 @@
 - **AI与自动化**：21 项
 - **数据库与数据**：4 项
 - **学习资料**：4 项
+- **开发工具**：1 项
 - **健康生活**：3 项
 - **游戏相关**：3 项
-- **开发工具**：1 项
 - **其他工具**：2 项
 
 <details>
@@ -45,14 +45,14 @@
 - **[学习资料](#学习资料)**
   - [技术笔记](#技术笔记)
   - [教程资源](#教程资源)
+- **[开发工具](#开发工具)**
+  - [UI 组件库](#ui-组件库)
 - **[健康生活](#健康生活)**
   - [生活厨房](#生活厨房)
   - [智慧助手](#智慧助手)
 - **[游戏相关](#游戏相关)**
   - [游戏资源](#游戏资源)
   - [游戏工具](#游戏工具)
-- **[开发工具](#开发工具)**
-  - [UI 组件库](#ui-组件库)
 - **[其他工具](#其他工具)**
   - [网络工具](#网络工具)
   - [杂项工具](#杂项工具)
@@ -269,7 +269,7 @@
 
 - **Topics:** `android` `cross-platform` `danmaku` `flutter` `windows` `ios` `linux-desktop` `macos`
 - **Tags:** `dart`
-- ⭐ 18391 · 🍴 527 · 📅 最后更新 2025-12-11 · 📦 [1.9.3](https://github.com/Predidit/Kazumi/releases/tag/1.9.3)
+- ⭐ 18392 · 🍴 527 · 📅 最后更新 2025-12-11 · 📦 [1.9.3](https://github.com/Predidit/Kazumi/releases/tag/1.9.3)
 
 #### [Animeko](https://github.com/open-ani/animeko)
 > 集找番、追番、看番的一站式弹幕追番平台，云收藏同步 (Bangumi)，离线缓存，BitTorrent，弹幕云过滤。100% Kotlin/Compose Multiplatform
@@ -334,7 +334,7 @@
 
 - **Topics:** `m3u8` `m3u8-downloader` `electron` `video` `hls` `react` `vite` `esbuild` `downloader` `m3u8download`
 - **Tags:** `cli` `typescript` `web`
-- ⭐ 8137 · 🍴 732 · 📅 最后更新 2025-11-24 · 📦 [v3.0.1](https://github.com/caorushizi/mediago/releases/tag/v3.0.1)
+- ⭐ 8136 · 🍴 732 · 📅 最后更新 2025-11-24 · 📦 [v3.0.1](https://github.com/caorushizi/mediago/releases/tag/v3.0.1)
 
 #### [抖音下载器](https://github.com/jiji262/douyin-downloader)
 > 抖音批量下载工具，去水印，支持视频、图集、合集、音乐(原声)。免费！免费！免费！
@@ -434,7 +434,7 @@
 
 - **Topics:** `langchain` `openai` `autogen-extension` `autogen` `markdown` `microsoft-office` `pdf`
 - **Tags:** `python`
-- ⭐ 84138 · 🍴 4840 · 📅 最后更新 2025-12-01 · 📦 [v0.1.4](https://github.com/microsoft/markitdown/releases/tag/v0.1.4)
+- ⭐ 84137 · 🍴 4840 · 📅 最后更新 2025-12-01 · 📦 [v0.1.4](https://github.com/microsoft/markitdown/releases/tag/v0.1.4)
 
 #### [Penpot](https://github.com/penpot/penpot)
 > Penpot 是首个用于设计和代码协作的开源设计工具，支持创建设计、交互式原型和设计系统，开发者可获取现成代码，支持开放标准与插件系统，具备自托管能力，通过环境变量和标志进行配置，采用 MPL-2.0 许可证。
@@ -448,14 +448,14 @@
 
 - **Topics:** `alist` `aliyunpan` `baidupan` `openlist`
 - **Tags:** `go`
-- ⭐ 18709 · 🍴 1541 · 📅 最后更新 2025-12-11 · 📦 [v4.1.8](https://github.com/OpenListTeam/OpenList/releases/tag/v4.1.8)
+- ⭐ 18710 · 🍴 1541 · 📅 最后更新 2025-12-11 · 📦 [v4.1.8](https://github.com/OpenListTeam/OpenList/releases/tag/v4.1.8)
 
 #### [OpenNotebook](https://github.com/lfnovo/open-notebook)
 > 一款开源的笔记应用，支持笔记的创建、编辑和管理，注重数据隐私和自定义功能。
 
 - **Topics:** `assistant` `learning` `note-taking` `notebook` `notes-app` `self-learning`
 - **Tags:** `typescript` `web`
-- ⭐ 14310 · 🍴 1436 · 📅 最后更新 2025-12-06 · 📦 [v1.2.0](https://github.com/lfnovo/open-notebook/releases/tag/v1.2.0)
+- ⭐ 14314 · 🍴 1437 · 📅 最后更新 2025-12-06 · 📦 [v1.2.0](https://github.com/lfnovo/open-notebook/releases/tag/v1.2.0)
 
 #### [Notepad--](https://github.com/cxasm/notepad--)
 > 轻量级代码编辑器，支持多语言高亮
@@ -482,7 +482,7 @@
 
 - **Topics:** `jpgtopdf` `pdf` `pdf-converter` `pdf-document-processor` `pdf-generation` `pdf-viewer` `hacktoberfest` `hacktoberfest-accepted` `javascript` `pdf-document` `pdffiller` `privacy` `toolkit` `typescript` `bentopdf`
 - **Tags:** `javascript` `web`
-- ⭐ 6901 · 🍴 444 · 📅 最后更新 2025-12-11 · 📦 [v1.11.1](https://github.com/alam00000/bentopdf/releases/tag/v1.11.1)
+- ⭐ 6903 · 🍴 444 · 📅 最后更新 2025-12-11 · 📦 [v1.11.1](https://github.com/alam00000/bentopdf/releases/tag/v1.11.1)
 
 #### [Eco粘贴工具](https://github.com/EcoPasteHub/EcoPaste)
 > 粘贴板增强工具
@@ -523,14 +523,14 @@
 
 - **Topics:** `electron` `pixijs` `screen-recorder` `open-source` `screen-capture`
 - **Tags:** `devops` `typescript` `web`
-- ⭐ 2334 · 🍴 130 · 📅 最后更新 2025-12-11 · 📦 [v1.0.1](https://github.com/siddharthvaddem/openscreen/releases/tag/v1.0.1)
+- ⭐ 2337 · 🍴 130 · 📅 最后更新 2025-12-11 · 📦 [v1.0.1](https://github.com/siddharthvaddem/openscreen/releases/tag/v1.0.1)
 
 #### [幻灯片工具](https://github.com/Anionex/banana-slides)
 > 幻灯片制作或优化相关工具
 
 - **Topics:** `ai-ppt-maker` `ai-slide-builder` `ai-slides` `llm` `nanobananapro` `slides` `text2image` `ppt` `ppt-generator`
 - **Tags:** `ml` `python`
-- ⭐ 1967 · 🍴 223 · 📅 最后更新 2025-12-11 · 📦 无 Release
+- ⭐ 1970 · 🍴 223 · 📅 最后更新 2025-12-11 · 📦 无 Release
 
 #### [Markdown粘贴工具](https://github.com/RICHQAQ/PasteMD)
 > 方便粘贴内容到Markdown文档的辅助工具
@@ -580,14 +580,14 @@
 
 - **Topics:** `usb` `iso` `bootable-drives` `mbr` `uefi` `bios` `boot` `windows` `syslinux` `freedos` `grub` `grub4dos` `sha1` `sha256` `md5` `gpt` `windows-to-go` `persistence` `secure-boot` `rufus`
 - **Tags:** `c` `nlp`
-- ⭐ 33945 · 🍴 2901 · 📅 最后更新 2025-11-26 · 📦 [v4.11](https://github.com/pbatard/rufus/releases/tag/v4.11)
+- ⭐ 33946 · 🍴 2901 · 📅 最后更新 2025-11-26 · 📦 [v4.11](https://github.com/pbatard/rufus/releases/tag/v4.11)
 
 #### [便捷系统工具](https://github.com/cjpais/Handy)
 > 系统便捷操作相关工具集
 
 - **Topics:** `speech-to-text` `tauri-v2` `accessibility` `cross-platform`
 - **Tags:** `typescript` `web`
-- ⭐ 8137 · 🍴 547 · 📅 最后更新 2025-12-11 · 📦 [v0.6.6](https://github.com/cjpais/Handy/releases/tag/v0.6.6)
+- ⭐ 8138 · 🍴 547 · 📅 最后更新 2025-12-11 · 📦 [v0.6.6](https://github.com/cjpais/Handy/releases/tag/v0.6.6)
 
 #### [云存储工具](https://github.com/jiangrui1994/CloudSaver)
 > 一个基于 Vue 3 + Express 的网盘资源搜索与转存工具。
@@ -707,14 +707,14 @@
 
 - **Topics:** `aliyun-drive` `baidu` `baidu-netdisk` `139-cloud` `189-cloud` `ali-netdisk` `quark-netdisk` `tianyi-netdisk` `xunlei-netdisk` `yidong-netdisk` `tampermonkey` `tampermonkey-script` `tampermonkey-userscript` `userscript` `baidunetdisk` `baiduyun` `123pan` `uc-netdisk` `motrix` `aria2`
 - **Tags:** `javascript` `web`
-- ⭐ 9560 · 🍴 470 · 📅 最后更新 2025-11-13 · 📦 [v1.1.1.9](https://github.com/hmjz100/LinkSwift/releases/tag/v1.1.1.9)
+- ⭐ 9559 · 🍴 470 · 📅 最后更新 2025-11-13 · 📦 [v1.1.1.9](https://github.com/hmjz100/LinkSwift/releases/tag/v1.1.1.9)
 
 #### [XIU2的用户脚本集](https://github.com/XIU2/UserScript)
 > 多个平台的增强脚本（去广告、功能扩展等）
 
 - **Topics:** `userscript` `steam` `github` `release` `tampermonkey`
 - **Tags:** `javascript` `web`
-- ⭐ 9171 · 🍴 668 · 📅 最后更新 2025-12-11 · 📦 无 Release
+- ⭐ 9172 · 🍴 668 · 📅 最后更新 2025-12-11 · 📦 无 Release
 
 #### [招聘信息爬取工具](https://github.com/loks666/get_jobs)
 > 自动抓取招聘网站职位信息的脚本
@@ -765,7 +765,7 @@
 
 - **Topics:** `automation` `cursor` `cursorai` `cursors` `free` `pro` `cursor-ai` `cursor-ide` `freetrial`
 - **Tags:** `automation` `python`
-- ⭐ 45620 · 🍴 5455 · 📅 最后更新 2025-12-02 · 📦 [v1.11.03](https://github.com/yeongpin/cursor-free-vip/releases/tag/v1.11.03)
+- ⭐ 45621 · 🍴 5455 · 📅 最后更新 2025-12-02 · 📦 [v1.11.03](https://github.com/yeongpin/cursor-free-vip/releases/tag/v1.11.03)
 
 #### [VERT](https://github.com/VERT-sh/VERT)
 > The next-generation file converter. Open source, fully local* and free forever.
@@ -817,7 +817,7 @@
 
 - **Topics:** `deep-reinforcement-learning` `drl-trading-agents` `stock-trading` `drl-algorithms` `pythorch` `tensorflow2` `drl-framework` `multi-agent-learning` `finance` `stock-markets` `trading-tasks` `openai-gym` `fintech` `algorithmic-trading`
 - **Tags:** `devops` `jupyter notebook` `ml`
-- ⭐ 13391 · 🍴 3052 · 📅 最后更新 2025-12-08 · 📦 [v0.3.6](https://github.com/AI4Finance-Foundation/FinRL/releases/tag/v0.3.6)
+- ⭐ 13392 · 🍴 3052 · 📅 最后更新 2025-12-08 · 📦 [v0.3.6](https://github.com/AI4Finance-Foundation/FinRL/releases/tag/v0.3.6)
 
 #### [InkSight](https://github.com/google-research/inksight)
 > 一个将离线手写内容（如手写笔记照片）转换为在线数字墨水的系统
@@ -840,7 +840,7 @@
 
 - **Topics:** `data-analysis` `python` `trending-topics` `feishu-robot` `news` `dingtalk-robot` `telegram-bot` `wechat-robot` `hot-news` `docker` `ntfy` `mail` `mcp` `mcp-server` `wechat` `wework` `wework-bot` `bark` `slack`
 - **Tags:** `automation` `devops` `python`
-- ⭐ 38731 · 🍴 20363 · 📅 最后更新 2025-12-10 · 📦 无 Release
+- ⭐ 38732 · 🍴 20364 · 📅 最后更新 2025-12-10 · 📦 无 Release
 
 #### [Microfeed](https://github.com/microfeed/microfeed)
 > 可能是一款用于聚合各类信息源的工具，帮助用户高效获取感兴趣的内容。
@@ -871,7 +871,7 @@
 
 - **Topics:** `llm` `chatglm` `internlm2` `llama3` `lora` `minicpm` `qwen` `qwen1-5` `chatglm3` `gemma-2b-it` `glm-4` `qwen2` `q-wen`
 - **Tags:** `jupyter notebook` `ml`
-- ⭐ 26530 · 🍴 2658 · 📅 最后更新 2025-12-04 · 📦 无 Release
+- ⭐ 26531 · 🍴 2658 · 📅 最后更新 2025-12-04 · 📦 无 Release
 
 <div style="text-align: right;">
 <a href="#top">⬆️ 返回顶部</a> | <a href="#ai与自动化">⬆️ 返回分类</a>
@@ -939,7 +939,7 @@
 > 各类Awesome清单的集合
 
 - **Topics:** `awesome` `awesome-list` `unicorns` `lists` `resources`
-- ⭐ 421629 · 🍴 32566 · 📅 最后更新 2025-11-22 · 📦 无 Release
+- ⭐ 421630 · 🍴 32566 · 📅 最后更新 2025-11-22 · 📦 无 Release
 
 #### [CS-Notes](https://github.com/CyC2018/CS-Notes)
 > 计算机科学基础知识总结（算法、操作系统等）
@@ -972,6 +972,26 @@
 
 <div style="text-align: right;">
 <a href="#top">⬆️ 返回顶部</a> | <a href="#学习资料">⬆️ 返回分类</a>
+</div>
+
+</details>
+
+<a id="开发工具"></a>
+## 🛠 开发工具
+
+<a id="ui-组件库"></a>
+<details>
+<summary>🔽 UI 组件库 (1项)</summary>
+
+#### [Font Awesome图标库](https://github.com/FortAwesome/Font-Awesome)
+> 开源矢量图标库，支持多种框架集成
+
+- **Topics:** `fontawesome` `icons` `webfont` `font` `css` `svg-icons` `svg-sprites`
+- **Tags:** `javascript` `web`
+- ⭐ 76058 · 🍴 12220 · 📅 最后更新 2025-12-08 · 📦 [7.1.0](https://github.com/FortAwesome/Font-Awesome/releases/tag/7.1.0)
+
+<div style="text-align: right;">
+<a href="#top">⬆️ 返回顶部</a> | <a href="#开发工具">⬆️ 返回分类</a>
 </div>
 
 </details>
@@ -1057,26 +1077,6 @@
 
 <div style="text-align: right;">
 <a href="#top">⬆️ 返回顶部</a> | <a href="#游戏相关">⬆️ 返回分类</a>
-</div>
-
-</details>
-
-<a id="开发工具"></a>
-## 🛠 开发工具
-
-<a id="ui-组件库"></a>
-<details>
-<summary>🔽 UI 组件库 (1项)</summary>
-
-#### [Font Awesome图标库](https://github.com/FortAwesome/Font-Awesome)
-> 开源矢量图标库，支持多种框架集成
-
-- **Topics:** `fontawesome` `icons` `webfont` `font` `css` `svg-icons` `svg-sprites`
-- **Tags:** `javascript` `web`
-- ⭐ 76058 · 🍴 12220 · 📅 最后更新 2025-12-08 · 📦 [7.1.0](https://github.com/FortAwesome/Font-Awesome/releases/tag/7.1.0)
-
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#开发工具">⬆️ 返回分类</a>
 </div>
 
 </details>
