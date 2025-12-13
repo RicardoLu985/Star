@@ -159,9 +159,15 @@ python update_starred_semantic.py
 
 ------
 
-## 🛠️ 自定义规则1：overrides.json
+## 🛠️ 自定义分类
+程序支持以下分类方式：
 
-### 字段说明
+自动分类：基于项目描述、topics 等关键词.
+手动覆盖：通过 overrides.json 覆盖.
+外置配置：通过 category_defaults.json 配置.
+
+### 规则1：overrides.json
+字段说明
 
 ```json
 {
@@ -185,19 +191,19 @@ python update_starred_semantic.py
 
 ------
 
-## 🛠️ 自定义规则2：update_starred_semantic.py
+## 🛠️ 规则2：category_defaults.json
 
-在 `update_starred_semantic.py` 中，您可以修改分类规则：
-
-```py
-DEFAULT_CATEGORY_MAP = {
-    "AI": {
-        "机器学习框架": ["pytorch", "tensorflow", "jax"],
-        "大模型/LLM": ["llama", "gpt", "transformers"]
+```json
+{
+    "category_order": ["分类1", "分类2"],
+    "category_icons": {
+        "分类名称": ["fa-icon-class", "text-color-class"]
     },
-    "Web 开发": {
-        "前端框架": ["react", "vue", "svelte"],
-        "后端框架": ["fastapi", "django", "flask"]
+    "category_map": {
+        "分类1": {
+            "子分类1": ["关键词1", "关键词2"],
+            "子分类2": ["关键词3", "关键词4"]
+        }
     }
 }
 ```

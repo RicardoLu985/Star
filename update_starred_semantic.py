@@ -89,7 +89,7 @@ def fetch_url(session: requests.Session, url: str) -> Optional[Dict[str, Any]]:
             if r.status_code == 200:
                 return r.json()
             elif r.status_code == 403:
-                log.warning("API 限流，60秒后重试...")
+                log.warning("⏳ API 限流，60秒后重试...")
                 time.sleep(60)
             elif r.status_code == 404:
                 log.debug(f"资源不存在: {url}")
@@ -105,7 +105,7 @@ def get_starred_repos(session: requests.Session, username: str) -> List[Dict[str
     page = 1
 
     while url:
-        log.info(f"正在获取第 {page} 页 Starred...")
+        log.info(f"📋 正在获取第 {page} 页 Starred...")
         data = fetch_url(session, url)
         if not data:
             break
@@ -143,7 +143,7 @@ def fetch_latest_release(session: requests.Session, full_name: str) -> Optional[
     return {"tag": tag, "url": url, "date": short_date(date)} if tag else None
 
 def enrich_repos(session: requests.Session, repos: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    log.info("开始富化仓库信息...")
+    log.info("🔍 开始富化仓库信息...")
     for i, repo in enumerate(repos, 1):
         full = repo["full_name"]
         repo["_topics"] = fetch_repo_topics(session, full)
@@ -154,7 +154,7 @@ def enrich_repos(session: requests.Session, repos: List[Dict[str, Any]]) -> List
 
         log.debug(f"已处理 {i}/{len(repos)}: {full}")
 
-    log.info("富化完成")
+    log.info("✅ 仓库信息富化完成")
     return repos
 
 
@@ -252,7 +252,7 @@ def get_dynamic_categories():
         if group and group not in category_order:
             custom_groups.add(group)
 
-    # 将新 group 插入到倒数第二（“其他工具”前）
+    # 将新 group 插入到倒数第二（"其他工具"前）
     for group in custom_groups:
         if group not in category_order:
             if "其他工具" in category_order:
@@ -351,6 +351,25 @@ def get_override_value(repo_full_name: str, overrides: Dict[str, Any], key: str,
     return value if value else default_value
 
 
+# ======================= 显示名生成函数 =======================
+
+def get_display_name(repo_full_name: str, overrides: Dict[str, Any], repo: Dict[str, Any]) -> str:
+    """
+    获取项目的显示名
+    优先级：
+    1. overrides.json 中的 rename
+    2. repo["name"]
+    3. 不再使用 owner/repo 格式
+    """
+    # 优先使用 overrides.json 中的 rename
+    rename = overrides.get(repo_full_name, {}).get("rename", "")
+    if rename:
+        return rename
+
+    # 否则使用 repo["name"]
+    return repo.get("name", repo_full_name)
+
+
 # ======================= Markdown 生成 =======================
 
 def generate_markdown(categorized, repos, overrides, category_emoji):
@@ -404,7 +423,7 @@ def generate_markdown(categorized, repos, overrides, category_emoji):
                     desc = get_override_value(full, overrides, "custom_description", original_desc)
                     desc = desc.replace("|", "\\|")
 
-                    display_name = get_override_value(full, overrides, "rename", repo["full_name"])
+                    display_name = get_display_name(full, overrides, repo)
 
                     stars = repo["stargazers_count"]
                     forks = repo["forks_count"]
@@ -572,7 +591,7 @@ def generate_html(categorized, repos, overrides, category_emoji):
                 raw_desc = get_override_value(full, overrides, "custom_description", original_desc)
                 desc = raw_desc.replace('"', '&quot;').replace("'", '&#39;')
 
-                display_name = get_override_value(full, overrides, "rename", repo["full_name"])
+                display_name = get_display_name(full, overrides, repo)
                 last_updated = short_date(repo.get("pushed_at"))
 
                 html += f'''
@@ -675,41 +694,67 @@ def dump_stats_json(repos, categorized):
     }
     with open(STATS_JSON, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-    log.info("stats.json 已导出")
+    log.info("📊 stats.json 已导出")
 
 
 # ========== 下一部分（Part 4）准备继续 ==========
-# ======================= overrides_template.json（始终包含全部仓库） =======================
+# ======================= overrides_template.json（改进版本） =======================
 
-def write_overrides_template(repos, path=OVERRIDES_TEMPLATE):
+def write_overrides_template(repos, overrides, path=OVERRIDES_TEMPLATE):
     template = {
         "repos": {},
         "category_emoji": {},
         "category_icons": {}
     }
 
+    # 始终包含 1 个示例项目
+    example_repo = next(iter(repos), None) if repos else None
+    if example_repo:
+        full = example_repo["full_name"]
+        template["repos"][full] = {
+            "//": "示例：group=一级分类，sub=子分类，rename=显示名，custom_description=自定义描述",
+            "group": "示例分类",
+            "sub": "示例子类",
+            "rename": "示例项目名称",
+            "custom_description": "这是一个示例说明"
+        }
+
+    # 检查是否存在未分组项目（既没有 group 也没有 sub）
+    ungrouped_exists = False
     for repo in repos:
         full = repo["full_name"]
+        repo_override = overrides.get(full, {})
+        if not repo_override.get("group") and not repo_override.get("sub"):
+            ungrouped_exists = True
+            break
 
-        template["repos"][full] = {
-            "//": "group: 一级分类, sub: 子分类, rename: 自定义名称, custom_description: 自定义描述",
-            "group": "",
-            "sub": "",
-            "rename": "",
-            "custom_description": ""
-        }
+    # 如果存在未分组项目，追加这些项目（无注释）
+    if ungrouped_exists:
+        for repo in repos:
+            full = repo["full_name"]
+            repo_override = overrides.get(full, {})
+
+            # 如果该项目没有分组信息，则添加到模板
+            if not repo_override.get("group") and not repo_override.get("sub"):
+                if full not in template["repos"]:  # 避免重复添加示例项目
+                    template["repos"][full] = {
+                        "group": "",
+                        "sub": "",
+                        "rename": "",
+                        "custom_description": ""
+                    }
 
     with open(path, "w", encoding="utf-8") as f:
         json.dump(template, f, indent=4, ensure_ascii=False)
 
-    log.info(f"overrides_template.json 已生成，共包含 {len(template['repos'])} 项模板")
+    log.info(f"📄 overrides_template.json 已生成，共包含 {len(template['repos'])} 项模板")
 
 
 # ======================= Main 流程 =======================
 
 def main():
     username, token = get_config()
-    log.info(f"开始处理用户：{username}")
+    log.info(f"🚀 开始整理用户：{username} 的 Github 仓库")
 
     session = build_session(token)
 
@@ -727,9 +772,9 @@ def main():
 
     dump_stats_json(repos, categorized)
 
-    write_overrides_template(repos)
+    write_overrides_template(repos, overrides)
 
-    log.info("全部流程已完成！")
+    log.info("🎉 全部流程已完成！")
 
 
 # ======================= 入口 =======================
