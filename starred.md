@@ -12,8 +12,8 @@
 - **数据库与数据**：4 项
 - **学习资料**：4 项
 - **游戏相关**：3 项
-- **开发工具**：1 项
 - **健康生活**：3 项
+- **开发工具**：1 项
 - **其他工具**：3 项
 
 <details>
@@ -49,11 +49,11 @@
 - **[游戏相关](#游戏相关)**
   - [游戏资源](#游戏资源)
   - [游戏工具](#游戏工具)
-- **[开发工具](#开发工具)**
-  - [UI 组件库](#ui-组件库)
 - **[健康生活](#健康生活)**
   - [生活厨房](#生活厨房)
   - [智慧助手](#智慧助手)
+- **[开发工具](#开发工具)**
+  - [UI 组件库](#ui-组件库)
 - **[其他工具](#其他工具)**
   - [Dart 项目](#dart-项目)
   - [网络工具](#网络工具)
@@ -75,7 +75,7 @@
 
 - **Topics:** `userscript` `bilibili` `tampermonkey`
 - **Tags:** `typescript` `web`
-- ⭐ 27731 · 🍴 1703 · 📅 最后更新 2025-12-13 · 📦 [v2.10.5](https://github.com/the1812/Bilibili-Evolved/releases/tag/v2.10.5)
+- ⭐ 27732 · 🍴 1703 · 📅 最后更新 2025-12-13 · 📦 [v2.10.5](https://github.com/the1812/Bilibili-Evolved/releases/tag/v2.10.5)
 
 #### [B站工具专业版](https://github.com/RayWangQvQ/BiliBiliToolPro)
 > B站自动签到、刷经验等功能工具
@@ -172,7 +172,7 @@
 
 - **Topics:** `android-tv` `tv-box` `tv` `android` `apk` `app`
 - **Tags:** `javascript` `web`
-- ⭐ 5992 · 🍴 802 · 📅 最后更新 2025-12-12 · 📦 无 Release
+- ⭐ 5994 · 🍴 802 · 📅 最后更新 2025-12-12 · 📦 无 Release
 
 #### [油桃TV](https://github.com/VonChange/utao)
 > 油桃TV 电视浏览器 可看各大卫视CCTV直播 无需电视VIP 适配爱奇艺等主流视频平台
@@ -286,7 +286,7 @@
 
 - **Topics:** `kugou` `music` `javascript` `linux` `macos` `vue3` `windows`
 - **Tags:** `cli` `devops` `vue` `web`
-- ⭐ 4393 · 🍴 278 · 📅 最后更新 2025-12-06 · 📦 [v1.5.4](https://github.com/MoeKoeMusic/MoeKoeMusic/releases/tag/v1.5.4)
+- ⭐ 4395 · 🍴 278 · 📅 最后更新 2025-12-06 · 📦 [v1.5.4](https://github.com/MoeKoeMusic/MoeKoeMusic/releases/tag/v1.5.4)
 
 #### [Musicxx 拟声](https://github.com/coolight7/musicxx)
 > 音乐播放或处理相关工具
@@ -336,7 +336,7 @@
 
 - **Topics:** `android-app` `comic` `flutter` `ios-app` `linux` `macos-app` `windows-app`
 - **Tags:** `dart`
-- ⭐ 5722 · 🍴 183 · 📅 最后更新 2025-11-29 · 📦 [v1.6.1](https://github.com/venera-app/venera/releases/tag/v1.6.1)
+- ⭐ 5723 · 🍴 183 · 📅 最后更新 2025-11-29 · 📦 [v1.6.1](https://github.com/venera-app/venera/releases/tag/v1.6.1)
 
 #### [AniCh](https://github.com/Sle2p/AniCh)
 > 动漫追更与管理工具
@@ -450,34 +450,34 @@
 
 - **Topics:** `ux-design` `ux-experience` `prototyping` `clojure` `clojurescript` `ui` `design`
 - **Tags:** `clojure`
-- ⭐ 43291 · 🍴 2380 · 📅 最后更新 2025-12-12 · 📦 [2.11.1](https://github.com/penpot/penpot/releases/tag/2.11.1)
+- ⭐ 43290 · 🍴 2380 · 📅 最后更新 2025-12-12 · 📦 [2.11.1](https://github.com/penpot/penpot/releases/tag/2.11.1)
 
 #### [OpenList](https://github.com/OpenListTeam/OpenList)
 > A new AList Fork to Anti Trust Crisis
 
 - **Topics:** `alist` `aliyunpan` `baidupan` `openlist`
 - **Tags:** `go`
-- ⭐ 18774 · 🍴 1545 · 📅 最后更新 2025-12-12 · 📦 [v4.1.8](https://github.com/OpenListTeam/OpenList/releases/tag/v4.1.8)
+- ⭐ 18777 · 🍴 1545 · 📅 最后更新 2025-12-12 · 📦 [v4.1.8](https://github.com/OpenListTeam/OpenList/releases/tag/v4.1.8)
 
 #### [OpenNotebook](https://github.com/lfnovo/open-notebook)
 > 一款开源的笔记应用，支持笔记的创建、编辑和管理，注重数据隐私和自定义功能。
 
 - **Topics:** `assistant` `learning` `note-taking` `notebook` `notes-app` `self-learning`
 - **Tags:** `typescript` `web`
-- ⭐ 14608 · 🍴 1472 · 📅 最后更新 2025-12-12 · 📦 [v1.2.0](https://github.com/lfnovo/open-notebook/releases/tag/v1.2.0)
+- ⭐ 14613 · 🍴 1472 · 📅 最后更新 2025-12-12 · 📦 [v1.2.0](https://github.com/lfnovo/open-notebook/releases/tag/v1.2.0)
 
 #### [Notepad--](https://github.com/cxasm/notepad--)
 > 轻量级代码编辑器，支持多语言高亮
 
 - **Tags:** `c++`
-- ⭐ 8538 · 🍴 334 · 📅 最后更新 2025-10-22 · 📦 [notepad-v3.6.1](https://github.com/cxasm/notepad--/releases/tag/notepad-v3.6.1)
+- ⭐ 8539 · 🍴 334 · 📅 最后更新 2025-10-22 · 📦 [notepad-v3.6.1](https://github.com/cxasm/notepad--/releases/tag/notepad-v3.6.1)
 
 #### [BentoPDF](https://github.com/alam00000/bentopdf)
 > 推测是一款与PDF处理相关的工具，可能具备PDF转换、编辑等功能。
 
 - **Topics:** `jpgtopdf` `pdf` `pdf-converter` `pdf-document-processor` `pdf-generation` `pdf-viewer` `hacktoberfest` `hacktoberfest-accepted` `javascript` `pdf-document` `pdffiller` `privacy` `toolkit` `typescript` `bentopdf`
 - **Tags:** `javascript` `web`
-- ⭐ 7162 · 🍴 485 · 📅 最后更新 2025-12-13 · 📦 [v1.11.1](https://github.com/alam00000/bentopdf/releases/tag/v1.11.1)
+- ⭐ 7165 · 🍴 485 · 📅 最后更新 2025-12-13 · 📦 [v1.11.1](https://github.com/alam00000/bentopdf/releases/tag/v1.11.1)
 
 #### [Zotero笔记增强](https://github.com/windingwind/zotero-better-notes)
 > Zotero文献管理软件的笔记增强插件
@@ -539,14 +539,14 @@
 
 - **Topics:** `ai-ppt-maker` `ai-slide-builder` `ai-slides` `llm` `nanobananapro` `slides` `text2image` `ppt` `ppt-generator`
 - **Tags:** `ml` `python`
-- ⭐ 2460 · 🍴 276 · 📅 最后更新 2025-12-13 · 📦 无 Release
+- ⭐ 2466 · 🍴 276 · 📅 最后更新 2025-12-13 · 📦 无 Release
 
 #### [Markdown粘贴工具](https://github.com/RICHQAQ/PasteMD)
 > 方便粘贴内容到Markdown文档的辅助工具
 
 - **Topics:** `ai` `chatgpt` `deepseek` `excel` `markdown` `productivity` `word` `wps` `clipboard` `latex` `pandoc` `python` `converter`
 - **Tags:** `cli` `nlp` `python`
-- ⭐ 1156 · 🍴 82 · 📅 最后更新 2025-12-09 · 📦 [v0.1.6.0](https://github.com/RICHQAQ/PasteMD/releases/tag/v0.1.6.0)
+- ⭐ 1158 · 🍴 82 · 📅 最后更新 2025-12-09 · 📦 [v0.1.6.0](https://github.com/RICHQAQ/PasteMD/releases/tag/v0.1.6.0)
 
 #### [OpenListAPP](https://github.com/OpenListApp/OpenListApp)
 > 一个AList、OpenList跨平台客户端
@@ -582,7 +582,7 @@
 
 - **Topics:** `powertoys` `desktop` `windows` `fancyzones` `microsoft-powertoys` `powerrename` `keyboard-manager` `color-picker` `command-palette` `windows-10` `windows-11`
 - **Tags:** `c#` `ml`
-- ⭐ 126445 · 🍴 7531 · 📅 最后更新 2025-12-13 · 📦 [v0.96.1](https://github.com/microsoft/PowerToys/releases/tag/v0.96.1)
+- ⭐ 126446 · 🍴 7531 · 📅 最后更新 2025-12-13 · 📦 [v0.96.1](https://github.com/microsoft/PowerToys/releases/tag/v0.96.1)
 
 #### [Rufus](https://github.com/pbatard/rufus)
 > 使用USB制作系统安装器
@@ -603,7 +603,7 @@
 
 - **Topics:** `speech-to-text` `tauri-v2` `accessibility` `cross-platform`
 - **Tags:** `typescript` `web`
-- ⭐ 8415 · 🍴 569 · 📅 最后更新 2025-12-13 · 📦 [v0.6.8](https://github.com/cjpais/Handy/releases/tag/v0.6.8)
+- ⭐ 8417 · 🍴 569 · 📅 最后更新 2025-12-13 · 📦 [v0.6.8](https://github.com/cjpais/Handy/releases/tag/v0.6.8)
 
 #### [云存储工具](https://github.com/jiangrui1994/CloudSaver)
 > 一个基于 Vue 3 + Express 的网盘资源搜索与转存工具。
@@ -658,14 +658,14 @@
 
 - **Topics:** `android` `jetpack-compose` `youtube-dl` `material-design` `f-droid` `kotlin` `youtube-downloader` `yt-dlp`
 - **Tags:** `kotlin`
-- ⭐ 23324 · 🍴 983 · 📅 最后更新 2025-11-25 · 📦 [v1.13.1](https://github.com/JunkFood02/Seal/releases/tag/v1.13.1)
+- ⭐ 23323 · 🍴 983 · 📅 最后更新 2025-11-25 · 📦 [v1.13.1](https://github.com/JunkFood02/Seal/releases/tag/v1.13.1)
 
 #### [Gopeed下载器](https://github.com/GopeedLab/gopeed)
 > 高性能多协议下载工具
 
 - **Topics:** `bittorrent` `downloader` `flutter` `torrent` `http` `https` `golang` `android` `cross-platform` `ios` `macos` `ubuntu` `windows` `debian` `magnet`
 - **Tags:** `dart`
-- ⭐ 22063 · 🍴 1518 · 📅 最后更新 2025-12-11 · 📦 [v1.8.3](https://github.com/GopeedLab/gopeed/releases/tag/v1.8.3)
+- ⭐ 22065 · 🍴 1518 · 📅 最后更新 2025-12-11 · 📦 [v1.8.3](https://github.com/GopeedLab/gopeed/releases/tag/v1.8.3)
 
 #### [资源下载器](https://github.com/putyy/res-downloader)
 > 各类资源下载工具
@@ -709,14 +709,14 @@
 
 - **Topics:** `chrome` `chrome-extension` `firefox` `javascript` `jquery` `video-downloader` `firefox-extension` `m3u8-downloader`
 - **Tags:** `javascript` `web`
-- ⭐ 17147 · 🍴 1482 · 📅 最后更新 2025-12-13 · 📦 [2.6.5](https://github.com/xifangczy/cat-catch/releases/tag/2.6.5)
+- ⭐ 17148 · 🍴 1482 · 📅 最后更新 2025-12-13 · 📦 [2.6.5](https://github.com/xifangczy/cat-catch/releases/tag/2.6.5)
 
 #### [Q机器人](https://github.com/UFund-Me/Qbot)
 > AI 自动量化交易机器人
 
 - **Topics:** `funds` `machine-learning` `pytrade` `quantitative-finance` `quantitative-trading` `quantization` `strategies` `trademarks` `quant-trade` `quant-trader` `bitcoin` `blockchain` `deep-learning` `fintech` `qlib` `trade-bot` `backtest`
 - **Tags:** `automation` `jupyter notebook`
-- ⭐ 15389 · 🍴 2194 · 📅 最后更新 2025-07-06 · 📦 [qbot-pro_v1.2.1](https://github.com/UFund-Me/Qbot/releases/tag/qbot-pro_v1.2.1)
+- ⭐ 15390 · 🍴 2194 · 📅 最后更新 2025-07-06 · 📦 [qbot-pro_v1.2.1](https://github.com/UFund-Me/Qbot/releases/tag/qbot-pro_v1.2.1)
 
 #### [LinkSwift](https://github.com/hmjz100/LinkSwift)
 > 一个基于 JavaScript 的网盘文件下载地址获取工具。基于【网盘直链下载助手】修改 ，支持 百度网盘 / 阿里云盘 / 中国移动云盘 / 天翼云盘 / 迅雷云盘 / 夸克网盘 / UC网盘 / 123云盘 八大网盘
@@ -737,7 +737,7 @@
 
 - **Topics:** `resume` `submit` `voluntarily` `getjobs` `job`
 - **Tags:** `java`
-- ⭐ 5458 · 🍴 705 · 📅 最后更新 2025-11-27 · 📦 [v1.0.0](https://github.com/loks666/get_jobs/releases/tag/v1.0.0)
+- ⭐ 5459 · 🍴 705 · 📅 最后更新 2025-11-27 · 📦 [v1.0.0](https://github.com/loks666/get_jobs/releases/tag/v1.0.0)
 
 #### [CSDN优化脚本](https://github.com/adlered/CSDNGreener)
 > 优化CSDN阅读体验的脚本
@@ -751,7 +751,7 @@
 
 - **Topics:** `userscript` `chrome-extension` `greasemonkey-userscript` `webextension` `scriptcat`
 - **Tags:** `typescript` `web`
-- ⭐ 3905 · 🍴 300 · 📅 最后更新 2025-12-13 · 📦 [v1.2.2](https://github.com/scriptscat/scriptcat/releases/tag/v1.2.2)
+- ⭐ 3906 · 🍴 300 · 📅 最后更新 2025-12-13 · 📦 [v1.2.2](https://github.com/scriptscat/scriptcat/releases/tag/v1.2.2)
 
 #### [小红书爬虫](https://github.com/cv-cat/Spider_XHS)
 > 小红书内容爬取与分析工具
@@ -781,21 +781,21 @@
 
 - **Topics:** `automation` `cursor` `cursorai` `cursors` `free` `pro` `cursor-ai` `cursor-ide` `freetrial`
 - **Tags:** `automation` `python`
-- ⭐ 45748 · 🍴 5480 · 📅 最后更新 2025-12-02 · 📦 [v1.11.03](https://github.com/yeongpin/cursor-free-vip/releases/tag/v1.11.03)
+- ⭐ 45747 · 🍴 5480 · 📅 最后更新 2025-12-02 · 📦 [v1.11.03](https://github.com/yeongpin/cursor-free-vip/releases/tag/v1.11.03)
 
 #### [VERT](https://github.com/VERT-sh/VERT)
 > The next-generation file converter. Open source, fully local* and free forever.
 
 - **Topics:** `conversion` `ffmpeg` `wasm` `svelte` `sveltekit` `imagemagick` `magick` `pandoc`
 - **Tags:** `svelte`
-- ⭐ 12216 · 🍴 620 · 📅 最后更新 2025-12-08 · 📦 无 Release
+- ⭐ 12217 · 🍴 620 · 📅 最后更新 2025-12-08 · 📦 无 Release
 
 #### [PPT智能助手](https://github.com/icip-cas/PPTAgent)
 > AI驱动的PPT生成与编辑工具
 
 - **Topics:** `agent` `llm` `presentation` `slide` `agentic-ai` `workflow` `mcp` `mcp-server`
 - **Tags:** `devops` `ml` `nlp` `python`
-- ⭐ 2811 · 🍴 333 · 📅 最后更新 2025-12-09 · 📦 [v0.2.0](https://github.com/icip-cas/PPTAgent/releases/tag/v0.2.0)
+- ⭐ 2813 · 🍴 334 · 📅 最后更新 2025-12-09 · 📦 [v0.2.0](https://github.com/icip-cas/PPTAgent/releases/tag/v0.2.0)
 
 #### [README生成AI](https://github.com/eli64s/readme-ai)
 > 自动生成项目README文档的AI工具
@@ -832,14 +832,14 @@
 > A next.js web application that integrates AI capabilities with draw.io diagrams. This app allows you to create, modify, and enhance diagrams through natural language commands and AI-assisted visualization.
 
 - **Tags:** `typescript` `web`
-- ⭐ 8652 · 🍴 919 · 📅 最后更新 2025-12-13 · 📦 [v0.4.0](https://github.com/DayuanJiang/next-ai-draw-io/releases/tag/v0.4.0)
+- ⭐ 8672 · 🍴 923 · 📅 最后更新 2025-12-13 · 📦 [v0.4.0](https://github.com/DayuanJiang/next-ai-draw-io/releases/tag/v0.4.0)
 
 #### [WeKnora](https://github.com/Tencent/WeKnora)
 > LLM-powered framework for deep document understanding, semantic retrieval, and context-aware answers using RAG paradigm.
 
 - **Topics:** `agent` `agentic` `ai` `golang` `llm` `ollama` `rag` `chatbot` `generative-ai` `multimodel` `embeddings` `knowledge-base` `openai` `question-answering` `reranking` `vector-search` `chatbots` `evaluation` `multi-tenant` `semantic-search`
 - **Tags:** `automation` `go` `ml`
-- ⭐ 8449 · 🍴 928 · 📅 最后更新 2025-12-12 · 📦 [v0.2.1](https://github.com/Tencent/WeKnora/releases/tag/v0.2.1)
+- ⭐ 8456 · 🍴 930 · 📅 最后更新 2025-12-12 · 📦 [v0.2.1](https://github.com/Tencent/WeKnora/releases/tag/v0.2.1)
 
 <div style="text-align: right;">
 <a href="#top">⬆️ 返回顶部</a> | <a href="#ai与自动化">⬆️ 返回分类</a>
@@ -856,14 +856,14 @@
 
 - **Topics:** `quantitative-finance` `machine-learning` `stock-data` `platform` `finance` `algorithmic-trading` `python` `investment` `quant` `quantitative-trading` `quant-dataset` `quant-models` `auto-quant` `fintech` `research-paper` `paper` `research` `deep-learning`
 - **Tags:** `ml` `python`
-- ⭐ 34518 · 🍴 5365 · 📅 最后更新 2025-11-28 · 📦 [v0.9.7](https://github.com/microsoft/qlib/releases/tag/v0.9.7)
+- ⭐ 34520 · 🍴 5365 · 📅 最后更新 2025-11-28 · 📦 [v0.9.7](https://github.com/microsoft/qlib/releases/tag/v0.9.7)
 
 #### [金融强化学习框架](https://github.com/AI4Finance-Foundation/FinRL)
 > 基于强化学习的金融交易算法框架
 
 - **Topics:** `deep-reinforcement-learning` `drl-trading-agents` `stock-trading` `drl-algorithms` `pythorch` `tensorflow2` `drl-framework` `multi-agent-learning` `finance` `stock-markets` `trading-tasks` `openai-gym` `fintech` `algorithmic-trading`
 - **Tags:** `devops` `jupyter notebook` `ml`
-- ⭐ 13459 · 🍴 3063 · 📅 最后更新 2025-12-08 · 📦 [v0.3.6](https://github.com/AI4Finance-Foundation/FinRL/releases/tag/v0.3.6)
+- ⭐ 13460 · 🍴 3063 · 📅 最后更新 2025-12-08 · 📦 [v0.3.6](https://github.com/AI4Finance-Foundation/FinRL/releases/tag/v0.3.6)
 
 #### [InkSight](https://github.com/google-research/inksight)
 > 一个将离线手写内容（如手写笔记照片）转换为在线数字墨水的系统
@@ -985,14 +985,14 @@
 > 各类Awesome清单的集合
 
 - **Topics:** `awesome` `awesome-list` `unicorns` `lists` `resources`
-- ⭐ 422038 · 🍴 32569 · 📅 最后更新 2025-11-22 · 📦 无 Release
+- ⭐ 422042 · 🍴 32570 · 📅 最后更新 2025-11-22 · 📦 无 Release
 
 #### [CS-Notes](https://github.com/CyC2018/CS-Notes)
 > 计算机科学基础知识总结（算法、操作系统等）
 
 - **Topics:** `algorithm` `leetcode` `interview` `computer-science` `system-design` `java` `python` `cpp`
 - **Tags:** `devops`
-- ⭐ 183107 · 🍴 51251 · 📅 最后更新 2024-08-21 · 📦 无 Release
+- ⭐ 183106 · 🍴 51251 · 📅 最后更新 2024-08-21 · 📦 无 Release
 
 #### [开源导航](https://github.com/maxiaobang7/ossnav)
 > 开源项目导航工具
@@ -1014,7 +1014,7 @@
 
 - **Topics:** `learn-english` `memorizing-words` `typing-practice` `typingspeedtest` `english-learn` `type-words`
 - **Tags:** `vue` `web`
-- ⭐ 6098 · 🍴 748 · 📅 最后更新 2025-12-13 · 📦 无 Release
+- ⭐ 6099 · 🍴 748 · 📅 最后更新 2025-12-13 · 📦 无 Release
 
 <div style="text-align: right;">
 <a href="#top">⬆️ 返回顶部</a> | <a href="#学习资料">⬆️ 返回分类</a>
@@ -1064,26 +1064,6 @@
 
 </details>
 
-<a id="开发工具"></a>
-## 🛠 开发工具
-
-<a id="ui-组件库"></a>
-<details>
-<summary>🔽 UI 组件库 (1项)</summary>
-
-#### [Font Awesome图标库](https://github.com/FortAwesome/Font-Awesome)
-> 开源矢量图标库，支持多种框架集成
-
-- **Topics:** `fontawesome` `icons` `webfont` `font` `css` `svg-icons` `svg-sprites`
-- **Tags:** `javascript` `web`
-- ⭐ 76064 · 🍴 12223 · 📅 最后更新 2025-12-12 · 📦 [7.1.0](https://github.com/FortAwesome/Font-Awesome/releases/tag/7.1.0)
-
-<div style="text-align: right;">
-<a href="#top">⬆️ 返回顶部</a> | <a href="#开发工具">⬆️ 返回分类</a>
-</div>
-
-</details>
-
 <a id="健康生活"></a>
 ## 🍏 健康生活
 
@@ -1123,6 +1103,26 @@
 
 <div style="text-align: right;">
 <a href="#top">⬆️ 返回顶部</a> | <a href="#健康生活">⬆️ 返回分类</a>
+</div>
+
+</details>
+
+<a id="开发工具"></a>
+## 🛠 开发工具
+
+<a id="ui-组件库"></a>
+<details>
+<summary>🔽 UI 组件库 (1项)</summary>
+
+#### [Font Awesome图标库](https://github.com/FortAwesome/Font-Awesome)
+> 开源矢量图标库，支持多种框架集成
+
+- **Topics:** `fontawesome` `icons` `webfont` `font` `css` `svg-icons` `svg-sprites`
+- **Tags:** `javascript` `web`
+- ⭐ 76064 · 🍴 12223 · 📅 最后更新 2025-12-12 · 📦 [7.1.0](https://github.com/FortAwesome/Font-Awesome/releases/tag/7.1.0)
+
+<div style="text-align: right;">
+<a href="#top">⬆️ 返回顶部</a> | <a href="#开发工具">⬆️ 返回分类</a>
 </div>
 
 </details>
