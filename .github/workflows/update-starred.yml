@@ -46,9 +46,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add starred.md docs/index.html
+          git add starred.md overrides_template.json docs/index.html
           if ! git diff --cached --quiet; then
-            git commit -m "Auto update starred.md and docs/index.html $(date +'%Y-%m-%d')"
+            git commit -m "Auto update project files on $(date +'%Y-%m-%d')"
             git push https://x-access-token:${GH_PAT}@github.com/RicardoLu985/Star.git HEAD:main
           else
             echo "No changes to commit"
