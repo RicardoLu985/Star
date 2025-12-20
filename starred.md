@@ -286,7 +286,7 @@
 
 - **Topics:** `android-tv` `tv-box` `tv` `android` `apk` `app`
 - **Tags:** `javascript` `web`
-- ⭐ 6298 · 🍴 839 · 📅 最后更新 2025-12-19 · 📦 无 Release
+- ⭐ 6300 · 🍴 839 · 📅 最后更新 2025-12-19 · 📦 无 Release
 
 #### [油桃TV](https://github.com/VonChange/utao)
 > 油桃TV 电视浏览器 可看各大卫视CCTV直播 无需电视VIP 适配爱奇艺等主流视频平台
@@ -342,7 +342,7 @@
 
 - **Topics:** `alger` `music` `music-player`
 - **Tags:** `vue` `web`
-- ⭐ 13392 · 🍴 1107 · 📅 最后更新 2025-12-20 · 📦 [v5.0.0](https://github.com/algerkong/AlgerMusicPlayer/releases/tag/v5.0.0)
+- ⭐ 13393 · 🍴 1107 · 📅 最后更新 2025-12-20 · 📦 [v5.0.0](https://github.com/algerkong/AlgerMusicPlayer/releases/tag/v5.0.0)
 
 #### [podcastfy](https://github.com/souzatharsis/podcastfy)
 > An Open Source Python alternative to NotebookLM's podcast feature: Transforming Multimodal Content into Captivating Multilingual Audio Conversations with GenAI
@@ -420,7 +420,7 @@
 
 - **Topics:** `flutter` `getx`
 - **Tags:** `typescript` `web`
-- ⭐ 1816 · 🍴 178 · 📅 最后更新 2025-11-07 · 📦 [release-v2.6.1](https://github.com/waifu-project/movie/releases/tag/release-v2.6.1)
+- ⭐ 1817 · 🍴 178 · 📅 最后更新 2025-11-07 · 📦 [release-v2.6.1](https://github.com/waifu-project/movie/releases/tag/release-v2.6.1)
 
 #### [LaQoo](https://github.com/laqoome/LaQoo)
 > 【LaQoo】一个简洁的播放动漫的App，支持下载，弹幕等功能
@@ -442,7 +442,7 @@
 > 开源电子书阅读器
 
 - **Tags:** `kotlin`
-- ⭐ 42490 · 🍴 4773 · 📅 最后更新 2025-12-20 · 📦 [3.25](https://github.com/gedoor/legado/releases/tag/3.25)
+- ⭐ 42492 · 🍴 4773 · 📅 最后更新 2025-12-20 · 📦 [3.25](https://github.com/gedoor/legado/releases/tag/3.25)
 
 #### [阅读](https://github.com/hectorqin/reader)
 > 阅读3服务器版，桌面端，iOS可用。后端 Kotlin + Spring Boot + Vert.x + Coroutine ；前端 Vue.js + Element。麻烦点点star，关注一下公众号【假装大佬】❗️  
@@ -530,7 +530,7 @@
 
 - **Topics:** `langchain` `openai` `autogen-extension` `autogen` `markdown` `microsoft-office` `pdf`
 - **Tags:** `python`
-- ⭐ 84428 · 🍴 4855 · 📅 最后更新 2025-12-01 · 📦 [v0.1.4](https://github.com/microsoft/markitdown/releases/tag/v0.1.4)
+- ⭐ 84428 · 🍴 4854 · 📅 最后更新 2025-12-01 · 📦 [v0.1.4](https://github.com/microsoft/markitdown/releases/tag/v0.1.4)
 
 #### [Penpot](https://github.com/penpot/penpot)
 > Penpot 是首个用于设计和代码协作的开源设计工具，支持创建设计、交互式原型和设计系统，开发者可获取现成代码，支持开放标准与插件系统，具备自托管能力，通过环境变量和标志进行配置，采用 MPL-2.0 许可证。
@@ -564,7 +564,7 @@
 
 - **Topics:** `jpgtopdf` `pdf` `pdf-converter` `pdf-document-processor` `pdf-generation` `pdf-viewer` `hacktoberfest` `hacktoberfest-accepted` `javascript` `pdf-document` `pdffiller` `privacy` `toolkit` `typescript` `bentopdf`
 - **Tags:** `javascript` `web`
-- ⭐ 7599 · 🍴 518 · 📅 最后更新 2025-12-20 · 📦 [v1.11.2](https://github.com/alam00000/bentopdf/releases/tag/v1.11.2)
+- ⭐ 7600 · 🍴 518 · 📅 最后更新 2025-12-20 · 📦 [v1.11.2](https://github.com/alam00000/bentopdf/releases/tag/v1.11.2)
 
 #### [MiaoYan](https://github.com/tw93/MiaoYan)
 > 一款简洁的Markdown编辑器，专注于提供流畅的写作体验，支持多种格式导出。（macOS专属））
@@ -606,7 +606,7 @@
 
 - **Topics:** `ai-ppt-maker` `ai-slide-builder` `ai-slides` `llm` `nanobananapro` `slides` `text2image` `ppt` `ppt-generator`
 - **Tags:** `ml` `typescript` `web`
-- ⭐ 5164 · 🍴 562 · 📅 最后更新 2025-12-20 · 📦 无 Release
+- ⭐ 5166 · 🍴 562 · 📅 最后更新 2025-12-20 · 📦 无 Release
 
 #### [文件传输 GO](https://github.com/MatrixSeven/file-transfer-go)
 > Go/React开发的端到端webrtc的文件传输/文字传输/桌面共享，安全，隐私，数据不经过服务器。
@@ -626,14 +626,14 @@
 
 - **Topics:** `electron` `pixijs` `screen-recorder` `open-source` `screen-capture`
 - **Tags:** `devops` `typescript` `web`
-- ⭐ 3700 · 🍴 216 · 📅 最后更新 2025-12-17 · 📦 [v1.0.2](https://github.com/siddharthvaddem/openscreen/releases/tag/v1.0.2)
+- ⭐ 3701 · 🍴 216 · 📅 最后更新 2025-12-17 · 📦 [v1.0.2](https://github.com/siddharthvaddem/openscreen/releases/tag/v1.0.2)
 
 #### [Markdown粘贴工具](https://github.com/RICHQAQ/PasteMD)
 > 方便粘贴内容到Markdown文档的辅助工具
 
 - **Topics:** `ai` `chatgpt` `deepseek` `excel` `markdown` `productivity` `word` `wps` `clipboard` `latex` `pandoc` `python` `converter`
 - **Tags:** `cli` `nlp` `python`
-- ⭐ 1861 · 🍴 121 · 📅 最后更新 2025-12-20 · 📦 [v0.1.6.3](https://github.com/RICHQAQ/PasteMD/releases/tag/v0.1.6.3)
+- ⭐ 1862 · 🍴 121 · 📅 最后更新 2025-12-20 · 📦 [v0.1.6.3](https://github.com/RICHQAQ/PasteMD/releases/tag/v0.1.6.3)
 
 #### [OpenListAPP](https://github.com/OpenListApp/OpenListApp)
 > 一个AList、OpenList跨平台客户端
@@ -861,7 +861,7 @@
 
 - **Topics:** `aliyun-drive` `baidu` `baidu-netdisk` `139-cloud` `189-cloud` `ali-netdisk` `quark-netdisk` `tianyi-netdisk` `xunlei-netdisk` `yidong-netdisk` `tampermonkey` `tampermonkey-script` `tampermonkey-userscript` `userscript` `baidunetdisk` `baiduyun` `123pan` `uc-netdisk` `motrix` `aria2`
 - **Tags:** `javascript` `web`
-- ⭐ 9974 · 🍴 511 · 📅 最后更新 2025-12-20 · 📦 [v1.1.1.9](https://github.com/hmjz100/LinkSwift/releases/tag/v1.1.1.9)
+- ⭐ 9975 · 🍴 511 · 📅 最后更新 2025-12-20 · 📦 [v1.1.1.9](https://github.com/hmjz100/LinkSwift/releases/tag/v1.1.1.9)
 
 #### [XIU2的用户脚本集](https://github.com/XIU2/UserScript)
 > 多个平台的增强脚本（去广告、功能扩展等）
@@ -939,7 +939,7 @@
 
 - **Topics:** `agent` `agentic` `ai` `golang` `llm` `ollama` `rag` `chatbot` `generative-ai` `multimodel` `embeddings` `knowledge-base` `openai` `question-answering` `reranking` `vector-search` `chatbots` `evaluation` `multi-tenant` `semantic-search`
 - **Tags:** `automation` `go` `ml`
-- ⭐ 9610 · 🍴 1043 · 📅 最后更新 2025-12-19 · 📦 [v0.2.4](https://github.com/Tencent/WeKnora/releases/tag/v0.2.4)
+- ⭐ 9611 · 🍴 1043 · 📅 最后更新 2025-12-19 · 📦 [v0.2.4](https://github.com/Tencent/WeKnora/releases/tag/v0.2.4)
 
 #### [VibeSurf](https://github.com/vibesurf-ai/VibeSurf)
 > A powerful browser assistant for vibe surfing 一个开源的AI浏览器智能助手
@@ -1038,7 +1038,7 @@
 
 - **Topics:** `data-analysis` `python` `trending-topics` `feishu-robot` `news` `dingtalk-robot` `telegram-bot` `wechat-robot` `hot-news` `docker` `ntfy` `mail` `mcp` `mcp-server` `wechat` `wework` `wework-bot` `bark` `slack`
 - **Tags:** `automation` `devops` `python`
-- ⭐ 39788 · 🍴 20756 · 📅 最后更新 2025-12-20 · 📦 无 Release
+- ⭐ 39788 · 🍴 20755 · 📅 最后更新 2025-12-20 · 📦 无 Release
 
 #### [Microfeed](https://github.com/microfeed/microfeed)
 > 可能是一款用于聚合各类信息源的工具，帮助用户高效获取感兴趣的内容。
@@ -1171,7 +1171,7 @@
 > 各类Awesome清单的集合
 
 - **Topics:** `awesome` `awesome-list` `unicorns` `lists` `resources`
-- ⭐ 423712 · 🍴 32629 · 📅 最后更新 2025-11-22 · 📦 无 Release
+- ⭐ 423713 · 🍴 32629 · 📅 最后更新 2025-11-22 · 📦 无 Release
 
 #### [CS-Notes](https://github.com/CyC2018/CS-Notes)
 > 计算机科学基础知识总结（算法、操作系统等）
@@ -1279,7 +1279,7 @@
 
 - **Topics:** `fontawesome` `icons` `webfont` `font` `css` `svg-icons` `svg-sprites`
 - **Tags:** `javascript` `web`
-- ⭐ 76090 · 🍴 12229 · 📅 最后更新 2025-12-12 · 📦 [7.1.0](https://github.com/FortAwesome/Font-Awesome/releases/tag/7.1.0)
+- ⭐ 76091 · 🍴 12229 · 📅 最后更新 2025-12-12 · 📦 [7.1.0](https://github.com/FortAwesome/Font-Awesome/releases/tag/7.1.0)
 
 <div style="text-align: right;">
 <a href="#top">⬆️ 返回顶部</a> | <a href="#开发工具">⬆️ 返回分类</a>
