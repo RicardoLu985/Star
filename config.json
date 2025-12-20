@@ -1,6 +1,6 @@
 {
   "author": "Ricardo",
-  "per_page": 100,
+  "per_page": 30,
   "blacklist": [],
 
   "template_file": "star_template.md",

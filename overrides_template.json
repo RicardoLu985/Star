@@ -1,11 +1,155 @@
 {
     "repos": {
-        "xiaoyaocz/dart_simple_live": {
+        "Minerchu/dongguaTV": {
             "//": "示例：group=一级分类，sub=子分类，rename=显示名，custom_description=自定义描述",
             "group": "示例分类",
             "sub": "示例子类",
             "rename": "示例项目名称",
             "custom_description": "这是一个示例说明"
+        },
+        "iamgio/quarkdown": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "VREMSoftwareDevelopment/WiFiAnalyzer": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "souzatharsis/podcastfy": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "MODSetter/SurfSense": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "stackia/best-windows-apps": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "LauZzL/doubao-downloader": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "zhongbai2333/Tomato-Novel-Downloader": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "MatsuriDayo/NekoBoxForAndroid": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "hmjz100/123panYouthMember": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "pot-app/pot-desktop": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "XiaoYouChR/Ghost-Downloader-3": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "mifi/lossless-cut": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "pluveto/upgit": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "PicGo/Awesome-PicGo": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "Molunerfinn/PicGo": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "Anduin2017/HowToCook": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "ogkalu2/comic-translate": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "wood3n/biu": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "Yorko/mlcourse.ai": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "krillinai/KrillinAI": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "vibesurf-ai/VibeSurf": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "microsoft/VibeVoice": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "xxnuo/jizhi-mod": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "xiaoyaocz/dart_simple_live": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "coderamp-labs/gitingest": {
             "group": "",
