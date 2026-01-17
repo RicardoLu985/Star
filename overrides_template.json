@@ -1,11 +1,35 @@
 {
     "repos": {
-        "DIYgod/RSSHub-Radar": {
+        "SeakMengs/WindowPet": {
             "//": "示例：group=一级分类，sub=子分类，rename=显示名，custom_description=自定义描述",
             "group": "示例分类",
             "sub": "示例子类",
             "rename": "示例项目名称",
             "custom_description": "这是一个示例说明"
+        },
+        "Kyome22/RunCat365": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "josiahsrc/voquill": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "FreeU-group/FreeTodo": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "DIYgod/RSSHub-Radar": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "DIYgod/RSSHub": {
             "group": "",
