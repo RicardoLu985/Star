@@ -1,11 +1,23 @@
 {
     "repos": {
-        "rumboalla/apkupdater": {
+        "ZhuLinsen/daily_stock_analysis": {
             "//": "示例：group=一级分类，sub=子分类，rename=显示名，custom_description=自定义描述",
             "group": "示例分类",
             "sub": "示例子类",
             "rename": "示例项目名称",
             "custom_description": "这是一个示例说明"
+        },
+        "NeoApplications/Neo-Store": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "rumboalla/apkupdater": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "SeakMengs/WindowPet": {
             "group": "",
