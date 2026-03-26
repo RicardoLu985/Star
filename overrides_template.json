@@ -1,11 +1,29 @@
 {
     "repos": {
-        "wanikua/danghuangshang": {
+        "ShirkNeko/GKI_KernelSU_SUSFS": {
             "//": "示例：group=一级分类，sub=子分类，rename=显示名，custom_description=自定义描述",
             "group": "示例分类",
             "sub": "示例子类",
             "rename": "示例项目名称",
             "custom_description": "这是一个示例说明"
+        },
+        "WildKernels/GKI_KernelSU_SUSFS": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "SukiSU-Ultra/SukiSU-Ultra": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "wanikua/danghuangshang": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "cmliu/edgetunnel": {
             "group": "",
@@ -74,12 +92,6 @@
             "custom_description": ""
         },
         "pskdje/bilibili-API-collect": {
-            "group": "",
-            "sub": "",
-            "rename": "",
-            "custom_description": ""
-        },
-        "hjdhnx/drpy-node": {
             "group": "",
             "sub": "",
             "rename": "",
