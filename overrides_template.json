@@ -1,11 +1,29 @@
 {
     "repos": {
-        "moli238/humanizer-zh-moli": {
+        "awesome-dsh-plugin/awesome-dsh-plugin": {
             "//": "示例：group=一级分类，sub=子分类，rename=显示名，custom_description=自定义描述",
             "group": "示例分类",
             "sub": "示例子类",
             "rename": "示例项目名称",
             "custom_description": "这是一个示例说明"
+        },
+        "anywhere-labs/deepseek-harness-desktop": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "deepseek-ai/deepseek-harness": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "moli238/humanizer-zh-moli": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "oirge/Mineradio": {
             "group": "",
