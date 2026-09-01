@@ -1,11 +1,23 @@
 {
     "repos": {
-        "fmz200/wool_scripts": {
+        "laylavish/uBlockOrigin-HUGE-AI-Blocklist": {
             "//": "示例：group=一级分类，sub=子分类，rename=显示名，custom_description=自定义描述",
             "group": "示例分类",
             "sub": "示例子类",
             "rename": "示例项目名称",
             "custom_description": "这是一个示例说明"
+        },
+        "uBlockOrigin/uAssets": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "fmz200/wool_scripts": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
         },
         "8680/GOODBYEADS": {
             "group": "",
