@@ -25,12 +25,6 @@
             "rename": "",
             "custom_description": ""
         },
-        "rakanki911/DLSS5-Swapper": {
-            "group": "",
-            "sub": "",
-            "rename": "",
-            "custom_description": ""
-        },
         "huiliyi37/Tianshu-harness": {
             "group": "",
             "sub": "",
@@ -164,6 +158,12 @@
             "custom_description": ""
         },
         "codecrafters-io/build-your-own-x": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
+        "Dr-TSNG/ZygiskNext": {
             "group": "",
             "sub": "",
             "rename": "",
