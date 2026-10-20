@@ -301,6 +301,12 @@
             "rename": "",
             "custom_description": ""
         },
+        "libxposed/api": {
+            "group": "",
+            "sub": "",
+            "rename": "",
+            "custom_description": ""
+        },
         "gkd-kit/subscription": {
             "group": "",
             "sub": "",
